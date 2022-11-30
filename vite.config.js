@@ -6,6 +6,7 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
+            input: ['resources/js/app.jsx'], // Specify the entry points...
         }),
     ],
     resolve: {
