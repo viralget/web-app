@@ -6,11 +6,31 @@ import logoLaravel from '@/../assets/images/logos/h-m.png'
 import logoMirage from '@/../assets/images/logos/coca-cola.png'
 import logoStatamic from '@/../assets/images/logos/loreal.png'
 import logoStaticKit from '@/../assets/images/logos/p&g.png'
-import logoTransistor from '@/../assets/images/logos/philips.png'
+import nestle from '@/../assets/images/logos/nestle.jpeg'
+import remita from '@/../assets/images/logos/remita.png'
+import shoprite from '@/../assets/images/logos/shoprite.png'
+import powerHorse from '@/../assets/images/logos/power-horse.jpeg'
+import pwc from '@/../assets/images/logos/pwc.png'
+import lordsGin from '@/../assets/images/logos/lords-gin.jpeg'
+// import pwc from '@/../assets/images/logos/pwc.png'
+import viralgetLanding from '@/../assets/images/screenshots/viralget-landing.png'
 // import logoTuple from '@/../assets/images/logos/tuple.svg'
 // import headerBg from '@/../assets/images/header-banner.svg'
 import worldJson from '@/../assets/lottie/world.json'
 import LottieAnimation from '@/components/LottieAnimation'
+
+const brands = [
+  [
+    { name: 'Nestle', logo: nestle },
+    { name: 'Power Horse', logo: powerHorse },
+    { name: 'Pwc', logo: pwc },
+  ],
+  [
+    { name: 'Shoprite', logo: shoprite },
+    { name: 'Remita', logo: remita },
+    { name: 'Lord\'s Gin', logo: lordsGin },
+  ],
+];
 
 export function Hero() {
   return (
@@ -37,7 +57,7 @@ export function Hero() {
         </h1>
         {/* <h2 className="mx-auto max-w-4xl font-display text-6xl font-medium tracking-tight text-slate-800 sm:text-4xl mt-3">to drive your business forward</h2> */}
         <p className="mx-auto mt-3 max-w-2xl text-lg tracking-tight text-slate-700">
-          Viralget is built for you. Get current influencer marketing lack data insight, track and manage influencers.
+          Viralget is built for you. Get actionable influencer marketing data insight, track and manage influencers.
         </p>
         <div className="mt-6 flex justify-center gap-x-6">
           <Button href="/join">Join the waitlist</Button>
@@ -54,7 +74,17 @@ export function Hero() {
             <span className="ml-3">Watch video</span>
           </Button> */}
         </div>
-        <div className="mt-36 lg:mt-44">
+
+        <div className="hidden md:block mt-12 ">
+          <img
+            className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
+            src={viralgetLanding}
+            // src="https://tailwindui.com/img/component-images/top-nav-with-multi-column-layout-screenshot.jpg"
+            alt=""
+          />
+        </div>
+
+        <div className="mt-16 lg:mt-24">
           <p className="font-display font-bold text-base text-slate-900">
             Join the world’s top brands
           </p>
@@ -62,18 +92,7 @@ export function Hero() {
             role="list"
             className="mt-8 flex items-center justify-center gap-x-8 sm:flex-col sm:gap-x-0 sm:gap-y-10 xl:flex-row xl:gap-x-12 xl:gap-y-0"
           >
-            {[
-              [
-                { name: 'Transistor', logo: logoTransistor },
-                // { name: 'Tuple', logo: logoTuple },
-                { name: 'StaticKit', logo: logoStaticKit },
-              ],
-              [
-                { name: 'Mirage', logo: logoMirage },
-                { name: 'Laravel', logo: logoLaravel },
-                { name: 'Statamic', logo: logoStatamic },
-              ],
-            ].map((group, groupIndex) => (
+            {brands.map((group, groupIndex) => (
               <li key={groupIndex}>
                 <ul
                   role="list"
@@ -81,7 +100,9 @@ export function Hero() {
                 >
                   {group.map((company) => (
                     <li key={company.name} className="flex">
-                      <img src={company.logo} style={{ filter: "invert(100%)", width: "100px" }} alt={company.name} unoptimized />
+                      <img src={company.logo}
+                        // style={{ filter: "invert(100%)", width: "100px" }}
+                        alt={company.name} unoptimized />
                     </li>
                   ))}
                 </ul>

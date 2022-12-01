@@ -14,25 +14,25 @@ const features = [
   {
     title: 'Find Influencers',
     description:
-      "Keep track of everyone's salaries and whether or not they've been paid. Direct deposit not supported.",
+      "Search through our database to discover wide varieties of influencers across over 40 different niches and categories. ",
     image: screenshotExpenses,
   },
   {
     title: 'Smart Filter',
     description:
-      "All of your receipts organized into one place, as long as you don't mind typing in the data by hand.",
+      "Using the most accurate filters in the industry, our AI powered smart filters will help you quickly find the right influencer for you, with an audience that is exactly right for your product or service.",
     image: screenshotPayroll,
   },
   {
     title: 'Analyze Influencers',
     description:
-      "We only sell our software to companies who don't deal with VAT at all, so technically we do all the VAT stuff they need.",
+      "Use AI powered account analytics to analyse influencers online performance, their audience, contents and value to aid your influencer selection.",
     image: screenshotReporting,
   },
   {
     title: 'Create Campaigns',
     description:
-      'Easily export your data into an Excel spreadsheet where you can do whatever the hell you want with it.',
+      'Create a campaign list and add your selected influencers. When you’re ready to run your campaign, all your saved influencers will be just a click away.',
     image: screenshotVatReturns,
   },
 ]
