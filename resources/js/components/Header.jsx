@@ -7,6 +7,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
+import { Head } from '@inertiajs/inertia-react'
 
 function MobileNavLink({ href, children }) {
   return (
@@ -91,35 +92,44 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="py-10">
-      <Container>
-        <nav className="relative z-50 flex justify-between">
-          <div className="flex items-center md:gap-x-12">
-            <Link href="/" aria-label="Home">
-              <Logo className="h-10 w-auto" />
-            </Link>
-            <div className="hidden font-bold items-center md:flex md:gap-x-6">
-              <NavLink href="/#features">Features</NavLink>
-              <NavLink href="/#testimonials">Testimonials</NavLink>
-              {/* <NavLink href="#pricing">FAQ</NavLink> */}
+    <>
+      <Head>
+        <title>Viralget - Data-driven end-to-end influencer marketing platform</title>
+        <meta name="description" content="Viralget is a data-driven end-to-end influencer marketing platform, focused on getting actionable influencer marketing data insight, tracking and managing influencers." />
+        {/* <link rel="shortcut icon" href={favicon} type="image/x-icon" />
+        {{ Vite::asset('resources/assets/images/favicon.ico') }} */}
+      </Head>
+      <header className="py-10">
+        <Container>
+          <nav className="relative z-50 flex justify-between">
+            <div className="flex items-center md:gap-x-12">
+              <Link href="/" aria-label="Home">
+                <Logo className="h-10 w-auto" />
+              </Link>
+              <div className="hidden font-bold items-center md:flex md:gap-x-6">
+                <NavLink href="/#features">Features</NavLink>
+                <NavLink href="/#testimonials">Testimonials</NavLink>
+                {/* <NavLink href="#pricing">FAQ</NavLink> */}
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-            {/* <div className="hidden md:block">
+            <div className="flex items-center gap-x-5 md:gap-x-8">
+              {/* <div className="hidden md:block">
               <NavLink href="/login">Log in</NavLink>
             </div> */}
-            <Button href="/join" color="blue">
-              <span>
-                Join the waitlist
-                {/* Try for Free */}
-              </span>
-            </Button>
-            <div className="-mr-1 md:hidden">
-              <MobileNavigation />
+              <Button href="/join" color="blue">
+                <span>
+                  Join the waitlist
+                  {/* Try for Free */}
+                </span>
+              </Button>
+              <div className="-mr-1 md:hidden">
+                <MobileNavigation />
+              </div>
             </div>
-          </div>
-        </nav>
-      </Container>
-    </header>
+          </nav>
+        </Container>
+      </header>
+    </>
+
   )
 }
