@@ -1,0 +1,232 @@
+{
+  "resources/assets/images/background-faqs.jpg": {
+    "file": "assets/background-faqs.a95741b4.jpg",
+    "src": "resources/assets/images/background-faqs.jpg"
+  },
+  "resources/assets/images/background-call-to-action.jpg": {
+    "file": "assets/background-call-to-action.6982bbe7.jpg",
+    "src": "resources/assets/images/background-call-to-action.jpg"
+  },
+  "resources/assets/images/logos/h-m.png": {
+    "file": "assets/h-m.c9398464.png",
+    "src": "resources/assets/images/logos/h-m.png"
+  },
+  "resources/assets/images/logos/coca-cola.png": {
+    "file": "assets/coca-cola.0cc42121.png",
+    "src": "resources/assets/images/logos/coca-cola.png"
+  },
+  "resources/assets/images/logos/loreal.png": {
+    "file": "assets/loreal.ec64cadc.png",
+    "src": "resources/assets/images/logos/loreal.png"
+  },
+  "resources/assets/images/logos/p&g.png": {
+    "file": "assets/p_g.296cd4bf.png",
+    "src": "resources/assets/images/logos/p&g.png"
+  },
+  "resources/assets/images/logos/philips.png": {
+    "file": "assets/philips.3d15de82.png",
+    "src": "resources/assets/images/logos/philips.png"
+  },
+  "resources/assets/images/avatars/avatar-1.png": {
+    "file": "assets/avatar-1.22e5a33a.png",
+    "src": "resources/assets/images/avatars/avatar-1.png"
+  },
+  "resources/assets/images/avatars/avatar-3.png": {
+    "file": "assets/avatar-3.5601251c.png",
+    "src": "resources/assets/images/avatars/avatar-3.png"
+  },
+  "resources/assets/images/avatars/avatar-2.png": {
+    "file": "assets/avatar-2.0db30f2e.png",
+    "src": "resources/assets/images/avatars/avatar-2.png"
+  },
+  "resources/assets/images/avatars/avatar-4.png": {
+    "file": "assets/avatar-4.943d3276.png",
+    "src": "resources/assets/images/avatars/avatar-4.png"
+  },
+  "resources/assets/images/avatars/avatar-5.png": {
+    "file": "assets/avatar-5.524e1bb0.png",
+    "src": "resources/assets/images/avatars/avatar-5.png"
+  },
+  "resources/assets/images/screenshots/contacts.png": {
+    "file": "assets/contacts.d4ff946d.png",
+    "src": "resources/assets/images/screenshots/contacts.png"
+  },
+  "resources/assets/images/screenshots/inventory.png": {
+    "file": "assets/inventory.ccfbde79.png",
+    "src": "resources/assets/images/screenshots/inventory.png"
+  },
+  "resources/assets/images/screenshots/profit-loss.png": {
+    "file": "assets/profit-loss.b7a73616.png",
+    "src": "resources/assets/images/screenshots/profit-loss.png"
+  },
+  "resources/assets/images/screenshots/expenses.png": {
+    "file": "assets/expenses.79874f81.png",
+    "src": "resources/assets/images/screenshots/expenses.png"
+  },
+  "resources/assets/images/screenshots/payroll.png": {
+    "file": "assets/payroll.df315be0.png",
+    "src": "resources/assets/images/screenshots/payroll.png"
+  },
+  "resources/assets/images/screenshots/reporting.png": {
+    "file": "assets/reporting.5ba4700d.png",
+    "src": "resources/assets/images/screenshots/reporting.png"
+  },
+  "resources/assets/images/screenshots/vat-returns.png": {
+    "file": "assets/vat-returns.1a9fa9ee.png",
+    "src": "resources/assets/images/screenshots/vat-returns.png"
+  },
+  "resources/assets/images/screenshots/filters.png": {
+    "file": "assets/filters.12e7a7ef.png",
+    "src": "resources/assets/images/screenshots/filters.png"
+  },
+  "resources/assets/images/screenshots/analyze.png": {
+    "file": "assets/analyze.9a9d9a75.png",
+    "src": "resources/assets/images/screenshots/analyze.png"
+  },
+  "resources/assets/images/screenshots/campaigns.png": {
+    "file": "assets/campaigns.00af73d2.png",
+    "src": "resources/assets/images/screenshots/campaigns.png"
+  },
+  "resources/assets/images/logos/logo.svg": {
+    "file": "assets/logo.e04314b9.svg",
+    "src": "resources/assets/images/logos/logo.svg"
+  },
+  "resources/assets/images/screenshots/find-influencers.png": {
+    "file": "assets/find-influencers.09305fcf.png",
+    "src": "resources/assets/images/screenshots/find-influencers.png"
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app.59e47cf7.js",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Auth/Register.jsx",
+      "resources/js/Pages/Dashboard/index.jsx",
+      "resources/js/Pages/Home/index.jsx",
+      "resources/js/Pages/Join/index.jsx",
+      "resources/js/Pages/Search/SearchBox.jsx",
+      "resources/js/Pages/Search/SearchForm.jsx",
+      "resources/js/Pages/Search/index.jsx"
+    ]
+  },
+  "resources/js/Pages/Auth/Register.jsx": {
+    "file": "assets/Register.584b6890.js",
+    "src": "resources/js/Pages/Auth/Register.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Dashboard/index.jsx": {
+    "file": "assets/index.06427f53.js",
+    "src": "resources/js/Pages/Dashboard/index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Container.0cebf6d9.js",
+      "_description.f165808f.js",
+      "resources/js/Pages/Search/SearchBox.jsx",
+      "resources/js/Pages/Search/SearchForm.jsx"
+    ]
+  },
+  "_Container.0cebf6d9.js": {
+    "file": "assets/Container.0cebf6d9.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Search/SearchBox.jsx": {
+    "file": "assets/SearchBox.3351b068.js",
+    "src": "resources/js/Pages/Search/SearchBox.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "resources/js/Pages/Search/SearchForm.jsx"
+    ]
+  },
+  "resources/js/Pages/Search/SearchForm.jsx": {
+    "file": "assets/SearchForm.695c8bea.js",
+    "src": "resources/js/Pages/Search/SearchForm.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_description.f165808f.js": {
+    "file": "assets/description.f165808f.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Container.0cebf6d9.js"
+    ]
+  },
+  "resources/js/Pages/Home/index.jsx": {
+    "file": "assets/index.1a290a89.js",
+    "src": "resources/js/Pages/Home/index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Container.0cebf6d9.js",
+      "_lottie.09c2c6a7.js",
+      "_Header.899a07ce.js"
+    ],
+    "assets": [
+      "assets/h-m.c9398464.png",
+      "assets/coca-cola.0cc42121.png",
+      "assets/loreal.ec64cadc.png",
+      "assets/p_g.296cd4bf.png",
+      "assets/philips.3d15de82.png",
+      "assets/find-influencers.09305fcf.png",
+      "assets/filters.12e7a7ef.png",
+      "assets/analyze.9a9d9a75.png",
+      "assets/campaigns.00af73d2.png",
+      "assets/avatar-1.22e5a33a.png",
+      "assets/avatar-4.943d3276.png",
+      "assets/avatar-5.524e1bb0.png"
+    ]
+  },
+  "_lottie.09c2c6a7.js": {
+    "file": "assets/lottie.09c2c6a7.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Container.0cebf6d9.js"
+    ]
+  },
+  "_Header.899a07ce.js": {
+    "file": "assets/Header.899a07ce.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_Container.0cebf6d9.js"
+    ],
+    "assets": [
+      "assets/logo.e04314b9.svg"
+    ]
+  },
+  "resources/js/Pages/Join/index.jsx": {
+    "file": "assets/index.94408cee.js",
+    "src": "resources/js/Pages/Join/index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Header.899a07ce.js",
+      "_Container.0cebf6d9.js",
+      "_description.f165808f.js"
+    ]
+  },
+  "resources/js/Pages/Search/index.jsx": {
+    "file": "assets/index.305620a9.js",
+    "src": "resources/js/Pages/Search/index.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_Container.0cebf6d9.js",
+      "_lottie.09c2c6a7.js",
+      "_Header.899a07ce.js",
+      "resources/js/Pages/Search/SearchBox.jsx",
+      "resources/js/Pages/Search/SearchForm.jsx"
+    ]
+  },
+  "resources/assets/images/background-features.jpg": {
+    "file": "assets/background-call-to-action.6982bbe7.jpg",
+    "src": "resources/assets/images/background-features.jpg"
+  }
+}
