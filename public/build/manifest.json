@@ -1,8 +1,4 @@
 {
-  "resources/assets/images/background-faqs.jpg": {
-    "file": "assets/background-faqs.a95741b4.jpg",
-    "src": "resources/assets/images/background-faqs.jpg"
-  },
   "resources/assets/images/background-call-to-action.jpg": {
     "file": "assets/background-call-to-action.6982bbe7.jpg",
     "src": "resources/assets/images/background-call-to-action.jpg"
@@ -27,25 +23,9 @@
     "file": "assets/philips.3d15de82.png",
     "src": "resources/assets/images/logos/philips.png"
   },
-  "resources/assets/images/avatars/avatar-1.png": {
-    "file": "assets/avatar-1.22e5a33a.png",
-    "src": "resources/assets/images/avatars/avatar-1.png"
-  },
-  "resources/assets/images/avatars/avatar-3.png": {
-    "file": "assets/avatar-3.5601251c.png",
-    "src": "resources/assets/images/avatars/avatar-3.png"
-  },
-  "resources/assets/images/avatars/avatar-2.png": {
-    "file": "assets/avatar-2.0db30f2e.png",
-    "src": "resources/assets/images/avatars/avatar-2.png"
-  },
-  "resources/assets/images/avatars/avatar-4.png": {
-    "file": "assets/avatar-4.943d3276.png",
-    "src": "resources/assets/images/avatars/avatar-4.png"
-  },
-  "resources/assets/images/avatars/avatar-5.png": {
-    "file": "assets/avatar-5.524e1bb0.png",
-    "src": "resources/assets/images/avatars/avatar-5.png"
+  "resources/assets/images/background-faqs.jpg": {
+    "file": "assets/background-faqs.a95741b4.jpg",
+    "src": "resources/assets/images/background-faqs.jpg"
   },
   "resources/assets/images/screenshots/contacts.png": {
     "file": "assets/contacts.d4ff946d.png",
@@ -55,9 +35,29 @@
     "file": "assets/inventory.ccfbde79.png",
     "src": "resources/assets/images/screenshots/inventory.png"
   },
+  "resources/assets/images/avatars/avatar-1.png": {
+    "file": "assets/avatar-1.22e5a33a.png",
+    "src": "resources/assets/images/avatars/avatar-1.png"
+  },
+  "resources/assets/images/avatars/avatar-2.png": {
+    "file": "assets/avatar-2.0db30f2e.png",
+    "src": "resources/assets/images/avatars/avatar-2.png"
+  },
   "resources/assets/images/screenshots/profit-loss.png": {
     "file": "assets/profit-loss.b7a73616.png",
     "src": "resources/assets/images/screenshots/profit-loss.png"
+  },
+  "resources/assets/images/avatars/avatar-3.png": {
+    "file": "assets/avatar-3.5601251c.png",
+    "src": "resources/assets/images/avatars/avatar-3.png"
+  },
+  "resources/assets/images/avatars/avatar-5.png": {
+    "file": "assets/avatar-5.524e1bb0.png",
+    "src": "resources/assets/images/avatars/avatar-5.png"
+  },
+  "resources/assets/images/avatars/avatar-4.png": {
+    "file": "assets/avatar-4.943d3276.png",
+    "src": "resources/assets/images/avatars/avatar-4.png"
   },
   "resources/assets/images/screenshots/expenses.png": {
     "file": "assets/expenses.79874f81.png",
@@ -87,13 +87,13 @@
     "file": "assets/campaigns.00af73d2.png",
     "src": "resources/assets/images/screenshots/campaigns.png"
   },
-  "resources/assets/images/logos/logo.svg": {
-    "file": "assets/logo.e04314b9.svg",
-    "src": "resources/assets/images/logos/logo.svg"
-  },
   "resources/assets/images/screenshots/find-influencers.png": {
     "file": "assets/find-influencers.09305fcf.png",
     "src": "resources/assets/images/screenshots/find-influencers.png"
+  },
+  "resources/assets/images/logos/logo.svg": {
+    "file": "assets/logo.e04314b9.svg",
+    "src": "resources/assets/images/logos/logo.svg"
   },
   "resources/js/app.jsx": {
     "file": "assets/app.59e47cf7.js",
@@ -224,6 +224,11 @@
       "resources/js/Pages/Search/SearchBox.jsx",
       "resources/js/Pages/Search/SearchForm.jsx"
     ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.5b26724a.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
   },
   "resources/assets/images/background-features.jpg": {
     "file": "assets/background-call-to-action.6982bbe7.jpg",
