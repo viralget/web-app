@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { Link } from '@inertiajs/inertia-react'
+import { Link, usePage } from '@inertiajs/inertia-react'
 import { Popover, Transition } from '@headlessui/react'
 import { classNames } from '@/Utils/helpers'
 
@@ -8,6 +8,7 @@ import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 import { Head } from '@inertiajs/inertia-react'
+import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 
 function MobileNavLink({ href, children }) {
   return (
@@ -91,6 +92,8 @@ function MobileNavigation() {
 }
 
 export function Header() {
+  const { auth: { user } } = usePage().props;
+
   return (
     <>
       <Head>
@@ -113,15 +116,21 @@ export function Header() {
               </div>
             </div>
             <div className="flex items-center gap-x-5 md:gap-x-8">
-              {/* <div className="hidden md:block">
-              <NavLink href="/login">Log in</NavLink>
-            </div> */}
-              <Button href="/join" color="blue">
-                <span>
-                  Join the waitlist
-                  {/* Try for Free */}
-                </span>
-              </Button>
+              {user ?
+                <DropdownMenu user={user} />
+                :
+                <>
+                  <div className="hidden md:block">
+                    <NavLink href="/login">Log in</NavLink>
+                  </div>
+                  <Button href="/register" color="blue">
+                    <span>
+                      Create an account
+                      {/* Try for Free */}
+                    </span>
+                  </Button>
+                </>
+              }
               <div className="-mr-1 md:hidden">
                 <MobileNavigation />
               </div>

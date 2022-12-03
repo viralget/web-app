@@ -16,15 +16,19 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home/index');
-});
+})->name('home');
 
 Route::get('/join', function () {
     return Inertia::render('Join/index');
 });
 
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard/index');
-// });
+Route::middleware('auth')->group(
+    function () {
+        Route::get('/dashboard', function () {
+            return Inertia::render('Dashboard/index');
+        });
+    }
+);
 
 
 // Route::get('/search', function () {

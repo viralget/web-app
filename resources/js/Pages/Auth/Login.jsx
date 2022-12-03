@@ -10,12 +10,9 @@ import { Logo } from '@/components/Logo'
 import SocialsLogin from "./SocialsLogin";
 import { useEffect } from "react";
 
-export default function Register() {
+export default function Login() {
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        company_name: '',
-        first_name: '',
-        last_name: '',
         email: '',
         password: '',
     });
@@ -24,7 +21,7 @@ export default function Register() {
         // post(route('register'));
 
         return () => {
-            reset('password', 'password_confirmation');
+            reset('password');
         };
     }, []);
 
@@ -35,7 +32,7 @@ export default function Register() {
     const submit = (e) => {
         e.preventDefault();
 
-        post('/register');
+        post('/login');
     };
 
     return (
@@ -46,8 +43,8 @@ export default function Register() {
                 <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
                 <p className="mt-2 text-sm text-gray-600">
                     Or{' '}
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                        start your 14-day free trial
+                    <a href="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        Create an account
                     </a>
                 </p>
             </div>
@@ -67,47 +64,7 @@ export default function Register() {
                 <ValidationErrors errors={errors} />
 
                 <form onSubmit={submit} className="space-y-2">
-                    <div>
 
-                        <Input
-                            type="text"
-                            name="company_name"
-                            label="Company Name"
-                            value={data.company_name}
-                            className="mt-1 block w-full"
-                            autoComplete="company_name"
-                            onChange={onHandleChange}
-                            placeholder="Optional"
-                            required
-                        />
-                    </div>
-                    <div>
-
-                        <Input
-                            type="text"
-                            name="first_name"
-                            label="First Name"
-                            value={data.first_name}
-                            className="mt-1 block w-full"
-                            autoComplete="first_name"
-                            onChange={onHandleChange}
-                            required
-                        />
-                    </div>
-
-                    <div>
-
-                        <Input
-                            type="text"
-                            name="last_name"
-                            label="Last Name"
-                            value={data.last_name}
-                            className="mt-1 block w-full"
-                            autoComplete="family_name"
-                            onChange={onHandleChange}
-                            required
-                        />
-                    </div>
 
                     <div className="mt-4">
 
@@ -140,7 +97,7 @@ export default function Register() {
                         <Button
                             className='block w-full'
                             processing={processing}>
-                            Create account
+                            Login
                         </Button>
                     </div>
                 </form>
