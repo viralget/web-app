@@ -18,11 +18,18 @@ export const services_routes = [
 
 
 export const auth_routes = [
-    // {
-    //     name: "Account settings",
-    //     href: 'settings.index'
-    // },
-    // {
+    {
+        name: "Explore Influencers",
+        href: 'explore'
+    },
+    {
+        name: "Create new Campaign",
+        href: 'campaigns.create'
+    },
+    {
+        name: "Account Settings",
+        href: 'settings'
+    },    // {
     //     name: "Log Out",
     //     href: 'logout'
     // },

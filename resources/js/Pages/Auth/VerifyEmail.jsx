@@ -1,5 +1,5 @@
 
-import { Button } from '@/Components/Button';
+import Button from '@/Components/Button';
 import App from '@/Pages/Users/Layouts/App';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import Auth from '../../Layouts/Auth';

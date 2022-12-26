@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\InfluencerController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,13 +24,31 @@ Route::get('/join', function () {
     return Inertia::render('Join/index');
 });
 
+Route::get('/faqs', function () {
+    return Inertia::render('Faqs/index');
+})->name('faqs');
+
+Route::get('/coming-soon', function () {
+    return Inertia::render('ComingSoon/index');
+})->name('coming-soon');
+
 Route::middleware('auth')->group(
     function () {
-        Route::get('/dashboard', function () {
-            return Inertia::render('Dashboard/index');
-        });
+        Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
+        Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
+
+        Route::get('/settings', function () {
+            return Inertia::render('Account/index');
+        })->name('settings');
+
+        Route::resources([
+            'campaigns' => CampaignController::class,
+            'influencers' => InfluencerController::class
+        ]);
     }
 );
+
+
 
 
 // Route::get('/search', function () {

@@ -1,6 +1,6 @@
 // import Image from 'next/future/image'
 
-import { Button } from '@/components/Button'
+import Button from '@/components/Button'
 import { Container } from '@/components/Container'
 import nestle from '@/../assets/images/logos/nestle.jpeg'
 import remita from '@/../assets/images/logos/remita.png'

@@ -1,5 +1,5 @@
-import Guest from "@/components/Layouts/Guest";
-import { Button } from '@/Components/Button';
+import Auth from "@/components/Layouts/Auth";
+import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
@@ -36,7 +36,7 @@ export default function Login() {
     };
 
     return (
-        <Guest>
+        <Auth>
 
             <div>
                 <Logo />
@@ -168,6 +168,6 @@ export default function Login() {
                 </div> */}
             </div>
 
-        </Guest>
+        </Auth>
     )
 }

@@ -1,7 +1,6 @@
-import Guest from "@/components/Layouts/Guest";
-import { Button } from '@/Components/Button';
+import Auth from "@/components/Layouts/Auth";
+import Button from '@/Components/Button';
 import Input from '@/Components/Input';
-import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import PasswordInput from '@/Components/PasswordInput';
@@ -39,7 +38,7 @@ export default function Register() {
     };
 
     return (
-        <Guest>
+        <Auth>
 
             <div>
                 <Logo />
@@ -211,6 +210,6 @@ export default function Register() {
                 </div> */}
             </div>
 
-        </Guest>
+        </Auth>
     )
 }

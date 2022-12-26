@@ -3,9 +3,9 @@ import { classNames } from '@/Utils/helpers'
 
 const baseStyles = {
   solid:
-    'group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
+    'group inline-flex items-center justify-center rounded-full py-3 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
   outline:
-    'group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none',
+    'group inline-flex ring-1 items-center justify-center rounded-full py-3 px-4 text-sm focus:outline-none',
 }
 
 const variantStyles = {
@@ -25,7 +25,7 @@ const variantStyles = {
   },
 }
 
-export function Button({
+function Button({
   variant = 'solid',
   color = 'slate',
   className,
@@ -44,3 +44,5 @@ export function Button({
     <button className={className} {...props} />
   )
 }
+
+export default Button;

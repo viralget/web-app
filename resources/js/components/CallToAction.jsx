@@ -1,6 +1,6 @@
 // // import Image from 'next/future/image'
 
-import { Button } from '@/components/Button'
+import Button from '@/components/Button'
 import { Container } from '@/components/Container'
 import backgroundImage from '@/../assets/images/background-call-to-action.jpg'
 

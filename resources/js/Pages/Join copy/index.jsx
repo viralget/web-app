@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 import { Header } from '@/components/Header'
-import { Button } from '../../components/Button'
+import Button from '../../components/Button'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

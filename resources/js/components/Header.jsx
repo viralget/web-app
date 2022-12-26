@@ -3,12 +3,36 @@ import { Link, usePage } from '@inertiajs/inertia-react'
 import { Popover, Transition } from '@headlessui/react'
 import { classNames } from '@/Utils/helpers'
 
-import { Button } from '@/components/Button'
+import Button from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 import { Head } from '@inertiajs/inertia-react'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
+import Badge from './Badge'
+
+const header_routes = [
+  {
+    name: "Features",
+    href: "/#features"
+  },
+  {
+    name: "Testimonials",
+    href: "/#testimonials"
+  },
+  {
+    name: "Find Influencers",
+    href: route('explore')
+  },
+  {
+    name: <> Track Campaign<Badge text="Coming soon" /> </>,
+    href: "/#"
+  },
+  {
+    name: "FAQs",
+    href: route('faqs')
+  },
+]
 
 function MobileNavLink({ href, children }) {
   return (
@@ -79,8 +103,9 @@ function MobileNavigation() {
             as="div"
             className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-            <MobileNavLink href="#features">Features</MobileNavLink>
-            <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
+            {header_routes.map((route, index) => (
+              <MobileNavLink key={index} href={route.href}>{route.name}</MobileNavLink>
+            ))}
             {/* <MobileNavLink href="#pricing">Pricing</MobileNavLink>
             <hr className="m-2 border-slate-300/40" />
             <MobileNavLink href="/login">Sign in</MobileNavLink> */}
@@ -109,10 +134,10 @@ export function Header() {
               <Link href="/" aria-label="Home">
                 <Logo className="h-10 w-auto" />
               </Link>
-              <div className="hidden font-bold items-center md:flex md:gap-x-6">
-                <NavLink href="/#features">Features</NavLink>
-                <NavLink href="/#testimonials">Testimonials</NavLink>
-                {/* <NavLink href="#pricing">FAQ</NavLink> */}
+              <div className="hidden font-bold items-center md:flex md:gap-x-3">
+                {header_routes.map((route, index) => (
+                  <NavLink key={index} href={route.href}>{route.name}</NavLink>
+                ))}
               </div>
             </div>
             <div className="flex items-center gap-x-5 md:gap-x-8">

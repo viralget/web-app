@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Avatar from '@/Components/Avatar'
-import { Button } from '@/Components/Button'
+import Button from '@/Components/Button'
 import { auth_routes } from './navigation'
 import { Link } from '@inertiajs/inertia-react'
 
@@ -11,7 +11,6 @@ function classNames(...classes) {
 }
 
 export default function DropdownMenu({ user, light = false }) {
-    console.log({ user })
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
@@ -58,7 +57,7 @@ export default function DropdownMenu({ user, light = false }) {
                     )}
                     <div className="py-1">
                         {auth_routes.map((item, index) => (
-                            <Menu.Item>
+                            <Menu.Item key={index}>
                                 {({ active }) => (
                                     <Link
                                         href={route(item.href)}

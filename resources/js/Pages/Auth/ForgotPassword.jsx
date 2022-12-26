@@ -1,5 +1,5 @@
 
-import { Button } from '@/Components/Button';
+import Button from '@/Components/Button';
 import App from '@/Pages/Users/Layouts/App';
 import Input from '@/Components/Input';
 import ValidationErrors from '@/Components/ValidationErrors';

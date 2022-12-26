@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Button } from '@/Components/Button';
+import Button from '@/Components/Button';
 import Checkbox from '@/Components/Checkbox';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';

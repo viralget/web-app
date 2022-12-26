@@ -1,71 +1,32 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
+import { Logo } from '@/components/Logo'
+import { classNames } from '@/Utils/helpers'
+
 import {
-    Bars3CenterLeftIcon,
-    BellIcon,
     ClockIcon,
-    CogIcon,
     CreditCardIcon,
-    DocumentChartBarIcon,
     HomeIcon,
-    QuestionMarkCircleIcon,
     ScaleIcon,
-    ShieldCheckIcon,
-    UserGroupIcon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
-import {
-    BanknotesIcon,
-    BuildingOfficeIcon,
-    CheckCircleIcon,
-    ChevronDownIcon,
-    ChevronRightIcon,
-    MagnifyingGlassIcon,
-} from '@heroicons/react/20/solid'
+import { Container } from './Container'
+import DropdownMenu from './Layouts/Navigation/DropdownMenu'
+import { Bars3CenterLeftIcon, BellIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Link, usePage } from '@inertiajs/inertia-react'
 
 const navigation = [
-    { name: 'Home', href: '#', icon: HomeIcon, current: true },
-    { name: 'History', href: '#', icon: ClockIcon, current: false },
-    { name: 'Balances', href: '#', icon: ScaleIcon, current: false },
-    { name: 'Cards', href: '#', icon: CreditCardIcon, current: false },
-    { name: 'Recipients', href: '#', icon: UserGroupIcon, current: false },
-    { name: 'Reports', href: '#', icon: DocumentChartBarIcon, current: false },
+    { name: 'Find Influencers', href: 'explore', icon: HomeIcon, current: true },
+    { name: 'My Campaigns', href: 'campaigns.index', icon: ClockIcon, current: false },
+    { name: 'Track Campaigns', href: 'coming-soon', icon: ScaleIcon, current: false },
+    { name: 'FAQs', href: 'faqs', icon: CreditCardIcon, current: false },
 ]
-const secondaryNavigation = [
-    { name: 'Settings', href: '#', icon: CogIcon },
-    { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
-    { name: 'Privacy', href: '#', icon: ShieldCheckIcon },
-]
-const cards = [
-    { name: 'Account balance', href: '#', icon: ScaleIcon, amount: '$30,659.45' },
-    // More items...
-]
-const transactions = [
-    {
-        id: 1,
-        name: 'Payment to Molly Sanders',
-        href: '#',
-        amount: '$20,000',
-        currency: 'USD',
-        status: 'success',
-        date: 'July 11, 2020',
-        datetime: '2020-07-11',
-    },
-    // More transactions...
-]
-const statusStyles = {
-    success: 'bg-green-100 text-green-800',
-    processing: 'bg-yellow-100 text-yellow-800',
-    failed: 'bg-gray-100 text-gray-800',
-}
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 
-export default function AuthenticatedLayout({ children }) {
+export default function AuthenticatedLayout({ children, title, subtitle }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const { auth: { user } } = usePage().props;
 
     return (
 
@@ -116,11 +77,9 @@ export default function AuthenticatedLayout({ children }) {
                                     </div>
                                 </Transition.Child>
                                 <div className="flex flex-shrink-0 items-center px-4">
-                                    <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=gray&shade=300"
-                                        alt="Easywire logo"
-                                    />
+                                    <Link href='/'>
+                                        <Logo className="h-10 w-auto" />
+                                    </Link>
                                 </div>
                                 <nav
                                     className="mt-5 h-full flex-shrink-0 divide-y divide-gray-800 overflow-y-auto"
@@ -130,33 +89,19 @@ export default function AuthenticatedLayout({ children }) {
                                         {navigation.map((item) => (
                                             <a
                                                 key={item.name}
-                                                href={item.href}
+                                                href={route(item.href)}
                                                 className={classNames(
-                                                    item.current
-                                                        ? 'bg-gray-800 text-white'
+                                                    item.href == route().current()
+                                                        ? 'bg-orange-100 text-gray-900'
                                                         : 'text-gray-100 hover:text-white hover:bg-gray-600',
                                                     'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                                                 )}
-                                                aria-current={item.current ? 'page' : undefined}
+                                                aria-current={item.href == route().current() ? 'page' : undefined}
                                             >
-                                                <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-200" aria-hidden="true" />
+                                                <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-900" aria-hidden="true" />
                                                 {item.name}
                                             </a>
                                         ))}
-                                    </div>
-                                    <div className="mt-6 pt-6">
-                                        <div className="space-y-1 px-2">
-                                            {secondaryNavigation.map((item) => (
-                                                <a
-                                                    key={item.name}
-                                                    href={item.href}
-                                                    className="group flex items-center rounded-md px-2 py-2 text-base font-medium text-gray-100 hover:bg-gray-600 hover:text-white"
-                                                >
-                                                    <item.icon className="mr-4 h-6 w-6 text-gray-200" aria-hidden="true" />
-                                                    {item.name}
-                                                </a>
-                                            ))}
-                                        </div>
                                     </div>
                                 </nav>
                             </Dialog.Panel>
@@ -173,48 +118,93 @@ export default function AuthenticatedLayout({ children }) {
                 {/* Sidebar component, swap this element with another sidebar if you like */}
                 <div className="flex flex-grow flex-col overflow-y-auto bg-white pt-5 pb-4">
                     <div className="flex flex-shrink-0 items-center px-4">
-                        <img
-                            className="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=gray&shade=300"
-                            alt="Easywire logo"
-                        />
+                        <Logo className="h-10 w-auto" />
+
                     </div>
                     <nav className="mt-5 flex flex-1 flex-col divide-y divide-gray-800 overflow-y-auto" aria-label="Sidebar">
                         <div className="space-y-1 px-2">
                             {navigation.map((item) => (
                                 <a
                                     key={item.name}
-                                    href={item.href}
+                                    href={route(item.href)}
                                     className={classNames(
-                                        item.current ? 'bg-gray-800 text-white-600' : 'text-gray-500 hover:text-white hover:bg-gray-600',
+                                        item.href == route().current() ? 'bg-fuchsia-50 rounded group-text-fuchsia-900' : 'text-gray-500 hover:text-white hover:bg-gray-600',
                                         'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md'
                                     )}
-                                    aria-current={item.current ? 'page' : undefined}
+                                    aria-current={item.href == route().current() ? 'page' : undefined}
                                 >
-                                    <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-200" aria-hidden="true" />
+                                    <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-300 " aria-hidden="true" />
                                     {item.name}
                                 </a>
                             ))}
                         </div>
-                        <div className="mt-6 pt-6">
-                            <div className="space-y-1 px-2">
-                                {secondaryNavigation.map((item) => (
-                                    <a
-                                        key={item.name}
-                                        href={item.href}
-                                        className="group flex items-center rounded-md px-2 py-2 text-sm font-medium leading-6 text-gray-100 hover:bg-gray-600 hover:text-white"
-                                    >
-                                        <item.icon className="mr-4 h-6 w-6 text-gray-200" aria-hidden="true" />
-                                        {item.name}
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
+
                     </nav>
                 </div>
             </div>
 
             <div className="flex flex-1 flex-col lg:pl-64">
+                <div className="bg-red-500 bg-gradient-to-r from-yellow-600 to-fuchsia-600">
+                    <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
+                        <button
+                            type="button"
+                            className="border-r border-gray-200 px-4 text-gray-400 lg:hidden"
+                            onClick={() => setSidebarOpen(true)}
+                        >
+                            <span className="sr-only">Open sidebar</span>
+                            <Bars3CenterLeftIcon className="h-6 w-6" aria-hidden="true" />
+                        </button>
+                        {/* Search bar */}
+                        <div className="flex flex-1 justify-between lg:mx-auto lg:max-w-6xl">
+                            <div className="flex flex-1">
+                                <div className="w-full max-w-lg">
+                                    <form action="">
+
+                                        <label htmlFor="search" className="sr-only">
+                                            Search
+                                        </label>
+                                        <div className="relative">
+                                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                                <MagnifyingGlassIcon className="h-5 w-5 text-gray-50" aria-hidden="true" />
+                                            </div>
+                                            <input
+                                                id="keywords"
+                                                name="keywords"
+                                                className="block w-full rounded-lg border border-gray-300 bg-stone-50/30 py-5 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"
+                                                placeholder="Enter keywords, skills or company name"
+                                                type="search"
+                                            />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="ml-4 flex items-center md:ml-6">
+                                <button
+                                    type="button"
+                                    className="rounded-full bg-transparent p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
+                                >
+                                    <span className="sr-only">View notifications</span>
+                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                                </button>
+
+                                {/* Profile dropdown */}
+                                <DropdownMenu user={user} light />
+                            </div>
+                        </div>
+                    </div>
+                    <Container className="relative">
+                        <div className="w-3/5  my-16 ">
+                            <h1 className="font-display pb-10 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+                                {title}
+                            </h1>
+                            {subtitle && (
+                                <p className='text-sm text-gray-50'>{subtitle}</p>
+                            )}
+                        </div>
+                    </Container>
+                </div>
+
+
                 {children}
             </div>
         </div>

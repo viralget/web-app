@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Button } from '@/Components/Button';
+import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
@@ -129,7 +129,7 @@ export default function Register() {
 
                         <div className="text-center space-y-2 mt-4">
                             <Button
-                                className='block w-full'
+                                className='block w-full px-3'
                                 processing={processing}>
                                 Create account
                             </Button>

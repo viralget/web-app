@@ -1,6 +1,6 @@
 import { classNames } from '@/Utils/helpers'
 
-import { Button } from '@/components/Button'
+import Button from '@/components/Button'
 import { Container } from '@/components/Container'
 
 function SwirlyDoodle({ className }) {
