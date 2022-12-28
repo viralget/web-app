@@ -1,6 +1,6 @@
 
 import Button from '@/Components/Button';
-import App from '@/Pages/Users/Layouts/App';
+import App from '@/Components/Layouts/App';
 import Input from '@/Components/Input';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, useForm } from '@inertiajs/inertia-react';

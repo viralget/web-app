@@ -58,6 +58,13 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended($redirect_url);
     }
 
+    public function welcome()
+    {
+        return Inertia::render(
+            'Auth/Welcome'
+        );
+    }
+
 
     public function socialAuth(Request $request)
     {
@@ -68,80 +75,42 @@ class AuthenticatedSessionController extends Controller
         try {
             return Socialite::driver($request->platform)->redirect();
         } catch (\Exception $e) {
-            // dd($e->getMessage());
             return redirect()->back()->withError('Invalid platform specified');
         }
     }
 
 
-
-    public function facebookAuthCallback(Request $request)
+    public function twitterAuthCallback(Request $request)
     {
+
         try {
-            $fbUser = Socialite::driver('facebook')->user();
+            $token = $request->oauth_token;
+            $secret = $request->oauth_verifier;
 
-            //Check if user already has an email account with us first.
+            // dd($token, $secret);
+            $user = Socialite::driver('twitter')->user();
 
-            //Safe if existing user email logins in with their social?? Discuss.
+            $twitterUser = [
+                'email' => $user->email,
+                'token' => $user->token,
+                'refresh_token' => $user->refreshToken,
+                'avatar' => $user->avatar,
+            ];
 
-            // $userExists = User::whereEmail($request->email)->first();
-
-
-            return $this->postSocialLogin($request, $fbUser);
+            return $this->postSocialLogin($request, $user, 'twitter');
         } catch (\Exception $e) {
+            // dd($e);
             $this->log($e);
 
-            return redirect()->route('home')->withError('Sorry, Google signin service not available at the moment');
-        }
-    }
-
-    public function googleAuthCallback(Request $request)
-    {
-        try {
-            $googleUser = Socialite::driver('google')->user();
-
-            //Check if user already has an email account with us first.
-
-            //Safe if existing user email logins in with their social?? Discuss.
-
-            // $userExists = User::whereEmail($request->email)->first();
-
-
-
-            return $this->postSocialLogin($request, $googleUser);
-        } catch (\Exception $e) {
-            $this->log($e);
-
-            return redirect()->route('home')->withError('Sorry, Google signin service not available at the moment');
+            return redirect()->route('login')->withError('Sorry, Twitter sign-in service not available at the moment');
         }
     }
 
 
-    public function linkedinAuthCallback(Request $request)
+
+
+    public function postSocialLogin(Request $request, $socialUser, $platform)
     {
-        try {
-            $linkedInUser = Socialite::driver('linkedin')->user();
-
-            // //Check if user already has an email account with us first.
-
-            // //Safe if existing user email logins in with their social?? Discuss.
-
-            // // $userExists = User::whereEmail($request->email)->first();
-
-
-
-            return $this->postSocialLogin($request, $linkedInUser);
-        } catch (\Exception $e) {
-            $this->log($e);
-
-            return redirect()->route('home')->withError('Sorry, Google signin service not available at the moment');
-        }
-    }
-
-
-    public function postSocialLogin(Request $request, $socialUser)
-    {
-
         try {
             $redirect_url = route('home');
 
@@ -151,12 +120,12 @@ class AuthenticatedSessionController extends Controller
 
             $data = [
                 'is_social_login' => true,
-                'platform' => 'facebook',
+                'login_platform' => $platform,
                 'first_name' => $name[0],
-                'last_name' => $name[1],
+                'last_name' => $name[1] ?? null,
                 'email' => $socialUser->email,
                 'token' => $socialUser->token,
-                'avatar' => $socialUser->avatar,
+                'avatar_url' => $socialUser->avatar,
                 'refresh_token' => $socialUser->refreshToken,
                 'last_logged_in' => Carbon::now(),
             ];
@@ -186,8 +155,9 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended($redirect_url);
         } catch (\Exception $e) {
             $this->log($e);
+            // dd($e);
 
-            return redirect()->route('home');
+            return redirect()->route('login')->withError('An error occurred while logging you in');
         }
     }
     /** 

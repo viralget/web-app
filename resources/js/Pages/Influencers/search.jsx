@@ -10,8 +10,8 @@ import RecentSearches from './RecentSearches'
 import List from './list'
 import TableSkeleton from '../../components/Skeleton/Table'
 
-export default function Search({ props }) {
-    const [list, setList] = useState(false)
+export default function Search({ list, count }) {
+    // const [list, setList] = useState(false)
     const [searchActive, setSearchActive] = useState(false)
     // const [result, setSearchActive] = useState(false)
 
@@ -25,11 +25,12 @@ export default function Search({ props }) {
 
             <main className="flex-1 pb-8">
                 <Container>
-                    <SearchBox searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} handleResult={(result) => setList(result)} />
+                    <SearchBox searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} />
+                    {/* handleResult={(result) => setList(result)} /> */}
 
                     <div>
                         <div className="space-y-10">
-                            {loading ? <TableSkeleton /> : <List data={list} />}
+                            {loading ? <TableSkeleton /> : <List data={list} count={count} />}
                         </div>
                     </div>
                 </Container>

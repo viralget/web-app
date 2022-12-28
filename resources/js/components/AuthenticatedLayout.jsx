@@ -6,21 +6,21 @@ import { classNames } from '@/Utils/helpers'
 
 import {
     ClockIcon,
-    CreditCardIcon,
     HomeIcon,
     ScaleIcon,
     XMarkIcon,
+    BellIcon
 } from '@heroicons/react/24/outline'
 import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
-import { Bars3CenterLeftIcon, BellIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, usePage } from '@inertiajs/inertia-react'
 
 const navigation = [
     { name: 'Find Influencers', href: 'explore', icon: HomeIcon, current: true },
     { name: 'My Campaigns', href: 'campaigns.index', icon: ClockIcon, current: false },
     { name: 'Track Campaigns', href: 'coming-soon', icon: ScaleIcon, current: false },
-    { name: 'FAQs', href: 'faqs', icon: CreditCardIcon, current: false },
+    // { name: 'FAQs', href: 'faqs', icon: CreditCardIcon, current: false },
 ]
 
 
@@ -45,7 +45,7 @@ export default function AuthenticatedLayout({ children, title, subtitle }) {
                         <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
                     </Transition.Child>
 
-                    <div className="fixed inset-0 z-40 flex">
+                    <div className="fixed inset-0 z-40 flex bg-white">
                         <Transition.Child
                             as={Fragment}
                             enter="transition ease-in-out duration-300 transform"
@@ -93,7 +93,7 @@ export default function AuthenticatedLayout({ children, title, subtitle }) {
                                                 className={classNames(
                                                     item.href == route().current()
                                                         ? 'bg-orange-100 text-gray-900'
-                                                        : 'text-gray-100 hover:text-white hover:bg-gray-600',
+                                                        : 'text-gray-400 hover:text-white hover:bg-gray-600',
                                                     'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                                                 )}
                                                 aria-current={item.href == route().current() ? 'page' : undefined}
@@ -148,15 +148,15 @@ export default function AuthenticatedLayout({ children, title, subtitle }) {
                     <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
                         <button
                             type="button"
-                            className="border-r border-gray-200 px-4 text-gray-400 lg:hidden"
+                            className="md:border-r border-gray-200 px-4 text-gray-400 lg:hidden"
                             onClick={() => setSidebarOpen(true)}
                         >
                             <span className="sr-only">Open sidebar</span>
-                            <Bars3CenterLeftIcon className="h-6 w-6" aria-hidden="true" />
+                            <Bars3CenterLeftIcon className="h-6 w-6 text-white" aria-hidden="true" />
                         </button>
                         {/* Search bar */}
-                        <div className="flex flex-1 justify-between lg:mx-auto lg:max-w-6xl">
-                            <div className="flex flex-1">
+                        <div className="flex flex-1 justify-end md:justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+                            <div className="hidden md:flex flex-1">
                                 <div className="w-full max-w-lg">
                                     <form action="">
 
@@ -170,7 +170,7 @@ export default function AuthenticatedLayout({ children, title, subtitle }) {
                                             <input
                                                 id="keywords"
                                                 name="keywords"
-                                                className="block w-full rounded-lg border border-gray-300 bg-stone-50/30 py-5 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"
+                                                className="block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-4 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"
                                                 placeholder="Enter keywords, skills or company name"
                                                 type="search"
                                             />
@@ -178,23 +178,27 @@ export default function AuthenticatedLayout({ children, title, subtitle }) {
                                     </form>
                                 </div>
                             </div>
-                            <div className="ml-4 flex items-center md:ml-6">
+                            <div className="ml-4 flex items-center md:ml-6 space-x-3">
                                 <button
                                     type="button"
-                                    className="rounded-full bg-transparent p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
+                                    className="text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-3 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"
+
+                                // className="rounded-full bg-transparent p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
                                 >
                                     <span className="sr-only">View notifications</span>
                                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
 
                                 {/* Profile dropdown */}
-                                <DropdownMenu user={user} light />
+                                <div className=" w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-2 p-3 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm">
+                                    <DropdownMenu user={user} light />
+                                </div>
                             </div>
                         </div>
                     </div>
                     <Container className="relative">
                         <div className="w-3/5  my-16 ">
-                            <h1 className="font-display pb-10 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+                            <h1 className="font-display pb-5 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
                                 {title}
                             </h1>
                             {subtitle && (

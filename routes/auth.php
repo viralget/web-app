@@ -34,11 +34,11 @@ Route::post('login', [AuthenticatedSessionController::class, 'store']);
 /** Social Login */
 Route::get('/auth/social', [AuthenticatedSessionController::class, 'socialAuth'])->name('auth.social');
 
-Route::get('/auth/google/callback', [AuthenticatedSessionController::class, 'googleAuthCallback']);
+Route::get('/auth/twitter/callback', [AuthenticatedSessionController::class, 'twitterAuthCallback']);
 
-Route::get('/auth/facebook/callback', [AuthenticatedSessionController::class, 'facebookAuthCallback']);
+// Route::get('/auth/facebook/callback', [AuthenticatedSessionController::class, 'facebookAuthCallback']);
 
-Route::get('/auth/linkedin/callback', [AuthenticatedSessionController::class, 'linkedinAuthCallback']);
+// Route::get('/auth/linkedin/callback', [AuthenticatedSessionController::class, 'linkedinAuthCallback']);
 
 
 // Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])

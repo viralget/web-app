@@ -4,7 +4,7 @@ import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import PasswordInput from '@/Components/PasswordInput';
 import EmptyState from '@/Components/EmptyState';
-import { useForm } from '@inertiajs/inertia-react';
+import { Link, useForm } from '@inertiajs/inertia-react';
 import AuthenticatedLayout from '../../components/AuthenticatedLayout';
 
 export default function NewCampaign() {
@@ -37,7 +37,7 @@ export default function NewCampaign() {
     };
 
     return (
-        <AuthenticatedLayout title="My Campaigns">
+        <AuthenticatedLayout title="My Campaigns" subtitle={<Link href={route('campaigns.create')}>Create your first campaign</Link>}>
 
             <EmptyState title="You have created no campaign list yet" />
         </AuthenticatedLayout>

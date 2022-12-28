@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\InfluencerController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::get('/coming-soon', function () {
 
 Route::middleware('auth')->group(
     function () {
+        Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
         Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
 

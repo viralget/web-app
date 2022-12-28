@@ -28,10 +28,10 @@ const header_routes = [
     name: <> Track Campaign<Badge text="Coming soon" /> </>,
     href: "/#"
   },
-  {
-    name: "FAQs",
-    href: route('faqs')
-  },
+  // {
+  //   name: "FAQs",
+  //   href: route('faqs')
+  // },
 ]
 
 function MobileNavLink({ href, children }) {

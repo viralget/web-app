@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import Button from '@/Components/Button';
-import App from '@/Pages/Users/Layouts/App';
+import App from '@/Components/Layouts/App';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, useForm } from '@inertiajs/inertia-react';
-import Auth from '../../Layouts/Auth';
+import Guest from '../../components/Layouts/Guest';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -31,7 +31,7 @@ export default function ConfirmPassword() {
     return (
         <App>
             <Head title="Confirm Password" />
-            <Auth>
+            <Guest>
                 <div className="mb-4 text-sm text-gray-600">
                     Please confirm your password before continuing.
                 </div>
@@ -58,7 +58,7 @@ export default function ConfirmPassword() {
                         </Button>
                     </div>
                 </form>
-            </Auth>
+            </Guest>
         </App>
     );
 }

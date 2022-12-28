@@ -21,7 +21,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('social_login_token')->nullable();
             $table->string('avatar_url')->nullable();
+            $table->boolean('is_social_login')->default(false);
             $table->string('login_platform')->default('local');
+            $table->string('token');
+            $table->string('refresh_token');
+            $table->timestamp('last_logged_in')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

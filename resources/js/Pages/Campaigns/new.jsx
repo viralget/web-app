@@ -32,7 +32,7 @@ export default function NewCampaign() {
     const submit = (e) => {
         e.preventDefault();
 
-        post('/register');
+        // post('/register');
     };
 
     return (
@@ -91,13 +91,11 @@ export default function NewCampaign() {
 
                                 <Input
                                     type="text"
-                                    name="company_name"
-                                    label="Company Name"
+                                    name="title"
+                                    label="Campaign Title"
                                     value={data.company_name}
                                     className="mt-1 block w-full"
-                                    autoComplete="company_name"
                                     onChange={onHandleChange}
-                                    placeholder="Optional"
                                     required
                                 />
                             </div>
@@ -105,62 +103,20 @@ export default function NewCampaign() {
 
                                 <Input
                                     type="text"
-                                    name="first_name"
-                                    label="First Name"
-                                    value={data.first_name}
+                                    name="goal"
+                                    label="Campaign Goal"
                                     className="mt-1 block w-full"
-                                    autoComplete="first_name"
-                                    onChange={onHandleChange}
                                     required
                                 />
                             </div>
 
-                            <div>
 
-                                <Input
-                                    type="text"
-                                    name="last_name"
-                                    label="Last Name"
-                                    value={data.last_name}
-                                    className="mt-1 block w-full"
-                                    autoComplete="family_name"
-                                    onChange={onHandleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="mt-4">
-
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    label="Email Address"
-                                    value={data.email}
-                                    className="mt-1 block w-full"
-                                    autoComplete="email"
-                                    onChange={onHandleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="mt-4">
-                                <PasswordInput
-                                    type="password"
-                                    label="Password"
-                                    name="password"
-                                    value={data.password}
-                                    className="mt-1 block w-full"
-                                    autoComplete="new-password"
-                                    onChange={onHandleChange}
-                                    required
-                                />
-                            </div>
 
                             <div className="text-center space-y-2 mt-4">
                                 <Button
                                     className='block w-full'
                                     processing={processing}>
-                                    Update Account
+                                    Create Campaign
                                 </Button>
                             </div>
                         </form>

@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import Button from '@/Components/Button';
-import App from '@/Pages/Users/Layouts/App';
+import App from '@/Components/Layouts/App';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, useForm } from '@inertiajs/inertia-react';
-import Auth from '../../Layouts/Auth';
 import AuthHeader from './AuthHeader';
 
 export default function ResetPassword({ token, email }) {

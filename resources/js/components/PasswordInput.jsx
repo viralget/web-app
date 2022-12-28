@@ -37,34 +37,36 @@ export default function PasswordInput({
     }, []);
 
     return (
-        <div className="flex flex-col items-start mb-3 relative">
+        <div className="flex flex-col items-start mb-3 ">
             {label &&
-                <label htmlFor={id ? id : name} className="block text-sm font-medium mb-1 text-gray-700">
+                <label htmlFor={id ? id : name} className="block text-sm font-medium mb-1 text-gray-700 w-full">
                     {label}
                 </label>
             }
             {/* `border-gray-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50 rounded-md shadow-sm ` */}
-            <input
-                type={showPassword ? 'text' : 'password'}
-                name={name}
-                value={value}
-                className={
-                    inputStyle +
-                    className
-                }
-                ref={ref ? ref : input}
-                autoComplete={autoComplete}
-                required={required}
-                onChange={(e) => onChange(e)}
-                placeholder={placeholder}
-                onBlur={onBlur}
-            // defaultValue={defaultValue}         
-            />
-            <div className="absolute inset-y-0 right-0 p-3 bg-dark z-50 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ?
-                    <EyeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                    :
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+            <div className='relative w-full'>
+                <input
+                    type={showPassword ? 'text' : 'password'}
+                    name={name}
+                    value={value}
+                    className={
+                        inputStyle +
+                        className
+                    }
+                    ref={ref ? ref : input}
+                    autoComplete={autoComplete}
+                    required={required}
+                    onChange={(e) => onChange(e)}
+                    placeholder={placeholder}
+                    onBlur={onBlur}
+                // defaultValue={defaultValue}         
+                />
+                <div className="absolute inset-y-0 right-0 p-3 bg-dark z-50 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ?
+                        <EyeIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                        :
+                        <EyeSlashIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
+                </div>
             </div>
         </div>
     );

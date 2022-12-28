@@ -1,8 +1,8 @@
 
 import Button from '@/Components/Button';
-import App from '@/Pages/Users/Layouts/App';
+import App from '@/Components/Layouts/App';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
-import Auth from '../../Layouts/Auth';
+import Guest from '../../components/Layouts/Guest';
 
 export default function VerifyEmail({ status }) {
     const { post, processing } = useForm();
@@ -16,7 +16,7 @@ export default function VerifyEmail({ status }) {
     return (
         <App>
             <Head title="Email Verification" />
-            <Auth>
+            <Guest>
                 <div className="mb-4 text-sm text-gray-600">
                     Thanks for signing up! Before getting started, could you verify your email address by clicking on the
                     link we just emailed to you? If you didn't receive the email, we will gladly send you another.
@@ -42,7 +42,7 @@ export default function VerifyEmail({ status }) {
                         </Link>
                     </div>
                 </form>
-            </Auth>
+            </Guest>
         </App>
     );
 }

@@ -61,6 +61,7 @@ class InfluencerController extends Controller
     {
         $result = Influencer::query();
 
+
         if ($request->has('location')) {
             $result = $result->where('location', 'like', "%$request->location%");
         }
@@ -69,8 +70,18 @@ class InfluencerController extends Controller
             $result = $result->where('bio', 'like', "%$request->location%")->orWhere('username', 'like', "%$request->keyword%");
         }
 
-        return $result->get();
+        // Store User search sesion
+        $this->storeSearch($request, $result->count());
+        return Inertia::render(
+            'Influencers/search',
+            [
+                'list' => $result->get(),
+                'count' => $result->count(),
+            ]
+        );
+        // return $result->get();
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -126,5 +137,23 @@ class InfluencerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function storeSearch(Request $request, int $results_count)
+    {
+        // dd($request->all());
+        if ($request->keywords || $request->location) {
+            Search::firstOrCreate(
+                [
+                    'keyword' => $request->keywords ?? $request->location,
+                    'session_id' => session()->getId(),
+                    'user_id' => $request->user()->id ?? null,
+                ],
+                [
+                    'query' => $request->getRequestUri(),
+                    'results_count' => $results_count
+                ]
+            );
+        }
     }
 }

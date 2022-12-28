@@ -3,6 +3,7 @@ import { useForm } from "@inertiajs/inertia-react";
 import { useState } from "react";
 import SearchForm from "./SearchForm";
 import { get } from "@/Utils/api"
+
 export default function SearchBox(props) {
 
 
@@ -14,7 +15,6 @@ export default function SearchBox(props) {
         urlParams.set(e.target.name, e.target.value);
         urlParams.set('page', 1); //force start from page 1
 
-
         setSearchParams(urlParams)
         // handleSearch(urlParams);
     }
@@ -24,12 +24,12 @@ export default function SearchBox(props) {
         props.onLoading && props.onLoading(true);
         props.searchActive(true);
 
-        // Inertia.get(route('influencers.search') + '?' + searchParams.toString());
+        Inertia.get(route('influencers.search') + '?' + searchParams.toString());
         // , { job: job?.slug }, { replace: true, preserveState: true, preserveScroll: true })
         // window.location = route('search') + '?' + params.toString();
-        const res = await get(route('influencers.search') + '?' + searchParams.toString());
+        //     const res = await get(route('influencers.search') + '?' + searchParams.toString());
 
-        props.handleResult(res);
+        //     props.handleResult(res);
     }
 
 
