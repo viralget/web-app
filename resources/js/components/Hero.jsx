@@ -53,7 +53,7 @@ export function Hero() {
           Viralget is built for you. Get actionable influencer marketing data insight, track and manage influencers.
         </p>
         <div className="mt-6 flex justify-center gap-x-6">
-          <Button href="/join">Join the waitlist</Button>
+          <Button href="/explore">Get Started!</Button>
           {/* <Button
             href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             variant="outline"
