@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/join', function () {
     return Inertia::render('Join/index');
-});
+})->name('join');
 
 Route::get('/faqs', function () {
     return Inertia::render('Faqs/index');

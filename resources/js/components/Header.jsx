@@ -22,7 +22,7 @@ const header_routes = [
   },
   {
     name: "Find Influencers",
-    href: route('explore')
+    href: route('join')
   },
   {
     name: <> Track Campaign<Badge text="Coming soon" /> </>,
@@ -145,12 +145,17 @@ export function Header() {
                 <DropdownMenu user={user} />
                 :
                 <>
-                  <div className="hidden md:block">
+                  {/* <div className="hidden md:block">
                     <NavLink href="/login">Log in</NavLink>
-                  </div>
-                  <Button href="/register" color="blue">
+                  </div> */}
+                  {/* <Button href="/register" color="blue">
                     <span>
                       Create an account
+                    </span>
+                  </Button> */}
+                  <Button href="/join" color="blue">
+                    <span>
+                      Join the waitlist
                       {/* Try for Free */}
                     </span>
                   </Button>

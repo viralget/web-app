@@ -10,7 +10,7 @@ import screenshotProfitLoss from '@/../assets/images/screenshots/profit-loss.png
 const features = [
   {
     name: 'Influencer category',
-    summary: '43',
+    summary: '43+',
     description:
       'We talked about reporting in the section above but we needed three items here, so mentioning it one more time for posterity.',
     image: screenshotProfitLoss,
@@ -98,13 +98,13 @@ const features = [
 function Feature({ feature, isActive, className, ...props }) {
   return (
     <div
-      className={classNames(className, !isActive && 'opacity-75 hover:opacity-100')}
+      className={classNames(className, !isActive && 'opacity-75 hover:opacity-100', 'bg-gradient-to-r from-slate-700 to-slate-900 bg-slate-500 p-5 text-white rounded-md')}
       {...props}
     >
       <div
         className={classNames(
           'w-9 rounded-lg',
-          isActive ? 'bg-orange-600' : 'bg-slate-500'
+          // isActive ? 'bg-orange-600' : 'bg-slate-500'
         )}
       >
         <svg aria-hidden="true" className="h-9 w-9" fill="none">
@@ -114,12 +114,12 @@ function Feature({ feature, isActive, className, ...props }) {
       <h3
         className={classNames(
           'mt-6 text-sm font-medium',
-          isActive ? 'text-orange-600' : 'text-slate-600'
+          // isActive ? 'text-gray-100' : 'text-slate-600'
         )}
       >
         {feature.name}
       </h3>
-      <p className="mt-2 font-display text-4xl text-slate-900">
+      <p className="mt-2  font-display text-5xl font-medium tracking-tight text-white sm:text-6xl">
         {feature.summary}
       </p>
       {/* <p className="mt-4 text-sm text-slate-600">{feature.description}</p> */}
@@ -211,15 +211,15 @@ export function SecondaryFeatures() {
     <section
       id="secondary-features"
       aria-label="Features for simplifying everyday business tasks"
-      className="pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32"
+      className="pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32 bg-gray-100"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Analyze any influencer
             in the world
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
+          <p className="mt-4 text-lg text-slate-700">
             Find the influencer that matches your campaign’s objectives based on their stats – available anytime on your own intuitive database.
           </p>
         </div>
