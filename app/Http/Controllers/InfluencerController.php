@@ -30,7 +30,6 @@ class InfluencerController extends Controller
         $top_categories = Category::where('is_featured', true)->limit(8)->get();
         $top_influencers = $this->influencer->limit(8)->get();
 
-
         return Inertia::render(
             'Influencers/index',
             [
@@ -59,15 +58,15 @@ class InfluencerController extends Controller
      */
     public function search(Request $request)
     {
-        $result = Influencer::query();
+        $result = TwitterInfluencer::query();
 
 
         if ($request->has('location')) {
             $result = $result->where('location', 'like', "%$request->location%");
         }
 
-        if ($request->has('keyword')) {
-            $result = $result->where('bio', 'like', "%$request->location%")->orWhere('username', 'like', "%$request->keyword%");
+        if ($request->has('keywords')) {
+            $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
         }
 
         // Store User search sesion
@@ -139,21 +138,22 @@ class InfluencerController extends Controller
         //
     }
 
-    private function storeSearch(Request $request, int $results_count)
+    public function storeSearch(Request $request)
     {
-        // dd($request->all());
-        if ($request->keywords || $request->location) {
+        if ($request->queryData || $request->location) {
             Search::firstOrCreate(
                 [
-                    'keyword' => $request->keywords ?? $request->location,
+                    'keyword' => $request->queryData,
                     'session_id' => session()->getId(),
                     'user_id' => $request->user()->id ?? null,
                 ],
                 [
-                    'query' => $request->getRequestUri(),
-                    'results_count' => $results_count
+                    'query' => $request->query,
+                    'results_count' => $request->count
                 ]
             );
         }
+
+        return response(['status' => true]);
     }
 }

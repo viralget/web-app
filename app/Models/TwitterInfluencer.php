@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TwitterInfluencer extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }

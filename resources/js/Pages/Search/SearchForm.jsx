@@ -20,7 +20,7 @@ export default function SearchForm({
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
                 {/* <form action={route('search')} className="sm:mx-auto lg:mx-0"> */}
-                <div className="hidden md:grid grid-cols-7 gap-4 bg-white shadow px-3 py-5 rounded-md">
+                <div className="hidden md:grid grid-cols-6 gap-4 bg-white shadow px-3 py-5 rounded-md">
                     <div className="md:pr-2 md:border-r border-gray-100">
                         <Select options={[
                             { name: 'Any', value: '' },
@@ -35,6 +35,10 @@ export default function SearchForm({
                     <div className="md:pr-2 md:border-r border-gray-100">
                         <Select options={[
                             { name: 'Any', value: '' },
+                            { name: 'Nano (1000 - 10,000)', value: 'nano' },
+                            { name: 'Micro (10,000 - 50,000)', value: 'micro' },
+                            { name: 'Mid Tier (50,000 - 500k)', value: 'nano' },
+                            { name: 'Macro (500k - 1m)', value: 'macro' },
                         ]}
                             name="size"
                             value={jobType}
@@ -55,20 +59,14 @@ export default function SearchForm({
                             defaultOptionText="Any"
                         />
                     </div>
-                    <div className="md:pr-2 md:border-r">
-                        <Select options={[
-                            { name: 'Any', value: '' },
-                        ]}
-                            name="age"
-                            value={dateRange}
-                            onChange={handleChange}
-                            label="Audience Age"
-                            defaultOptionText="Any"
-                        />
-                    </div>
                     <div className="md:pr-2 md:border-r border-gray-100">
                         <Select options={[
                             { name: 'Any', value: '' },
+                            { name: 'Excellent >90', value: 'excellent' },
+                            { name: 'Very Good >80', value: 'very good' },
+                            { name: 'Good >60', value: 'good' },
+                            { name: 'Average >40', value: 'average' },
+                            { name: 'Poor >25', value: 'poor' },
                         ]}
                             name="qas"
                             value={dateRange}

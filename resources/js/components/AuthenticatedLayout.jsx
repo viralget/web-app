@@ -30,7 +30,7 @@ export default function AuthenticatedLayout({ children, title, subtitle }) {
 
     return (
 
-        <div className="min-h-full bg-gray-50">
+        <div className="min-h-screen bg-gray-50">
             <Transition.Root show={sidebarOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-40 lg:hidden" onClose={setSidebarOpen}>
                     <Transition.Child
@@ -158,7 +158,7 @@ export default function AuthenticatedLayout({ children, title, subtitle }) {
                         <div className="flex flex-1 justify-end md:justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
                             <div className="hidden md:flex flex-1">
                                 <div className="w-full max-w-lg">
-                                    <form action="">
+                                    <form action={route('influencers.search')} method="get">
 
                                         <label htmlFor="search" className="sr-only">
                                             Search

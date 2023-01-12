@@ -17,7 +17,7 @@ export default function index({ search_history, top_categories, top_influencers 
 
     const [loading, setLoading] = useState(false);
 
-    console.log({ search_history, top_categories, top_influencers })
+    // console.log({ search_history, top_categories, top_influencers })
 
 
     return (
