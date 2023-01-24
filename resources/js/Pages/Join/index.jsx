@@ -191,6 +191,7 @@ export default function Join() {
                                             id="mce-AMOUNT">
                                             <option >Select an option</option>
                                             <option value="$70 (Basic)">$70 (Basic)</option>
+                                            <option value="$465 (Professional)">$250 (Business)</option>
                                             <option value="$250 (Professional)">$250 (Professional)</option>
                                             <option value="$465 (Business)">$465 (Business)</option>
                                             <option value="$835 (Advanced)">$835 (Advanced)</option>

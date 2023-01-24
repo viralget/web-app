@@ -1,0 +1,1 @@
+import"./app.cdc3a11f.js";import{h as o}from"./moment.9709ab41.js";function n(...t){return t.filter(Boolean).join(" ")}function c(t){return t.target.type==="checkbox"?t.target.checked:t.target.value}function s(t,r=!1,a="LL"){return r?o(t).fromNow():o(t).format(a)}export{n as c,s as f,c as g};

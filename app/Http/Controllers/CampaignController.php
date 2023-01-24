@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class CampaignController extends Controller
@@ -14,8 +16,17 @@ class CampaignController extends Controller
      */
     public function index()
     {
+        $campaigns = Campaign::where('user_id', request()->user()->id)->get();
         // My campaigns
-        return Inertia::render('Campaigns/list');
+        return Inertia::render('Campaigns/list', compact('campaigns'));
+    }
+
+    public function initiateCampaign(Request $request)
+    {
+        $request->session()->put('campaign-influencers', $request->influencers);
+
+        return response(['status' => true]);
+        // return Redirect::route('campaigns.create');
     }
 
     /**
@@ -23,9 +34,11 @@ class CampaignController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('Campaigns/new');
+        $influencers = $request->session()->get('campaign-influencers');
+
+        return Inertia::render('Campaigns/new', compact('influencers'));
     }
 
     /**
@@ -36,7 +49,23 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $influencers = $request->session()->get('campaign-influencers');
+        $_influencers = [];
+
+        if ($influencers) {
+            foreach ($influencers as $influencer) {
+                array_push($_influencers, $influencer['username']);
+            }
+        }
+
+        Campaign::create([
+            'user_id' => $request->user()->id,
+            'title' => $request->title,
+            'goal' => $request->goal,
+            'influencers' => json_encode($_influencers)
+        ]);
+
+        return redirect()->back()->withMessage('Influencer created successfully!');
     }
 
     /**

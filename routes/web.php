@@ -36,8 +36,10 @@ Route::get('/coming-soon', function () {
 Route::middleware('auth')->group(
     function () {
         Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
-        Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
+
+        Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
+        Route::post('/search/store', [InfluencerController::class, 'storeSearch'])->name('influencers.search.store');
 
         Route::get('/settings', function () {
             return Inertia::render('Account/index');
@@ -47,9 +49,12 @@ Route::middleware('auth')->group(
             'campaigns' => CampaignController::class,
             'influencers' => InfluencerController::class
         ]);
+
+        Route::post('/campaign/initiate', [CampaignController::class, 'initiateCampaign'])->name('campaign.initiate');
     }
 );
 
+require __DIR__ . '/admin.php';
 
 
 
