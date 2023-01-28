@@ -41,8 +41,8 @@ export default function index({ search_history, top_categories, top_influencers 
                                     {search_history.length > 0 && (
                                         <RecentSearches data={search_history} />
                                     )}
-                                    <TopCategories data={top_categories} />
-                                    <TopInfluencers data={top_influencers} />
+                                    {/* <TopCategories data={top_categories} />
+                                    <TopInfluencers data={top_influencers} /> */}
                                 </>
                             }
                         </div>

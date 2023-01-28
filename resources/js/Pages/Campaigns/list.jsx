@@ -7,6 +7,7 @@ import EmptyState from '@/Components/EmptyState';
 import { Link, useForm } from '@inertiajs/inertia-react';
 import AuthenticatedLayout from '../../components/AuthenticatedLayout';
 import { Container } from '../../components/Container';
+import CampaignCards from './Cards';
 
 export default function NewCampaign({ campaigns }) {
     const [agreed, setAgreed] = useState(false)
@@ -42,7 +43,7 @@ export default function NewCampaign({ campaigns }) {
 
             {campaigns.length > 0 ?
                 <div className='mx-10'>
-                    <Cards data={campaigns} />
+                    <CampaignCards campaigns={campaigns} />
                 </div>
                 :
                 <EmptyState title="You have created no campaign list yet" />

@@ -12,9 +12,14 @@ module.exports = {
         // colors: {
         //     // 'viralget-gradient': 
         // },
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+            },
+        }
     },
     plugins: [
+        // require("daisyui"),
         // require('@tailwindcss/forms')
     ],
 }

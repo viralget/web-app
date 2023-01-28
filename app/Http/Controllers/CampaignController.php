@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CampaignResource;
+use App\Http\Resources\InfluencerResource;
 use App\Models\Campaign;
+use App\Models\TwitterInfluencer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -17,6 +20,9 @@ class CampaignController extends Controller
     public function index()
     {
         $campaigns = Campaign::where('user_id', request()->user()->id)->get();
+
+        $campaigns = CampaignResource::collection($campaigns);
+
         // My campaigns
         return Inertia::render('Campaigns/list', compact('campaigns'));
     }
@@ -58,14 +64,14 @@ class CampaignController extends Controller
             }
         }
 
-        Campaign::create([
+        $campaign =  Campaign::create([
             'user_id' => $request->user()->id,
             'title' => $request->title,
             'goal' => $request->goal,
             'influencers' => json_encode($_influencers)
         ]);
 
-        return redirect()->back()->withMessage('Influencer created successfully!');
+        return redirect()->route('campaigns.show', ['campaign' => $campaign->id])->withMessage('Influencer created successfully!');
     }
 
     /**
@@ -76,7 +82,44 @@ class CampaignController extends Controller
      */
     public function show($id)
     {
-        //
+        $campaign = Campaign::where('id', $id)->first();
+        $campaigns = Campaign::where('user_id', request()->user()->id)->get();
+
+        if (!$campaign) {
+            abort(404);
+        }
+
+        $stats = [
+            'qas' => 0,
+            'engagement' => 0,
+            'impressions' => 0,
+            'reach' => 0,
+            'reachability' => 0,
+            'engagement_rate' => 0,
+        ];
+
+        // $influencers = json_decode($campaign->influencers);
+
+        // $_influencers = [];
+
+        // foreach ($influencers as $account) {
+        //     $acc = TwitterInfluencer::where('username', $account)->first();
+
+        //     if ($acc) {
+        //         $_influencers[] = $acc;
+        //     }
+        // }
+
+        $influencer = $campaign->influencers();
+        // $influencers = explode(', ', $)
+        // dd($campaign);
+
+        return Inertia::render('Campaigns/show', [
+            'campaign' => $campaign,
+            'influencers' => InfluencerResource::collection($influencer),
+            'campaigns' => CampaignResource::collection($campaigns),
+            'stats' => $stats
+        ]);
     }
 
     /**

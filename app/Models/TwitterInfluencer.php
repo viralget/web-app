@@ -10,4 +10,14 @@ class TwitterInfluencer extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function engagementRate()
+    {
+        return 0;
+    }
+
+    public function interactions()
+    {
+        return 0;
+    }
 }
