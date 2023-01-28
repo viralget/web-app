@@ -46,7 +46,7 @@ export default function NewCampaign({ influencers }) {
                 <div className="relative mx-auto max-w-xl">
 
                     <div className="">
-                        {influencers.length > 0 &&
+                        {influencers?.length > 0 &&
                             <div className='my-3'>
                                 <h4 className='font-bold'>Selected Influencers:</h4>
                                 <div className='space-x-3'>
