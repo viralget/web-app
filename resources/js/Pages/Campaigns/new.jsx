@@ -29,9 +29,9 @@ export default function NewCampaign({ influencers }) {
         post(route('campaigns.store'), {
             onSuccess: () => {
                 toast('Campaign created successfully! Our team would reach out to you once the highlighted influencer(s) respond');
-                setTimeout(() => {
-                    Inertia.get(route('campaigns.index'));
-                }, 3000)
+                // setTimeout(() => {
+                //     // Inertia.get(route('campaigns.index'));
+                // }, 3000)
             },
             onError: () => {
                 toast.error('An error occured');

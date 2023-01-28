@@ -98,7 +98,7 @@ export default function TopCategories({ data }) {
                                         aria-hidden="true"
                                         className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-50"
                                     />
-                                    <p className="relative text-lg font-semibold text-white">{item.name}</p>
+                                    <p className="relative text-lg font-semibold text-white capitalize ">{item.name}</p>
                                 </div>
                             </div>
 
