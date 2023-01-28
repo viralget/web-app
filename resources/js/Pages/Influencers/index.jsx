@@ -10,7 +10,7 @@ import RecentSearches from './RecentSearches'
 import List from './list'
 import TableSkeleton from '../../components/Skeleton/Table'
 
-export default function index({ search_history, top_categories, top_influencers }) {
+export default function index({ search_history, top_categories, top_influencers, categories }) {
     const [list, setList] = useState(false)
     const [searchActive, setSearchActive] = useState(false)
     // const [result, setSearchActive] = useState(false)
@@ -27,7 +27,7 @@ export default function index({ search_history, top_categories, top_influencers 
 
             <main className="flex-1 pb-8">
                 <Container>
-                    <SearchBox searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} handleResult={(result) => setList(result)} />
+                    <SearchBox categories={categories} searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} handleResult={(result) => setList(result)} />
 
                     <div>
                         <div className="space-y-10">
@@ -41,8 +41,8 @@ export default function index({ search_history, top_categories, top_influencers 
                                     {search_history.length > 0 && (
                                         <RecentSearches data={search_history} />
                                     )}
-                                    {/* <TopCategories data={top_categories} />
-                                    <TopInfluencers data={top_influencers} /> */}
+                                    <TopCategories data={top_categories} />
+                                    <TopInfluencers data={top_influencers} />
                                 </>
                             }
                         </div>

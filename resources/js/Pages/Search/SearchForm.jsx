@@ -13,17 +13,21 @@ export default function SearchForm({
     showFull = false,
     handleSubmit,
     handleChange,
-    className
+    className,
+    categories
 }) {
+    console.log({ categories })
 
     return (
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
                 {/* <form action={route('search')} className="sm:mx-auto lg:mx-0"> */}
-                <div className="hidden md:grid grid-cols-6 gap-4 bg-white shadow px-3 py-5 rounded-md">
+                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-3 py-5 rounded-md">
                     <div className="md:pr-2 md:border-r border-gray-100">
                         <Select options={[
                             { name: 'Any', value: '' },
+                            { name: 'Nigeria', value: '' },
+                            { name: 'Ghana', value: '' },
                         ]}
                             name="influencer_location"
                             value={workmode}
@@ -51,6 +55,8 @@ export default function SearchForm({
                     <div className="md:pr-2 md:border-r">
                         <Select options={[
                             { name: 'Any', value: '' },
+                            { name: 'Nigeria', value: '' },
+                            { name: 'Ghana', value: '' },
                         ]}
                             name="audience_location"
                             value={dateRange}
@@ -75,7 +81,7 @@ export default function SearchForm({
                             defaultOptionText="Any"
                         />
                     </div>
-                    <div className="">
+                    {/* <div className="">
                         <Select options={[
                             { name: 'Any', value: '' },
                         ]}
@@ -85,7 +91,7 @@ export default function SearchForm({
                             label="Audience Gender"
                             defaultOptionText="Any"
                         />
-                    </div>
+                    </div> */}
 
                     <div className="mt-3 sm:mt-0 sm:ml-3">
                         <button
@@ -100,9 +106,7 @@ export default function SearchForm({
 
                 <div className="sm:flex items-center align-middle my-3 space-x-2">
                     <div className="bg-white shadow rounded py-1 px-3 overflow-hidden">
-                        <Select options={[
-                            { name: 'Any Category', value: 1 },
-                        ]}
+                        <Select options={categories}
                             name="category"
                             value={dateRange}
                             onChange={handleChange}

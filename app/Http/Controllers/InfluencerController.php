@@ -30,12 +30,15 @@ class InfluencerController extends Controller
         $top_categories = Category::where('is_featured', true)->limit(8)->get();
         $top_influencers = $this->influencer->limit(8)->get();
 
+        $categories = Category::get();
+
         return Inertia::render(
             'Influencers/index',
             [
                 'search_history' => $search_history,
                 'top_influencers' => $top_influencers,
                 'top_categories' => $top_categories,
+                'categories' => $categories
             ]
         );
     }
@@ -59,6 +62,7 @@ class InfluencerController extends Controller
     public function search(Request $request)
     {
         $result = TwitterInfluencer::query();
+        $categories = Category::get();
 
 
         if ($request->has('location')) {
@@ -69,6 +73,7 @@ class InfluencerController extends Controller
             $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
         }
 
+
         // Store User search sesion
         // $this->storeSearch($request, $result->count());
         return Inertia::render(
@@ -76,6 +81,7 @@ class InfluencerController extends Controller
             [
                 'list' => $result->get(),
                 'count' => $result->count(),
+                'categories' => $categories
             ]
         );
         // return $result->get();

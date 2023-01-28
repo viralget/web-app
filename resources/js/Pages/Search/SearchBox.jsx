@@ -41,7 +41,7 @@ export default function SearchBox(props) {
 
     return (
         <div className="mx-auto -mt-12 relative z-10 rounded-lg overflow-hidden">
-            <SearchForm className="" handleChange={handleChange} handleSubmit={handleSearch} {...props} />
+            <SearchForm className="" categories={props?.categories ?? []} handleChange={handleChange} handleSubmit={handleSearch} {...props} />
         </div>
     )
 }

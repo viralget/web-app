@@ -10,7 +10,7 @@ import RecentSearches from './RecentSearches'
 import List from './list'
 import TableSkeleton from '../../components/Skeleton/Table'
 
-export default function Search({ list, count }) {
+export default function Search({ list, count, categories }) {
     // const [list, setList] = useState(false)
     const [searchActive, setSearchActive] = useState(false)
     // const [result, setSearchActive] = useState(false)
@@ -25,7 +25,7 @@ export default function Search({ list, count }) {
 
             <main className="flex-1 pb-8">
                 <Container>
-                    <SearchBox searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} />
+                    <SearchBox categories={categories} searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} />
                     {/* handleResult={(result) => setList(result)} /> */}
 
                     <div>
