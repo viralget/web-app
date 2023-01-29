@@ -28,4 +28,72 @@ class Campaign extends Model
 
         return collect($_influencers);
     }
+
+
+    public function qas()
+    {
+        $total = 0;
+
+        foreach ($this->influencers() as $influencer) {
+            $total += $influencer->followers_count;
+        }
+
+        return $total;
+    }
+
+    public function qat()
+    {
+        $total = 0;
+
+        foreach ($this->influencers() as $influencer) {
+            $total += $influencer->followers_count;
+        }
+
+        return $total;
+    }
+
+    public function impressions()
+    {
+        $total_er = 0;
+
+        foreach ($this->influencers() as $influencer) {
+            $total_er += $influencer->interactions();
+        }
+
+        return $total_er;
+    }
+
+
+    public function reach()
+    {
+        $total_er = 0;
+
+        foreach ($this->influencers() as $influencer) {
+            $total_er += $influencer->interactions();
+        }
+
+        return $total_er;
+    }
+
+    public function reachablility()
+    {
+        $total_er = 0;
+
+        foreach ($this->influencers() as $influencer) {
+            $total_er += $influencer->engagementRate();
+        }
+
+        return $total_er;
+    }
+
+    public function er()
+    {
+        $total_er = 0;
+
+        foreach ($this->influencers() as $influencer) {
+            $total_er += $influencer->engagementRate();
+        }
+
+        return $total_er;
+    }
 }

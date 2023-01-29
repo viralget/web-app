@@ -11,6 +11,7 @@ import TitleText from '@/components/TitleText';
 import InfluencerCard from '../Influencers/RecentSearches/InfluencerCard';
 import CampaignCards from './Cards';
 import Stats from './Stats';
+import { nFormatter } from '../../Utils/helpers';
 
 export default function Campaign({ influencers, campaigns, campaign, stats }) {
 
@@ -65,25 +66,25 @@ export default function Campaign({ influencers, campaigns, campaign, stats }) {
                     </div>
                 </div>
 
-                <div className='mt-10 grid grid-cols-4 gap-3'>
-                    <div className='border border-gray-300 p-5'>
+                <div className='mt-10 grid grid-cols-3 gap-3'>
+                    {/* <div className='border border-gray-300 p-5'>
                         <TitleText text="Influencers" />
                         <div className='text-center'>
                             <div className="radial-progress text-orange-500" style={{ "--value": "70", "--size": "12rem", "--thickness": "1rem" }}>70%</div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className='space-y-3'>
-                        <Stats stat={stats['qas']} title="Quality Audience Total" />
-                        <Stats stat={stats['reach']} title="Reach Total" />
+                        <Stats stat={nFormatter(stats['qas'])} title="Quality Audience Total" />
+                        <Stats stat={nFormatter(stats['reach'])} title="Reach Total" />
                     </div>
                     <div className='space-y-3'>
-                        <Stats stat={stats['engagement']} title="Quality Audience Total" />
-                        <Stats stat={stats['reachability']} title="Authentic Reachablility" />
+                        <Stats stat={nFormatter(stats['engagement'])} title="Quality Engagement Total" />
+                        <Stats stat={nFormatter(stats['reachability'])} title="Authentic Reachablility" />
                     </div>
                     <div className='space-y-3'>
-                        <Stats stat={stats['impressions']} title="Impressions Total" />
-                        <Stats stat={stats['engagement_rate']} title="Engagement Rate" />
+                        <Stats stat={nFormatter(stats['impressions'])} title="Impressions Total" />
+                        <Stats stat={nFormatter(stats['engagement_rate'])} title="Engagement Rate" />
                     </div>
                 </div>
 

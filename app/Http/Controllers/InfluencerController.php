@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\InfluencerResource;
 use App\Models\Category;
 use App\Models\Influencer;
 use App\Models\Search;
@@ -36,7 +37,7 @@ class InfluencerController extends Controller
             'Influencers/index',
             [
                 'search_history' => $search_history,
-                'top_influencers' => $top_influencers,
+                'top_influencers' => InfluencerResource::collection($top_influencers),
                 'top_categories' => $top_categories,
                 'categories' => $categories
             ]
@@ -79,7 +80,9 @@ class InfluencerController extends Controller
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => $result->get(),
+                'list' => InfluencerResource::collection(
+                    $result->get()
+                ),
                 'count' => $result->count(),
                 'categories' => $categories
             ]

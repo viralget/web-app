@@ -90,12 +90,12 @@ class CampaignController extends Controller
         }
 
         $stats = [
-            'qas' => 0,
-            'engagement' => 0,
-            'impressions' => 0,
-            'reach' => 0,
-            'reachability' => 0,
-            'engagement_rate' => 0,
+            'qas' => $campaign->qas(),
+            'engagement' => $campaign->qat(),
+            'impressions' => $campaign->impressions(),
+            'reach' => $campaign->reach(),
+            'reachability' => $campaign->reachablility(),
+            'engagement_rate' => $campaign->er(),
         ];
 
         // $influencers = json_decode($campaign->influencers);

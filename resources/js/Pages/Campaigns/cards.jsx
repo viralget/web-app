@@ -19,7 +19,7 @@ export default function CampaignCards({ campaigns }) {
                     <div className='overflow-hidden border-gray-300 border rounded-lg text-gray-700'>
                         <div class="container px-5 py-2 mx-auto ">
                             <div class="flex flex-wrap -m-1 md:-m-2">
-                                {card.influencers?.length && card.influencers?.map((influencer) => (
+                                {card.influencers?.length > 0 && card.influencers?.map((influencer) => (
                                     <div class="flex flex-wrap w-1/2">
                                         <div class="w-full p-1 md:p-2">
                                             <img alt="gallery" class="block object-cover object-center w-full h-100 rounded-lg"
