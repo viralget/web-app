@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('twitter_influencers', function (Blueprint $table) {
-            $table->integer('category_id')->nullable();
+            // $table->integer('category_id')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('twitter_influencers', function (Blueprint $table) {
-            $table->dropColumn('category_id');
+            // $table->dropColumn('category_id');
         });
     }
 };

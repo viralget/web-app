@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\InfluencerController;
+use App\Http\Controllers\WhatsAppInfluencerController;
+use App\Models\WhatsappInfluencer;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -47,12 +49,13 @@ Route::middleware('auth')->group(
 
         Route::resources([
             'campaigns' => CampaignController::class,
-            'influencers' => InfluencerController::class
+            'influencers' => InfluencerController::class,
         ]);
 
         Route::post('/campaign/initiate', [CampaignController::class, 'initiateCampaign'])->name('campaign.initiate');
     }
 );
+Route::resources(['whatsapp-influencers' => WhatsAppInfluencerController::class]);
 
 require __DIR__ . '/admin.php';
 

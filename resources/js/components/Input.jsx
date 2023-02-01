@@ -18,7 +18,7 @@ export default function Input({
     placeholder,
     defaultValue
 }) {
-    const input = useRef();
+    // const input = useRef();
 
     useEffect(() => {
         if (isFocused) {
@@ -46,7 +46,7 @@ export default function Input({
                 placeholder={placeholder}
                 defaultValue={defaultValue}
                 className={inputStyle + ' ' + className}
-                ref={input}
+                // ref={input}
                 autoComplete={autoComplete}
                 required={required}
                 onChange={(e) => onChange(e)}
