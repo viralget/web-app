@@ -53,7 +53,7 @@ export default function New({ influencers }) {
                     />
 
                     :
-                    <div className="max-w-md mx-auto">
+                    <div className="max-w-md mx-auto p-5">
                         <div>
                             <h2 className="mt-6 text-4xl text-center font-bold tracking-tight text-gray-900">Enlist on our WhatsApp Amplifier Network</h2>
                         </div>
@@ -172,7 +172,7 @@ export default function New({ influencers }) {
                                         className="mt-1 block w-full"
                                     />
                                 </div>
-                                <div className="grid grid-cols-2 gap-5">
+                                <div className="grid md:grid-cols-2 gap-5">
                                     <div>
                                         <Input
                                             type="text"
