@@ -65,7 +65,7 @@ export default function Example() {
 // import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 // import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 // import { Testimonials } from '@/components/Testimonials'
-// import Guest from '../../components/Layouts/Guest'
+// import Guest from '@/Components/Layouts/Guest'
 
 // export default function Home() {
 //     return (

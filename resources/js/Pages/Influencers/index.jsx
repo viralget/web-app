@@ -1,14 +1,14 @@
 
 import { Fragment, useState } from 'react'
-import AuthenticatedLayout from '../../components/AuthenticatedLayout'
-import { Container } from '../../components/Container'
+import AuthenticatedLayout from '@/Components/AuthenticatedLayout'
+import { Container } from '@/Components/Container'
 import SearchBox from '../Search/SearchBox'
 import { useForm, usePage } from '@inertiajs/inertia-react'
 import TopInfluencers from './TopInfluencers'
 import TopCategories from './TopCategories'
 import RecentSearches from './RecentSearches'
 import List from './list'
-import TableSkeleton from '../../components/Skeleton/Table'
+import TableSkeleton from '@/Components/Skeleton/Table'
 
 export default function index({ search_history, top_categories, top_influencers, categories }) {
     const [list, setList] = useState(false)

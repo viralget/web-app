@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import Guest from '../../components/Layouts/Guest'
+import Guest from '@/Components/Layouts/Guest'
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import PasswordInput from '@/Components/PasswordInput';
 import { useForm } from '@inertiajs/inertia-react';
-import AuthenticatedLayout from '../../components/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Components/AuthenticatedLayout';
 
 export default function Account() {
     const [agreed, setAgreed] = useState(false)

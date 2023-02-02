@@ -1,7 +1,7 @@
 
 import { useLayoutEffect, useRef, useState } from 'react'
 import EmptyState from '@/components/EmptyState';
-import Badge from '../../components/Badge';
+import Badge from '@/Components/Badge';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { post } from '@/Utils/api';
 import toast from '@/Components/Toast';

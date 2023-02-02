@@ -5,10 +5,10 @@ import TextArea from '@/Components/TextArea';
 import toast from '@/Components/Toast';
 import PasswordInput from '@/Components/PasswordInput';
 import { useForm } from '@inertiajs/inertia-react';
-import AuthenticatedLayout from '../../components/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Components/AuthenticatedLayout';
 import { Inertia } from '@inertiajs/inertia';
 import { getEventValue } from '@/Utils/helpers';
-import SectionHeading from '../../Components/SectionHeading';
+import SectionHeading from '@/Components/SectionHeading';
 
 export default function NewCampaign({ influencers }) {
 

@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
-import Button from '@/Components/Button';
-import Input from '@/Components/Input';
-import TextArea from '@/Components/TextArea';
 import toast from '@/Components/Toast';
 import { useForm } from '@inertiajs/inertia-react';
-import AuthenticatedLayout from '../../components/AuthenticatedLayout';
+import AuthenticatedLayout from '@/Components/AuthenticatedLayout';
 import { Inertia } from '@inertiajs/inertia';
 import { getEventValue } from '@/Utils/helpers';
 import TitleText from '@/components/TitleText';
-import InfluencerCard from '../Influencers/RecentSearches/InfluencerCard';
+// import InfluencerCard from '../Influencers/RecentSearches/InfluencerCard';
 import CampaignCards from './Cards';
 import Stats from './Stats';
-import { nFormatter } from '../../Utils/helpers';
+import { nFormatter } from '@/Utils/helpers';
+import InfluencerCard from '../../Influencers/RecentSearches/InfluencerCard';
 
 export default function Campaign({ influencers, campaigns, campaign, stats }) {
 

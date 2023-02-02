@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
-import Guest from '../../components/Layouts/Guest'
-import Button from '@/Components/Button';
-import Cards from './Cards';
-import PasswordInput from '@/Components/PasswordInput';
 import EmptyState from '@/Components/EmptyState';
 import { Link, useForm } from '@inertiajs/inertia-react';
-import AuthenticatedLayout from '../../components/AuthenticatedLayout';
-import { Container } from '../../components/Container';
+import AuthenticatedLayout from '@/Components/AuthenticatedLayout';
 import CampaignCards from './Cards';
 
 export default function NewCampaign({ campaigns }) {

@@ -1,4 +1,4 @@
-import { nFormatter } from "../../../Utils/helpers";
+import { nFormatter } from "@/Utils/helpers";
 
 export default function InfluencerCard({ influencer, showBanner }) {
     return (

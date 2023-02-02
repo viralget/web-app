@@ -5,7 +5,7 @@ import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, useForm } from '@inertiajs/inertia-react';
-import Guest from '../../components/Layouts/Guest';
+import Guest from '@/Components/Layouts/Guest';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
