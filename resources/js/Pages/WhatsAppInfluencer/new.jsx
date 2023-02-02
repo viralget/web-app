@@ -200,12 +200,12 @@ export default function New({ influencers }) {
                                 <div>
                                     <Select
                                         name="parental_status"
-                                        label="Parental Status"
+                                        label="Are you a parent?"
                                         required
                                         defaultValue={data.parental_status}
                                         options={[
-                                            { name: '18+' },
-                                            { name: 'Others' },
+                                            { name: 'Yes' },
+                                            { name: 'No' },
                                         ]}
                                         onChange={onHandleChange}
                                     />
