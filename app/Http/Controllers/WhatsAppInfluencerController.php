@@ -8,6 +8,7 @@ use App\Models\Influencer;
 use App\Models\Search;
 use App\Models\WhatsappInfluencer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class WhatsAppInfluencerController extends Controller
@@ -18,30 +19,6 @@ class WhatsAppInfluencerController extends Controller
     function __construct(WhatsappInfluencer $influencer)
     {
         $this->influencer = $influencer;
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-        $search_history = Search::limit(3)->get();
-        $top_categories = Category::where('is_featured', true)->limit(8)->get();
-        $top_influencers = $this->influencer->limit(8)->get();
-
-        $categories = Category::get();
-
-        return Inertia::render(
-            'Influencers/index',
-            [
-                'search_history' => $search_history,
-                'top_influencers' => InfluencerResource::collection($top_influencers),
-                'top_categories' => $top_categories,
-                'categories' => $categories
-            ]
-        );
     }
 
     /**
@@ -54,42 +31,6 @@ class WhatsAppInfluencerController extends Controller
         return Inertia::render('WhatsAppInfluencer/new');
     }
 
-    /**
-     * Search a resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function search(Request $request)
-    {
-        $result = WhatsappInfluencer::query();
-        $categories = Category::get();
-
-
-        if ($request->has('location')) {
-            $result = $result->where('location', 'like', "%$request->location%");
-        }
-
-        if ($request->has('keywords')) {
-            $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
-        }
-
-
-        // Store User search sesion
-        // $this->storeSearch($request, $result->count());
-        return Inertia::render(
-            'Influencers/search',
-            [
-                'list' => InfluencerResource::collection(
-                    $result->get()
-                ),
-                'count' => $result->count(),
-                'categories' => $categories
-            ]
-        );
-        // return $result->get();
-    }
-
 
     /**
      * Store a newly created resource in storage.
@@ -100,22 +41,32 @@ class WhatsAppInfluencerController extends Controller
     public function store(Request $request)
     {
         //
-
         $request->validate([
             "name" => "required",
+            "email" => "required|unique:whatsapp_influencers",
             "gender" => "required",
             "marital_status" => "required",
+            "age" => "required",
             "occupation" => "required",
-            "whatsapp_phone_number" => "required",
-            "average_whatsapp_views" => "required",
+            "whatsapp_number" => "required|unique:whatsapp_influencers",
+            "average_views" => "required",
             "country" => "required",
             "state" => "required",
             "parental_status" => "required",
             "interests" => "required",
-            "video_evidence" => "required"
+            "video_evidence" => "required|file"
         ]);
 
-        dd($request->all());
+        $data = $request->except('video_evidence');
+
+        if ($request->file('video_evidence')) {
+            $file = $request->file('video_evidence');
+
+            $path = $file->store('influencers/whatsapp/video_evidence' . time() . '_' . $request->whatsapp_phone_number);
+            $data['video_evidence'] = Storage::url($path);
+        }
+
+        $this->influencer->create($data);
     }
 
     /**

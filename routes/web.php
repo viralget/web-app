@@ -55,7 +55,10 @@ Route::middleware('auth')->group(
         Route::post('/campaign/initiate', [CampaignController::class, 'initiateCampaign'])->name('campaign.initiate');
     }
 );
+// Route::group(function () {
+Route::get('whatsapp-amplifier', [WhatsAppInfluencerController::class, 'create'])->name('amplifier');
 Route::resources(['whatsapp-influencers' => WhatsAppInfluencerController::class]);
+// });
 
 require __DIR__ . '/admin.php';
 

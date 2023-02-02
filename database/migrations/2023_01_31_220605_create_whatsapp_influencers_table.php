@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->integer('age');
             $table->string('marital_status');
+            $table->string('email');
             $table->string('occupation');
             $table->string('whatsapp_number');
             $table->string('average_views');
@@ -27,10 +28,8 @@ return new class extends Migration
             $table->string('state');
             $table->string('parental_status');
             $table->string('interests');
-            $table->string('is_verified');
-            $table->enum('approval_status', ['pending', 'approved', 'rejected']);
-            $table->string('email_address');
-
+            $table->boolean('is_verified')->default(false);
+            $table->enum('approval_status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }
