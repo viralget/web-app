@@ -53,9 +53,10 @@ export default function New({ influencers }) {
                     />
 
                     :
-                    <div className="max-w-md mx-auto p-5">
-                        <div>
-                            <h2 className="mt-6 text-4xl text-center font-bold tracking-tight text-gray-900">Enlist on our WhatsApp Amplifier Network</h2>
+                    <div className="max-w-lg mx-auto p-5">
+                        <div className=' text-center space-y-5'>
+                            <h2 className="mt-6 text-4xl font-bold tracking-tight text-gray-900">Earn N50,000 - N250,000 Monthly Advertising on Your WhatsApp.</h2>
+                            <p>Join our WhatsApp Amplifiers Network</p>
                         </div>
 
                         <div className="mt-8 space-y-5">

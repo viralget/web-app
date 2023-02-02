@@ -148,11 +148,13 @@ export function Header() {
                   <div className="hidden md:block">
                     <NavLink href="/login">Log in</NavLink>
                   </div>
-                  <Button href="/register" color="blue">
-                    <span>
-                      Create an account
-                    </span>
-                  </Button>
+                  <div className="hidden md:block">
+                    <Button href="/register" color="blue">
+                      <span>
+                        Create an account
+                      </span>
+                    </Button>
+                  </div>
                   {/* <Button href="/join" color="blue">
                     <span>
                       Join the waitlist
