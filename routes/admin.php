@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\InfluencerController as AdminInfluencerController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\WhatsAppInfluencersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +17,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('admin.')->prefix('admin')->group(function () {
-    Route::name('influencers.')->prefix('influencers')->group(function () {
-        Route::get('upload', [AdminInfluencerController::class, 'upload'])->name('upload');
-        Route::post('upload', [AdminInfluencerController::class, 'handleUpload'])->name('upload.store');
+    Route::get('/', [AuthController::class, 'index'])->name('index');
+    Route::post('/', [AuthController::class, 'login'])->name('login');
+
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::name('influencers.')->prefix('influencers')->group(function () {
+
+            Route::name('whatsapp.')->prefix('whatsapp')->group(function () {
+                Route::get('/', [WhatsAppInfluencersController::class, 'index'])->name('index');
+                Route::get('/{influencer}', [WhatsAppInfluencersController::class, 'show'])->name('show');
+
+                Route::get('/{influencer}/verification', [WhatsAppInfluencersController::class, 'verification'])->name('verification');
+                Route::get('/{influencer}/approval', [WhatsAppInfluencersController::class, 'approval'])->name('approval');
+            });
+
+            // Route::get('/', [AdminInfluencerController::class, 'upload'])->name('upload');
+            // Route::post('upload', [AdminInfluencerController::class, 'handleUpload'])->name('upload.store');
+        });
+
+        Route::get('/', [AuthController::class, 'logout'])->name('logout');
     });
 });
