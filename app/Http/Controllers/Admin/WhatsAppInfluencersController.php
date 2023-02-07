@@ -31,7 +31,7 @@ class WhatsAppInfluencersController extends Controller
      */
     public function index()
     {
-        $influencers = $this->influencer->latest()->paginate(1);
+        $influencers = $this->influencer->latest()->paginate(20);
 
         return Inertia::render('Admin/WhatsAppInfluencers/index', [
             'influencers' => $influencers
