@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('admin.')->prefix('admin')->group(function () {
-    Route::get('/', [AuthController::class, 'index'])->name('index');
-    Route::post('/', [AuthController::class, 'login'])->name('login');
+    Route::get('/login', [AuthController::class, 'index'])->name('index');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -36,7 +36,6 @@ Route::name('admin.')->prefix('admin')->group(function () {
             // Route::get('/', [AdminInfluencerController::class, 'upload'])->name('upload');
             // Route::post('upload', [AdminInfluencerController::class, 'handleUpload'])->name('upload.store');
         });
-
-        Route::get('/', [AuthController::class, 'logout'])->name('logout');
     });
+    Route::get('/', [AuthController::class, 'logout'])->name('logout');
 });
