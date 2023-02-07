@@ -1,1 +1,0 @@
-import{R as o}from"./app.d049b2b6.js";function m({forInput:e,value:t,className:a,children:r}){return o.createElement("label",{htmlFor:e,className:"block font-normal text-sm text-gray-700 "+a},t||r)}export{m as L};
