@@ -113,23 +113,4 @@ class WhatsAppInfluencerController extends Controller
     {
         //
     }
-
-    public function storeSearch(Request $request)
-    {
-        if ($request->queryData || $request->location) {
-            Search::firstOrCreate(
-                [
-                    'keyword' => $request->queryData,
-                    'session_id' => session()->getId(),
-                    'user_id' => $request->user()->id ?? null,
-                ],
-                [
-                    'query' => $request->query,
-                    'results_count' => $request->count
-                ]
-            );
-        }
-
-        return response(['status' => true]);
-    }
 }

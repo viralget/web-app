@@ -26,5 +26,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         JsonResource::withoutWrapping();
+
+        if ($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
     }
 }

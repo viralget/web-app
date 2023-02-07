@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Label from './Label';
 
 // export const inputStyle = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm sm:text-sm"
@@ -23,11 +23,11 @@ export default function Input({
 }) {
     // const input = useRef();
 
-    useEffect(() => {
-        if (isFocused) {
-            input.current.focus();
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (isFocused) {
+    //         input.current.focus();
+    //     }
+    // }, []);
 
     return (
         <div className=" flex flex-col items-start w-full space-y-1">
