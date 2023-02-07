@@ -10,14 +10,9 @@
     {{-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet"> --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<<<<<<< HEAD
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-<!-- Facebook Pixel Code -->
-=======
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <!-- Facebook Pixel Code -->
->>>>>>> refs/remotes/origin/staging
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -31,13 +26,7 @@ s.parentNode.insertBefore(t,s)}(window,document,'script',
 fbq('track', 'PageView');
 </script>
 <noscript>
-<<<<<<< HEAD
- <img height="1" width="1" 
-src="https://www.facebook.com/tr?id=1317488535485095&ev=PageView
-&noscript=1"/>
-=======
  <img height="1" width="1" src="https://www.facebook.com/tr?id=1317488535485095&ev=PageView&noscript=1"/>
->>>>>>> refs/remotes/origin/staging
 </noscript>
 <!-- End Facebook Pixel Code -->
 
