@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('influencer_categories', function (Blueprint $table) {
-            $table->id();
             $table->integer('influencer_id');
-            $table->enum('platform', ['twitter', 'instagram'])->default('twitter');
-            $table->timestamps();
+            $table->integer('platform_id');
+            $table->integer('category_id');
         });
     }
 
