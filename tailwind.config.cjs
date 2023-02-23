@@ -9,11 +9,11 @@ module.exports = {
         './resources/js/**/*.jsx',
     ],
     theme: {
-        colors: {
-            // 'viralget-gradient': 
-            'viralget-red': '#F37C38',
-            'viralget-grey': '#3E4555'
-        },
+        // colors: {
+        //     // 'viralget-gradient': 
+        //     'viralget-red': '#F37C38',
+        //     'viralget-grey': '#3E4555'
+        // },
         extend: {
             fontFamily: {
                 sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
