@@ -18,6 +18,11 @@ module.exports = {
             fontFamily: {
                 sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                // 'viralget-gradient': 
+                'viralget-red': '#F37C38',
+                'viralget-grey': '#3E4555'
+            },
         }
     },
     plugins: [
