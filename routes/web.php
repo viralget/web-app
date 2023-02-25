@@ -5,6 +5,7 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\InfluencerController;
 use App\Http\Controllers\WhatsAppInfluencerController;
 use App\Models\WhatsappInfluencer;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -34,6 +35,8 @@ Route::get('/faqs', function () {
 Route::get('/contact', function () {
     return Inertia::render('Contact/index');
 })->name('contact');
+
+Route::post('/send-contact', [PageController::class, 'sendContact'])->name('send.contact');
 
 Route::get('/coming-soon', function () {
     return Inertia::render('ComingSoon/index');

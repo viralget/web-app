@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Input from '@/Components/Input';
 import TextArea from '@/components/TextArea';
 import Button from '@/Components/Button';
@@ -5,8 +6,7 @@ import { useForm } from '@inertiajs/inertia-react';
 import { getEventValue } from '@/Utils/helpers';
 import ValidationErrors from '@/Components/ValidationErrors';
 
-
-export default function ContactForm(){
+export default function ContactForm({props}){
 
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -16,6 +16,9 @@ export default function ContactForm(){
         message: '',
     });
 
+    useEffect(() => {
+        console.log("props:", props);
+    })
 
     const onHandleChange = (event) => {
         setData(event.target.name, getEventValue(event));
@@ -23,8 +26,16 @@ export default function ContactForm(){
 
     function submit(event){
         event.preventDefault();
-
-        console.log("event:", event)
+       post(route('send.contact'),  {
+        preserveScroll: true,
+        onSuccess: (result) => console.log("result:", result),
+        onError: (errors) => {
+          console.log("error:", errors)
+        }
+      })
+    //    then((result) => {
+    //     console.log("result:", result);
+    //    })
     }
 
 
