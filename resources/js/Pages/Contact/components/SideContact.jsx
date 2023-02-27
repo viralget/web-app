@@ -12,7 +12,7 @@ export default function SideContact() {
 
     return (
 
-        <div className="relative overflow-hidden md:h-screen  p-5 items-center  pt-10 flex-1  bg-gradient-to-b from-[#FF9857] to-[#751EFB]">
+        <div className="relative overflow-hidden h-screen  p-5 items-center  pt-10 flex-1  bg-gradient-to-b from-[#FF9857] to-[#751EFB]">
         <div className='flex items-center flex-col justify-center w-full'>
              <h2 className="text-white font-bold text-3xl">We’d love to hear from you</h2>
              <p className='text-xs text-white md:px-20 mt-4'>Have an inquiry or some feedback for us?

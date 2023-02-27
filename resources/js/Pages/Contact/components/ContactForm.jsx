@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import toast from '@/Components/Toast';
 import Input from '@/Components/Input';
 import TextArea from '@/components/TextArea';
 import Button from '@/Components/Button';
@@ -6,7 +6,7 @@ import { useForm } from '@inertiajs/inertia-react';
 import { getEventValue } from '@/Utils/helpers';
 import ValidationErrors from '@/Components/ValidationErrors';
 
-export default function ContactForm({props}){
+export default function ContactForm(){
 
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -16,9 +16,7 @@ export default function ContactForm({props}){
         message: '',
     });
 
-    useEffect(() => {
-        console.log("props:", props);
-    })
+
 
     const onHandleChange = (event) => {
         setData(event.target.name, getEventValue(event));
@@ -26,16 +24,19 @@ export default function ContactForm({props}){
 
     function submit(event){
         event.preventDefault();
+
        post(route('send.contact'),  {
         preserveScroll: true,
-        onSuccess: (result) => console.log("result:", result),
+        onSuccess: () =>{
+            toast.success('Submitted successfully, one of our team will reach out to you shorthly!');
+            reset();
+
+        },
         onError: (errors) => {
           console.log("error:", errors)
         }
       })
-    //    then((result) => {
-    //     console.log("result:", result);
-    //    })
+  
     }
 
 
