@@ -1,6 +1,6 @@
 import Guest from '@/components/Layouts/Guest'
-
-
+import SideContact from './components/SideContact';
+import ContactForm from './components/ContactForm';
 
 
 export default function Contact() {
@@ -9,7 +9,11 @@ export default function Contact() {
  
     return (
         <Guest>
-          <h2>Contact pages</h2>
+             <div className='flex md:flex-row   flex-col  '>
+               <SideContact />
+              <ContactForm />
+                 
+             </div>
         </Guest>
     )
 }
