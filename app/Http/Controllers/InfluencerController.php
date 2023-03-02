@@ -76,7 +76,10 @@ class InfluencerController extends Controller
 
 
         // Store User search sesion
-        // $this->storeSearch($request, $result->count());
+        // if($request){
+        //    $this->storeSearch($request, $result->count()); 
+        // }
+
         return Inertia::render(
             'Influencers/search',
             [

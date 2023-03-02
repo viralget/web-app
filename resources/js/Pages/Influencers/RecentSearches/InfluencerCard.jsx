@@ -1,6 +1,8 @@
 import { nFormatter } from "@/Utils/helpers";
 
 export default function InfluencerCard({ influencer, showBanner }) {
+
+    
     return (
         <div
             key={influencer.id}
@@ -8,8 +10,11 @@ export default function InfluencerCard({ influencer, showBanner }) {
         >
             {showBanner && (
 
-                <div>
-                    <img class="h-36 w-full object-cover" src={influencer.profile_banner_url} alt="" />
+                <div className="bg-gray-500">
+                    {
+                       influencer.profile_banner_url && (<img class="h-36 w-full object-cover" src={influencer.profile_banner_url} alt="" />)
+                    }
+                   
                 </div>
             )}
             <div className={`flex flex-1 flex-col p-8 ${showBanner && '-mt-16'}`}>

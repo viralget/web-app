@@ -1,6 +1,6 @@
 
 import { Fragment, useState } from 'react'
-import AuthenticatedLayout from '@/Components/AuthenticatedLayout'
+import AuthenticatedLayout from '@/components/AuthenticatedLayout'
 import { Container } from '@/Components/Container'
 import SearchBox from '../Search/SearchBox'
 import { useForm, usePage } from '@inertiajs/inertia-react'
@@ -33,7 +33,6 @@ export default function index({ search_history, top_categories, top_influencers,
                         <div className="space-y-10">
                             {searchActive ?
                                 <>
-                                    {/* <TableSkeleton /> */}
                                     {loading ? <TableSkeleton /> : <List data={list} />}
                                 </>
                                 :
