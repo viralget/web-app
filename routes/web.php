@@ -36,6 +36,11 @@ Route::get('/contact', function () {
     return Inertia::render('Contact/index');
 })->name('contact');
 
+Route::get('/pricing', function () {
+    return Inertia::render('PricingPage/index');
+})->name('pricing');
+
+
 Route::post('/send-contact', [PageController::class, 'sendContact'])->name('send.contact');
 
 Route::get('/coming-soon', function () {
