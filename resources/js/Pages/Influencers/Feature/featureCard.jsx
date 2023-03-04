@@ -1,10 +1,9 @@
-export default function FeatureCard({title,reach, colors, className}){
+export default function FeatureCard({title, reach, colors, className}){
 
 
-    console.log("colors:", `from-[${colors[0]}]`);
 
     return (
-             <div className={`w-full p-5 relative rounded-md bg-gradient-to-r  ` + className}>
+             <div className={`w-full p-5 relative rounded-md bg-gradient-to-r` + className}>
                     <div  className=" w-full  text-white">
                           <span className="font-bold text-white text-sm">{title}</span>
                     </div>
