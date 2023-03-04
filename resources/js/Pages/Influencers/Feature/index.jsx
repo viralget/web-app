@@ -3,7 +3,7 @@ import TitleText from '@/components/TitleText'
 import FeatureCard from './featureCard'
 export default function FeatureSelections({ data }) {
     return (
-        <div>
+        <div className='mt-4'>
             <TitleText text="Feature Selection" />
           
                 <div className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">

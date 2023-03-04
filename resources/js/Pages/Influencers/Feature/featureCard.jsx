@@ -1,9 +1,9 @@
-export default function FeatureCard({title, reach, colors, className}){
+export default function FeatureCard({title, reach, className}){
 
 
 
     return (
-             <div className={`w-full p-5 relative rounded-md bg-gradient-to-r` + className}>
+             <div className={"w-full p-5 relative rounded-md bg-gradient-to-r  " + className}>
                     <div  className=" w-full  text-white">
                           <span className="font-bold text-white text-sm">{title}</span>
                     </div>
@@ -30,7 +30,7 @@ export default function FeatureCard({title, reach, colors, className}){
                                </div>
 
                                <div className="w-[38px]  h-[38px]  text-center flex items-center justify-center bg-[#F5F5F5] ml-5 border-2 border-white rounded-full ">
-                                    <span className="text-center">{reach}</span>
+                                    <span className="text-center  text-xs">{reach}</span>
                                </div>
                     </div>
              </div>
