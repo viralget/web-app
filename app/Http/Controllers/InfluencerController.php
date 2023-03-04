@@ -168,4 +168,19 @@ class InfluencerController extends Controller
 
         return response(['status' => true, 'data'=> $request->queryData]);
     }
+
+
+
+
+   public   function  getAllCategoriesPage(){
+
+    $categories = Category::get();
+
+    return Inertia::render(
+        'AllCategories/index',
+        [
+            'categories' => $categories
+        ]
+    );
+   } 
 }
