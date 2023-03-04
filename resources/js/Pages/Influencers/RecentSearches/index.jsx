@@ -12,7 +12,6 @@ const cards = [
 ]
 export default function RecentSearches({ data }) {
 
-    console.log({ data })
     return (
         <div className="mt-8">
             <div className="">

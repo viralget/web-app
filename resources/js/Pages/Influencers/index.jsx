@@ -8,7 +8,8 @@ import TopInfluencers from './TopInfluencers'
 import TopCategories from './TopCategories'
 import RecentSearches from './RecentSearches'
 import List from './list'
-import TableSkeleton from '@/Components/Skeleton/Table'
+import TableSkeleton from '@/Components/Skeleton/Table';
+import Feature from './Feature';
 
 export default function index({ search_history, top_categories, top_influencers, categories }) {
     const [list, setList] = useState(false)
@@ -40,6 +41,7 @@ export default function index({ search_history, top_categories, top_influencers,
                                     {search_history.length > 0 && (
                                         <RecentSearches data={search_history} />
                                     )}
+                                    <Feature />
                                     <TopCategories data={top_categories} />
                                     <TopInfluencers data={top_influencers} />
                                 </>

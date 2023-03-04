@@ -166,6 +166,6 @@ class InfluencerController extends Controller
             );
         }
 
-        return response(['status' => true]);
+        return response(['status' => true, 'data'=> $request->queryData]);
     }
 }
