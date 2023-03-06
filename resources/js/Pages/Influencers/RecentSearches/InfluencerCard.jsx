@@ -2,19 +2,19 @@ import { nFormatter } from "@/Utils/helpers";
 
 export default function InfluencerCard({ influencer, showBanner }) {
 
-    
+
     return (
         <div
             key={influencer.id}
-            className="col-span-1  rounded-lg text-center border border-gray-300"
+            className="col-span-1 bg-white rounded-lg text-center shadow-lg overflow-hidden"
         >
             {showBanner && (
 
                 <div className="bg-gray-500">
                     {
-                       influencer.profile_banner_url && (<img class="h-36 w-full object-cover" src={influencer.profile_banner_url} alt="" />)
+                        influencer.profile_banner_url && (<img class="h-36 w-full object-cover" src={influencer.profile_banner_url} alt="" />)
                     }
-                   
+
                 </div>
             )}
             <div className={`flex flex-1 flex-col p-8 ${showBanner && '-mt-16'}`}>

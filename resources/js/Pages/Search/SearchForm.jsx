@@ -2,6 +2,7 @@ import Select from "@/Components/Select";
 import Button from "@/Components/Button";
 import { MagnifyingGlassCircleIcon, MapIcon } from "@heroicons/react/24/solid";
 import List from "@/components/List"
+import MultiDropdown from "@/Components/MultiDropdown";
 
 export default function SearchForm({
     keywords,
@@ -38,15 +39,28 @@ export default function SearchForm({
                             defaultOptionText="Any"
                         /> */}
 
+
+
+                        <MultiDropdown options={[
+                            { name: 'Any', value: '' },
+                            { name: 'Nigeria', value: 'Nigeria' },
+                            { name: 'Ghana', value: 'Ghana' },
+                        ]}
+                            onChange={handleChange}
+                            label="Influencer Location"
+
+                        />
+
+                        {/* 
                         <List options={[
                             { name: 'Any', value: 'influencer_location' },
                             { name: 'Nigeria', value: 'influencer_location' },
                             { name: 'Ghana', value: 'influencer_location' },
                         ]}
-                        onChange={handleChange}
-                        label="Influencer Location"
-                        
-                        />
+                            onChange={handleChange}
+                            label="Influencer Location"
+
+                        /> */}
                     </div>
                     <div className="md:pr-2 md:border-r border-gray-100">
                         {/* <Select options={[
@@ -62,16 +76,16 @@ export default function SearchForm({
                             label="Influencer Size"
                         /> */}
 
-                     <List options={[
+                        <List options={[
                             { name: 'Any', value: '' },
                             { name: 'Nano (1000 - 10,000)', value: 'nano' },
                             { name: 'Micro (10,000 - 50,000)', value: 'micro' },
                             { name: 'Mid Tier (50,000 - 500k)', value: 'nano' },
                             { name: 'Macro (500k - 1m)', value: 'macro' },
                         ]}
-                        onChange={handleChange}
-                        label="Influencer Size"
-                        
+                            onChange={handleChange}
+                            label="Influencer Size"
+
                         />
                     </div>
 
@@ -88,15 +102,15 @@ export default function SearchForm({
                             defaultOptionText="Any"
                         /> */}
 
-                     <List options={[
+                        <List options={[
                             { name: 'Any', value: 'audience_location' },
                             { name: 'Nigeria', value: 'audience_location' },
                             { name: 'Ghana', value: 'audience_location' },
                         ]}
 
-                        onChange={handleChange}
-                        label="Audience Location"
-                        
+                            onChange={handleChange}
+                            label="Audience Location"
+
                         />
                     </div>
                     <div className="md:pr-2 md:border-r border-gray-100">
@@ -116,7 +130,7 @@ export default function SearchForm({
                         /> */}
 
 
-                  <List options={[
+                        <List options={[
                             { name: 'Any', value: '' },
                             { name: 'Excellent >90', value: 'excellent' },
                             { name: 'Very Good >80', value: 'very good' },
@@ -124,9 +138,9 @@ export default function SearchForm({
                             { name: 'Average >40', value: 'average' },
                             { name: 'Poor >25', value: 'poor' },
                         ]}
-                        onChange={handleChange}
-                        label="Influencer QAS"
-                        
+                            onChange={handleChange}
+                            label="Influencer QAS"
+
                         />
                     </div>
                     {/* <div className="">
@@ -187,19 +201,19 @@ export default function SearchForm({
                         />
                     </div>
                 </div>
-                     {getSearches.length > 0 && (
-                        <div  className="flex  space-x-2 mb-5 bg-white p-3 "  >
-                   
-                               { getSearches.map((item) => (
-                                    <div  className="bg-[#f4f4f4]  px-3 py-1  shadown-md  rounded-full ">
-                                                <span>{item.name}</span>
-                                     </div>
-                                    
-                                ))}
-                         </div>
-                            )}
-               
-                
+                {getSearches.length > 0 && (
+                    <div className="flex  space-x-2 mb-5 bg-white p-3 "  >
+
+                        {getSearches.map((item) => (
+                            <div className="bg-[#f4f4f4]  px-3 py-1  shadown-md  rounded-full ">
+                                <span>{item.name}</span>
+                            </div>
+
+                        ))}
+                    </div>
+                )}
+
+
             </form>
         </div>
     );
