@@ -66,13 +66,14 @@ class InfluencerController extends Controller
         $categories = Category::get();
 
 
-        if ($request->has('location')) {
-            $result = $result->where('location', 'like', "%$request->location%");
-        }
 
-        if ($request->has('keywords')) {
-            $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
-        }
+        // if ($request->has('location')) {
+        //     $result = $result->where('location', 'like', "%$request->location%");
+        // }
+
+        // if ($request->has('keywords')) {
+        //     $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
+        // }
 
 
         // Store User search sesion
@@ -80,10 +81,8 @@ class InfluencerController extends Controller
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => InfluencerResource::collection(
-                    $result->get()
-                ),
-                'count' => $result->count(),
+                'list' => $result->latest()->paginate(10), //InfluencerResource::collection($result->latest()->paginate(10)),
+                'count' => $result->count(), //$result->count(),
                 'categories' => $categories
             ]
         );
