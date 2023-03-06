@@ -81,15 +81,15 @@ export default function List({ count, data }) {
 
 
         const urlParams = new URLSearchParams(window.location.search).toString();
-
+    
         const data = {
             queryData: JSON.parse('{"' + decodeURI(urlParams.replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}'),
             query: urlParams,
         }
 
+
         const response = await post(route('influencers.search.store'), data, true);
 
-        // console.log({ response, data });
         if (response?.data?.status) {
             toast('Search stored successfully!');
             setIsSaved(true)

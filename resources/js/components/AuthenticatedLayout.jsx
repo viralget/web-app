@@ -28,6 +28,8 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
+    console.log("title:", title);
+
     return (
 
         <div className="min-h-screen bg-gray-50">
@@ -146,7 +148,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
             <div className="flex flex-1 flex-col lg:pl-64">
                 {showHeader && (
-                    < div className="bg-red-500 bg-gradient-to-r from-yellow-600 to-fuchsia-600">
+                    < div className="bg-fuchsia-600  bg-gradient-to-r from-fuchsia-600  via-red-500 to-yellow-600    rounded-br-[5rem]">
                         <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
                             <button
                                 type="button"
@@ -159,7 +161,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             {/* Search bar */}
                             <div className="flex flex-1 justify-end md:justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
                                 <div className="hidden md:flex flex-1">
-                                    <div className="w-full max-w-lg">
+                                    <div className="w-full max-w-sm  mt-3">
                                         <form action={route('influencers.search')} method="get">
 
                                             <label htmlFor="search" className="sr-only">
@@ -172,7 +174,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                 <input
                                                     id="keywords"
                                                     name="keywords"
-                                                    className="block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-4 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"
+                                                    className="block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"
                                                     placeholder="Enter keywords, skills or company name"
                                                     type="search"
                                                 />
@@ -183,16 +185,13 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                 <div className="ml-4 flex items-center md:ml-6 space-x-3">
                                     <button
                                         type="button"
-                                        className="text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-3 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"
-
-                                    // className="rounded-full bg-transparent p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
-                                    >
+                                        className="text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"   >
                                         <span className="sr-only">View notifications</span>
                                         <BellIcon className="h-6 w-6" aria-hidden="true" />
                                     </button>
 
                                     {/* Profile dropdown */}
-                                    <div className=" w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-2 p-3 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm">
+                                    <div className=" w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm">
                                         <DropdownMenu user={user} light />
                                     </div>
                                 </div>
@@ -200,7 +199,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                         </div>
                         <Container className="relative">
                             <div className="w-3/5  my-16 ">
-                                <h1 className="font-display pb-5 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+                                <h1 className="font-display pb-5 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-3xl">
                                     {title}
                                 </h1>
                                 {subtitle && (
