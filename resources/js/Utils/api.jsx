@@ -1,5 +1,7 @@
 import axios from "axios";
 
+let config = {}
+
 export const api = axios.create({
   baseURL: "/",
 });
@@ -27,7 +29,6 @@ if (meta) {
       'Authorization': `Bearer ${meta.getAttribute('content')}`
     },
   };
-
 }
 
 const get = async (url, requireAuth = false) => {
@@ -44,8 +45,6 @@ const get = async (url, requireAuth = false) => {
 const post = async (url, payload, requireAuth = false) => {
   try {
 
-
-    console.log({ config })
     let response = requireAuth
       ? await instance.post(url, payload, config)
       : await instance.post(url, payload);
@@ -98,6 +97,7 @@ const del = async (url, payload = {}, requireAuth = true) => {
 
 const handleError = (error) => {
 
+  console.log({ error })
   // return error
   return {
     error: error.response?.data ?? 'An error occurred',

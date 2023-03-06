@@ -84,7 +84,7 @@ export default function TopCategories({ data }) {
 
                 <div className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                     {data.map((item, index) => (
-                        <div key={index}>
+                        <a href="#" key={index}>
                             <div className="relative">
                                 <div className="relative h-40 w-full overflow-hidden rounded-lg bg-gradient-to-r from-yellow-600 to-fuchsia-600 ">
                                     <img
@@ -98,11 +98,11 @@ export default function TopCategories({ data }) {
                                         aria-hidden="true"
                                         className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-50"
                                     />
-                                    <p className="relative text-lg font-semibold text-white">{item.name}</p>
+                                    <p className="relative text-lg font-semibold text-white capitalize ">{item.name}</p>
                                 </div>
                             </div>
 
-                        </div>
+                        </a>
                     ))}
                 </div>
 

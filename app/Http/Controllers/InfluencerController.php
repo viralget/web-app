@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\InfluencerResource;
 use App\Models\Category;
 use App\Models\Influencer;
 use App\Models\Search;
@@ -30,13 +31,15 @@ class InfluencerController extends Controller
         $top_categories = Category::where('is_featured', true)->limit(8)->get();
         $top_influencers = $this->influencer->limit(8)->get();
 
+        $categories = Category::get();
 
         return Inertia::render(
             'Influencers/index',
             [
                 'search_history' => $search_history,
-                'top_influencers' => $top_influencers,
+                'top_influencers' => InfluencerResource::collection($top_influencers),
                 'top_categories' => $top_categories,
+                'categories' => $categories
             ]
         );
     }
@@ -59,24 +62,32 @@ class InfluencerController extends Controller
      */
     public function search(Request $request)
     {
-        $result = Influencer::query();
+        $result = TwitterInfluencer::query();
+        $categories = Category::get();
 
 
         if ($request->has('location')) {
             $result = $result->where('location', 'like', "%$request->location%");
         }
 
-        if ($request->has('keyword')) {
-            $result = $result->where('bio', 'like', "%$request->location%")->orWhere('username', 'like', "%$request->keyword%");
+        if ($request->has('keywords')) {
+            $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
         }
 
+
         // Store User search sesion
-        $this->storeSearch($request, $result->count());
+        // if($request){
+        //    $this->storeSearch($request, $result->count()); 
+        // }
+
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => $result->get(),
+                'list' => InfluencerResource::collection(
+                    $result->get()
+                ),
                 'count' => $result->count(),
+                'categories' => $categories
             ]
         );
         // return $result->get();
@@ -139,21 +150,22 @@ class InfluencerController extends Controller
         //
     }
 
-    private function storeSearch(Request $request, int $results_count)
+    public function storeSearch(Request $request)
     {
-        // dd($request->all());
-        if ($request->keywords || $request->location) {
+        if ($request->queryData || $request->location) {
             Search::firstOrCreate(
                 [
-                    'keyword' => $request->keywords ?? $request->location,
+                    'keyword' => $request->queryData,
                     'session_id' => session()->getId(),
                     'user_id' => $request->user()->id ?? null,
                 ],
                 [
-                    'query' => $request->getRequestUri(),
-                    'results_count' => $results_count
+                    'query' => $request->query,
+                    'results_count' => $request->count
                 ]
             );
         }
+
+        return response(['status' => true, 'data'=> $request->queryData]);
     }
 }

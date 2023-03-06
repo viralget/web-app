@@ -2,8 +2,8 @@ import Guest from '@/components/Layouts/Guest'
 import { Head } from '@inertiajs/inertia-react';
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import Button from '../../components/Button';
-import LottieAnimation from '../../components/LottieAnimation';
+import Button from '@/Components/Button';
+import LottieAnimation from '@/Components/LottieAnimation';
 import succesfulJson from '../../../assets/lottie/successful.json';
 
 export default function Welcome() {

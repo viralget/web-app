@@ -4,6 +4,12 @@ import { createInertiaApp } from '@inertiajs/inertia-react'
 import { InertiaProgress } from '@inertiajs/progress'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
+import { LightTheme, BaseProvider, styled } from 'baseui';
+import { Client as Styletron } from 'styletron-engine-atomic';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { ToasterContainer } from 'baseui/toast';
+
+const engine = new Styletron();
 
 InertiaProgress.init()
 
@@ -13,6 +19,13 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />)
+        root.render(
+            <StyletronProvider value={engine}>
+                <BaseProvider theme={LightTheme}>
+                    <ToasterContainer autoHideDuration={3000}>
+                        <App {...props} />
+                    </ToasterContainer>
+                </BaseProvider>
+            </StyletronProvider>)
     },
 })

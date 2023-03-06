@@ -22,7 +22,7 @@ const header_routes = [
   },
   {
     name: "Find Influencers",
-    href: route('join')
+    href: route('explore')
   },
   {
     name: <> Track Campaign<Badge text="Coming soon" /> </>,
@@ -73,7 +73,7 @@ function MobileNavigation() {
   return (
     <Popover>
       <Popover.Button
-        className="relative z-10 flex h-8 w-8 items-center justify-center [&:not(:focus-visible)]:focus:outline-none"
+        className="relative z-50 flex h-8 w-8 items-center justify-center [&:not(:focus-visible)]:focus:outline-none"
         aria-label="Toggle Navigation"
       >
         {({ open }) => <MobileNavIcon open={open} />}
@@ -129,7 +129,7 @@ export function Header() {
       </Head>
       <header className="py-10">
         <Container>
-          <nav className="relative z-50 flex justify-between">
+          <nav className="relative flex justify-between">
             <div className="flex items-center md:gap-x-12">
               <Link href="/" aria-label="Home">
                 <Logo className="h-10 w-auto" />
@@ -145,20 +145,21 @@ export function Header() {
                 <DropdownMenu user={user} />
                 :
                 <>
-                  {/* <div className="hidden md:block">
+                  <div className="hidden md:block">
                     <NavLink href="/login">Log in</NavLink>
-                  </div> */}
-                  {/* <Button href="/register" color="blue">
-                    <span>
-                      Create an account
-                    </span>
-                  </Button> */}
-                  <Button href="/join" color="blue">
+                  </div>
+                  <div className="hidden md:block">
+                    <Button href="/register" color="blue">
+                      <span>
+                        Create an account
+                      </span>
+                    </Button>
+                  </div>
+                  {/* <Button href="/join" color="blue">
                     <span>
                       Join the waitlist
-                      {/* Try for Free */}
                     </span>
-                  </Button>
+                  </Button> */}
                 </>
               }
               <div className="-mr-1 md:hidden">

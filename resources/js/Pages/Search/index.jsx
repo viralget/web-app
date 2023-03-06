@@ -13,7 +13,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import SearchBox from './SearchBox'
 import Categories from '@/components/Categories'
 
-export default function Search() {
+export default function Search({ categories }) {
   return (
     <>
       {/* <Head>
@@ -26,7 +26,7 @@ export default function Search() {
       <Header />
       <main>
         <SectionHeader />
-        <SearchBox />
+        <SearchBox categories={categories} />
 
         <Categories />
       </main>
