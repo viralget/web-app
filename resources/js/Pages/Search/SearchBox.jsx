@@ -16,6 +16,8 @@ export default function SearchBox(props) {
         const name = e?.target?.name ? e.target.name : e.name;
         const value = e?.target?.value ? e.target.value : e.value;
 
+        console.log({ name })
+
         setSearches([...getSearches, { name: e?.target?.value ? e?.target?.value : name, value }]);
 
         if (e?.target?.value) {

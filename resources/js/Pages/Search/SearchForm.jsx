@@ -1,7 +1,3 @@
-import Select from "@/Components/Select";
-import Button from "@/Components/Button";
-import { MagnifyingGlassCircleIcon, MapIcon } from "@heroicons/react/24/solid";
-import List from "@/components/List"
 import MultiDropdown from "@/Components/MultiDropdown";
 
 export default function SearchForm({
@@ -20,7 +16,7 @@ export default function SearchForm({
     getSearches
 }) {
 
-
+    console.log({ getSearches })
     return (
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
@@ -48,19 +44,7 @@ export default function SearchForm({
                         ]}
                             onChange={handleChange}
                             label="Influencer Location"
-
                         />
-
-                        {/* 
-                        <List options={[
-                            { name: 'Any', value: 'influencer_location' },
-                            { name: 'Nigeria', value: 'influencer_location' },
-                            { name: 'Ghana', value: 'influencer_location' },
-                        ]}
-                            onChange={handleChange}
-                            label="Influencer Location"
-
-                        /> */}
                     </div>
                     <div className="md:pr-2 md:border-r border-gray-100">
                         {/* <Select options={[
@@ -76,7 +60,7 @@ export default function SearchForm({
                             label="Influencer Size"
                         /> */}
 
-                        <List options={[
+                        <MultiDropdown options={[
                             { name: 'Any', value: '' },
                             { name: 'Nano (1000 - 10,000)', value: 'nano' },
                             { name: 'Micro (10,000 - 50,000)', value: 'micro' },
@@ -102,10 +86,10 @@ export default function SearchForm({
                             defaultOptionText="Any"
                         /> */}
 
-                        <List options={[
-                            { name: 'Any', value: 'audience_location' },
-                            { name: 'Nigeria', value: 'audience_location' },
-                            { name: 'Ghana', value: 'audience_location' },
+                        <MultiDropdown options={[
+                            { name: 'Any', value: '' },
+                            { name: 'Nigeria', value: 'Nigeria' },
+                            { name: 'Ghana', value: 'Ghana' },
                         ]}
 
                             onChange={handleChange}
@@ -130,7 +114,7 @@ export default function SearchForm({
                         /> */}
 
 
-                        <List options={[
+                        <MultiDropdown options={[
                             { name: 'Any', value: '' },
                             { name: 'Excellent >90', value: 'excellent' },
                             { name: 'Very Good >80', value: 'very good' },
@@ -167,28 +151,25 @@ export default function SearchForm({
                 </div>
 
                 <div className="sm:flex items-center align-middle my-3 space-x-2">
-                    <div className="bg-white shadow rounded-md py-1 px-3 overflow-hidden">
-                        <Select options={categories}
+                    <div className="flex-initial w-64 bg-white shadow rounded-md py-1 px-3 ">
+                        <MultiDropdown options={categories}
                             name="category"
-                            value={dateRange}
                             onChange={handleChange}
-                            // label=""
-                            defaultOptionText="Any Category"
-                            className="text-xs"
-                            useBorder={false}
+                            defaultOptionText="Category"
                         />
                     </div>
-                    {/* <div className="bg-white shadow rounded py-1 px-3 overflow-hidden">
-                    <Select options={[
-                        { name: 'Anywhere', value: '' },
-                    ]}
-                        name="location"
-                        value={dateRange}
-                        onChange={handleChange}
-                        // label=""
-                        defaultOptionText="Anywhere"
-                    />
-                </div> */}
+                    <div className="flex-initial w-64 bg-white shadow rounded-md py-1 px-3 ">
+                        <MultiDropdown options={[
+                            { name: 'Anywhere', },
+                            { name: 'In Bio', },
+                            { name: 'In Contents', },
+                        ]}
+                            name="category"
+                            onChange={handleChange}
+                            defaultOptionText="Anywhere"
+                        />
+                    </div>
+
                     <div className="flex-1">
                         <input
                             id="keywords"
@@ -197,12 +178,12 @@ export default function SearchForm({
                             defaultValue={keywords}
                             onChange={handleChange}
                             placeholder={"Find influencers by keywords or hashtag"}
-                            className="block w-full shadow px-3 py-3  rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                            className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
                         />
                     </div>
                 </div>
                 {getSearches.length > 0 && (
-                    <div className="flex  space-x-2 mb-5 bg-white p-3 "  >
+                    <div className="flex flex-wrap space-x-2  mb-5 bg-white p-3 "  >
 
                         {getSearches.map((item) => (
                             <div className="bg-[#f4f4f4]  px-3 py-1  shadown-md  rounded-full ">

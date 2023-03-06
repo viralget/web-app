@@ -1,26 +1,51 @@
 import { CheckBadgeIcon, CheckIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Label from "./Label";
 
-const MultiDropdown = ({ label, name, options }) => {
+const MultiDropdown = ({ label, name, options, onChange, defaultOptionText }) => {
     const [showDropdown, setShowDropdown] = useState(false);
-    const [isSubList, setIsSubList] = useState(3);
+    const [currentSelectedItem, setCurrentSelectedItem] = useState(defaultOptionText ?? 'Select an option');
     const [selectedOptions, setSelectedOptions] = useState([]);
 
-    const handleSelected = (value) => {
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
 
-        console.log({ selectedOptions, value })
+    const handleSelected = (e, item, value) => {
+
+
+        setCurrentSelectedItem(item.name);
 
         let _selectedOptions = selectedOptions;
 
         if (_selectedOptions.indexOf(value) === -1) {
             _selectedOptions.push(value);
-
-            setSelectedOptions(_selectedOptions);
         } else {
             _selectedOptions.pop(value);
-            setSelectedOptions(_selectedOptions);
         }
+
+        setSelectedOptions(_selectedOptions);
+
+        e.target.value = _selectedOptions;
+        onChange(e);
+    }
+
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setShowDropdown(false);
+                }
+            }
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
     }
 
     return (
@@ -28,8 +53,11 @@ const MultiDropdown = ({ label, name, options }) => {
             {label &&
                 <Label for={name} value={label} />
             }
-            <div onClick={() => setShowDropdown(!showDropdown)} className="w-full p-4  rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer">
-                {label}
+            <div onClick={() => setShowDropdown(!showDropdown)} className="w-full py-3 px-4 rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer">
+                <div className="flex justify-between w-full">
+                    <span>{currentSelectedItem ?? label}</span>
+                    <span>{selectedOptions.length > 1 && <span className="text-xs bg-gray-100 p-1 mr-1">+{selectedOptions.length - 1}</span>}</span>
+                </div>
                 <div>
                     {showDropdown ? (
                         <div>
@@ -47,32 +75,30 @@ const MultiDropdown = ({ label, name, options }) => {
                 </div>
             </div>
             {showDropdown && (
-                <div className="absolute -left-2 w-full">
-                    <div className="w-full mt-2 h-auto bg-white shadow rounded-b">
-                        {options.length && options.map((item, index) => (
+                <div ref={wrapperRef} className="absolute z-10 -left-2 w-full">
+                    <div className="mt-3 w-64 h-auto bg-white shadow rounded">
+                        {options.length && options.map((item, index) => {
 
-                            <div className="flex py-1 px-2 items-center justify-between cursor-pointer" key={index} onClick={() => handleSelected(item.value)}>
-                                <div className="flex items-center">
+                            const value = item.name ?? item.label;
+                            console.log({ value })
+                            return (
+
+                                <div className="flex py-2 px-2 items-center justify-between cursor-pointer hover:bg-gray-50" key={index} onClick={(e) => handleSelected(e, item, value)}>
                                     <div className="flex items-center">
-                                        <p className="text-sm leading-normal ml-2 text-gray-800">Facebook</p>
+                                        <div className="flex items-center">
+                                            <p className="text-xs leading-normal ml-2 text-gray-800">{value}</p>
+                                        </div>
                                     </div>
+                                    {selectedOptions.includes(value) && (
+                                        <CheckIcon className="w-4 text-black h-4" />
+                                    )}
                                 </div>
-                                {selectedOptions.indexOf(item.value) == 1 && (
-                                    <CheckIcon className="w-4 text-black h-4" />
-                                )}
-                            </div>
 
-                        ))}
-
-                        <button className="text-xs bg-indigo-100 hover:bg-indigo-200 rounded-md mt-6 font-medium py-2 w-full leading-3 text-indigo-700">Select</button>
+                            )
+                        })}
                     </div>
                 </div>
             )}
-            <style>
-                {` .checkbox:checked + .check-icon {
-                display: flex;
-            }`}
-            </style>
         </div>
     );
 };
