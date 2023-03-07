@@ -191,8 +191,9 @@ export default function SearchForm({
                         <div  className="flex  space-x-2 mb-5 bg-white p-3 "  >
                    
                                { getSearches.map((item) => (
-                                    <div  className="bg-[#f4f4f4]  px-3 py-1  shadown-md  rounded-full ">
+                                    <div  className="px-3 py-1  shadown-md  rounded-full ">
                                                 <span>{item.name}</span>
+                                                
                                      </div>
                                     
                                 ))}
