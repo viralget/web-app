@@ -1,6 +1,6 @@
 export default function header({influencer}){
 
-    const tags = [
+    const categories = [
         'Award winning Actor & Entrepreneur',
         'Radio & TV Personality',
         'Brand Influencer',
@@ -11,6 +11,8 @@ export default function header({influencer}){
   
     ];
 
+    const tags = ['Lifestyle' , 'Beauty' , 'Entertainment'];
+
     return(
    <>
            <div  className="bg-[#0077F2]  rounded-br-3xl    h-40">
@@ -19,7 +21,7 @@ export default function header({influencer}){
             <div className=" ">
               <div  className="bg-white shadow-md flex  items-center absolute rounded-md p-3   justify-between right-4 left-4    top-20">
                   
-                  <div className="md:w-[4rem] mb-14 mr-2">
+                  <div className=" mb-14 ">
                           <div className="bg-gray-500 rounded-full h-12 w-12 ">
                                 {
                                 influencer.profile_photo_url && ( <img className="mx-auto h-15 w-15 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />)
@@ -28,7 +30,7 @@ export default function header({influencer}){
                             </div>
                   </div>
                 
-                   <div className="md:w-[23rem]  md:mt-6">
+                   <div className="md:w-[26rem]  md:mt-6">
                              <div  className="flex md:flex-row  flex-col justify-between">
                                    <div className="flex flex-col">
                                         {/* <div className="flex flex-col"> */}
@@ -101,11 +103,20 @@ export default function header({influencer}){
 
                              <div className="flex flex-wrap mt-2">
                               {
-                                    tags.map((item) => (
+                                    categories.map((item) => (
                                           <span className="text-xs text-[#748094] mr-2">• {item}</span>
                                     ))
                               }
                                       <span></span>
+                             </div>
+
+                             <div className="my-3 flex space-x-2">
+                                { tags?.map((item) => (
+                                    <span className="text-[#748094]  bg-[#F5F5F5] px-3 py-1">
+                                     {item}
+                                  </span>
+                                ))}
+                                  
                              </div>
                    </div>
               </div>

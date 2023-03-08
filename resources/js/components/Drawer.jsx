@@ -23,7 +23,13 @@ export default ({children}) => {
             style: ({ $theme }) => ({
                color: '#fff ',
             })
-          }
+          },
+          DrawerContainer: {
+            style: ({ $theme }) => ({
+              width: '35rem'
+  
+            }),
+          },
       
       }}
     >
