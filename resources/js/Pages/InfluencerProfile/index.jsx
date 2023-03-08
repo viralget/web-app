@@ -9,15 +9,18 @@ export default function InfluencerProfile({ influencer }) {
 
   return (
     <Drawer>
-            <div className="relative w-full flex flex-col">
-                  <Header  influencer={influencer}  />
-                  <InfluencerSize />
+            <div className=" w-full flex flex-col">
+                  <div className="relative">
+                        <Header  influencer={influencer}  />
+                         <InfluencerSize />  
+                  </div>
+               
 
-                  <div className="flex  px-5 mt-4  w-full bg-green-400 justify-between">
+                  <div className="flex   px-5 mt-4    bg-green-400 justify-between">
                         <div>
                              <AudienceCard />  
                         </div>
-                        <div className="flex flex-wrap justify-between">
+                        <div className="flex flex-wrap ">
                                <Card />
                                <Card />
                                <Card />

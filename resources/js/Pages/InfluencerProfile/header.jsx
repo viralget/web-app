@@ -10,15 +10,14 @@ export default function header({influencer}){
   
   
     ];
-    console.log("influencer:", influencer);
 
     return(
    <>
            <div  className="bg-[#0077F2]  rounded-br-3xl    h-40">
             </div>
 
-            <div className="md:px-5 ">
-              <div  className="bg-white shadow-md flex  items-center rounded-md p-3 absolute  justify-between   top-20">
+            <div className=" ">
+              <div  className="bg-white shadow-md flex  items-center absolute rounded-md p-3   justify-between right-4 left-4    top-20">
                   
                   <div className="md:w-[4rem] mb-14 mr-2">
                           <div className="bg-gray-500 rounded-full h-12 w-12 ">

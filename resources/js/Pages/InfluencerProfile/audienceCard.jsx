@@ -67,7 +67,7 @@ export default function AudienceCard(){
 
 
     return(
-        <div className="flex flex-col items-center shadow-md  round-md p-3">
+        <div className="flex flex-col shadow-md  round-md p-3">
                   <span className="font-medium text-[#3E4555]">Quality audience score</span>
                   <div className="mt-2  relative">
                   <svg width="100" height="79" viewBox="0 0 148 79" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,10 +108,10 @@ export default function AudienceCard(){
                   </div>
 
 
-                  <div>
+                  <div className="w-auto">
                     {
                         list.map((item) => (
-                         <div  className="flex mt-5">
+                         <div  className=" mt-5">
                               <div className="mr-2">
                                  {item.icon}
                                </div>

@@ -11,7 +11,7 @@ export default function influencerSize({influencer}){
       ]
 
     return (
-        <div className="mt-[8rem] mx-5 shadow-md border p-3 pb-10 rounded-md top-20">
+        <div className="mt-[8rem] mx-5 shadow-md border  pb-10 rounded-md ">
             <div className="pl-7 py-3">
                 <span className="font-bold">
                 Influencer size
