@@ -30,10 +30,13 @@ export default  function  Card(){
                  <span  className="font-bold">249</span>
               </div>
               <div  className="flex mt-3">
+                <div className="mt-2">
                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <path d="M4.375 9.25V1" stroke="#28CA42" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M1 4.375L4.375 1L7.75 4.375" stroke="#28CA42" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                </div>
+                   
 
                   <span className="text-[#28CA42]">1.4%</span>
                   <span className="text-[#748094]">vs last 7 days</span>
