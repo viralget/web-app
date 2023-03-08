@@ -16,7 +16,7 @@ export default function InfluencerProfile({ influencer }) {
                   </div>
                
 
-                  <div className="flex   px-5 mt-4    bg-green-400 justify-between">
+                  <div className="flex   px-5 mt-4   justify-between">
                         <div>
                              <AudienceCard />  
                         </div>
