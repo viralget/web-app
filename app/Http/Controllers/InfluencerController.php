@@ -172,15 +172,29 @@ class InfluencerController extends Controller
 
 
 
-   public   function  getAllCategoriesPage(){
+            public   function  getAllCategoriesPage(){
 
-    $categories = Category::get();
+                $categories = Category::get();
 
-    return Inertia::render(
-        'AllCategories/index',
-        [
-            'categories' => $categories
-        ]
-    );
-   } 
+                return Inertia::render(
+                    'AllCategories/index',
+                    [
+                        'categories' => $categories
+                    ]
+                );
+            } 
+
+
+
+            public function  getInfluencer($id){
+
+                $influencer = TwitterInfluencer::find($id);
+
+                return Inertia::render(
+                    'InfluencerProfile/index',
+                    [
+                        'influencer' => $influencer
+                    ]
+                );
+            }
 }
