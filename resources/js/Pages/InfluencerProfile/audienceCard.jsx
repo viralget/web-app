@@ -111,7 +111,7 @@ export default function AudienceCard(){
                   <div className="w-auto">
                     {
                         list.map((item) => (
-                         <div  className=" mt-5">
+                         <div  className="flex mt-5">
                               <div className="mr-2">
                                  {item.icon}
                                </div>

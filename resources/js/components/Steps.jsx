@@ -8,10 +8,10 @@ function classNames(...classes) {
 
 export default function Staps({steps}) {
   return (
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 " aria-label="Progress">
+      <nav className="mx-auto max-w-7xl md:px-4 sm:px-6 md:overflow-hidden  overflow-scroll " aria-label="Progress">
         <ol
           role="list"
-          className="overflow-hidden rounded-md lg:flex lg:rounded-none lg:border-l  lg:border-gray-200"
+          className=" rounded-md flex lg:rounded-none lg:border-l lg:border-gray-200"
         >
           {steps.map((step, stepIdx) => (
             <>
@@ -25,7 +25,7 @@ export default function Staps({steps}) {
                 className={classNames(
                   stepIdx === 0 ? 'rounded-t-md border-b-0' : '',
                   stepIdx === steps.length - 1 ? 'rounded-b-md border-t-0' : '',
-                  'overflow-hidden border border-gray-200 lg:border-0'
+                  'overflow-hidden'
                 )}
               >
                 {step.status === 'complete' ? (

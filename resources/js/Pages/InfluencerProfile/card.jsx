@@ -6,7 +6,7 @@ export default  function  Card(){
 
     return (
 
-        <div className="shadow-md  flex flex-col p-3  h-[7rem] hidden  items-center justify-center content-center">
+        <div className="shadow-md  flex flex-col p-3  h-[7rem]   items-left">
               <div  className="flex ">
                   <div>
                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,15 +30,15 @@ export default  function  Card(){
                  <span  className="font-bold">249</span>
               </div>
               <div  className="flex mt-3">
-                <div className="mt-2">
-                   <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div className="mt-2 mr-1">
+                   <svg width="8" height="8" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <path d="M4.375 9.25V1" stroke="#28CA42" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M1 4.375L4.375 1L7.75 4.375" stroke="#28CA42" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                    
 
-                  <span className="text-[#28CA42]">1.4%</span>
+                  <span className="text-[#28CA42] mr-1">1.4%</span>
                   <span className="text-[#748094]">vs last 7 days</span>
              </div>
         </div>
