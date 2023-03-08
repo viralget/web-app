@@ -16,11 +16,11 @@ export default function InfluencerProfile({ influencer }) {
                   </div>
                
 
-                  <div className="flex   px-5 mt-4    bg-green-400 justify-between">
-                        <div>
+                  <div className="flex   md:flex-row  flex-col space-x-4  px-5 mt-4 justify-between">
+                        <div className="md:w-full">
                              <AudienceCard />  
                         </div>
-                        <div className="flex flex-wrap ">
+                        <div className="flex flex-wrap  ">
                                <Card />
                                <Card />
                                <Card />

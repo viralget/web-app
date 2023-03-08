@@ -7,7 +7,7 @@ export default function influencerSize({influencer}){
         { id: '02', name: 'Micro', value:'10K', href: '#', status: 'complete' },
         { id: '03', name: 'Mid-tier', value:'50K', href: '#', status: 'complete' },
         { id: '04', name: 'Macro', value:'100K', href: '#', status: 'complete' },
-        { id: '05', name: 'Mega', value:'1m+', href: '#', status: 'upcoming' },
+        { id: '05', name: 'Mega', value:'1m+', href: '#', status: 'current' },
       ]
 
     return (

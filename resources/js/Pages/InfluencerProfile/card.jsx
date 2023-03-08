@@ -6,7 +6,7 @@ export default  function  Card(){
 
     return (
 
-        <div className="shadow-md  flex flex-col p-3  h-[10rem] my-5">
+        <div className="shadow-md  flex flex-col p-3  h-[7rem] hidden  items-center justify-center content-center">
               <div  className="flex ">
                   <div>
                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">

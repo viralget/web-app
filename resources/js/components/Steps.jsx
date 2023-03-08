@@ -11,7 +11,7 @@ export default function Staps({steps}) {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 " aria-label="Progress">
         <ol
           role="list"
-          className="overflow-hidden rounded-md lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200"
+          className="overflow-hidden rounded-md lg:flex lg:rounded-none lg:border-l  lg:border-gray-200"
         >
           {steps.map((step, stepIdx) => (
             <>
