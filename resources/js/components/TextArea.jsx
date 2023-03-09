@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
+import { inputStyle } from './Input';
 
-export const inputStyle = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm sm:text-sm"
+// export const inputStyle = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm sm:text-sm"
 
 
 export default function TextArea({

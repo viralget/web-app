@@ -32,18 +32,13 @@ class PageController extends Controller
 
          try {
     
-               Mail::to($_ENV['SUPPORT_EMAIL_ADDRESS'])->send(new SendMail($data));
+             $send =  Mail::to($_ENV['SUPPORT_EMAIL_ADDRESS'])->send(new SendMail($data));
 
-                // return redirect()->back()->with(['result' =>
-                //  ['status' => true, 'message' => 'created successful'] ]);
-
-                // if($send){
-                    return response(['status' => true, 'message' => 'created successful', 'data' => $_ENV['SUPPORT_EMAIL_ADDRESS']]);
-                // }
-
-               
+               if($send){
+                   return redirect()->back();
+               }
+           
             } catch (\Exception $e) {
-                // $this->log($e);
                 return redirect()->back()->withError('An error occured. Please try again');
             }
     

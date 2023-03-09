@@ -66,24 +66,26 @@ class InfluencerController extends Controller
         $categories = Category::get();
 
 
-        if ($request->has('location')) {
-            $result = $result->where('location', 'like', "%$request->location%");
-        }
 
-        if ($request->has('keywords')) {
-            $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
-        }
+        // if ($request->has('location')) {
+        //     $result = $result->where('location', 'like', "%$request->location%");
+        // }
+
+        // if ($request->has('keywords')) {
+        //     $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
+        // }
 
 
         // Store User search sesion
-        // $this->storeSearch($request, $result->count());
+        // if($request){
+        //    $this->storeSearch($request, $result->count()); 
+        // }
+
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => InfluencerResource::collection(
-                    $result->get()
-                ),
-                'count' => $result->count(),
+                'list' => $result->latest()->paginate(10), //InfluencerResource::collection($result->latest()->paginate(10)),
+                'count' => $result->count(), //$result->count(),
                 'categories' => $categories
             ]
         );
@@ -163,6 +165,6 @@ class InfluencerController extends Controller
             );
         }
 
-        return response(['status' => true]);
+        return response(['status' => true, 'data'=> $request->queryData]);
     }
 }

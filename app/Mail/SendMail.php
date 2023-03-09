@@ -7,16 +7,19 @@ use Illuminate\Queue\SerializesModels;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $mailData;
+   
+   
+   
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($data)
     {
-        $this->mailData = $mailData;
+        $this->data = $data;
     }
     /**
      * Build the message.
@@ -26,7 +29,7 @@ class SendMail extends Mailable
     public function build()
     {
         return $this->view('mail.sendMail')
-        ->subject($this->mailData->title)
-              ->with('data', $this->mailData);
+        ->subject('Web contact form')
+          ->with('data', $this->data);
     }
 }
