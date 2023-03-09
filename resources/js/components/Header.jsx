@@ -13,21 +13,21 @@ import Badge from './Badge'
 
 const header_routes = [
   {
-    name: "Features",
-    href: "/#features"
+    name: "Pricing",
+    // href: route('pricing')
   },
   {
-    name: "Testimonials",
-    href: "/#testimonials"
+    name: "Contact Us",
+    href: route('contact')
   },
   {
-    name: "Find Influencers",
-    href: route('explore')
+    name: "FAQs",
+    href: route('faqs')
   },
-  {
-    name: <> Track Campaign<Badge text="Coming soon" /> </>,
-    href: "/#"
-  },
+  // {
+  //   name: <> Track Campaign<Badge text="Coming soon" /> </>,
+  //   href: "/#"
+  // },
   // {
   //   name: "FAQs",
   //   href: route('faqs')
@@ -116,7 +116,7 @@ function MobileNavigation() {
   )
 }
 
-export function Header() {
+export function Header({ useShadow = true }) {
   const { auth: { user } } = usePage().props;
 
   return (
@@ -127,18 +127,20 @@ export function Header() {
         {/* <link rel="shortcut icon" href={favicon} type="image/x-icon" />
         {{ Vite::asset('resources/assets/images/favicon.ico') }} */}
       </Head>
-      <header className="py-10">
+      <header className={classNames("py-5", useShadow && 'shadow-md')}>
         <Container>
           <nav className="relative flex justify-between">
             <div className="flex items-center md:gap-x-12">
-              <Link href="/" aria-label="Home">
-                <Logo className="h-10 w-auto" />
-              </Link>
-              <div className="hidden font-bold items-center md:flex md:gap-x-3">
-                {header_routes.map((route, index) => (
-                  <NavLink key={index} href={route.href}>{route.name}</NavLink>
-                ))}
+              <div>
+                <Link href="/" aria-label="Home">
+                  <Logo className="h-10 w-auto" />
+                </Link>
               </div>
+            </div>
+            <div className="hidden font-bold justify-center items-center md:flex md:gap-x-3">
+              {header_routes.map((route, index) => (
+                <NavLink key={index} href={route.href}>{route.name}</NavLink>
+              ))}
             </div>
             <div className="flex items-center gap-x-5 md:gap-x-8">
               {user ?

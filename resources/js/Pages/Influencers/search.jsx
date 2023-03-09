@@ -9,6 +9,7 @@ import TopCategories from './TopCategories'
 import RecentSearches from './RecentSearches'
 import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table'
+import Pagination from '@/Components/Pagination'
 
 export default function Search({ list, count, categories }) {
    const [searchActive, setSearchActive] = useState(false)
@@ -25,7 +26,13 @@ export default function Search({ list, count, categories }) {
                  
                     <div>
                         <div className="space-y-10">
-                            {loading ? <TableSkeleton /> : <List data={list} count={count} />}
+                            {loading ? <TableSkeleton /> :
+                                <>
+                                    <List data={list.data} count={count} />
+                                    <Pagination data={list} />
+
+                                </>
+                            }
                         </div>
                     </div>
                 </Container>
