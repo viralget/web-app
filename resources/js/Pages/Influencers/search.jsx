@@ -38,7 +38,7 @@ export default function Search({ list, count, categories }) {
                 </Container>
             </main>
 
-
+{/*  */}
         </AuthenticatedLayout>
     )
 }
