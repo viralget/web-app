@@ -79,10 +79,16 @@ const products = [
 export default function TopCategories({ data }) {
     return (
         <div>
-            <TitleText text="Top Categories" />
+            <div className="flex  justify-between  w-full">
+               <TitleText text="Top Categories" />
+              <div>
+                   <a href={route('allcategories.page')}   className='text-xs font-bold  text-viralget-red'  >View all</a>
+              </div>
+            </div>
+           
             {data?.length > 0 ?
 
-                <div className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                <div className="mt-5 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                     {data.map((item, index) => (
                         <a href="#" key={index}>
                             <div className="relative">
