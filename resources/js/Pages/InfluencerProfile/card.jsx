@@ -6,7 +6,7 @@ export default  function  Card({data}){
 
     return (
 
-        <div className="shadow-md  flex flex-col p-3  h-[7rem]   items-left">
+        <div className="shadow-md rounded-md  flex flex-col p-3  h-[7rem]   items-left">
               <div  className="flex ">
                   <div>
                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@ export default  function  Card({data}){
                         </svg>
 
                   </div>
-                  <span  className="text-xs  text-[#748094]">Avg. comments</span>
+                  <span  className="text-xs  text-viralget-grey">Avg. comments</span>
               </div>
 
               <div className="mt-3">
@@ -39,7 +39,7 @@ export default  function  Card({data}){
                    
 
                   <span className="text-[#28CA42] mr-1">1.4%</span>
-                  <span className="text-[#748094]">vs last 7 days</span>
+                  <span className="text-viralget-grey">vs last 7 days</span>
              </div>
         </div>
     )

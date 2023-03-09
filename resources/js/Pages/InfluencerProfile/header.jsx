@@ -24,7 +24,7 @@ export default function header({influencer}){
                   <div className=" mb-14 ">
                           <div className="bg-gray-500 rounded-full h-12 w-12 ">
                                 {
-                                influencer.profile_photo_url && ( <img className="mx-auto h-15 w-15 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />)
+                                influencer?.profile_photo_url && ( <img className="mx-auto h-15 w-15 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />)
                                 }
                             
                             </div>
@@ -34,8 +34,8 @@ export default function header({influencer}){
                              <div  className="flex md:flex-row  flex-col justify-between">
                                    <div className="flex flex-col">
                                         {/* <div className="flex flex-col"> */}
-                                                  <span className="text-xl  font-bold">{influencer.full_name}</span>
-                                                 <span className="text-xs text-[#748094] ">@{influencer.username}</span>
+                                                  <span className="text-xl  font-bold">{influencer?.full_name}</span>
+                                                 <span className="text-xs text-viralget-grey ">@{influencer?.username}</span>
                                         {/* </div> */}
                                       
                                    
@@ -55,7 +55,7 @@ export default function header({influencer}){
                                          </svg>
 
 
-                                                <span className="text-xs text-[#748094]">Nigeria</span>
+                                                <span className="text-xs text-viralget-grey">Nigeria</span>
 
                                          </div>
                                          <div className="flex">
@@ -76,7 +76,7 @@ export default function header({influencer}){
                                             </svg>
 
 
-                                                <span className="text-xs text-[#748094]">English</span>
+                                                <span className="text-xs text-viralget-grey">English</span>
 
                                          </div>
                                    </div>
@@ -87,16 +87,16 @@ export default function header({influencer}){
 
                              <div  className="flex mt-3 w-full">
                                            <div className="flex mr-3">
-                                                <span className="font-bold mr-1">{influencer.followers_count} </span>
-                                                <span className="text-[#748094]"> followers </span>
+                                                <span className="font-bold mr-1">{influencer?.followers_count} </span>
+                                                <span className="text-viralget-grey"> followers </span>
                                            </div>
                                            <div className="flex mr-3">
                                                 <span className="font-bold mr-1">2,311 </span>
-                                                <span className="text-[#748094]">  tweets </span>
+                                                <span className="text-viralget-grey">  tweets </span>
                                            </div>
                                            <div className="flex">
-                                                 <span className="font-bold mr-1">{influencer.following_count} </span> 
-                                                 <span className="text-[#748094]">  following</span>
+                                                 <span className="font-bold mr-1">{influencer?.following_count} </span> 
+                                                 <span className="text-viralget-grey">  following</span>
                                            </div>
                              </div>
 
@@ -104,7 +104,7 @@ export default function header({influencer}){
                              <div className="flex flex-wrap mt-2">
                               {
                                     categories.map((item) => (
-                                          <span className="text-xs text-[#748094] mr-2">• {item}</span>
+                                          <span className="text-xs text-viralget-grey mr-2">• {item}</span>
                                     ))
                               }
                                       <span></span>
@@ -112,7 +112,7 @@ export default function header({influencer}){
 
                              <div className="my-3 flex space-x-2">
                                 { tags?.map((item) => (
-                                    <span className="text-[#748094]  bg-[#F5F5F5] px-3 py-1">
+                                    <span className="text-viralget-grey  bg-[#F5F5F5] px-3 py-1">
                                      {item}
                                   </span>
                                 ))}

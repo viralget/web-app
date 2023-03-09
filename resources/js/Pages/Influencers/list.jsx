@@ -6,6 +6,7 @@ import { HeartIcon } from '@heroicons/react/24/outline';
 import { post } from '@/Utils/api';
 import toast from '@/Components/Toast';
 import { Inertia } from '@inertiajs/inertia';
+import InfluencerProfile from '../InfluencerProfile';
 
 // const people = [
 //     {
@@ -48,7 +49,9 @@ export default function List({ count, data }) {
     const [selected, setSelected] = useState([])
     const [savingSearch, setSavingSearch] = useState(false)
     const [isSaved, setIsSaved] = useState(false)
-
+    const [isOpen, setIsOpen] = useState(false);
+    const [getInfluencer, setInfluencer] = useState([]);
+    
 
     useLayoutEffect(() => {
         const isIndeterminate = selected.length > 0 && selected.length < data.length
@@ -116,8 +119,18 @@ export default function List({ count, data }) {
 
     }
 
+    function handleProfilePreview(influencer){
+        if(influencer){
+            setIsOpen(true);
+            setInfluencer(influencer)
+        }
+    }
+
     return (
         <div className="mt-3 flex flex-col">
+              {
+        isOpen ? <InfluencerProfile  influencer={getInfluencer} /> : null
+       }
             <div className="inline-block min-w-full align-middle">
                 <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <div className='flex p-4 justify-between align-middle items-center'>
@@ -211,11 +224,14 @@ export default function List({ count, data }) {
                                         </td>
                                         <td
                                             className={classNames(
-                                                'whitespace-nowrap py-4 pr-3 text-sm font-medium',
+                                                'whitespace-nowrap py-4 pr-3 text-sm font-medium   cursor-pointer',
                                                 selected.includes(item) ? 'text-fuchsia-600' : 'text-gray-900'
                                             )}
                                         >
-                                            {item.username}
+                                            <button  onClick={() => handleProfilePreview(item)}>
+                                                {item.username}
+                                            </button>
+                                            
                                         </td>
                                         {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.followers_count}</td>

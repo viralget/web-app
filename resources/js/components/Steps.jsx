@@ -18,7 +18,7 @@ export default function Staps({steps}) {
             <li key={step.id} 
              >
         <div   className={classNames(
-                step.status === 'complete' ? 'bg-[#F37C38] ' : 'bg-[#F5F5F5] ',
+                step.status === 'complete' ? 'bg-viralget-red ' : 'bg-[#F5F5F5] ',
                 "relative overflow-hidden lg:flex-1  flex items-center w-[5rem] h-10") }
               >
               <div
@@ -68,7 +68,7 @@ export default function Staps({steps}) {
                     >
                      
                       <span className="mt-0.5 ml-4 flex min-w-0 flex-col">
-                        <span className="text-sm font-medium text-gray-500">{step.name}</span>
+                        <span className="text-sm font-medium text-viralget-grey">{step.name}</span>
                       </span>
                     </span>
                   </a>

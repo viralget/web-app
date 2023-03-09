@@ -158,7 +158,6 @@ export default function SearchForm({
                             name="category"
                             value={dateRange}
                             onChange={handleChange}
-                            // label=""
                             defaultOptionText="Any Category"
                             className="text-xs"
                             useBorder={false}

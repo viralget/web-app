@@ -6,7 +6,7 @@ export default ({children}) => {
     <Drawer
       isOpen={isOpen}
       autoFocus
-      onClose={() => setIsOpen(false)}
+      onClose={() => window.location.reload(true)}
       anchor={ANCHOR.right}
         overrides={{
             DrawerBody: {
@@ -26,7 +26,8 @@ export default ({children}) => {
           },
           DrawerContainer: {
             style: ({ $theme }) => ({
-              width: '35rem'
+              width: '35rem',
+              // zIndex:10
   
             }),
           },

@@ -4,12 +4,17 @@ import Header from './header';
 import InfluencerSize from "./influencerSize";
 import AudienceCard from "./audienceCard";
 import Card from './card';
+import TweetList from "./tweetList";
+import Profiling from "./profiling";
+import Footer from "./footer";
+
+
 export default function InfluencerProfile({ influencer }) {
 
-
+  console.log("influencer  profile:", influencer);
   return (
     <Drawer>
-            <div className="w-full flex flex-col">
+            <div className="w-full flex flex-col  mb-20">
                   <div className="relative">
                         <Header  influencer={influencer}  />
                   </div>
@@ -29,8 +34,13 @@ export default function InfluencerProfile({ influencer }) {
                                <Card />
                                <Card />
                                <Card />
-                           </div>
+                      </div>
                   </div>
+
+                  <TweetList />
+                  <Profiling />
+
+                  <Footer />
             </div>
      </Drawer>
   )

@@ -67,8 +67,8 @@ export default function AudienceCard(){
 
 
     return(
-        <div className="flex flex-col shadow-md  items-center  justify-center w-full h-full round-md p-3">
-                  <span className="font-medium  text-[#3E4555]">Quality audience score</span>
+        <div className="flex flex-col shadow-md  items-center  justify-center w-full h-full rounded-md p-3">
+                  <span className="font-medium  text-viralget-grey">Quality audience score</span>
                   <div className="mt-2  relative">
                   <svg width="100" height="79" viewBox="0 0 148 79" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_958_45388)">
@@ -101,7 +101,7 @@ export default function AudienceCard(){
                         </svg>
 
                         <div className="absolute  flex flex-col top-8 left-8">
-                           <span className="text-2xl font-bold  text-[#3E4555]">84</span>
+                           <span className="text-2xl font-bold  text-viralget-grey">84</span>
                            {/* <span className="text-[#28CA42] font-bold">Excellent</span> */}
                         </div>
                        
@@ -116,7 +116,7 @@ export default function AudienceCard(){
                                  {item.icon}
                                </div>
                               <div className="flex flex-col">
-                                  <span className="text-xs  text-[#3E4555]"> {item.name}</span>
+                                  <span className="text-xs  text-viralget-grey"> {item.name}</span>
                                   <span className="font-bold">{item.value}</span>
                               </div>
                          </div>
