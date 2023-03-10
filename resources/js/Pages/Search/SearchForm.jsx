@@ -166,6 +166,8 @@ export default function SearchForm({
                         ]}
                             name="category"
                             onChange={handleChange}
+                            className="text-xs"
+                            useBorder={false}
                             defaultOptionText="Anywhere"
                         />
                     </div>
@@ -182,6 +184,7 @@ export default function SearchForm({
                         />
                     </div>
                 </div>
+
                 {getSearches.length > 0 && (
                     <div className="flex flex-wrap space-x-2  mb-5 bg-white p-3 "  >
 
@@ -193,8 +196,6 @@ export default function SearchForm({
                         ))}
                     </div>
                 )}
-
-
             </form>
         </div>
     );

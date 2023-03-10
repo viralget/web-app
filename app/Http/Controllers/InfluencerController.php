@@ -30,7 +30,6 @@ class InfluencerController extends Controller
         $search_history = Search::limit(3)->get();
         $top_categories = Category::where('is_featured', true)->limit(8)->get();
         $top_influencers = $this->influencer->limit(8)->get();
-
         $categories = Category::get();
 
         return Inertia::render(
@@ -167,4 +166,33 @@ class InfluencerController extends Controller
 
         return response(['status' => true, 'data'=> $request->queryData]);
     }
+
+
+
+
+            public   function  getAllCategoriesPage(){
+
+                $categories = Category::get();
+
+                return Inertia::render(
+                    'AllCategories/index',
+                    [
+                        'categories' => $categories
+                    ]
+                );
+            } 
+
+
+
+            public function  getInfluencer($id){
+
+                $influencer = TwitterInfluencer::find($id);
+
+                return Inertia::render(
+                    'InfluencerProfile/index',
+                    [
+                        'influencer' => $influencer
+                    ]
+                );
+            }
 }

@@ -1,6 +1,6 @@
 import { nFormatter } from "@/Utils/helpers";
 
-export default function InfluencerCard({ influencer, showBanner }) {
+export default function InfluencerCard({ influencer, showBanner,handleProfile }) {
 
 
     return (
@@ -19,8 +19,8 @@ export default function InfluencerCard({ influencer, showBanner }) {
             )}
             <div className={`flex flex-1 flex-col p-8 ${showBanner && '-mt-16'}`}>
                 <img className="mx-auto h-20 w-20 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />
-                <h3 className="mt-6 text-sm font-medium text-gray-900">@{influencer.username}</h3>
-                <dl className="mt-1 flex flex-grow flex-col justify-between">
+                <h3 className="mt-6 text-sm font-medium text-gray-900 cursor-pointer"  onClick={() =>handleProfile()}>@{influencer.username}</h3>
+                <dl className="mt-1 flex flex-grow flex-col justify-between cursor-pointer" onClick={() =>handleProfile()}>
                     <dd className="text-sm text-gray-500">{influencer.full_name}</dd>
 
                 </dl>

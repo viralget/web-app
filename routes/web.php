@@ -54,6 +54,8 @@ Route::middleware('auth')->group(
 
         Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::post('/search/store', [InfluencerController::class, 'storeSearch'])->name('influencers.search.store');
+        Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
+        Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
 
         Route::get('/settings', function () {
             return Inertia::render('Account/index');
