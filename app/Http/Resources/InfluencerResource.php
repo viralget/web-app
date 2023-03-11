@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Category;
 
 class InfluencerResource extends JsonResource
 {
@@ -24,6 +25,7 @@ class InfluencerResource extends JsonResource
             'profile_photo_url' => $this->profile_photo_url,
             'profile_banner_url' => $this->profile_banner_url,
             'profile_url' => $this->profile_url,
+            'category' => Category::find($this->category_id)
             // 'bio' => $this->details ? $this->details->bio : null,
         ];
     }
