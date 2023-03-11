@@ -110,7 +110,6 @@ export default function List({ count, data }) {
 
         const response = await post(route('campaign.initiate'), data, true);
 
-        console.log({ response })
         if (response?.data?.status) {
             Inertia.get(route('campaigns.create'));
         } else {
@@ -126,6 +125,8 @@ export default function List({ count, data }) {
         }
     }
 
+
+    console.log("data:", data);
     return (
         <div className="mt-3 flex flex-col">
               {
@@ -134,10 +135,19 @@ export default function List({ count, data }) {
             <div className="inline-block min-w-full align-middle">
                 <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <div className='flex p-4 justify-between align-middle items-center'>
+                      
                         <div>
                             <h3>{count} {count > 0 ? 'Influencers' : 'Influencer'}</h3>
 
                         </div>
+
+                        <div>
+                         <button
+                                    type="button"
+                                    className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                                >
+                                    Export CSV
+                                </button>
                         {data.length > 0 && (
                             <div className=" top-0 flex  items-center space-x-3 bg-gray-50 sm:left-16">
                                 <button
@@ -161,15 +171,10 @@ export default function List({ count, data }) {
                                     </button>
 
                                 }
-                                {/* <button
-                                    type="button"
-                                    className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
-                                >
-                                    Export CSV
-                                </button> */}
+                               
                             </div>
                         )}
-
+                     </div>
                     </div>
                     {data.length > 0 ?
                         <table className="min-w-full table-fixed divide-y divide-gray-300">
@@ -194,14 +199,26 @@ export default function List({ count, data }) {
                                         Quality audience
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        Engagement Rate
+                                        ER
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        QAS
+                                    </th>
+                                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Social links
+                                    </th>
+                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                      Category
+                                    </th>
+                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                       Location
+                                    </th>
+                                    {/* <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         Rating
-                                    </th>
-                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    </th> */}
+                                    {/* <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         Platform
-                                    </th>
+                                    </th> */}
                                     {/* <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                         <span className="sr-only">Edit</span>
                                     </th> */}
@@ -243,6 +260,9 @@ export default function List({ count, data }) {
                                                 <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
                                             </svg>
                                         </td>
+
+
+
                                         {/* <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             <a href="#" className="text-fuchsia-600 hover:text-fuchsia-900">
                                                 Edit<span className="sr-only">, {item.name}</span>
