@@ -61,7 +61,7 @@ class InfluencerController extends Controller
      */
     public function search(Request $request)
     {
-        $result = TwitterInfluencer::query();
+        // $result = TwitterInfluencer::query();
         $categories = Category::get();
 
 
@@ -83,8 +83,8 @@ class InfluencerController extends Controller
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => $result->latest()->paginate(10), //InfluencerResource::collection($result->latest()->paginate(10)),
-                'count' => $result->count(), //$result->count(),
+                'list' => InfluencerResource::collection($this->influencer->latest()->paginate(10)), //InfluencerResource::collection($result->latest()->paginate(10)),
+                'count' => 0, // $result->count(), //$result->count(),
                 'categories' => $categories
             ]
         );
@@ -164,35 +164,37 @@ class InfluencerController extends Controller
             );
         }
 
-        return response(['status' => true, 'data'=> $request->queryData]);
+        return response(['status' => true, 'data' => $request->queryData]);
     }
 
 
 
 
-            public   function  getAllCategoriesPage(){
+    public   function  getAllCategoriesPage()
+    {
 
-                $categories = Category::get();
+        $categories = Category::get();
 
-                return Inertia::render(
-                    'AllCategories/index',
-                    [
-                        'categories' => $categories
-                    ]
-                );
-            } 
+        return Inertia::render(
+            'AllCategories/index',
+            [
+                'categories' => $categories
+            ]
+        );
+    }
 
 
 
-            public function  getInfluencer($id){
+    public function  getInfluencer($id)
+    {
 
-                $influencer = TwitterInfluencer::find($id);
+        $influencer = TwitterInfluencer::find($id);
 
-                return Inertia::render(
-                    'InfluencerProfile/index',
-                    [
-                        'influencer' => $influencer
-                    ]
-                );
-            }
+        return Inertia::render(
+            'InfluencerProfile/index',
+            [
+                'influencer' => $influencer
+            ]
+        );
+    }
 }

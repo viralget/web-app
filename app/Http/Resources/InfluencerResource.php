@@ -15,6 +15,7 @@ class InfluencerResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'username' => $this->username,
@@ -25,7 +26,9 @@ class InfluencerResource extends JsonResource
             'profile_photo_url' => $this->profile_photo_url,
             'profile_banner_url' => $this->profile_banner_url,
             'profile_url' => $this->profile_url,
-            'category' => Category::find($this->category_id)
+            'categories' => $this->categories,
+            'location' => $this->location,
+
             // 'bio' => $this->details ? $this->details->bio : null,
         ];
     }
