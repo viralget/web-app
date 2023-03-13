@@ -80,7 +80,7 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText }) =>
                         {options.length && options.map((item, index) => {
 
                             const value = item.name ?? item.label;
-                            console.log({ value })
+                        
                             return (
 
                                 <div className="flex py-2 px-2 items-center justify-between cursor-pointer hover:bg-gray-50" key={index} onClick={(e) => handleSelected(e, item, value)}>

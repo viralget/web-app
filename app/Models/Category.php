@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\influencer;
+// use App\Models\influencer;
 
 class Category extends Model
 {
@@ -13,9 +13,9 @@ class Category extends Model
 
 
 
-    function influencer(){
+    function influencers(){
 
-        return $this->belongsTo(influencer::class);
+        return $this->belongsToMany(TwitterInfluencer::class);
      }
 
 }

@@ -10,20 +10,18 @@ export default function SearchBox(props) {
     const [searchParams, setSearchParams] = useState('');
     const [getSearches, setSearches] = useState([]);
 
-    const handleChange = (e, name) => {
+    const handleChange = (e, name, query) => {
+
+        if(e?.target?.value.length === 0) return;
+
         const currentURL = window.location.search;
         const urlParams = new URLSearchParams(currentURL);
         const value = e?.target?.value ? e.target.value : e.value;
-        setSearches([...getSearches, { name: name, value }]);
-
-        if (e?.target?.value) {
-            urlParams.set(name, value);
-        } else {
-            urlParams.set(value, name);
-        }
-
-       urlParams.set('page', 1); //force start from page 1
-       setSearchParams(urlParams);
+        const filterData = getSearches.filter((item) => item.name != name);
+        setSearches([...filterData, { name, value }]);
+        urlParams.set(query, value);
+        urlParams.set('page', 1); //force start from page 1
+        setSearchParams(urlParams);
        
     }
 

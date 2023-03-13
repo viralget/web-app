@@ -50,7 +50,7 @@ export default function SearchForm({
                             { name: 'Nigeria', value: 'Nigeria' },
                             { name: 'Ghana', value: 'Ghana' },
                         ]}
-                            onChange={(e) => handleChange(e, 'Influencer Location')}
+                            onChange={(e) => handleChange(e, 'Influencer Location', 'infleuencer_location')}
                             label="Influencer Location"
                         />
                     </div>
@@ -75,7 +75,7 @@ export default function SearchForm({
                             { name: 'Mid Tier (50,000 - 500k)', value: 'nano' },
                             { name: 'Macro (500k - 1m)', value: 'macro' },
                         ]}
-                        onChange={(e) => handleChange(e, 'Influencer Size')}
+                        onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
                             label="Influencer Size"
 
                         />
@@ -100,7 +100,7 @@ export default function SearchForm({
                             { name: 'Ghana', value: 'Ghana' },
                         ]}
 
-                         onChange={(e) => handleChange(e, 'Audience Location')}
+                         onChange={(e) => handleChange(e, 'Audience Location', 'andience_location')}
                             label="Audience Location"
 
                         />
@@ -117,7 +117,7 @@ export default function SearchForm({
                             { name: 'Average >40', value: 'average' },
                             { name: 'Poor >25', value: 'poor' },
                         ]}
-                        onChange={(e) => handleChange(e, 'Influencer QAS')}
+                        onChange={(e) => handleChange(e, 'Influencer QAS', 'influencer_qas')}
                             label="Influencer QAS"
 
                         />
@@ -139,7 +139,7 @@ export default function SearchForm({
                     <div className="flex-initial w-64 bg-white shadow rounded-md py-1 px-3 ">
                         <MultiDropdown options={categories}
                             name="category"
-                            onChange={(e) => handleChange(e, 'Category')}
+                            onChange={(e) => handleChange(e, 'Category', 'category')}
                             defaultOptionText="Category"
                         />
                     </div>
@@ -150,7 +150,7 @@ export default function SearchForm({
                             { name: 'In Contents', },
                         ]}
                             name="category"
-                            onChange={(e) => handleChange(e, 'Position')}
+                            onChange={(e) => handleChange(e, 'Position', 'position')}
                             className="text-xs"
                             useBorder={false}
                             defaultOptionText="Anywhere"
@@ -163,7 +163,7 @@ export default function SearchForm({
                             name="keywords"
                             type="text"
                             defaultValue={keywords}
-                            onChange={(e) => handleChange(e, 'Keywords')}
+                            onChange={(e) => handleChange(e, 'Keywords', 'keywords')}
                             placeholder={"Find influencers by keywords or hashtag"}
                             className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
                         />
@@ -178,7 +178,16 @@ export default function SearchForm({
                                     className=" p-2 mr-3 mt-2  flex "
                                     key={index}
                                     >
-                                    <span className="font-normal">{item.name}: </span>  <span className="ml-2 text-viralget-grey">  { item.value }</span>
+                                    <span className="font-normal">{item.name}: </span>  
+                                    {
+                                        item.value.map((val, ind) => (
+                                            <span className="ml-2 text-viralget-grey">  { val} { (ind + 1) === item.value.length ? '' : ',' } </span>
+                                        ))
+                                    }
+                                   
+                                  
+                                  
+                                  
                                     <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
 
                                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

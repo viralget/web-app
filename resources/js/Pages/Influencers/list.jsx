@@ -53,7 +53,7 @@ export default function List({ count, data }) {
     const [isOpen, setIsOpen] = useState(false);
     const [getInfluencer, setInfluencer] = useState([]);
 
-    // console.log("data influencer:", data);
+    console.log("data influencer:", data);
     
 
     useLayoutEffect(() => {
