@@ -3,11 +3,14 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import EmptyState from '@/components/EmptyState';
 import Badge from '@/Components/Badge';
 import { HeartIcon } from '@heroicons/react/24/outline';
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
+import { UsersIcon } from '@heroicons/react/24/outline';
 import { post } from '@/Utils/api';
 import toast from '@/Components/Toast';
 import { Inertia } from '@inertiajs/inertia';
 import InfluencerProfile from '../InfluencerProfile';
 import MenuDropDown from '@/components/MenuDropDown';
+import Modal from '@/components/Modal';
 
 // const people = [
 //     {
@@ -53,8 +56,13 @@ export default function List({ count, data }) {
     const [isOpen, setIsOpen] = useState(false);
     const [getInfluencer, setInfluencer] = useState([]);
 
-    console.log("data influencer:", data);
-    
+    const [showModal, setShowModal] = useState(false);
+
+
+    function handleModal(){
+        setShowModal(!showModal);
+    }
+
 
     useLayoutEffect(() => {
         const isIndeterminate = selected.length > 0 && selected.length < data.length
@@ -74,12 +82,14 @@ export default function List({ count, data }) {
     }
 
     const handleSelectProfile = (e, item) => {
-        console.log(e.target.checked, selected.filter((p) => p.id !== item.id), item)
+        // console.log(e.target.checked, selected.filter((p) => p.id !== item.id), item)
         setSelected(
             e.target.checked
                 ? [...selected, item]
                 : selected.filter((p) => p.id !== item.id)
         )
+
+        // console.log("selected:", selected);
     }
 
     const handleSaveSearch = async (e) => {
@@ -161,17 +171,104 @@ export default function List({ count, data }) {
                         <div>
                             <h3>{count} {count > 0 ? 'Influencers' : 'Influencer'}</h3>
 
+                            <div>
+                                  <Modal  iDisplay={showModal}  handleModal={ () => handleModal()}>
+                                       <div className='bg-white p-2  px-4 rounded-md  w-[22rem]'>
+                                               <div className='flex space-x-4 px- py-2 justify-between border-b w-full '>
+                                                          <div className='flex flex-col border-r pr-5 '>
+                                                              <span className='text-xs font-bold'>Available to profile </span>
+                                                              <span className='text-viralget-red text-xs font-bold'>20 influencers</span>
+                                                          </div>
+
+                                                          <div className='flex flex-col'>
+                                                              <span className='text-xs font-bold'>Available to store </span>
+                                                              <span className='text-viralget-red text-xs font-bold'> {selected.length} influencers</span>
+                                                          </div>
+
+                                                          <div className='flex items-center justify-end ml-5'>
+                                                              <button onClick={()=> handleModal()}>
+                                                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g clip-path="url(#clip0_958_50325)">
+                                                                        <path d="M13.0625 5L5 13.0625" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                        <path d="M13.0625 13.0625L5 5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                        </g>
+                                                                        <defs>
+                                                                        <clipPath id="clip0_958_50325">
+                                                                        <rect width="18" height="18" fill="white"/>
+                                                                        </clipPath>
+                                                                        </defs>
+                                                                        </svg>
+
+                                                                 </button>
+                                                          </div>
+                                                </div>
+
+
+
+                                                <div className='mt-2 overflow-y-scroll  no-scrollbar flex space-x-2 pb-5 mt-3'>
+
+                                                    {
+                                                     selected.slice(0,2).map((influencer) => (
+                                                            <div className='bg-[#F5F5F5] px-3 py-1 rounded-md  flex items-center justify-center '>
+                                                                        <div className='mr-2 w-7 h-7'>
+                                                                            <img  className='w-7 h-7 rounded-full'   src={influencer.profile_photo_url} />
+                                                                        </div>
+
+                                                                        <span className='text-xs font-bold text-black '>{influencer.username} </span>
+                                                                </div>
+                                                        ))
+
+                                                    }
+                                                    {
+                                                        selected.length > 2 ?
+                                                        (
+                                                            <div className='bg-[#F5F5F5] px-1 py-1 rounded-md w-full flex items-center justify-center '>
+                                                           
+                                                              <span className='text-xs font-bold text-black '>{selected.length - 2 + ' +'} </span>
+                                                           </div>
+                                                        )
+                                                        : ''
+                                                    }
+
+                                   
+                                                </div>
+
+                                                <div className='flex justify-center items-center text-center w-full mt-1'>
+                                                     <span className='text-xs font-normal'>will be profiled & added to your profile</span>
+                                               
+                                                </div>
+
+                                                <div className='flex  justify-center items-center w-full mt-2 mb-4'>
+                                                      <button className='bg-viralget-red py-3  rounded-md px-4 h-9 text-white  flex items-center text-center'>
+                                                      Profile influencers
+                                                      </button>
+                                                </div>
+                                       </div>
+                                  </Modal>
+                            </div>
+
                         </div>
 
                         <div>
                        
                         {data.length > 0 && (
                             <div className=" top-0 flex  items-center space-x-3 bg-gray-50 sm:left-16">
+
+                               { selected.length > 0 && ( <button
+                                        type="button"
+                                        onClick={() => handleModal()}
+                                        className="inline-flex items-center rounded border border-viralget-red h-9  bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                                    >
+                                        <UsersIcon className='w-4 h-4 mr-2  text-viralget-red' />
+                                         <span  className='text-viralget-red font-bold'>  Profile influencers ({selected.length})</span> 
+                                    </button>)
+                              }
                              
 
-                                <MenuDropDown buttonName='Export CSV' ButtonIcon={<ExportIcon className='w-4 h-4 ' />}>
-                                    <div className='p-3 flex  justify-center items-center'>
-                                           <span className='font-normal  text-sm'>Coming soon</span>  
+                                <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length +' influencers' : 'Export '  +'influencers'} ButtonIcon={<ExportIcon className='w-4 h-4 ' />}>
+                                    <div className='p-3 flex flex-col  justify-center items-center'>
+                                           <ArrowPathIcon  className='w-10 h-10'/>
+                                           <span className='font-bold  mt-2 text-sm'>Coming soon</span>  
                                     </div>
                                </MenuDropDown>
 
@@ -201,23 +298,14 @@ export default function List({ count, data }) {
                                             </form>
                                     </div>
                                     </MenuDropDown>
-                                                                        // <button
-                                    //     type="button"
-                                    //     onClick={handleSaveSearch}
-                                    //     disabled={savingSearch}
-                                    //     className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
-                                    // >
-                                    //     <HeartIcon className='w-4 h-4 mr-2' />
-                                    //     Save Search
-                                    // </button>
-
+                          
                                 }
 
                                 <button
                                     type="button"
                                     onClick={handleCreateCampaign}
                                     disabled={selected.length == 0}
-                                    className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                                    className="inline-flex items-center rounded border h-9 font-bold border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                                 >
                                     Create Campaign List
                                 </button>
