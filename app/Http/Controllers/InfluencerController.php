@@ -61,7 +61,7 @@ class InfluencerController extends Controller
      */
     public function search(Request $request)
     {
-        // $result = TwitterInfluencer::query();
+        $result = TwitterInfluencer::query();
         $categories = Category::get();
 
 
@@ -84,7 +84,7 @@ class InfluencerController extends Controller
             'Influencers/search',
             [
                 'list' => InfluencerResource::collection($this->influencer->latest()->paginate(10)), //InfluencerResource::collection($result->latest()->paginate(10)),
-                'count' => 0, // $result->count(), //$result->count(),
+                'count' => $result->count(), // $result->count(), //$result->count(),
                 'categories' => $categories
             ]
         );

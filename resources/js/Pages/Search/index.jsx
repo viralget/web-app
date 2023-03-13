@@ -20,9 +20,9 @@ export default function Search({ categories }) {
       <Header />
       <main>
         <SectionHeader />
-        <SearchBox categories={categories} />
-
-        <Categories />
+        {/* <SearchBox categories={categories} /> */}
+{/* 
+        <Categories /> */}
       </main>
       <Footer />
     </>
