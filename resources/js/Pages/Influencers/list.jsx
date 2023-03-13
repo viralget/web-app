@@ -171,7 +171,7 @@ export default function List({ count, data }) {
 
                                 <MenuDropDown buttonName='Export CSV' ButtonIcon={<ExportIcon className='w-4 h-4 ' />}>
                                     <div className='p-3 flex  justify-center items-center'>
-                                           <span className='font-normal  text-sm'>Comming soon</span>  
+                                           <span className='font-normal  text-sm'>Coming soon</span>  
                                     </div>
                                </MenuDropDown>
 
@@ -234,7 +234,7 @@ export default function List({ count, data }) {
                                     <th scope="col" className="relative w-12 px-6 sm:w-16 sm:px-8">
                                         <input
                                             type="checkbox"
-                                            className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-indigo-500 sm:left-6"
+                                            className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded bg-[#3E4555] border-gray-300 text-[#3E4555] focus:[#3E4555] sm:left-6"
                                             ref={checkbox}
                                             checked={checked}
                                             onChange={toggleAll}
@@ -272,11 +272,11 @@ export default function List({ count, data }) {
                                     <tr key={item.email} className={selected.includes(item) ? 'bg-gray-50' : undefined}>
                                         <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                             {selected.includes(item) && (
-                                                <div className="absolute inset-y-0 left-0 w-0.5 bg-fuchsia-600" />
+                                                <div className="absolute inset-y-0 left-0 w-0.5 bg-gray-900" />
                                             )}
                                             <input
                                                 type="checkbox"
-                                                className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-indigo-500 sm:left-6"
+                                                className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded  accent-gray-700 sm:left-6"
                                                 value={item.email}
                                                 checked={selected.includes(item)}
                                                 onChange={(e) => handleSelectProfile(e, item)}
@@ -285,7 +285,7 @@ export default function List({ count, data }) {
                                         <td
                                             className={classNames(
                                                 'whitespace-nowrap py-4 pr-3 text-sm font-medium   cursor-pointer',
-                                                selected.includes(item) ? 'text-fuchsia-600' : 'text-gray-900'
+                                                selected.includes(item) ? 'text-gray-900' : 'text-gray-900'
                                             )}
                                         >
                                             <button  onClick={() => handleProfilePreview(item)}>
