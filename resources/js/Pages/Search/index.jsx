@@ -16,13 +16,13 @@ import Categories from '@/components/Categories'
 export default function Search({ categories }) {
   return (
     <>
-    
+  
       <Header />
       <main>
         <SectionHeader />
-        {/* <SearchBox categories={categories} /> */}
-{/* 
-        <Categories /> */}
+        <SearchBox categories={categories} />
+
+        <Categories />
       </main>
       <Footer />
     </>

@@ -308,9 +308,23 @@ export default function List({ count, data }) {
                                         </td>
                                         <td className="whitespace-nowrap px-3 py-4  w-60 text-sm text-gray-500">
                                            <div className='flex flex-wrap space-x-3'>
-                                                  <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>Beauty</span> 
-                                                  <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>Luxury</span> 
-                                                  <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>2+</span> 
+                                            {
+                                                item.categories.length  > 2 ? 
+
+                                                item.categories.slice(0,2).map((category) => (
+                                                     
+                                                  <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category}</span> 
+                                               ))
+                                               (
+                                                <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{item.categories.length - 2} +</span> 
+                                               )
+
+                                               : 
+                                               item.categories.map((category) => (
+                                                     
+                                                <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category}</span> 
+                                             ))
+                                            }
                                              </div>
                                            
                                             
