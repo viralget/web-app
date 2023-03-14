@@ -16,7 +16,7 @@ import Categories from '@/components/Categories'
 export default function Search({ categories }) {
   return (
     <>
-    
+  
       <Header />
       <main>
         <SectionHeader />
