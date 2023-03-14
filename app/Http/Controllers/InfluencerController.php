@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Influencer;
 use App\Models\Search;
 use App\Models\TwitterInfluencer;
+use App\Models\ProfiledInfluencer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -30,7 +31,6 @@ class InfluencerController extends Controller
         $search_history = Search::limit(3)->get();
         $top_categories = Category::where('is_featured', true)->limit(8)->get();
         $top_influencers = $this->influencer->limit(8)->get();
-
         $categories = Category::get();
 
         return Inertia::render(
@@ -66,13 +66,14 @@ class InfluencerController extends Controller
         $categories = Category::get();
 
 
-        if ($request->has('location')) {
-            $result = $result->where('location', 'like', "%$request->location%");
-        }
 
-        if ($request->has('keywords')) {
-            $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
-        }
+        // if ($request->has('location')) {
+        //     $result = $result->where('location', 'like', "%$request->location%");
+        // }
+
+        // if ($request->has('keywords')) {
+        //     $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
+        // }
 
 
         // Store User search sesion
@@ -83,10 +84,8 @@ class InfluencerController extends Controller
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => InfluencerResource::collection(
-                    $result->get()
-                ),
-                'count' => $result->count(),
+                'list' => InfluencerResource::collection($this->influencer->latest()->paginate(10)), //InfluencerResource::collection($result->latest()->paginate(10)),
+                'count' => $result->count(), // $result->count(), //$result->count(),
                 'categories' => $categories
             ]
         );
@@ -166,6 +165,39 @@ class InfluencerController extends Controller
             );
         }
 
-        return response(['status' => true, 'data'=> $request->queryData]);
+        return response(['status' => true, 'data' => $request->queryData]);
     }
+
+
+
+
+    public   function  getAllCategoriesPage()
+    {
+
+        $categories = Category::get();
+
+        return Inertia::render(
+            'AllCategories/index',
+            [
+                'categories' => $categories
+            ]
+        );
+    }
+
+
+
+    public function  getInfluencer($id)
+    {
+
+        $influencer = TwitterInfluencer::find($id);
+
+        return Inertia::render(
+            'InfluencerProfile/index',
+            [
+                'influencer' => $influencer
+            ]
+        );
+    }
+
+
 }

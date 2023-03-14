@@ -9,29 +9,36 @@ import TopCategories from './TopCategories'
 import RecentSearches from './RecentSearches'
 import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table'
+import Pagination from '@/Components/Pagination'
 
 export default function Search({ list, count, categories }) {
-   const [searchActive, setSearchActive] = useState(false)
+    const [searchActive, setSearchActive] = useState(false)
     const [loading, setLoading] = useState(false);
 
 
     return (
 
         <AuthenticatedLayout title="Search through our database of 33.5m+ influencers">
-      
+
             <main className="flex-1 pb-8">
                 <Container>
                     <SearchBox categories={categories} searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} />
-                 
+
                     <div>
                         <div className="space-y-10">
-                            {loading ? <TableSkeleton /> : <List data={list} count={count} />}
+                            {loading ? <TableSkeleton /> :
+                                <>
+                                    <List data={list.data} count={count} />
+                                    <Pagination data={list.meta} />
+
+                                </>
+                            }
                         </div>
                     </div>
                 </Container>
             </main>
 
-
+            {/*  */}
         </AuthenticatedLayout>
     )
 }

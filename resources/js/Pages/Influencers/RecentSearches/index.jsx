@@ -19,7 +19,7 @@ export default function RecentSearches({ data }) {
                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {/* Card */}
                     {data.map((card) => (
-                        <div key={card.keyword} className=" rounded-lg bg-white shadow">
+                        <div key={card.keyword} className=" rounded-lg bg-white shadow-lg overflow-hidden">
                             <div className="p-5">
                                 <div className="flex items-center">
                                     <div className="w-0 flex-1">
@@ -29,7 +29,7 @@ export default function RecentSearches({ data }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-gray-50 px-5 py-3">
+                            <div className=" px-5 py-3">
                                 <div className="text-sm flex justify-between">
                                     <a href={card.href} className="font-medium text-cyan-700 hover:text-cyan-900">
                                         {card.results_count}
