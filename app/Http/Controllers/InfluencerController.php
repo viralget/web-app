@@ -61,29 +61,40 @@ class InfluencerController extends Controller
      */
     public function search(Request $request)
     {
+
         $result = TwitterInfluencer::query();
         $categories = Category::get();
 
+        $request_categories = explode(',', $request->category);
 
+        if ($request->has('location')) {
+            $result = $result->where('location', 'like', "%$request->location%");
+        }
 
-        // if ($request->has('location')) {
-        //     $result = $result->where('location', 'like', "%$request->location%");
-        // }
+        if (count($request_categories) > 0) {
+            $result = $result->where(function ($query) use ($request_categories) {
+                foreach ($request_categories as $category) {
+                    $query->orWhereHas('categories', function ($q) use ($category) {
+                        $q->where('name', 'LIKE', "%$category%");
+                    });
+                }
+            });
+        }
 
-        // if ($request->has('keywords')) {
-        //     $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
-        // }
+        if ($request->has('keywords')) {
+            $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
+        }
 
 
         // Store User search sesion
-        // if($request){
-        //    $this->storeSearch($request, $result->count()); 
-        // }
+        if ($request) {
+            $this->storeSearch($request, $result->count());
+        }
 
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => InfluencerResource::collection($this->influencer->latest()->paginate(10)), //InfluencerResource::collection($result->latest()->paginate(10)),
+                'list' => InfluencerResource::collection($result->latest()->paginate(10)), //InfluencerResource::collection($result->latest()->paginate(10)),
                 'count' => $result->count(), // $result->count(), //$result->count(),
                 'categories' => $categories
             ]

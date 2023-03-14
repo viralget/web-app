@@ -24,8 +24,6 @@ class TwitterInfluencer extends Model
     }
 
 
-  
-
     public function engagementRate()
     {
 

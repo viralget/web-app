@@ -12,7 +12,7 @@ export default function SearchBox(props) {
 
     const handleChange = (e, name, query) => {
 
-        if(e?.target?.value.length === 0) return;
+        if (e?.target?.value.length === 0) return;
 
         const currentURL = window.location.search;
         const urlParams = new URLSearchParams(currentURL);
@@ -22,7 +22,7 @@ export default function SearchBox(props) {
         urlParams.set(query, value);
         urlParams.set('page', 1); //force start from page 1
         setSearchParams(urlParams);
-       
+
     }
 
     const handleSearch = async (e) => {
@@ -40,13 +40,13 @@ export default function SearchBox(props) {
     }
 
     return (
-        <div className="mx-auto -mt-12 relative z-10 rounded-lg">
-            <SearchForm 
-             getSearches={getSearches}
-             handleFiltering={handleFiltering}
-             categories={props?.categories ?? []}
-             handleChange={handleChange}
-             handleSubmit={handleSearch} {...props} />
+        <div className="mx-auto -mt-12 relative z-1 rounded-lg">
+            <SearchForm
+                getSearches={getSearches}
+                handleFiltering={handleFiltering}
+                categories={props?.categories ?? []}
+                handleChange={handleChange}
+                handleSubmit={handleSearch} {...props} />
         </div>
     )
 }
