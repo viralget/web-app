@@ -83,8 +83,8 @@ class InfluencerController extends Controller
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => $result->latest()->paginate(10), //InfluencerResource::collection($result->latest()->paginate(10)),
-                'count' => $result->count(), //$result->count(),
+                'list' => InfluencerResource::collection($this->influencer->latest()->paginate(10)), //InfluencerResource::collection($result->latest()->paginate(10)),
+                'count' => $result->count(), // $result->count(), //$result->count(),
                 'categories' => $categories
             ]
         );

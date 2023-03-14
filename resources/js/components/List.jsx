@@ -11,7 +11,6 @@ export default function List({options, label,  onChange}) {
  function handleChange(event) {
      setSelected(event)
      onChange(event);
-     console.log("event:", event)
    }
 
   return (

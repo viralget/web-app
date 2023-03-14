@@ -28,7 +28,6 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
-    console.log("title:", title);
 
     return (
 
