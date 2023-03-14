@@ -53,7 +53,7 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText }) =>
             {label &&
                 <Label for={name} value={label} />
             }
-            <div onClick={() => setShowDropdown(!showDropdown)} className="w-full py-3 px-4 rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer">
+            <div onClick={() => setShowDropdown(!showDropdown)} className="w-full py-3 px-0 rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer">
                 <div className="flex justify-between w-full">
                     <span>{currentSelectedItem ?? label}</span>
                     <span>{selectedOptions.length > 1 && <span className="text-xs bg-gray-100 p-1 mr-1">+{selectedOptions.length - 1}</span>}</span>

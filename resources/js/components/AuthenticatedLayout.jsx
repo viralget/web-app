@@ -24,7 +24,7 @@ const navigation = [
 ]
 
 
-export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, smallHeader= false }) {
+export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, smallHeader = false }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
@@ -79,9 +79,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                     </div>
                                 </Transition.Child>
                                 <div className="flex flex-shrink-0 items-center px-4">
-                                    <Link href='/'>
-                                        <Logo className="h-10 w-auto" />
-                                    </Link>
+                                    <Logo className="h-10 w-auto" />
                                 </div>
                                 <nav
                                     className="mt-5 h-full flex-shrink-0 divide-y divide-gray-800 overflow-y-auto"
@@ -148,15 +146,15 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
             <div className="flex flex-1 flex-col lg:pl-64">
                 {showHeader && (
-                    < div className={ smallHeader ? "  text-black" : "bg-fuchsia-600  bg-gradient-to-r from-fuchsia-600  via-red-500 to-yellow-600    rounded-br-[5rem]"}>
+                    < div className={smallHeader ? "  text-black" : "bg-fuchsia-600  bg-gradient-to-r from-fuchsia-600  via-red-500 to-yellow-600    rounded-br-[5rem]"}>
                         <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
                             <button
                                 type="button"
-                                className={ smallHeader ? "md:border-r border-black px-4 text-black lg:hidden" :"md:border-r border-gray-200 px-4 text-gray-400 lg:hidden"}
+                                className={smallHeader ? "md:border-r border-black px-4 text-black lg:hidden" : "md:border-r border-gray-200 px-4 text-gray-400 lg:hidden"}
                                 onClick={() => setSidebarOpen(true)}
                             >
                                 <span className="sr-only">Open sidebar</span>
-                                <Bars3CenterLeftIcon className={smallHeader ? "h-6 w-6 text-black" :"h-6 w-6 text-white"} aria-hidden="true" />
+                                <Bars3CenterLeftIcon className={smallHeader ? "h-6 w-6 text-black" : "h-6 w-6 text-white"} aria-hidden="true" />
                             </button>
                             {/* Search bar */}
                             <div className="flex flex-1 justify-end md:justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
@@ -174,7 +172,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                 <input
                                                     id="keywords"
                                                     name="keywords"
-                                                    className={ smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
+                                                    className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
                                                     placeholder="Enter keywords, skills or company name"
                                                     type="search"
                                                 />
@@ -185,31 +183,31 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                 <div className="ml-4 flex items-center md:ml-6 space-x-3">
                                     <button
                                         type="button"
-                                        className={ smallHeader ? "text-black rounded-lg border border-black-50/40 bg-black-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" }  >
+                                        className={smallHeader ? "text-black rounded-lg border border-black-50/40 bg-black-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}  >
                                         <span className="sr-only">View notifications</span>
                                         <BellIcon className="h-6 w-6" aria-hidden="true" />
                                     </button>
 
                                     {/* Profile dropdown */}
-                                    <div className={ smallHeader ? "w-full rounded-lg border border-black-50/40 bg-black-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" :  " w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}>
-                                        <DropdownMenu user={user} light={!smallHeader}/>
+                                    <div className={smallHeader ? "w-full rounded-lg border border-black-50/40 bg-black-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : " w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}>
+                                        <DropdownMenu user={user} light={!smallHeader} />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        { !smallHeader && (
-                        <Container className="relative">
-                                   <div className="w-3/5  my-16 ">
-                                       <h1 className="font-display pb-5 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-3xl">
-                                           {title}
-                                       </h1>
-                                       {subtitle && (
-                                           <p className='text-sm text-gray-50'>{subtitle}</p>
-                                       )}
-                                   </div>
-                               </Container>
+                        {!smallHeader && (
+                            <Container className="relative">
+                                <div className="w-3/5  my-16 ">
+                                    <h1 className="font-display pb-5 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-3xl">
+                                        {title}
+                                    </h1>
+                                    {subtitle && (
+                                        <p className='text-sm text-gray-50'>{subtitle}</p>
+                                    )}
+                                </div>
+                            </Container>
                         )}
-                      
+
                     </div>
 
                 )}

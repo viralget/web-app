@@ -21,7 +21,7 @@ export default function SearchForm({
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
                 {/* <form action={route('search')} className="sm:mx-auto lg:mx-0"> */}
-                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-3 py-2 rounded-md">
+                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-3 py-3 rounded-md">
                     <div className="md:pr-2 md:border-r  border-gray-100">
                         {/* <Select options={[
                             { name: 'Any', value: '' },
@@ -186,7 +186,7 @@ export default function SearchForm({
                 </div>
 
                 {getSearches.length > 0 && (
-                    <div className="flex flex-wrap space-x-2  mb-5 bg-white p-3 "  >
+                    <div className="flex flex-wrap space-x-2  mb-5 p-3 "  >
 
                         {getSearches.map((item) => (
                             <div className="bg-[#f4f4f4]  px-3 py-1  shadown-md  rounded-full ">
