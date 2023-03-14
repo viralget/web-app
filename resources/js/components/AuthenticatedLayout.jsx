@@ -9,7 +9,8 @@ import {
     HomeIcon,
     ScaleIcon,
     XMarkIcon,
-    BellIcon
+    BellIcon,
+    UsersIcon
 } from '@heroicons/react/24/outline'
 import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
@@ -18,6 +19,7 @@ import { Link, usePage } from '@inertiajs/inertia-react'
 
 const navigation = [
     { name: 'Find Influencers', href: 'explore', icon: HomeIcon, current: true },
+    { name: 'Profile Influencers', href: 'profiling', icon: UsersIcon, current: false },
     { name: 'My Campaigns', href: 'campaigns.index', icon: ClockIcon, current: false },
     { name: 'Track Campaigns', href: 'coming-soon', icon: ScaleIcon, current: false },
     // { name: 'FAQs', href: 'faqs', icon: CreditCardIcon, current: false },

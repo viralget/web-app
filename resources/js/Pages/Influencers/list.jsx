@@ -11,6 +11,7 @@ import { Inertia } from '@inertiajs/inertia';
 import InfluencerProfile from '../InfluencerProfile';
 import MenuDropDown from '@/components/MenuDropDown';
 import Modal from '@/components/Modal';
+import  ExportIcon  from "../../../assets/images/ExportIcon.svg" 
 
 // const people = [
 //     {
@@ -46,7 +47,10 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function List({ count, data }) {
+export default function List(props) {
+
+    const { count, data } = props;
+
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -140,25 +144,30 @@ export default function List({ count, data }) {
 
     const categories = ['Lifestyle', 'Beauty', 'Luxury', 'Actor'];
 
-    const ExportIcon = () => (
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_958_49488)">
-                    <path d="M12.0938 11.8125L13.5 15.1875L14.9062 11.8125" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M5.625 14.8008C5.35588 15.0468 5.00524 15.1846 4.64062 15.1875C3.78281 15.1875 3.09375 14.4352 3.09375 13.5C3.09375 12.5648 3.78281 11.8125 4.64062 11.8125C5.00524 11.8154 5.35588 11.9532 5.625 12.1992" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M7.875 14.9062C8.17974 15.1336 8.54951 15.2568 8.92969 15.2578C9.5625 15.2578 10.125 15.0469 10.125 14.3438C10.125 13.2188 7.875 13.7109 7.875 12.6562C7.875 12.0938 8.29688 11.7422 8.92969 11.7422C9.30986 11.7432 9.67963 11.8664 9.98438 12.0938" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M3.375 9V2.8125C3.375 2.66332 3.43426 2.52024 3.53975 2.41475C3.64524 2.30926 3.78832 2.25 3.9375 2.25H10.6875L14.625 6.1875V9" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10.6875 2.25V6.1875H14.625" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_958_49488">
-                    <rect width="18" height="18" fill="white"/>
-                    </clipPath>
-                    </defs>
-              </svg>
 
-    )
+  async function handleCreateProfiling(){
 
-    // console.log("data:", data);
+    const getIds = selected.map((item) =>  {
+        return {
+            id : item.id
+        }
+    });
+
+    const data = {
+        data: getIds
+    };
+
+
+    const response = await post(route('create.profiling'), data, true);
+
+    if (response?.data?.status) {
+        setShowModal(!showModal);
+        toast.success('Profile saved successfully');
+    } else {
+        toast.error('An error occured');
+    }
+
+  }
     return (
         <div className="mt-3 flex flex-col">
               {
@@ -224,7 +233,7 @@ export default function List({ count, data }) {
                                                         (
                                                             <div className='bg-[#F5F5F5] px-1 py-1 rounded-md w-full flex items-center justify-center '>
                                                            
-                                                              <span className='text-xs font-bold text-black '>{selected.length - 2 + ' +'} </span>
+                                                              <span className='text-xs font-bold text-black w-[1.5rem]  text-center'>{selected.length - 2 + ' +'} </span>
                                                            </div>
                                                         )
                                                         : ''
@@ -239,7 +248,7 @@ export default function List({ count, data }) {
                                                 </div>
 
                                                 <div className='flex  justify-center items-center w-full mt-2 mb-4'>
-                                                      <button className='bg-viralget-red py-3  rounded-md px-4 h-9 text-white  flex items-center text-center'>
+                                                      <button onClick={handleCreateProfiling} className='bg-viralget-red py-3  font-bold rounded-md px-4 h-9 text-white  flex items-center text-center'>
                                                       Profile influencers
                                                       </button>
                                                 </div>
@@ -265,7 +274,7 @@ export default function List({ count, data }) {
                               }
                              
 
-                                <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length +' influencers' : 'Export '  +'influencers'} ButtonIcon={<ExportIcon className='w-4 h-4 ' />}>
+                                <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length +' influencers' : 'Export '  +'influencers'} ButtonIcon={<img src={ExportIcon} className='w-4 h-4 ' />}>
                                     <div className='p-3 flex flex-col  justify-center items-center'>
                                            <ArrowPathIcon  className='w-10 h-10'/>
                                            <span className='font-bold  mt-2 text-sm'>Coming soon</span>  
@@ -301,14 +310,14 @@ export default function List({ count, data }) {
                           
                                 }
 
-                                <button
+                                {/* <button
                                     type="button"
                                     onClick={handleCreateCampaign}
                                     disabled={selected.length == 0}
                                     className="inline-flex items-center rounded border h-9 font-bold border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
                                 >
                                     Create Campaign List
-                                </button>
+                                </button> */}
 
                                
                             </div>

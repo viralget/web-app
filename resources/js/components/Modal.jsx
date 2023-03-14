@@ -1,7 +1,6 @@
-import { useState } from "react";
 
 export default function Modal({iDisplay, handleModal, children}) {
-//   const [showModal, setShowModal] = useState(false);
+
   return (
     <>
     

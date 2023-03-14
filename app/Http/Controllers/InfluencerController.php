@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Influencer;
 use App\Models\Search;
 use App\Models\TwitterInfluencer;
+use App\Models\ProfiledInfluencer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -197,4 +198,6 @@ class InfluencerController extends Controller
             ]
         );
     }
+
+
 }
