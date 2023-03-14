@@ -1,5 +1,5 @@
 import MultiDropdown from "@/Components/MultiDropdown";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 export default function SearchForm({
     keywords,
@@ -23,8 +23,8 @@ export default function SearchForm({
         setSearches(getSearches);
     }, [getSearches]);
 
-      const [getSearch, setSearches] = useState(getSearches);
-    
+    const [getSearch, setSearches] = useState(getSearches);
+
     return (
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
@@ -75,7 +75,7 @@ export default function SearchForm({
                             { name: 'Mid Tier (50,000 - 500k)', value: 'nano' },
                             { name: 'Macro (500k - 1m)', value: 'macro' },
                         ]}
-                        onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
+                            onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
                             label="Influencer Size"
 
                         />
@@ -100,13 +100,13 @@ export default function SearchForm({
                             { name: 'Ghana', value: 'Ghana' },
                         ]}
 
-                         onChange={(e) => handleChange(e, 'Audience Location', 'andience_location')}
+                            onChange={(e) => handleChange(e, 'Audience Location', 'andience_location')}
                             label="Audience Location"
 
                         />
                     </div>
                     <div className="md:pr-2 md:border-r border-gray-100">
-                  
+
 
 
                         <MultiDropdown options={[
@@ -117,12 +117,12 @@ export default function SearchForm({
                             { name: 'Average >40', value: 'average' },
                             { name: 'Poor >25', value: 'poor' },
                         ]}
-                        onChange={(e) => handleChange(e, 'Influencer QAS', 'influencer_qas')}
+                            onChange={(e) => handleChange(e, 'Influencer QAS', 'influencer_qas')}
                             label="Influencer QAS"
 
                         />
                     </div>
-                   
+
 
                     <div className="flex items-center sm:mt-0 sm:ml-3">
                         <button
@@ -170,42 +170,41 @@ export default function SearchForm({
                     </div>
                 </div>
 
-            
 
-                    <div class="flex  -mt-3 mb-3 flex-wrap   bg-white p-3">
+
+                <div class="flex  -mt-3 mb-3 flex-wrap   bg-white p-3">
                     {getSearch.map((item, index) => (
-                                    <div
-                                    className=" p-2 mr-3 mt-2  flex "
-                                    key={index}
-                                    >
-                                    <span className="font-normal">{item.name}: </span>  
-                                    {
-                                        item.value.map((val, ind) => (
-                                            <span className="ml-2 text-viralget-grey">  { val} { (ind + 1) === item.value.length ? '' : ',' } </span>
-                                        ))
-                                    }
-                                   
-                                  
-                                  
-                                  
-                                    <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
+                        <div
+                            className=" p-2 mr-3 mt-2  flex "
+                            key={index}
+                        >
+                            <span className="font-normal">{item.name}: </span>
+                            {
+                                Array.isArray(item?.value) ? item.value.map((val, ind) => (
+                                    <span className="ml-2 text-viralget-grey">  {val} {(ind + 1) === item.value.length ? '' : ','} </span>
+                                ))
+                                    :
+                                    <span className="ml-2 text-viralget-grey">  {item.value} </span>
+                            }
 
-                                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clipPath="url(#clip0_958_74924)">
-                                                <path d="M10.1595 3.89062L3.88867 10.1615" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                                                <path d="M10.1595 10.1615L3.88867 3.89062" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                                                </g>
-                                                <defs>
-                                                <clipPath id="clip0_958_74924">
-                                                <rect width="14" height="14" fill="white"/>
-                                                </clipPath>
-                                                </defs>
-                                                </svg>
+                            <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
 
-                                    </span>
-                                    </div>
-                            ))}
-                     </div>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clipPath="url(#clip0_958_74924)">
+                                        <path d="M10.1595 3.89062L3.88867 10.1615" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path d="M10.1595 10.1615L3.88867 3.89062" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_958_74924">
+                                            <rect width="14" height="14" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                            </span>
+                        </div>
+                    ))}
+                </div>
             </form>
         </div>
     );
