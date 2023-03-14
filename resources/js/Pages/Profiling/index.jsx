@@ -1,15 +1,14 @@
 import AuthenticatedLayout from '@/components/AuthenticatedLayout'
-export default function profiling(){
+import InfluencerList from './influencerList'
+export default function profiling({profiles}){
 
-
-
-
-
+  
     return(
         <AuthenticatedLayout  smallHeader={true}>
      
         <div>
-              <h3>Hello World</h3>
+             
+             <InfluencerList  list={profiles}/>
         </div>
         </AuthenticatedLayout>
     )

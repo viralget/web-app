@@ -8,6 +8,7 @@ use App\Mail\SendMail;
 use App\Models\ProfiledInfluencer;
 use App\Http\Resources\InfluencerResource;
 use Inertia\Inertia;
+use App\Models\User;
 
 class PageController extends Controller
 {
@@ -70,7 +71,10 @@ class PageController extends Controller
 
 
 
-     public function profilingPage(){
-        return Inertia::render('Profiling/index');
+     public function profilingPage(Request $request){
+      
+        $user_id = $request->user()->id;
+        $profiles = ProfiledInfluencer::with(['user','influencer'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+         return Inertia::render('Profiling/index', ['profiles' => $profiles]);
      }
 }
