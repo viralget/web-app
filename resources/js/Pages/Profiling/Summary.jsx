@@ -4,6 +4,23 @@ import SummaryCard from './summaryCard';
 export  default function summary(){
 
 
+    const list = [
+        {
+            title:'Monthly profilings',
+            left: 20,
+            level: 30,
+            total: 50,
+            bottomLine: 'Profiled influencers'
+        },
+        {
+            title:'Influencer storage',
+            left: 30,
+            level: 70,
+            total: 100,
+            bottomLine: 'Added influencers'
+        }
+    ]
+
 
 
     return(
@@ -14,12 +31,17 @@ export  default function summary(){
             </div>
             <div className='flex justify-between  space-x-3'>
                   <div className='flex space-x-3'>
-                       <SummaryCard />
-                       <SummaryCard />
+                    {
+                        list.map((item) => (
+                            <SummaryCard  item={item} />
+                        ))
+                    }
+                       {/* <SummaryCard />
+                       <SummaryCard /> */}
                   </div>
-                  <div className='flex flex-col w-full space-y-3'>
+                  <div className='flex flex-col w-full space-y-5'>
                          <div  className='bg-white border rounded-md p-5 w-full'>
-                                 <div className='flex space-x-2 items-centert' >
+                                 <div className='flex space-x-2 items-center' >
                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="16" cy="16" r="16" fill="#FEF2EB"/>
                                         <path d="M16 18.8125C17.5533 18.8125 18.8125 17.5533 18.8125 16C18.8125 14.4467 17.5533 13.1875 16 13.1875C14.4467 13.1875 13.1875 14.4467 13.1875 16C13.1875 17.5533 14.4467 18.8125 16 18.8125Z" stroke="#F37C38" stroke-width="1.2" stroke-miterlimit="10"/>
