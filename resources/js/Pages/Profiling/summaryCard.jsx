@@ -19,7 +19,17 @@ export default function summaryCard(){
                </div>
 
                <div className="flex items-center justify-center p-4">
-                      <div className="radial-progress text-viralget-red text-lg font-bold" style={{"--value":70}}>70</div>
+                      <div className="radial-progress  text-viralget-red  " style={{"--value":40, "--size": '10rem', '--thickness': '10%'}}>
+                        <div className="flex flex-col items-center  border-2 border-dashed p-10 rounded-full">
+                           <span className="text-viralget-grey  text-[25px]  font-[900]">100</span>  
+                           <span className="text-[#748094]  text-[10px]">Out of 100</span>    
+                        </div>
+                    </div>
+                       
+               </div>
+
+               <div className="flex justify-center">
+                  <span  className="text-xs text-viralget-grey "> Profiled influencers</span>
                </div>
 
          
