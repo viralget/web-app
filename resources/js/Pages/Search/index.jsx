@@ -13,20 +13,14 @@ import { SectionHeader } from '@/components/SectionHeader'
 import SearchBox from './SearchBox'
 import Categories from '@/components/Categories'
 
-export default function Search() {
+export default function Search({ categories }) {
   return (
     <>
-      {/* <Head>
-        <title>TaxPal - Accounting made simple for small businesses</title>
-        <meta
-          name="description"
-          content="Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited."
-        />
-      </Head> */}
+  
       <Header />
       <main>
         <SectionHeader />
-        <SearchBox />
+        <SearchBox categories={categories} />
 
         <Categories />
       </main>

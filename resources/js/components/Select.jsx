@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import Label from './Label';
 
 export default function Select({
     name,
@@ -10,13 +11,14 @@ export default function Select({
     isFocused,
     onChange,
     secondary = false,
-    label,
+    label = '',
     id = '',
     explainer = '',
     options = [],
     defaultOptionText,
     defaultValue,
-    capitalize = true
+    capitalize = true,
+    useBorder = true,
 }) {
     const select = useRef();
 
@@ -32,11 +34,9 @@ export default function Select({
 
 
     return (
-        <div className="flex flex-col items-start ">
+        <div className="flex flex-col items-start space-y-1">
             {label &&
-                <label htmlFor={id ? id : name} className="block text-sm text-gray-500 mb-1">
-                    {label}
-                </label>
+                <Label for={id ? id : name} value={label} />
             }
             {explainer &&
                 <p className="text-sm text-gray-400 mb-1">
@@ -50,8 +50,9 @@ export default function Select({
                 ref={select}
                 className={
                     // `border-gray-300 focus:border-green-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block` +
-                    `focus:ring-gray-400 ${capitalize && 'capitalize'} focus:ring-0 focus:border-gray-400 block w-full py-2.5 sm:text-sm border-gray-300 rounded-md ${secondary && 'bg-gray-100'} ` +
-                    className
+                    `focus:ring-gray-400 ${capitalize && 'capitalize'} ${useBorder && 'border'} px-2 py-3 focus:border-gray-400 block w-full  sm:text-sm border-gray-300 rounded-md ${secondary && 'bg-gray-100'} ` +
+                    className +
+                    'border border-gray-300'
                 }
                 defaultValue={defaultValue}
                 required={required}

@@ -1,6 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import Label from './Label';
 
-export const inputStyle = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm sm:text-sm"
+// export const inputStyle = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm sm:text-sm"
+
+export const inputStyle = "block text-md text-gray-500 w-full appearance-none rounded-md border border-gray-200/90 p-3 py-6 placeholder-gray-400 focus:border-black focus:ring-black";
 
 
 export default function Input({
@@ -16,41 +19,50 @@ export default function Input({
     isFocused,
     onChange,
     placeholder,
-    defaultValue
+    defaultValue,
+    icon
 }) {
-    const input = useRef();
+    // const input = useRef();
 
-    useEffect(() => {
-        if (isFocused) {
-            input.current.focus();
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (isFocused) {
+    //         input.current.focus();
+    //     }
+    // }, []);
 
     return (
-        <div className="flex flex-col items-start w-full space-y-1">
-            {label &&
-                <label htmlFor={id ? id : name} className="block text-sm font-medium text-gray-700 mb-1">
-                    {label}
-                </label>
-            }
-            {explainer &&
-                <p className="text-sm text-gray-400 mb-1">
-                    {explainer}
-                </p>
-            }
+        <div className="relative">
 
-            <input
-                type={type}
-                name={name}
-                value={value}
-                placeholder={placeholder}
-                defaultValue={defaultValue}
-                className={inputStyle + ' ' + className}
-                ref={input}
-                autoComplete={autoComplete}
-                required={required}
-                onChange={(e) => onChange(e)}
-            />
+            {icon && (
+                <div className='absolute  bottom-4 left-3 '>
+                    {icon}
+                </div>
+
+            )}
+            <div className=" flex flex-col items-start w-full space-y-1">
+                {label &&
+                    <Label for={id ? id : name} value={label} />
+                }
+                {explainer &&
+                    <p className="text-sm text-gray-400 mb-1">
+                        {explainer}
+                    </p>
+                }
+
+                <input
+                    type={type}
+                    name={name}
+                    value={value}
+                    placeholder={placeholder}
+                    defaultValue={defaultValue}
+                    className={inputStyle + ' ' + className}
+                    // ref={input}
+                    autoComplete={autoComplete}
+                    required={required}
+                    onChange={(e) => onChange(e)}
+                />
+            </div>
         </div>
+
     );
 }

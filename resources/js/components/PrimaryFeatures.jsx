@@ -73,7 +73,7 @@ export function PrimaryFeatures() {
       /> */}
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
-          <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+          <h2 className="font-display text-3xl tracking-tight font-bold text-white sm:text-4xl md:text-5xl">
             An experience you’d expect from an influencer tool
           </h2>
           <p className="mt-6 text-lg tracking-tight text-blue-100">

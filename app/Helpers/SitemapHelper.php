@@ -16,11 +16,10 @@ abstract class SitemapHelper
     public function generateSitemap()
     {
         $this->pagesSitemap();
-        $this->jobsSitemap();
 
         SitemapIndex::create()
             ->add('/pages_sitemap.xml')
-            ->add('/jobs_sitemap.xml')
+            ->add('/influencers_sitemap.xml')
             ->writeToFile(public_path('sitemap.xml'));
         // ->writeToDisk('public', 'sitemap.xml');        
 
@@ -43,6 +42,6 @@ abstract class SitemapHelper
     {
         Sitemap::create()
             ->add(JobListing::all())
-            ->writeToDisk('public', 'jobs_sitemap.xml');
+            ->writeToDisk('public', 'influencers_sitemap.xml');
     }
 }

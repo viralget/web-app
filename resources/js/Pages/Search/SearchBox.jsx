@@ -8,15 +8,21 @@ export default function SearchBox(props) {
 
 
     const [searchParams, setSearchParams] = useState('');
+    const [getSearches, setSearches] = useState([]);
 
-    const handleChange = (e) => {
+    const handleChange = (e, name, query) => {
+
+        if(e?.target?.value.length === 0) return;
+
         const currentURL = window.location.search;
         const urlParams = new URLSearchParams(currentURL);
-        urlParams.set(e.target.name, e.target.value);
+        const value = e?.target?.value ? e.target.value : e.value;
+        const filterData = getSearches.filter((item) => item.name != name);
+        setSearches([...filterData, { name, value }]);
+        urlParams.set(query, value);
         urlParams.set('page', 1); //force start from page 1
-
-        setSearchParams(urlParams)
-        // handleSearch(urlParams);
+        setSearchParams(urlParams);
+       
     }
 
     const handleSearch = async (e) => {
@@ -25,23 +31,22 @@ export default function SearchBox(props) {
         props.searchActive(true);
 
         Inertia.get(route('influencers.search') + '?' + searchParams.toString());
-        // , { job: job?.slug }, { replace: true, preserveState: true, preserveScroll: true })
-        // window.location = route('search') + '?' + params.toString();
-        //     const res = await get(route('influencers.search') + '?' + searchParams.toString());
-
-        //     props.handleResult(res);
     }
 
+    const handleFiltering = (val) => {
 
-
-    // const submit = (e) => {
-    //     e.preventDefault();
-
-    // };
+        const findR = getSearches.filter((item) => item.name != val.name);
+        setSearches(findR);
+    }
 
     return (
-        <div className="mx-auto -mt-12 relative z-10 rounded-lg overflow-hidden">
-            <SearchForm className="" handleChange={handleChange} handleSubmit={handleSearch} {...props} />
+        <div className="mx-auto -mt-12 relative z-10 rounded-lg">
+            <SearchForm 
+             getSearches={getSearches}
+             handleFiltering={handleFiltering}
+             categories={props?.categories ?? []}
+             handleChange={handleChange}
+             handleSubmit={handleSearch} {...props} />
         </div>
     )
 }
