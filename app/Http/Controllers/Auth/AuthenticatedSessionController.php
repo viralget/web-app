@@ -50,6 +50,10 @@ class AuthenticatedSessionController extends Controller
 
         $user = $request->user();
 
+        if (!$user->account) {
+            $user->account()->create();
+        }
+
         // $user->update(['last_logged_in' => Carbon::now()]);
 
         if ($request->redirect_url) {
@@ -132,10 +136,16 @@ class AuthenticatedSessionController extends Controller
 
             if ($user) {
                 $user->update($data);
+
+                if (!$user->account) {
+                    $user->account()->create();
+                }
             } else {
                 $data['password'] = Hash::make($socialUser->token);
 
                 $user = User::create($data);
+
+                $user->account()->create();
 
                 Mail::to($user->email)->queue(new UserRegistered($user));
             }

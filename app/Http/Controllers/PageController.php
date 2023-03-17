@@ -75,8 +75,24 @@ class PageController extends Controller
     {
 
         $user_id = $request->user()->id;
-        $profiles = ProfiledInfluencer::with(['user', 'influencer'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+        $profiles = ProfiledInfluencer::with(['user', 'influencer'])->where('user_id', $user_id)->latest()->take(3)->get();
+        $profiles_count = ProfiledInfluencer::where('user_id', $user_id)->count();
 
-        return Inertia::render('Profiling/index', ['profiles' => $profiles]);
+        return Inertia::render('Profiling/index', [
+            'profiles' => $profiles,
+            'profiles_count' => $profiles_count
+        ]);
+    }
+
+
+    public function list(Request $request)
+    {
+
+        $user_id = $request->user()->id;
+        $profiles = ProfiledInfluencer::with(['user', 'influencer'])->where('user_id', $user_id)->latest()->get();
+
+        return Inertia::render('Profiling/all', [
+            'profiles' => $profiles,
+        ]);
     }
 }

@@ -1,0 +1,1 @@
+import{R as m}from"./app.9e52e815.js";function r({text:e,isPageTitle:a=!1,className:t,light:n}){return m.createElement("h3",{className:`text-lg font-medium ${n?"text-gray-50":"text-gray-900"} ${t||"mb-5"} ${a?" font-bold leading-4":" font-medium leading-6"}`},e)}export{r as T};

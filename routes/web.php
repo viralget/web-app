@@ -57,11 +57,12 @@ Route::middleware('auth')->group(
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
         Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
         Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
-        Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
+        Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.page');
 
         // profiling.
         Route::post('/create-profiling', [PageController::class, 'createProfiling'])->name('create.profiling');
         Route::get('/profiling', [PageController::class, 'profilingPage'])->name('profiling');
+        Route::get('/profiling/all', [PageController::class, 'list'])->name('profiling.list');
         Route::get('/settings', function () {
             return Inertia::render('Account/index');
         })->name('settings');

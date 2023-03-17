@@ -176,7 +176,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                     id="keywords"
                                                     name="keywords"
                                                     className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
-                                                    placeholder="Enter keywords, skills or company name"
+                                                    placeholder="Enter keywords"
                                                     type="search"
                                                 />
                                             </div>
