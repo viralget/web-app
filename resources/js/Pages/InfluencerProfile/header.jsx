@@ -23,8 +23,8 @@ export default function header({ influencer, isMini }) {
                               <div className="bg-white shadow-md flex  items-center  rounded-md p-3  w-full space-x-10 ">
 
                                     <div className=" mb-14 ">
-                                          <div className={isMini ? "h-12 w-12" : "h-24 w-24 " + "bg-gray-500 rounded-full "}>
-                                                <img className="mx-auto h-15 w-15 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />
+                                          <div className={isMini ? "h-12 w-12" : "h-24 w-24 " + "bg-gray-500 rounded-full overflow-hidden "}>
+                                                <img className="mx-auto flex-shrink-0 object-cover w-full h-full" src={influencer.profile_photo_url} alt="" />
                                           </div>
                                     </div>
 

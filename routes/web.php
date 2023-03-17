@@ -57,7 +57,7 @@ Route::middleware('auth')->group(
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
         Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
         Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
-        Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.page');
+        Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.show');
 
         // profiling.
         Route::post('/create-profiling', [PageController::class, 'createProfiling'])->name('create.profiling');
