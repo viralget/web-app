@@ -16,8 +16,6 @@ export default function Search({ list, count, categories }) {
     const [loading, setLoading] = useState(false);
 
 
-    console.log({ list })
-
     return (
 
         <AuthenticatedLayout title="Search through our database of 33.5m+ influencers">

@@ -184,11 +184,8 @@ export default function SearchForm({
                                     <span className="ml-2 text-viralget-grey">  {val} {(ind + 1) === item.value.length ? '' : ','} </span>
                                 ))
                                     :
-                                    <span className="ml-2 text-viralget-grey"> {item.value} </span>
+                                    <span className="ml-2 text-viralget-grey">  {item.value} </span>
                             }
-
-
-
 
                             <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
 

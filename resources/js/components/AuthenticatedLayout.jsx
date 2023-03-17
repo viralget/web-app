@@ -9,7 +9,8 @@ import {
     HomeIcon,
     ScaleIcon,
     XMarkIcon,
-    BellIcon
+    BellIcon,
+    UsersIcon
 } from '@heroicons/react/24/outline'
 import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
@@ -18,7 +19,8 @@ import { Link, usePage } from '@inertiajs/inertia-react'
 
 const navigation = [
     { name: 'Find Influencers', href: 'explore', icon: HomeIcon, current: true },
-    { name: 'My Campaigns', href: 'campaigns.index', icon: ClockIcon, current: false },
+    { name: 'Profile Influencers', href: 'profiling', icon: UsersIcon, current: false },
+    { name: 'My Campaigns', href: 'coming-soon', icon: ClockIcon, current: false },
     { name: 'Track Campaigns', href: 'coming-soon', icon: ScaleIcon, current: false },
     // { name: 'FAQs', href: 'faqs', icon: CreditCardIcon, current: false },
 ]
@@ -78,7 +80,9 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                     </div>
                                 </Transition.Child>
                                 <div className="flex flex-shrink-0 items-center px-4">
-                                    <Logo className="h-10 w-auto" />
+                                    <Link href='/'>
+                                        <Logo className="h-10 w-auto" />
+                                    </Link>
                                 </div>
                                 <nav
                                     className="mt-5 h-full flex-shrink-0 divide-y divide-gray-800 overflow-y-auto"
@@ -156,7 +160,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                 <Bars3CenterLeftIcon className={smallHeader ? "h-6 w-6 text-black" : "h-6 w-6 text-white"} aria-hidden="true" />
                             </button>
                             {/* Search bar */}
-                            <div className="flex flex-1 justify-end md:justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+                            <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
                                 <div className="hidden md:flex flex-1">
                                     <div className="w-full max-w-sm  mt-3">
                                         <form action={route('influencers.search')} method="get">
