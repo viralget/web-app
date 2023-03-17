@@ -11,10 +11,9 @@ import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table'
 import Pagination from '@/Components/Pagination'
 
-export default function Search({ list, count, categories }) {
+export default function Search({ list, categories }) {
     const [searchActive, setSearchActive] = useState(false)
     const [loading, setLoading] = useState(false);
-
 
     return (
 
@@ -28,7 +27,7 @@ export default function Search({ list, count, categories }) {
                         <div className="space-y-10">
                             {loading ? <TableSkeleton /> :
                                 <>
-                                    <List data={list.data} count={count} />
+                                    <List data={list.data} count={list?.meta?.total ?? 0} />
                                     <Pagination data={list.meta} />
 
                                 </>
