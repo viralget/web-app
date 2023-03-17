@@ -12,36 +12,7 @@ import InfluencerProfile from '../InfluencerProfile';
 import MenuDropDown from '@/components/MenuDropDown';
 import Modal from '@/components/Modal';
 import ExportIcon from "../../../assets/images/ExportIcon.svg"
-
-// const people = [
-//     {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     },
-//     {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     }, {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     }, {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     }, {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     },    // More people...
-// ]
+import { getEventValue, nFormatter } from '@/Utils/helpers';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -59,6 +30,8 @@ export default function List(props) {
     const [isSaved, setIsSaved] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
     const [getInfluencer, setInfluencer] = useState([]);
+
+    const [searchName, setSearchName] = useState([]);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -103,10 +76,9 @@ export default function List(props) {
         const urlParams = new URLSearchParams(window.location.search).toString();
 
         const data = {
-            queryData: JSON.parse('{"' + decodeURI(urlParams.replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}'),
-            query: urlParams,
+            queryData: urlParams,
+            name: searchName,
         }
-
 
         const response = await post(route('influencers.search.store'), data, true);
 
@@ -274,15 +246,19 @@ export default function List(props) {
                                     }
 
 
-                                    <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length + ' influencers' : 'Export ' + 'influencers'} ButtonIcon={<img src={ExportIcon} className='w-4 h-4 ' />}>
+                                    <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length + ' influencers' : 'Export ' + 'influencers'}
+                                    // buttonIcon={<img src={ExportIcon} className='mt-1 w-3 h-3 ' />}
+                                    >
                                         <div className='p-3 flex flex-col  justify-center items-center'>
-                                            <ArrowPathIcon className='w-10 h-10' />
-                                            <span className='font-bold  mt-2 text-sm'>Coming soon</span>
+                                            {/* <ArrowPathIcon className='w-10 h-10' /> */}
+                                            <span className=' mt-2 text-sm'>Coming soon</span>
                                         </div>
                                     </MenuDropDown>
 
 
-                                    <MenuDropDown buttonName='Export CSV' buttonIcon={<ExportIcon className='w-4 h-4 ' />}>
+                                    <MenuDropDown buttonName='Export CSV'
+                                    // buttonIcon={<ExportIcon className='w-4 h-4 ' />}
+                                    >
                                         <div className='p-3 flex  justify-center items-center'>
                                             <span className='font-normal  text-sm'>Coming soon</span>
                                         </div>
@@ -302,14 +278,14 @@ export default function List(props) {
                                                             id="keywords"
                                                             name="keywords"
                                                             type="text"
-                                                            onChange={(e) => console.log(e)}
+                                                            onChange={(e) => setSearchName(getEventValue(e))}
                                                             placeholder={"Enter search name"}
                                                             className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
                                                         />
                                                     </div>
 
                                                     <div className='w-full mt-3'>
-                                                        <button className='bg-[#F5F5F5] w-full p-2 rounded-md'>Save search</button>
+                                                        <button onClick={handleSaveSearch} className='bg-[#F5F5F5] w-full p-2 rounded-md'>Save search</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -349,7 +325,7 @@ export default function List(props) {
                                             Influencer
                                         </th>
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Follower
+                                            Followers
                                         </th>
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Quality audience
@@ -399,7 +375,7 @@ export default function List(props) {
 
                                             </td>
                                             {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.followers_count}</td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text="Good" /></td>

@@ -18,11 +18,15 @@ export default function SearchBox(props) {
         const urlParams = new URLSearchParams(currentURL);
         const value = e?.target?.value ? e.target.value : e.value;
         const filterData = getSearches.filter((item) => item.name != name);
-        setSearches([...filterData, { name, value }]);
-        urlParams.set(query, value);
+        const searchData = [...filterData, { name, query, value }];
+        setSearches(searchData);
+
+        searchData.forEach(q => {
+            urlParams.set(q.query, q.value);
+        });
+        // urlParams.set(query, value);
         urlParams.set('page', 1); //force start from page 1
         setSearchParams(urlParams);
-
     }
 
     const handleSearch = async (e) => {
@@ -30,6 +34,7 @@ export default function SearchBox(props) {
         props.onLoading && props.onLoading(true);
         props.searchActive(true);
 
+        // console.log({ searchParams: searchParams.toString() })
         Inertia.get(route('influencers.search') + '?' + searchParams.toString());
     }
 
