@@ -38,10 +38,10 @@ export default function index({ saved_search, search_history, top_categories, to
                                 </>
                                 :
                                 <>
-                                    {saved_search.length > 0 && (
+                                    {saved_search?.length > 0 && (
                                         <RecentSearches title="Saved Searches" data={saved_search} />
                                     )}
-                                    {search_history.length > 0 && (
+                                    {search_history?.length > 0 && (
                                         <RecentSearches data={search_history} />
                                     )}
                                     <Feature />

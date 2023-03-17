@@ -141,9 +141,6 @@ class AuthenticatedSessionController extends Controller
             }
 
 
-            // Log user in 
-            Auth::login($user);
-
             if ($request->session()->has('user_auth_redirect_url')) {
                 $redirect_url = $request->session()->get('user_auth_redirect_url');
                 // unset the session data
@@ -151,6 +148,10 @@ class AuthenticatedSessionController extends Controller
             }
 
             $request->session()->regenerate();
+
+            // Log user in 
+            Auth::login($user);
+
 
             return redirect()->intended($redirect_url);
         } catch (\Exception $e) {
