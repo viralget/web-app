@@ -36,8 +36,7 @@ export  default function summary(){
                             <SummaryCard  item={item} />
                         ))
                     }
-                       {/* <SummaryCard />
-                       <SummaryCard /> */}
+                   
                   </div>
                   <div className='flex flex-col w-full space-y-5'>
                          <div  className='bg-white border rounded-md p-5 w-full'>
