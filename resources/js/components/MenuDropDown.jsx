@@ -6,12 +6,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function MenuDropDown({ buttonName, ButtonIcon, children }) {
+export default function MenuDropDown({ buttonName, ButtonIcon, children, className }) {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full  justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        <Menu.Button className= { classNames("inline-flex w-full  justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300", className)}>
           <div className='flex items-center justify-center'>
            { ButtonIcon  ?  ButtonIcon :  null }
            </div>

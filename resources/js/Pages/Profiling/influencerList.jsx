@@ -27,8 +27,8 @@ export default function InfluencerList({list}){
 
                 {influencers?.length > 0 ?
 
-                    <div role="list" className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 ">
-                        {influencers.slice(0,3).map((item) => (
+                    <div role="list" className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 ">
+                        {influencers.slice(0,4).map((item) => (
                             <InfluencerCard influencer={item}   />
                         ))}
                     </div >

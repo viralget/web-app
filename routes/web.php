@@ -61,6 +61,11 @@ Route::middleware('auth')->group(
         // profiling.
         Route::post('/create-profiling', [PageController::class, 'createProfiling'])->name('create.profiling');
         Route::get('/profiling', [PageController::class, 'profilingPage'])->name('profiling');
+        Route::post('/create-list', [PageController::class, 'createList'])->name('create.list');
+        Route::post('/influencer-list', [PageController::class, 'AddInfluencerToList'])->name('influencers.list');
+
+
+
         Route::get('/settings', function () {
             return Inertia::render('Account/index');
         })->name('settings');
