@@ -38,7 +38,7 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
                         <span className="text-sm text-gray-500">Interactions</span>
                     </div>
                     <div className="text-center items-center flex-col">
-                        <span className="text-xl block">{influencer.engagement_rate}</span>
+                        <span className="text-xl block">{influencer.engagement_rate ?? 0}</span>
                         <span className="text-sm text-gray-500">ER</span>
                     </div>
 
