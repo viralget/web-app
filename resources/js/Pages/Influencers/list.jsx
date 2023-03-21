@@ -13,35 +13,6 @@ import MenuDropDown from '@/components/MenuDropDown';
 import Modal from '@/components/Modal';
 import  ExportIcon  from "../../../assets/images/ExportIcon.svg" 
 
-// const people = [
-//     {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     },
-//     {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     }, {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     }, {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     }, {
-//         name: 'Lindsay Walton',
-//         title: 'Front-end Developer',
-//         email: 'lindsay.walton@example.com',
-//         role: 'Member',
-//     },    // More people...
-// ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -86,14 +57,11 @@ export default function List(props) {
     }
 
     const handleSelectProfile = (e, item) => {
-        // console.log(e.target.checked, selected.filter((p) => p.id !== item.id), item)
-        setSelected(
+   setSelected(
             e.target.checked
                 ? [...selected, item]
                 : selected.filter((p) => p.id !== item.id)
         )
-
-        // console.log("selected:", selected);
     }
 
     const handleSaveSearch = async (e) => {
@@ -111,7 +79,7 @@ export default function List(props) {
         const response = await post(route('influencers.search.store'), data, true);
 
         if (response?.data?.status) {
-            toast('Search stored successfully!');
+            toast.success('Search stored successfully!');
             setIsSaved(true)
         } else {
             toast.error('An error occured');
@@ -274,7 +242,7 @@ export default function List(props) {
                               }
                              
 
-                                <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length +' influencers' : 'Export '  +'influencers'} ButtonIcon={<img src={ExportIcon} className='w-4 h-4 ' />}>
+                                <MenuDropDown className="bg-white text-black" buttonName={selected.length > 0 ? 'Export ' + selected.length +' influencers' : 'Export '  +'influencers'} ButtonIcon={<img src={ExportIcon} className='w-4 h-4 ' />}>
                                     <div className='p-3 flex flex-col  justify-center items-center'>
                                            <ArrowPathIcon  className='w-10 h-10'/>
                                            <span className='font-bold  mt-2 text-sm'>Coming soon</span>  
@@ -285,6 +253,7 @@ export default function List(props) {
                                 {!isSaved &&
 
                                     <MenuDropDown 
+                                    className="bg-white text-black" 
                                     buttonName='Save Search' 
                                     ButtonIcon={<HeartIcon className='w-5 h-5 ' />}
                                      >
