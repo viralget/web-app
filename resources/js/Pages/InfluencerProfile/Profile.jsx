@@ -15,7 +15,7 @@ export default function Profile({ influencer }) {
     return (
         <div className="w-full flex flex-col  mb-20">
             <div className="relative">
-                <Heade isMini influencer={influencer} />
+                <Header isMini influencer={influencer} />
             </div>
             <div className="mt-[7rem]">
                 <InfluencerSize />

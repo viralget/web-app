@@ -4,6 +4,7 @@ import EmptyState from '@/components/EmptyState';
 import InfluencerCard from '../RecentSearches/InfluencerCard';
 import InfluencerProfile from "@/Pages/InfluencerProfile";
 
+
 export default function TopInfluencers({ data }) {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -28,8 +29,8 @@ export default function TopInfluencers({ data }) {
             {data?.length > 0 ?
 
                 <div role="list" className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 ">
-                    {data.map((item) => (
-                        <InfluencerCard influencer={item} showBanner handleProfile={() => handleProfile(item)} />
+                    {data.map((item, index) => (
+                        <InfluencerCard influencer={item} key={index} showBanner handleProfile={() => handleProfile(item)} />
                     ))}
                 </div >
                 :

@@ -260,7 +260,7 @@ class InfluencerController extends Controller
             Search::create([
                 'is_saved' => true,
                 'user_id' => $user->id,
-                'keyword' => $request->queryData,
+                'keyword' => $request->queryData ??  'null',
                 'session_id' => $request->session()->getId(),
                 'user_id' => $request->user()->id ?? null,
                 'query' => json_encode($request->query),

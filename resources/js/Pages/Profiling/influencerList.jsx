@@ -7,12 +7,10 @@ import { Link } from '@inertiajs/inertia-react';
 export default function InfluencerList({ list, showMore }) {
 
 
-  const influencers = list.map((item) => {
+  const influencers = list?.map((item) => {
     const influencer = item.influencer
     return influencer;
   });
-
-
 
   return (
     <>
