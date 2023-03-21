@@ -62,7 +62,11 @@ Route::middleware('auth')->group(
         Route::post('/create-profiling', [PageController::class, 'createProfiling'])->name('create.profiling');
         Route::get('/profiling', [PageController::class, 'profilingPage'])->name('profiling');
         Route::post('/create-list', [PageController::class, 'createList'])->name('create.list');
+        Route::post('/update-list', [PageController::class, 'updateList'])->name('update.list');
         Route::post('/influencer-list', [PageController::class, 'AddInfluencerToList'])->name('influencers.list');
+        Route::post('/delete-list', [PageController::class, 'deleteList'])->name('delete.list');
+        
+        Route::get('/list/{id}', [PageController::class, 'getSingleList'])->name('single.list');
 
 
 

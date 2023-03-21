@@ -20,9 +20,9 @@ export default function InfluencerList({list}){
               <div>
                    <a href='#'   className='text-xs font-bold  border   px-4  py-2 border-viralget-red text-viralget-red'  >View More</a>
               </div>
-            </div>
+           </div>
 
-              <div>
+        <div>
               
 
                 {influencers?.length > 0 ?

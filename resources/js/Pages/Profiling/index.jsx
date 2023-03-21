@@ -9,8 +9,8 @@ export default function profiling({profiles, influencerList}){
     return(
         <AuthenticatedLayout  smallHeader={true}>
               <Summary />
-             <InfluencerList  list={profiles}/>
-             <List influencerList={influencerList}  profiles={profiles}/>
+              <InfluencerList  list={profiles}/>
+              <List influencerList={influencerList}  profiles={profiles}/>
         </AuthenticatedLayout>
     )
 }

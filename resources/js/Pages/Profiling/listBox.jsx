@@ -9,7 +9,7 @@ export default function ListBox({ item, handleAddInfluencer}){
     const getImages =() => {
        if( item.influencers.length < 1 ) return false;
 
-       const images = item.influencers.map((item) => {
+     const images = item.influencers.map((item) => {
         return {
             image_url: item.profile_photo_url
          }
@@ -19,16 +19,6 @@ export default function ListBox({ item, handleAddInfluencer}){
 
     }
     const images =  getImages();
-
-    console.log("images:", images);
-    
-    // [
-    //     {
-    //       image_url: 'https://s3-alpha-sig.figma.com/img/c1a3/15c0/3a83cce9e7b662a69300c4e7ec72de3e?Expires=1679875200&Signature=Q7i4Wz1vreYrqMRGlRas9M464fVOOi8lhmre8xwOJ0kxaIzPqivgBDd8VMpKzh8xg~JzYa9z2fFe-V-fv6K9wJ3TQMtD~3XKIPMbuMFICgVexVrliTJfEB1FPBGk-GCwgV~n1-PiDtvmWnaazxC3GflPkbHFHRxPAmYPU7y0cdYPEgcphIp3SZzF4dljgTZ9iOGCghnWrCmBDCjHgJboDFyOKxTQncDYlASpOlNgHne1gjzkMCENkrop-YLuEWiF8HPtlk3i-M7Hd46OqPqN5JoAjxxvludLbdi4XYaQ5PkJpTsH80yhAj5vh1f7D3wFrLPWP0AnAeeMS272OcEkkA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'
-    //     },
-
-    // ]
-
 
     const EmptyBox = () => (
 
@@ -50,13 +40,13 @@ export default function ListBox({ item, handleAddInfluencer}){
 
     return(
         <div className="w-full">
-               <div  className="border rounded-md p-3 h-[19rem] ">
+               <div  className="border rounded-md p-3 h-[19rem] "  >
                 {
                     images.length > 0 ?
                     (
-                      <div className="grid grid-cols-2 gap-2">
+                      <a href={route('single.list', {id: item.id})} className="grid grid-cols-2 gap-2">
                          {
-                             images.map((img) => (
+                             images.slice(0, 4).map((img) => (
                                 <div>
                                 <img  className="w-40 h-35  rounded-md" src={img.image_url}  />
                                </div>
@@ -82,7 +72,7 @@ export default function ListBox({ item, handleAddInfluencer}){
 
                         
                         
-                     </div>
+                     </a>
                     )
                     :
                     ( 

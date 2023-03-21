@@ -107,6 +107,44 @@ class PageController extends Controller
 
     }
 
+    public function updateList(Request $request){
+
+  
+      $request->validate([
+        'name' => 'required|string|max:50'
+    ]);
+
+    try {
+      
+
+      $list = InfluencerList::where('id', $request->id)->first();
+      $list->name = $request->name;
+      $list->save();
+     
+        return response(['status' => true, 'message' => 'list updated successfully']);
+
+    } catch (\Throwable $th) {
+        return response(['status' => false, 'message' => 'An error occured. Please try again']);
+   }
+
+    } 
+
+
+   public function deleteList(Request $request){
+   
+    try {
+
+      $list = InfluencerList::find($request->id);
+      $list->delete();
+     
+        return response(['status' => true, 'message' => 'list deleted successfully']);
+
+    } catch (\Throwable $th) {
+        return response(['status' => false, 'message' => 'An error occured. Please try again']);
+   }
+   }
+
+
        public function AddInfluencerToList(Request $request){
 
 
@@ -126,6 +164,22 @@ class PageController extends Controller
         }
 
         return response(['status' => true, 'message' => 'Influencers added successfully']);
+       }
+
+
+       public function getSingleList(Request $request){
+        $id = $request->id;
+        $user_id = $request->user()->id;
+        $influencerList = InfluencerList::with('influencers')->where('id', $id)->first();    
+        $profiles = ProfiledInfluencer::with(['user','influencer'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+     
+        return Inertia::render(
+          'Profiling/singleList/index',
+         [
+           'influencerList' => $influencerList,
+           'profiled_influencers' => $profiles
+           ]
+       );
        }
         
      
