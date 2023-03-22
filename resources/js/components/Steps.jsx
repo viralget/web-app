@@ -51,7 +51,7 @@ export default function Staps({steps}) {
                     >
                       
                       <span className="mt-0.5 ml-4 flex min-w-0 flex-col">
-                        <span className="text-sm font-medium text-indigo-600">{step.name}</span>
+                        <span className="text-sm font-medium text-viralget-grey">{step.name}</span>
                       </span>
                     </span>
                   </a>

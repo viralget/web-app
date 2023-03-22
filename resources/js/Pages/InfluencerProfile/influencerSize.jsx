@@ -3,21 +3,39 @@ import Steps  from "@/components/Steps";
 export default function influencerSize({influencer}){
    
     const steps = [
-        { id: '01', name: 'Nano', value:'1K', href: '#', status: 'complete' },
-        { id: '02', name: 'Micro', value:'10K', href: '#', status: 'complete' },
-        { id: '03', name: 'Mid-tier', value:'50K', href: '#', status: 'complete' },
-        { id: '04', name: 'Macro', value:'100K', href: '#', status: 'complete' },
+        { id: '01', name: 'Nano', value:'1K', href: '#', status: 'current' },
+        { id: '02', name: 'Micro', value:'10K', href: '#', status: 'current' },
+        { id: '03', name: 'Mid-tier', value:'50K', href: '#', status: 'current' },
+        { id: '04', name: 'Macro', value:'100K', href: '#', status: 'current' },
         { id: '05', name: 'Mega', value:'1m+', href: '#', status: 'current' },
       ]
 
+
+
+
+      function getLevels(){
+
+        const data = steps;
+        data.forEach(item => {
+            if (influencer.followers_count >= 1000 && item.name === 'Nano') item.status = 'complete';
+            if (influencer.followers_count >= 10000 && item.name === 'Micro' ) item.status = 'complete';
+            if (influencer.followers_count >= 50000 && item.name === 'Mid-tier' ) item.status = 'complete';
+            if (influencer.followers_count >= 100000 && item.name === 'Macro' ) item.status = 'complete';
+            if (influencer.followers_count >= 10000000 && item.name === 'Mega' ) item.status = 'complete';
+        });
+
+        return data;
+      }
+
+   
     return (
-        <div className=" mx-5 shadow-md border  pb-10 rounded-md ">
+        <div className=" mx-5  border  pb-10 rounded-md ">
             <div className="pl-7 py-3">
                 <span className="font-bold">
                 Influencer size
                 </span>
             </div>
-              <Steps  steps={steps} />
+              <Steps  steps={getLevels()} />
         </div>
     )
 }

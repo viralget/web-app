@@ -6,6 +6,7 @@ use App\Http\Controllers\InfluencerController;
 use App\Http\Controllers\WhatsAppInfluencerController;
 use App\Models\WhatsappInfluencer;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfilingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -60,15 +61,15 @@ Route::middleware('auth')->group(
         Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.show');
 
         // profiling.
-        Route::post('/create-profiling', [PageController::class, 'createProfiling'])->name('create.profiling');
-        Route::get('/profiling', [PageController::class, 'profilingPage'])->name('profiling');
-        Route::get('/profiling/all', [PageController::class, 'list'])->name('profiling.list');
-        Route::post('/create-list', [PageController::class, 'createList'])->name('create.list');
-        Route::post('/update-list', [PageController::class, 'updateList'])->name('update.list');
-        Route::post('/influencer-list', [PageController::class, 'AddInfluencerToList'])->name('influencers.list');
-        Route::post('/delete-list', [PageController::class, 'deleteList'])->name('delete.list');
+        Route::post('/create-profiling', [ProfilingController::class, 'createProfiling'])->name('create.profiling');
+        Route::get('/profiling', [ProfilingController::class, 'profilingPage'])->name('profiling');
+        Route::get('/profiling/all', [ProfilingController::class, 'list'])->name('profiling.list');
+        Route::post('/create-list', [ProfilingController::class, 'createList'])->name('create.list');
+        Route::post('/update-list', [ProfilingController::class, 'updateList'])->name('update.list');
+        Route::post('/influencer-list', [ProfilingController::class, 'AddInfluencerToList'])->name('influencers.list');
+        Route::post('/delete-list', [ProfilingController::class, 'deleteList'])->name('delete.list');
 
-        Route::get('/list/{id}', [PageController::class, 'getSingleList'])->name('single.list');
+        Route::get('/list/{id}', [ProfilingController::class, 'getSingleList'])->name('single.list');
 
 
 

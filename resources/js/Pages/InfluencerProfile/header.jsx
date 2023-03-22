@@ -13,7 +13,7 @@ export default function header({ influencer, isMini }) {
 
       const tags = ['Lifestyle', 'Beauty', 'Entertainment'];
 
-      console.log({ influencer })
+      // console.log({ influencer })
 
       return (
             <>
@@ -31,12 +31,8 @@ export default function header({ influencer, isMini }) {
                                     <div className="w-full  md:mt-6">
                                           <div className="flex md:flex-row  flex-col justify-between">
                                                 <div className="flex flex-col">
-                                                      {/* <div className="flex flex-col"> */}
                                                       <span className="text-xl  font-bold">{influencer?.full_name}</span>
                                                       <span className="text-xs text-viralget-grey ">@{influencer?.username}</span>
-                                                      {/* </div> */}
-
-
                                                 </div>
                                                 <div className="flex md:justify-between md:mt-0 mt-2 w-auto ">
                                                       <div className="flex  mr-4">
@@ -100,16 +96,16 @@ export default function header({ influencer, isMini }) {
 
 
                                           <div className="flex flex-wrap mt-2">
-                                                {
+                                                {/* {
                                                       categories.map((item) => (
                                                             <span className="text-xs text-viralget-grey mr-2">• {item}</span>
                                                       ))
-                                                }
-                                                <span></span>
+                                                } */}
+                                              <span className="text-xs text-viralget-grey mr-2">{influencer.bio}</span>
                                           </div>
 
                                           <div className="my-3 flex space-x-2">
-                                                {tags?.map((item) => (
+                                                {influencer?.categories?.map((item) => (
                                                       <span className="text-viralget-grey  bg-[#F5F5F5] px-3 py-1">
                                                             {item}
                                                       </span>

@@ -18,13 +18,13 @@ export default function Profile({ influencer }) {
                 <Header isMini influencer={influencer} />
             </div>
             <div className="mt-[7rem]">
-                <InfluencerSize />
+                <InfluencerSize influencer={influencer} />
             </div>
 
 
             <div className="flex   md:flex-row  flex-col justify-between mt-4 ">
                 <div className="px-5 md:pr-0">
-                    <AudienceCard />
+                    <AudienceCard  influencer={influencer} />
                 </div>
                 <div className="grid grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0  md:gap-4">
                     <Card />
@@ -36,7 +36,7 @@ export default function Profile({ influencer }) {
                 </div>
             </div>
 
-            <TweetList />
+            <TweetList influencer={influencer}  />
             <Profiling />
 
             <Footer />
