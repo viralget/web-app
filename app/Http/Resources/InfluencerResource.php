@@ -28,6 +28,13 @@ class InfluencerResource extends JsonResource
             'profile_url' => $this->profile_url,
             'categories' => $this->categories,
             'location' => $this->location,
+            'avg_comments' => [
+                'score' => 0,
+                'increase' => 1.7,
+            ],
+            'quality_audience_score' => 0,
+            'quality_audience' => 0,
+            'total_comments' => 0,
 
             // 'bio' => $this->details ? $this->details->bio : null,
         ];
