@@ -182,5 +182,15 @@ class PageController extends Controller
        );
        }
         
-     
+     public function profiledInfluencers(Request $request){
+        $user_id = $request->user()->id;
+        $profiles = ProfiledInfluencer::with(['user','influencer'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+
+        return Inertia::render(
+          'Profiling/profiledInfluencers',
+         [
+           'profiles' => $profiles
+           ]
+       );
+     }
 }
