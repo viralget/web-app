@@ -15,7 +15,7 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
 
                 <div className="bg-gray-500">
                     {
-                        influencer.profile_banner_url && (<img class="h-36 w-full object-cover" src={influencer.profile_banner_url} alt="" />)
+                        influencer.profile_banner_url && (<img className="h-36 w-full object-cover" src={influencer.profile_banner_url} alt="" />)
                     }
 
                 </div>

@@ -28,17 +28,44 @@ class InfluencerResource extends JsonResource
             'profile_url' => $this->profile_url,
             'categories' => $this->categories,
             'location' => $this->location,
-            'bio' => '',
-            'avg_comments' => [
-                'score' => 0,
-                'increase' => 1.7,
-            ],
+            'bio' => $this->bio,
+            'metrics' => [
+                'avg_comments' => [
+                    'score' => 118,
+                    'increase' => 3.3,
+                    'label' => 'last 30 days'
+                ],
+                'engagement_rate' => [
+                    'score' => 0.89,
+                    'increase' => 0.24,
+                    'label' => 'last 7 days'
+                ],
+                'avg_retweet' => [
+                    'score' => 0.89,
+                    'increase' => 0.24,
+                    'label' => 'last 7 days'
+                ],
+                'global_rank' => [
+                    'score' => 40204,
+                    'increase' => null,
+                    'label' => 'Worldwide'
+                ],
+            
+                'category_rank' => [
+                    'score' => 17,
+                    'increase' => null,
+                    'label' => 'Beauty in Nigeria'
+                ],
+                'country_rank' => [
+                    'score' => 358,
+                    'increase' => null,
+                    'label' => '🇳🇬 Nigeria'
+                ],
+           ],
             'quality_audience_score' => 0,
             'quality_audience' => 0,
             'total_comments' => 0,
             'total_likes' => 0,
-
-            // 'bio' => $this->details ? $this->details->bio : null,
         ];
     }
 }

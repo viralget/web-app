@@ -1,29 +1,17 @@
+function classNames(...classes) {
+      return classes.filter(Boolean).join(' ')
+  }
 export default function header({ influencer, isMini }) {
-
-      const categories = [
-            'Award winning Actor & Entrepreneur',
-            'Radio & TV Personality',
-            'Brand Influencer',
-            'Microbiologist',
-            'Vlogger',
-            'God\'s💝 alayandetomike@gmail.com'
-
-
-      ];
-
-      const tags = ['Lifestyle', 'Beauty', 'Entertainment'];
-
-      // console.log({ influencer })
 
       return (
             <>
-                  <div className={isMini && 'bg-[#0077F2]' + " w-full rounded-br-3xl  h-40"}>
+                  <div className={classNames(isMini && 'bg-[#0077F2]',  " w-full rounded-br-3xl mb-[3rem] h-40")}>
 
-                        <div className="p-5 ">
-                              <div className="bg-white shadow-md flex  items-center  rounded-md p-3  w-full space-x-10 ">
+                        <div className="p-5 absolute top-[3rem]">
+                              <div className="bg-white shadow-md flex  items-center  rounded-md p-3  w-full space-x-3 ">
 
                                     <div className=" mb-14 ">
-                                          <div className={isMini ? "h-12 w-12" : "h-24 w-24 " + "bg-gray-500 rounded-full overflow-hidden "}>
+                                          <div className={classNames(isMini ? "h-[5rem] w-[5rem]" : "h-[5rem] w-[5rem]", "bg-gray-500 rounded-full overflow-hidden ")}>
                                                 <img className="mx-auto flex-shrink-0 object-cover w-full h-full" src={influencer.profile_photo_url} alt="" />
                                           </div>
                                     </div>
@@ -80,15 +68,15 @@ export default function header({ influencer, isMini }) {
 
 
                                           <div className="flex mt-3 w-full">
-                                                <div className="flex mr-3">
+                                                <div className="flex md:flex-row flex-col mr-3">
                                                       <span className="font-bold mr-1">{influencer?.followers_count} </span>
                                                       <span className="text-viralget-grey"> followers </span>
                                                 </div>
-                                                <div className="flex mr-3">
+                                                <div className="flex mr-3 md:flex-row flex-col">
                                                       <span className="font-bold mr-1">2,311 </span>
                                                       <span className="text-viralget-grey">  tweets </span>
                                                 </div>
-                                                <div className="flex">
+                                                <div className="flex md:flex-row flex-col">
                                                       <span className="font-bold mr-1">{influencer?.following_count} </span>
                                                       <span className="text-viralget-grey">  following</span>
                                                 </div>

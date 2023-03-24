@@ -19,7 +19,7 @@ export default function Staps({steps}) {
              >
         <div   className={classNames(
                 step.status === 'complete' ? 'bg-viralget-red ' : 'bg-[#F5F5F5] ',
-                "relative overflow-hidden lg:flex-1  flex items-center w-[5rem] h-10") }
+                "relative overflow-hidden lg:flex-1 rounded-lt-md  flex items-center w-[6rem] h-10") }
               >
               <div
                 className={classNames(

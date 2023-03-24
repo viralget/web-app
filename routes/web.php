@@ -57,7 +57,6 @@ Route::middleware('auth')->group(
         Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
         Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
-        Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
         Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.show');
 
         // profiling.
@@ -68,9 +67,11 @@ Route::middleware('auth')->group(
         Route::post('/update-list', [ProfilingController::class, 'updateList'])->name('update.list');
         Route::post('/influencer-list', [ProfilingController::class, 'AddInfluencerToList'])->name('influencers.list');
         Route::post('/delete-list', [ProfilingController::class, 'deleteList'])->name('delete.list');
-
+    
         Route::get('/list/{id}', [ProfilingController::class, 'getSingleList'])->name('single.list');
-
+        Route::get('/findprofiled/{id}', [ProfilingController::class, 'findProfiledInfluencer'])->name('influencer.findprofiled');
+        
+        
 
 
         Route::get('/settings', function () {

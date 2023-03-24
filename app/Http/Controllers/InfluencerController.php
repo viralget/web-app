@@ -173,9 +173,9 @@ class InfluencerController extends Controller
         $influencer = $id;
 
         return Inertia::render(
-            'InfluencerProfile/show',
+            'InfluencerProfile/index',
             [
-                'influencer' => $influencer
+                'influencer' => InfluencerResource::make($influencer)
             ]
         );
     }
@@ -289,17 +289,4 @@ class InfluencerController extends Controller
     }
 
 
-
-    public function  getInfluencer($id)
-    {
-
-        $influencer = TwitterInfluencer::find($id);
-
-        return Inertia::render(
-            'InfluencerProfile/index',
-            [
-                'influencer' => $influencer
-            ]
-        );
-    }
 }

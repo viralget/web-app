@@ -30,12 +30,15 @@ export default function influencerSize({influencer}){
    
     return (
         <div className=" mx-5  border  pb-10 rounded-md ">
-            <div className="pl-7 py-3">
-                <span className="font-bold">
+            <div className="pl-7 p-[20px]  pt-[24px]">
+                <span className="font-bold  text-[18px] font-lexend">
                 Influencer size
                 </span>
             </div>
-              <Steps  steps={getLevels()} />
+            <div className="mt-[20px]">
+            <Steps  steps={getLevels()} />
+            </div>
+              
         </div>
     )
 }

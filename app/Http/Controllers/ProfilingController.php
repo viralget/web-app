@@ -162,4 +162,13 @@ class ProfilingController extends Controller
             ]
         );
     }
+
+    public function findProfiledInfluencer(Request $request){
+        $id = $request->id;
+        $user_id = $request->user()->id;
+        $profile = ProfiledInfluencer::where('user_id', $user_id)->where('influencer_id', $id)->first();
+
+        return response(['status' => true, 'data' =>  $profile ]);
+
+    }
 }
