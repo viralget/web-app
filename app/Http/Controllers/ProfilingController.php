@@ -91,8 +91,7 @@ class ProfilingController extends Controller
     public function updateList(Request $request)
     {
 
-
-        $request->validate([
+      $request->validate([
             'name' => 'required|string|max:50'
         ]);
 
@@ -169,6 +168,46 @@ class ProfilingController extends Controller
         $profile = ProfiledInfluencer::where('user_id', $user_id)->where('influencer_id', $id)->first();
 
         return response(['status' => true, 'data' =>  $profile ]);
+
+    }
+
+    public function influencerCreateList(Request $request){
+
+         $newList = $request->newList;
+         $user_id = $request->user()->id;
+         $list_to_add = $request->list;  //add influencer to these list
+         $influencer_id = $request->influencer_id;
+        
+         if($newList != null){
+            $find =  InfluencerList::where('name', $newList)->where('user_id', $user_id)->first();
+
+            if(!$find){
+                   $list = new InfluencerList;
+                   $list->name = $newList;
+                   $list->user_id = $user_id;
+                   $list->save();
+   
+                array_push($list_to_add,  $list->id);
+           }else{
+            return response(['status' => false, 'message' => 'List with this name already exist']);
+           }
+         }
+
+    //    dd($list_to_add);
+         foreach ($list_to_add as $key => $val) {
+            // $find = InfluencerListsTwitterInfluencer::where('twitter_influencer_id', $val['id'])->where('influencer_list_id', $list_id)->first();
+
+            if (!$find) {
+                $listInfluencers = new InfluencerListsTwitterInfluencer;
+                $listInfluencers->twitter_influencer_id = $influencer_id;
+                $listInfluencers->influencer_list_id = $val;
+                $listInfluencers->save();
+            }
+        }
+
+        return response(['status' => true, 'message' => 'List created & added successfully']);
+
+
 
     }
 }

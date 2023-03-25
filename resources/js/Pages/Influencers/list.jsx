@@ -247,18 +247,22 @@ export default function List(props) {
                                     }
 
 
-                                    <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length + ' influencers' : 'Export ' + 'influencers'}
-                                    // buttonIcon={<img src={ExportIcon} className='mt-1 w-3 h-3 ' />}
+                                    <MenuDropDown
+                                    buttonName={selected.length > 0 ? 'Export ' + selected.length + ' influencers' : 'Export ' + 'influencers'}
+                                    buttonIcon={<img src={ExportIcon} className='mt-1 w-3 h-3 ' />}
+                                    className="shadow-sm ring-1 ring-inset ring-gray-300"
                                     >
                                         <div className='p-3 flex flex-col  justify-center items-center'>
-                                            {/* <ArrowPathIcon className='w-10 h-10' /> */}
+                                            <ArrowPathIcon className='w-10 h-10' />
                                             <span className=' mt-2 text-sm'>Coming soon</span>
                                         </div>
                                     </MenuDropDown>
 
 
-                                    <MenuDropDown buttonName='Export CSV'
-                                    // buttonIcon={<ExportIcon className='w-4 h-4 ' />}
+                                    <MenuDropDown 
+                                    buttonName='Export CSV'
+                                    buttonIcon={<img src={ExportIcon} className='mt-1 w-3 h-3 ' />}
+                                    className="shadow-sm ring-1 ring-inset ring-gray-300"
                                     >
                                         <div className='p-3 flex  justify-center items-center'>
                                             <span className='font-normal  text-sm'>Coming soon</span>
@@ -270,7 +274,8 @@ export default function List(props) {
 
                                         <MenuDropDown
                                             buttonName='Save Search'
-                                            ButtonIcon={<HeartIcon className='w-5 h-5 ' />}
+                                            buttonIcon={<HeartIcon className='w-5 h-5 ' />}
+                                            className="shadow-sm ring-1 ring-inset ring-gray-300"
                                         >
                                             <div className='p-3'>
                                                 <form>

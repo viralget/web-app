@@ -70,7 +70,8 @@ Route::middleware('auth')->group(
     
         Route::get('/list/{id}', [ProfilingController::class, 'getSingleList'])->name('single.list');
         Route::get('/findprofiled/{id}', [ProfilingController::class, 'findProfiledInfluencer'])->name('influencer.findprofiled');
-        
+        Route::post('/influencer-create-list', [ProfilingController::class, 'influencerCreateList'])->name('influencer.addtolist');
+       
         
 
 

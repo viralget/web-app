@@ -66,6 +66,9 @@ class InfluencerResource extends JsonResource
             'quality_audience' => 0,
             'total_comments' => 0,
             'total_likes' => 0,
+            'language' => 'English',
+            'phone_number' => '+234094614109',
+            'email' => 'tomike_a@gmail.com'
         ];
     }
 }

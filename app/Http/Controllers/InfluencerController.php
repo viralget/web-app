@@ -8,6 +8,7 @@ use App\Models\Influencer;
 use App\Models\Search;
 use App\Models\TwitterInfluencer;
 use App\Models\ProfiledInfluencer;
+use App\Models\InfluencerList;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -168,14 +169,21 @@ class InfluencerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(TwitterInfluencer $id)
+    public function show(Request $request, TwitterInfluencer $id)
     {
+        $list = [];
         $influencer = $id;
-
+        $findProfiled = ProfiledInfluencer::find($id);
+         $user_id = $request->user()->id;
+        if($findProfiled){
+            $list = InfluencerList::with('influencers')->where('user_id', $user_id)->get();
+        }
+       
         return Inertia::render(
-            'InfluencerProfile/index',
+            'InfluencerProfile/show',
             [
-                'influencer' => InfluencerResource::make($influencer)
+                'influencer' => InfluencerResource::make($influencer),
+                'list' => $list
             ]
         );
     }

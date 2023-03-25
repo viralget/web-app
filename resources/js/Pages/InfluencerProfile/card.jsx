@@ -14,7 +14,8 @@ export default function Card({ item }) {
                 </div>
                 <span className="text-xs  text-viralget-grey">{item.title}</span>
             </div>
-
+        
+        
             <div className="mt-3">
                 <span className="font-bold text-xl">{item.score}</span>
             </div>
@@ -45,6 +46,8 @@ export default function Card({ item }) {
                     <span className="text-viralget-grey"> {item.increase ? 'vs' : null} {item.label}</span>
                 </div>
             </div>
+
+
         </div>
     )
 }
