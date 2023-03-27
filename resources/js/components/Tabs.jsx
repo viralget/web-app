@@ -2,11 +2,13 @@
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
-const Tabs = ({ tabs, link }) => {
+const Tabs = ({ tabs, link, activeTab }) => {
 
-    const urlParams = new URLSearchParams(window.location.search).get('tab');
+    const url = new URLSearchParams(window.location.search).get('tab');
+    const urlParams =  url == null ? activeTab: url;
+
     return(
-      <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+      <ul className="flex  text-sm font-medium overflow-y-scroll  w-full text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
          {
             tabs.map((item) => (
                 <li class="mr-2">

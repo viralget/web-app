@@ -10,7 +10,8 @@ import {
     SvgComments,
     SvgRetweet,
     SvgCountry,
-    SvgCategory
+    SvgCategory,
+    SvgRank,
 } from '@/Utils/icons';
 
 

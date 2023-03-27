@@ -19,13 +19,13 @@ export default function Staps({steps}) {
              >
         <div   className={classNames(
                 step.status === 'complete' ? 'bg-viralget-red ' : 'bg-[#F5F5F5] ',
-                "relative overflow-hidden lg:flex-1 rounded-lt-md  flex items-center w-[6rem] h-10") }
+                "relative overflow-hidden lg:flex-1 rounded-lt-md  flex items-center md:w-[6rem]  w-full h-10") }
               >
               <div
                 className={classNames(
                   stepIdx === 0 ? 'rounded-t-md border-b-0' : '',
                   stepIdx === steps.length - 1 ? 'rounded-b-md border-t-0' : '',
-                  'overflow-hidden border border-gray-200 lg:border-0'
+                  'overflow-hidden '
                 )}
               >
                 {step.status === 'complete' ? (

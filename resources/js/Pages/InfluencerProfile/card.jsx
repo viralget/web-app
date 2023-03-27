@@ -6,7 +6,7 @@ export default function Card({ item }) {
 
     return (
 
-        <div className="border rounded-md  flex flex-col p-3  md:h-[7rem] md:w-[10rem]   items-left">
+        <div className="border rounded-md  flex flex-col p-3 h-full w-full    justify-center  items-left">
             <div className="flex  items-center">
                 <div className="mr-1">
                   {item.icon}

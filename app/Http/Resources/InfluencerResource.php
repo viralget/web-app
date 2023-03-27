@@ -29,6 +29,13 @@ class InfluencerResource extends JsonResource
             'categories' => $this->categories,
             'location' => $this->location,
             'bio' => $this->bio,
+            'gender' => 'Male',
+            'age' => 29,
+            'parental_status' => 'parent',
+            'marital_status' => 'married',
+            'ethinic' => 'Hausa-Fulani',
+            'income' => '$10-25k',
+            'education' => 'bachelor',
             'metrics' => [
                 'avg_comments' => [
                     'score' => 118,
