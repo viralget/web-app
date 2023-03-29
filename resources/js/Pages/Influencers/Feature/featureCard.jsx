@@ -1,9 +1,10 @@
+import Typography from '@/components/Typography'
 export default function FeatureCard({title, reach, className, images}){
 
     return (
              <div className={"w-full p-5 relative rounded-md bg-gradient-to-r  " + className}>
                     <div  className=" w-full  text-white">
-                          <span className="font-bold text-white text-sm">{title}</span>
+                       <Typography variant='h3' content={title} />
                     </div>
 
                     <div className="grid grid-cols-3  mt-4">

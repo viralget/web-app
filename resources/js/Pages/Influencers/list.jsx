@@ -59,14 +59,12 @@ export default function List(props) {
     }
 
     const handleSelectProfile = (e, item) => {
-        // console.log(e.target.checked, selected.filter((p) => p.id !== item.id), item)
         setSelected(
             e.target.checked
                 ? [...selected, item]
                 : selected.filter((p) => p.id !== item.id)
         )
 
-        // console.log("selected:", selected);
     }
 
     const handleSaveSearch = async (e) => {

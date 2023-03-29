@@ -87,7 +87,7 @@ useEffect(() => {
                                                       <span className="text-xs text-viralget-grey ">@{influencer?.username}</span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col space-y-2  md:space-y-0 md:justify-between md:mt-0 mt-2 w-auto  md:space-x-2 ">
-                                                      <div className="flex  md:space-x-2  items-center">
+                                                      <div className="flex  md:space-x-2  ">
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <g clip-path="url(#clip0_958_45476)">
                                                                         <path d="M8 8.5C9.10457 8.5 10 7.60457 10 6.5C10 5.39543 9.10457 4.5 8 4.5C6.89543 4.5 6 5.39543 6 6.5C6 7.60457 6.89543 8.5 8 8.5Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />

@@ -1,4 +1,5 @@
 import { nFormatter } from "@/Utils/helpers";
+import Typography from "@/components/Typography";
 
 export default function InfluencerCard({ influencer, showBanner, handleProfile, useShadow, useLink }) {
 
@@ -22,24 +23,26 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
             )}
             <div className={`flex flex-1 flex-col p-8 ${showBanner && '-mt-16'}`}>
                 <img className="mx-auto h-20 w-20 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />
-                <h3 className="mt-6 text-sm font-medium text-gray-900 cursor-pointer" onClick={() => handleProfileClick()}>@{influencer.username}</h3>
-                <dl className="mt-1 flex flex-grow flex-col justify-between cursor-pointer" onClick={() => handleProfileClick()}>
-                    <dd className="text-sm text-gray-500">{influencer.full_name}</dd>
-                </dl>
+               
+                <div  onClick={() => handleProfileClick()} className="mt-2 cursor-pointer flex flex-col">
+                         <Typography variant={'b1'}  content={'@'+influencer.username} />
+                         <Typography variant={'b3'}  content={influencer.full_name} className="text-gray-500 mt-1" />
+                </div>
+               
             </div>
             <div>
                 <div className="flex justify-between mx-10 mb-5 ">
                     <div className="text-center items-center flex-col">
                         <span className="text-xl block">{nFormatter(influencer.followers_count)}</span>
-                        <span className="text-sm text-gray-500">Followers</span>
+                        <Typography variant={'b3'}  content="Followers" className="text-gray-500 mt-1" />
                     </div>
                     <div className="text-center items-center flex-col">
                         <span className="text-xl block p-0">{nFormatter(influencer.interactions)}</span>
-                        <span className="text-sm text-gray-500">Interactions</span>
+                        <Typography variant={'b3'}  content="Interactions" className="text-gray-500 mt-1" />
                     </div>
-                    <div className="text-center items-center flex-col">
-                        <span className="text-xl block">{influencer.engagement_rate ?? 0}</span>
-                        <span className="text-sm text-gray-500">ER</span>
+                    <div className="text-center items-center flex flex-col">
+                        <Typography variant={'b1'}  content={influencer.engagement_rate ?? 0} />
+                        <Typography variant={'b3'}  content="ER" className="text-gray-500 mt-1" />
                     </div>
 
                 </div>

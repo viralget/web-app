@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TitleText from '@/components/TitleText';
+import Typography from '@/components/Typography';
 import EmptyState from '@/components/EmptyState';
 import InfluencerCard from '../RecentSearches/InfluencerCard';
 import InfluencerProfile from "@/Pages/InfluencerProfile";
@@ -24,7 +24,7 @@ export default function TopInfluencers({ data }) {
                 isOpen ? <InfluencerProfile influencer={getInfluencer} /> : null
             }
 
-            <TitleText text="Top Influencers" />
+            <Typography variant='h2' content="Top Influencers" />
 
             {data?.length > 0 ?
 

@@ -2,14 +2,15 @@
 import TitleText from '@/components/TitleText';
 import { formatDate } from '@/Utils/helpers';
 import { Link } from '@inertiajs/inertia-react';
-
+import Typography from '@/components/Typography';
 
 export default function RecentSearches({ data, title }) {
 
     return (
-        <div className="mt-8">
+        <div className="mt-16">
             <div className="">
-                <TitleText text={title ?? "Recent Searches"} />
+            <Typography variant='h2' content={title ?? "Recent Searches"}/>
+                {/* <TitleText text={title ?? "Recent Searches"} /> */}
                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {/* Card */}
                     {data.map((card, index) => {

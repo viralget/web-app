@@ -18,12 +18,14 @@ import Fastest_Image_2 from "../../../../assets/images/feature_images/toyin.png"
 import Fastest_Image_3 from "../../../../assets/images/feature_images/toke.png";
 import Fastest_Image_4 from "../../../../assets/images/feature_images/funke.png";
 import Fastest_Image_5 from "../../../../assets/images/feature_images/peter.png"
+import Typography from '@/components/Typography';
+
 export default function FeatureSelections({ data }) {
     return (
-        <div className='mt-4'>
-            <TitleText text="Feature Selection" />
-          
-                <div className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
+        <div className='mt-16'>
+
+            <Typography variant='h2' content='Feature Selection' />
+            <div className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
                         <FeatureCard 
                         images={
                             [

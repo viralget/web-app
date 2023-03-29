@@ -9,18 +9,18 @@ module.exports = {
         './resources/js/**/*.jsx',
     ],
     theme: {
-        // colors: {
-        //     // 'viralget-gradient': 
-        //     'viralget-red': '#F37C38',
-        //     'viralget-grey': '#3E4555'
-        // },
         extend: {
             fontFamily: {
                 sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                lexend: ['Lexend', 'sans-serif'],
+                satoshi: ['Satoshi', 'sans-serif'],
             },
             colors: {
                 'viralget-red': '#F37C38',
                 'viralget-grey': '#3E4555'
+            },
+            fontSize: {
+                'h1': ['24px', { lineHeight: '28' }, {fontFamily: 'Lexend'}],
             },
         }
     },

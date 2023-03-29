@@ -16,13 +16,16 @@ import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, usePage } from '@inertiajs/inertia-react'
+import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns} from '@/Utils/icons';
+
+
 
 const navigation = [
-    { name: 'Find Influencers', href: 'explore', icon: HomeIcon, current: true },
-    { name: 'Profile Influencers', href: 'profiling', icon: UsersIcon, current: false },
-    { name: 'My Campaigns', href: 'coming-soon', icon: ClockIcon, current: false },
-    { name: 'Track Campaigns', href: 'coming-soon', icon: ScaleIcon, current: false },
-    // { name: 'FAQs', href: 'faqs', icon: CreditCardIcon, current: false },
+    { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
+    { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+    { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
+    { name: 'Track Campaigns', href: 'coming-soon', icon: TrackCampaigns  , current: false },
+    { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
 ]
 
 
@@ -95,9 +98,9 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                 href={route(item.href)}
                                                 className={classNames(
                                                     item.href == route().current()
-                                                        ? 'bg-orange-100 text-gray-900'
+                                                        ? 'bg-orange-100 text-[#580877]'
                                                         : 'text-gray-400 hover:text-white hover:bg-gray-600',
-                                                    'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                                                    'group flex items-center px-2 py-2 text-base  rounded-md'
                                                 )}
                                                 aria-current={item.href == route().current() ? 'page' : undefined}
                                             >
@@ -124,20 +127,21 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                         <Logo className="h-10 w-auto" />
 
                     </div>
-                    <nav className="mt-5 flex flex-1 flex-col divide-y divide-gray-800 overflow-y-auto" aria-label="Sidebar">
-                        <div className="space-y-1 px-2">
+                    <nav className="mt-10 flex flex-1 flex-col divide-y divide-gray-800 overflow-y-auto" aria-label="Sidebar">
+                        <div className="space-y-1 px-3">
                             {navigation.map((item) => (
                                 <a
                                     key={item.name}
                                     href={route(item.href)}
                                     className={classNames(
-                                        item.href == route().current() ? 'bg-fuchsia-50 rounded group-text-fuchsia-900' : 'text-gray-500 hover:text-white hover:bg-gray-600',
-                                        'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md'
+                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' : 
+                                        'text-[#748094]  hover:text-[#A5ABB5]',
+                                        'group flex  space-x-3 items-center font-satoshi  px-2 py-2 text-sm leading-6 rounded-lg'
                                     )}
                                     aria-current={item.href == route().current() ? 'page' : undefined}
                                 >
-                                    <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-300 " aria-hidden="true" />
-                                    {item.name}
+                                    <item.icon className=" h-6 w-6 flex-shrink-0 text-gray-300  " aria-hidden="true" />
+                                   <span>{item.name}</span>  
                                 </a>
                             ))}
                         </div>
@@ -200,8 +204,8 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                         </div>
                         {!smallHeader && (
                             <Container className="relative">
-                                <div className="w-3/5  my-16 ">
-                                    <h1 className="font-display pb-5 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-3xl">
+                                <div className="w-[70%]  my-16 ">
+                                    <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
                                         {title}
                                     </h1>
                                     {subtitle && (
