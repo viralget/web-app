@@ -56,6 +56,8 @@ Route::middleware('auth')->group(
 
         Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
+        Route::post('/search/delete', [InfluencerController::class, 'deleteUserSearch'])->name('influencers.search.delete');
+        
         Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
         Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.show');
 

@@ -31,8 +31,8 @@ class InfluencerController extends Controller
 
         $user = request()->user();
 
-        $search_history = Search::where('user_id', $user->id)->limit(3)->get();
-        $saved_search = Search::where('user_id', $user->id)->where('is_saved', true)->limit(3)->get();
+        $search_history = Search::where('user_id', $user->id)->limit(3)->orderBy('id', 'Desc')->get();
+        $saved_search = Search::where('user_id', $user->id)->where('is_saved', true)->limit(3)->orderBy('id', 'Desc')->get();
         $top_categories = Category::where('is_featured', true)->limit(8)->get();
         $top_influencers = $this->influencer->limit(8)->get();
         $categories = Category::get();
@@ -275,6 +275,17 @@ class InfluencerController extends Controller
     }
 
 
+    public function deleteUserSearch(Request $request){
+
+
+            try{
+            $search = Search::find($request->id);
+            $search->delete();
+                return response(['status' => true, 'message' => 'Search deleted successfully']);
+            } catch (\Throwable $th) {
+                return response(['status' => false, 'message' => 'An error occured. Please try again']);
+            }
+    }
 
 
     public   function  getAllCategoriesPage()

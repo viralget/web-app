@@ -19,7 +19,7 @@ export default function TopInfluencers({ data }) {
 
 
     return (
-        <>
+        <div className='mt-60'>
             {
                 isOpen ? <InfluencerProfile influencer={getInfluencer} /> : null
             }
@@ -28,7 +28,7 @@ export default function TopInfluencers({ data }) {
 
             {data?.length > 0 ?
 
-                <div role="list" className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 ">
+                <div role="list" className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 ">
                     {data.map((item, index) => (
                         <InfluencerCard useShadow influencer={item} key={index} showBanner handleProfile={() => handleProfile(item)} />
                     ))}
@@ -36,6 +36,6 @@ export default function TopInfluencers({ data }) {
                 :
                 <EmptyState />
             }
-        </>
+        </div>
     )
 }

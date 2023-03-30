@@ -4,7 +4,7 @@ import Typography from '@/components/Typography';
 
 export default function TopCategories({ data }) {
     return (
-        <div className='mt-16'>
+        <div className='mt-60'>
             <div className="flex  justify-between  w-full">
                    <Typography variant='h2' content="Top Categories" />
                     <div>
@@ -14,7 +14,7 @@ export default function TopCategories({ data }) {
            
             {data?.length > 0 ?
 
-                <div className="mt-5 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                <div className="mt-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                     {data.map((item, index) => (
                         <a href="#" key={index}>
                             <div className="relative">
