@@ -105,7 +105,7 @@ class InfluencerController extends Controller
 
             $result = $result->where(function ($query) use ($category) {
                 foreach ($category as $cat) {
-                    $query->orWhereHas('category', function ($q) use ($cat) {
+                    $query->orWhereHas('categories', function ($q) use ($cat) {
                         $q->where('name', $cat);
                     });
                 }
@@ -113,15 +113,7 @@ class InfluencerController extends Controller
         }
 
 
-        // if (count($request_categories) > 0) {
-        //     $result = $result->where(function ($query) use ($request_categories) {
-        //         foreach ($request_categories as $category) {
-        //             $query->orWhereHas('categories', function ($q) use ($category) {
-        //                 $q->where('name', 'LIKE', "%$category%");
-        //             });
-        //         }
-        //     });
-        // }
+     
 
         if ($keywords) {
 
