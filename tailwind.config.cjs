@@ -11,22 +11,24 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                sans: ['Satoshi', ...defaultTheme.fontFamily.sans],
                 lexend: ['Lexend', 'sans-serif'],
-                satoshi: ['Satoshi', 'sans-serif'],
+                // satoshi: ['Satoshi', 'sans-serif'],
             },
             colors: {
                 'viralget-red': '#F37C38',
                 'viralget-grey': '#3E4555'
             },
             fontSize: {
-                'h1': ['24px', { lineHeight: '28' }, {fontFamily: 'Lexend'}],
+                'h1': ['24px', { lineHeight: '28' }, { fontFamily: 'Lexend' }],
+                base: ['14px', { lineHeight: '1', letterSpacing: '-0.01em' }],
+
             },
         }
     },
     plugins: [
         require("daisyui"),
         // require('@tailwindcss/forms')
-        
+
     ],
 }
