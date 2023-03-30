@@ -174,11 +174,11 @@ class InfluencerController extends Controller
         $list = [];
         $influencer = $id;
         $findProfiled = ProfiledInfluencer::find($id);
-         $user_id = $request->user()->id;
-        if($findProfiled){
+        $user_id = $request->user()->id;
+        if ($findProfiled) {
             $list = InfluencerList::with('influencers')->where('user_id', $user_id)->get();
         }
-       
+
         return Inertia::render(
             'InfluencerProfile/show',
             [
@@ -263,9 +263,11 @@ class InfluencerController extends Controller
             $search->update([
                 'is_saved' => true,
                 'search_filters' => $result,
+                'name' => $request->name,
             ]);
         } else {
             Search::create([
+                'name' => $request->name,
                 'is_saved' => true,
                 'user_id' => $user->id,
                 'keyword' => $request->queryData ??  'null',
@@ -295,6 +297,4 @@ class InfluencerController extends Controller
             ]
         );
     }
-
-
 }
