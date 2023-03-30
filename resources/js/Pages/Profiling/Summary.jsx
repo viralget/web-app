@@ -1,4 +1,4 @@
-import TitleText from '@/components/TitleText';
+import Typography from '@/components/Typography';
 import SummaryCard from './summaryCard';
 
 export default function Summary({ profiles_count = 0, instagram_count = 0, twitter_count = 0 }) {
@@ -25,10 +25,10 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
 
 
     return (
-        <div>
+        <div className='mt-16'>
 
-            <div className="flex  justify-between  w-full">
-                <TitleText text="Last profiled influencers" />
+            <div className="flex mb-4 justify-between  w-full">
+                <Typography variant={'h2'} content="Profiling summary" />
             </div>
             <div className='flex justify-between  space-x-3'>
                 <div className='flex space-x-3'>
@@ -49,10 +49,12 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
                             </svg>
 
 
-                            <span className='text-xs'>Twitter accounts</span>
+                            {/* <span className='text-xs'>Twitter accounts</span> */}
+                            <Typography variant="b2" content='Twitter accounts'  />
+                            
                         </div>
                         <div className='mt-5'>
-                            <span className='font-bold text-lg'>{twitter_count} accounts</span>
+                        <Typography variant="h2" content={twitter_count +' accounts'}  />
                         </div>
                     </div>
 
@@ -65,10 +67,11 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
                                 <path d="M19.6562 13.1875C20.1222 13.1875 20.5 12.8097 20.5 12.3438C20.5 11.8778 20.1222 11.5 19.6562 11.5C19.1903 11.5 18.8125 11.8778 18.8125 12.3438C18.8125 12.8097 19.1903 13.1875 19.6562 13.1875Z" fill="#F37C38" />
                             </svg>
 
-                            <span className='text-xs'>Instagram accounts</span>
+                            {/* <span className='text-xs'>Instagram accounts</span> */}
+                            <Typography variant="b2" content='Instagram accounts'  />
                         </div>
                         <div className='mt-5'>
-                            <span className='font-bold text-lg'>{instagram_count} accounts</span>
+                            <Typography variant="h2" content={instagram_count +' accounts'}  />
                         </div>
                     </div>
 

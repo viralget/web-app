@@ -1,6 +1,6 @@
 import EmptyState from '@/components/EmptyState';
 import InfluencerCard from '../Influencers/RecentSearches/InfluencerCard';
-import TitleText from '@/components/TitleText';
+import Typography from '@/components/Typography';
 import { Link } from '@inertiajs/inertia-react';
 
 
@@ -15,8 +15,8 @@ export default function InfluencerList({ list, showMore }) {
   return (
     <>
 
-      <div className="flex  justify-between  w-full">
-        <TitleText text="Last profiled influencers" />
+      <div className="flex  justify-between mt-16  w-full">
+        <Typography variant="h2" content="Last profiled influencers" />
         {showMore && (
           <div>
             <Link href={route('profiling.list')} className='text-xs font-bold  border   px-4  py-2 border-viralget-red text-viralget-red' >View More</Link>

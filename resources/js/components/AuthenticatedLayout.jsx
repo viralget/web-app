@@ -140,8 +140,8 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                     )}
                                     aria-current={item.href == route().current() ? 'page' : undefined}
                                 >
-                                    <item.icon className=" h-6 w-6 flex-shrink-0 text-gray-300  " aria-hidden="true" />
-                                   <span>{item.name}</span>  
+                                    <item.icon   className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
+                                   <span className={ item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>  
                                 </a>
                             ))}
                         </div>

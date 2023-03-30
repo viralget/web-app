@@ -390,13 +390,13 @@ export const Education = () => (
 
 )
 
-export const FindInfluencer = () => (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const FindInfluencer = (props) => (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="current" xmlns="http://www.w3.org/2000/svg" {...props}>
          <g clip-path="url(#clip0_2591_6760)">
-         <path d="M9 8.25C10.6569 8.25 12 6.90685 12 5.25C12 3.59315 10.6569 2.25 9 2.25C7.34315 2.25 6 3.59315 6 5.25C6 6.90685 7.34315 8.25 9 8.25Z" stroke="#580877" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-         <path d="M4.5 15.75V14.25C4.5 13.4544 4.81607 12.6913 5.37868 12.1287C5.94129 11.5661 6.70435 11.25 7.5 11.25H8.25" stroke="#580877" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-         <path d="M12.375 15C13.4105 15 14.25 14.1605 14.25 13.125C14.25 12.0895 13.4105 11.25 12.375 11.25C11.3395 11.25 10.5 12.0895 10.5 13.125C10.5 14.1605 11.3395 15 12.375 15Z" stroke="#580877" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-         <path d="M13.875 14.625L15.75 16.5" stroke="#580877" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+         <path d="M9 8.25C10.6569 8.25 12 6.90685 12 5.25C12 3.59315 10.6569 2.25 9 2.25C7.34315 2.25 6 3.59315 6 5.25C6 6.90685 7.34315 8.25 9 8.25Z" stroke="current" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+         <path d="M4.5 15.75V14.25C4.5 13.4544 4.81607 12.6913 5.37868 12.1287C5.94129 11.5661 6.70435 11.25 7.5 11.25H8.25" stroke="current" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+         <path d="M12.375 15C13.4105 15 14.25 14.1605 14.25 13.125C14.25 12.0895 13.4105 11.25 12.375 11.25C11.3395 11.25 10.5 12.0895 10.5 13.125C10.5 14.1605 11.3395 15 12.375 15Z" stroke="current" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+         <path d="M13.875 14.625L15.75 16.5" stroke="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
          </g>
          <defs>
          <clipPath id="clip0_2591_6760">
@@ -407,13 +407,13 @@ export const FindInfluencer = () => (
 
 )
 
-    export const ProfiledInfluencer = () => (
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    export const ProfiledInfluencer = (props) => (
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
                     <g clip-path="url(#clip0_2591_6771)">
-                    <path d="M6.75 8.25C8.40685 8.25 9.75 6.90685 9.75 5.25C9.75 3.59315 8.40685 2.25 6.75 2.25C5.09315 2.25 3.75 3.59315 3.75 5.25C3.75 6.90685 5.09315 8.25 6.75 8.25Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2.25 15.75V14.25C2.25 13.4544 2.56607 12.6913 3.12868 12.1287C3.69129 11.5661 4.45435 11.25 5.25 11.25H8.25C9.04565 11.25 9.80871 11.5661 10.3713 12.1287C10.9339 12.6913 11.25 13.4544 11.25 14.25V15.75" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 2.34375C12.6453 2.50898 13.2173 2.88428 13.6257 3.41048C14.0342 3.93669 14.2559 4.58387 14.2559 5.25C14.2559 5.91613 14.0342 6.56331 13.6257 7.08952C13.2173 7.61572 12.6453 7.99102 12 8.15625" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M15.75 15.7469V14.2469C15.7462 13.5847 15.5234 12.9425 15.1165 12.4202C14.7095 11.8979 14.1411 11.5249 13.5 11.3594" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.75 8.25C8.40685 8.25 9.75 6.90685 9.75 5.25C9.75 3.59315 8.40685 2.25 6.75 2.25C5.09315 2.25 3.75 3.59315 3.75 5.25C3.75 6.90685 5.09315 8.25 6.75 8.25Z"  stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.25 15.75V14.25C2.25 13.4544 2.56607 12.6913 3.12868 12.1287C3.69129 11.5661 4.45435 11.25 5.25 11.25H8.25C9.04565 11.25 9.80871 11.5661 10.3713 12.1287C10.9339 12.6913 11.25 13.4544 11.25 14.25V15.75"  stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2.34375C12.6453 2.50898 13.2173 2.88428 13.6257 3.41048C14.0342 3.93669 14.2559 4.58387 14.2559 5.25C14.2559 5.91613 14.0342 6.56331 13.6257 7.08952C13.2173 7.61572 12.6453 7.99102 12 8.15625"  stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.75 15.7469V14.2469C15.7462 13.5847 15.5234 12.9425 15.1165 12.4202C14.7095 11.8979 14.1411 11.5249 13.5 11.3594"  stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </g>
                     <defs>
                     <clipPath id="clip0_2591_6771">
@@ -424,10 +424,10 @@ export const FindInfluencer = () => (
    );
 
 
-    export const MyCampaign = () => (
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    export const MyCampaign = (props) => (
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
                     <g clip-path="url(#clip0_2591_6781)">
-                    <path d="M3.75 3H6.75L9 5.25H14.25C14.6478 5.25 15.0294 5.40804 15.3107 5.68934C15.592 5.97064 15.75 6.35218 15.75 6.75V12.75C15.75 13.1478 15.592 13.5294 15.3107 13.8107C15.0294 14.092 14.6478 14.25 14.25 14.25H3.75C3.35218 14.25 2.97064 14.092 2.68934 13.8107C2.40804 13.5294 2.25 13.1478 2.25 12.75V4.5C2.25 4.10218 2.40804 3.72064 2.68934 3.43934C2.97064 3.15804 3.35218 3 3.75 3" stroke="#A5ABB5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3.75 3H6.75L9 5.25H14.25C14.6478 5.25 15.0294 5.40804 15.3107 5.68934C15.592 5.97064 15.75 6.35218 15.75 6.75V12.75C15.75 13.1478 15.592 13.5294 15.3107 13.8107C15.0294 14.092 14.6478 14.25 14.25 14.25H3.75C3.35218 14.25 2.97064 14.092 2.68934 13.8107C2.40804 13.5294 2.25 13.1478 2.25 12.75V4.5C2.25 4.10218 2.40804 3.72064 2.68934 3.43934C2.97064 3.15804 3.35218 3 3.75 3"  stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </g>
                     <defs>
                     <clipPath id="clip0_2591_6781">
@@ -438,15 +438,15 @@ export const FindInfluencer = () => (
     );
 
 
-    export const HelpIcon = () => (
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    export const HelpIcon = (props) => (
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
                 <g clip-path="url(#clip0_2591_6794)">
-                <path d="M9 15.75C12.7279 15.75 15.75 12.7279 15.75 9C15.75 5.27208 12.7279 2.25 9 2.25C5.27208 2.25 2.25 5.27208 2.25 9C2.25 12.7279 5.27208 15.75 9 15.75Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 11.8125C10.5533 11.8125 11.8125 10.5533 11.8125 9C11.8125 7.4467 10.5533 6.1875 9 6.1875C7.4467 6.1875 6.1875 7.4467 6.1875 9C6.1875 10.5533 7.4467 11.8125 9 11.8125Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7.01094 7.01094L4.22656 4.22656" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10.9902 7.01094L13.7746 4.22656" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10.9902 10.9922L13.7746 13.7766" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7.01094 10.9922L4.22656 13.7766" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 15.75C12.7279 15.75 15.75 12.7279 15.75 9C15.75 5.27208 12.7279 2.25 9 2.25C5.27208 2.25 2.25 5.27208 2.25 9C2.25 12.7279 5.27208 15.75 9 15.75Z"  stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 11.8125C10.5533 11.8125 11.8125 10.5533 11.8125 9C11.8125 7.4467 10.5533 6.1875 9 6.1875C7.4467 6.1875 6.1875 7.4467 6.1875 9C6.1875 10.5533 7.4467 11.8125 9 11.8125Z"  stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7.01094 7.01094L4.22656 4.22656" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10.9902 7.01094L13.7746 4.22656" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10.9902 10.9922L13.7746 13.7766" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7.01094 10.9922L4.22656 13.7766" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
                 <defs>
                 <clipPath id="clip0_2591_6794">
@@ -457,10 +457,10 @@ export const FindInfluencer = () => (
 
     );
 
-    export const TrackCampaigns = () => (
+    export const TrackCampaigns = (props) => (
         <svg  width="18" height="18" xmlns="http://www.w3.org/2000/svg" fill="none" 
         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" 
-            >
+          {...props}  >
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"></path>
         </svg>
     )

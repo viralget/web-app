@@ -1,6 +1,4 @@
-
-
-
+import Typography from "@/components/Typography";
 export default function ListBox({ item, handleAddInfluencer }) {
 
 
@@ -120,8 +118,10 @@ export default function ListBox({ item, handleAddInfluencer }) {
 
             </div>
             <div className="flex flex-col  py-2">
-                <span className="font-bold ">{item.name}</span>
-                <span>{item.influencers.length} influencers</span>
+                <Typography variant="h4"  content={item.name}  />
+                <Typography variant="b3"  content={item.influencers.length + ' influencers'}  />
+                {/* <span className="font-bold ">{item.name}</span> */}
+                {/* <span>{item.influencers.length} influencers</span> */}
             </div>
 
         </div>
