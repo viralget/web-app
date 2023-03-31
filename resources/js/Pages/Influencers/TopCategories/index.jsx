@@ -31,7 +31,7 @@ export default function TopCategories({ data }) {
                                         className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-50"
                                     />
                                  
-                                    <h3 className=" relative text-lg font-lexend font-bold text-white capitalize ">{item.name}</h3>
+                                    <h3 className=" relative text-t-xs font-lexend font-bold text-white capitalize ">{item.name}</h3>
                                 </div>
                             </div>
 

@@ -31,7 +31,7 @@ export default function index({ saved_search, search_history, top_categories, to
 
                     <div>
                         <div className="">
-                            {/* {searchActive ?
+                            {searchActive ?
                                 <>
                                     {loading ? <TableSkeleton /> : <List data={list} />}
                                 </>
@@ -44,10 +44,10 @@ export default function index({ saved_search, search_history, top_categories, to
                                         <RecentSearches data={search_history} />
                                     )}
                                     <Feature />
-                                    <TopCategories data={top_categories} /> */}
-                                    <TopInfluencers data={top_influencers} />
-                                {/* </>
-                            } */}
+                                    <TopCategories data={top_categories} /> 
+                                    <TopInfluencers data={top_influencers} /> 
+                                </>
+                            }
                         </div>
                     </div>
                 </Container>
