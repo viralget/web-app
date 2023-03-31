@@ -17,17 +17,21 @@ module.exports = {
             colors: {
                 'viralget-red': '#F37C38',
                 'viralget-grey': '#3E4555',
-                'viralget-gray-200': '#F5F5F5'
+                'viralget-gray-200': '#F5F5F5',
+                'viralget-gray-400': '#748094'
             },
             fontSize: {
                 'h1': ['24px', { lineHeight: '28' }, { fontFamily: 'Lexend' }],
                 base: ['14px', { lineHeight: '1', letterSpacing: '-0.01em' }],
+                't-normal': [ '14px', { lineHeight : '18px'}],
+                't-xs': [ '18px', { lineHeight : '22px'}],
 
             },
             spacing: {
-                '17': '17px',
-                '20' : '20px',
-                '60' : '60px'
+                'space-17': '17px',
+                'space-20' : '20px',
+                'space-60' : '60px',
+                'space-131' : '131px'
             }
         }
     },

@@ -22,10 +22,10 @@ import Typography from '@/components/Typography';
 
 export default function FeatureSelections({ data }) {
     return (
-        <div className='mt-60'>
+        <div className='mt-space-60'>
 
             <Typography variant='h2' content='Feature Selection' />
-            <div className="mt-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
+            <div className="mt-space-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
                         <FeatureCard 
                         images={
                             [

@@ -30,11 +30,11 @@ export default function RecentSearches({ data, title, isSaved }) {
 
 
     return (
-        <div className="mt-60">
+        <div className="mt-space-60">
             <div className="">
             <Typography variant='h2' content={title ?? "Recent Searches"}/>
 
-                <div className="mt-20 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-space-20 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {/* Card */}
                     {data.map((card, index) => {
 
