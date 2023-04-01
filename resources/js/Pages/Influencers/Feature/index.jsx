@@ -19,6 +19,7 @@ import Fastest_Image_3 from "../../../../assets/images/feature_images/toke.png";
 import Fastest_Image_4 from "../../../../assets/images/feature_images/funke.png";
 import Fastest_Image_5 from "../../../../assets/images/feature_images/peter.png"
 import Typography from '@/components/Typography';
+import { TopologySvg, StarTopologySvg } from '@/Utils/icons'
 
 export default function FeatureSelections({ data }) {
     return (
@@ -27,6 +28,7 @@ export default function FeatureSelections({ data }) {
             <Typography variant='h2' content='Feature Selection' />
             <div className="mt-space-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
                         <FeatureCard 
+                         TopologySvg={<TopologySvg  />}
                         images={
                             [
                                 Most_Image_1, 
@@ -36,11 +38,12 @@ export default function FeatureSelections({ data }) {
                                 Most_Image_5
                             ]
                         }
-                         className="from-[#4568DC]  via-[#4568DC] to-[#B06AB3]" 
+                         className="from-[#37CFFF]  via-[#0D57C6] to-[#0F5ED6]" 
                          colors={['#4568DC', '#B06AB3']}  
                           title="Most followed influencers with good quality of audience"  reach='+1K' 
                           />
                         <FeatureCard  
+                          TopologySvg={<TopologySvg  />}
                          images={
                             [
                                 Top_Image_1, 
@@ -50,11 +53,12 @@ export default function FeatureSelections({ data }) {
                                 Top_Image_5
                             ]
                         }
-                         className="from-[#43CEA2]  via-[#43CEA2] to-[#185A9D]"  
+                         className="from-[#FF7676]   to-[#9C1EBC]"  
                          colors={['#43CEA2', '#185A9D']} 
                          title="Top-performing influencers this week"  reach="+3K" />
                       
                         <FeatureCard  
+                          TopologySvg={<StarTopologySvg  />}
                          images={
                                 [
                                     Fastest_Image_1, 
@@ -64,7 +68,7 @@ export default function FeatureSelections({ data }) {
                                     Fastest_Image_5
                                 ]
                             }
-                         className="from-[#D66768]  via-[#D66768] to-[#EFC655]" 
+                         className="from-[#CB5DFF]   to-[#1D41BE]" 
                          colors={['#D66768', '#EFC655']}
                          title="Fastest growing influencers under 100k followers"  reach="+1.5K"
                          />

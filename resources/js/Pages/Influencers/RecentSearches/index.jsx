@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LikeSvg, DotsSvg, TrashSvg }  from '@/Utils/icons';
-import { formatDate } from '@/Utils/helpers';
+import { formatDate, nFormatter } from '@/Utils/helpers';
 import { Link } from '@inertiajs/inertia-react';
 import Typography from '@/components/Typography';
 import MenuDropDown from '@/components/MenuDropDown';
@@ -44,7 +44,7 @@ export default function RecentSearches({ data, title, isSaved }) {
                             (
                                 <div key={index} className=" rounded-lg bg-white shadow-lg overflow-hidden">
                                     {/* <Link href={route('influencers.search') + '?' + card.query}> */}
-                                        <div className="p-5">
+                                        <div className="p-space-17">
                                             {
                                                 isSaved ?
                                                 (
@@ -82,19 +82,18 @@ export default function RecentSearches({ data, title, isSaved }) {
                                                 null
                                             }
                                          
-                                            <div className="flex items-center">
-                                            <Link href={route('influencers.search') + '?' + card.query} className="w-0 flex-1">
+                                        <div className="flex items-center">
+                                            <Link href={route('influencers.search') + '?' + card.query} className="w-0 flex-1 pt-space-17">
                                                    <dl>
-                                                        <dt className=" text-sm font-medium text-gray-500 space-x-1">
+                                                        <dt className=" text-sm font-medium text-gray-500 space-x-1 ">
                                                             {Object.keys(keywords).length > 0 && Object.keys(keywords).splice(0, 2).map((item, index) => (
-                                                                <span className='capitalize' key={index}>{item}:{keywords[item]}, </span>
+                                                                <span className='capitalize' key={index}>• {item} :{keywords[item]} { (index + 1) != 2 ? ',' : ''}</span>
                                                             ))}
                                                             {
                                                                 Object.keys(keywords).length > 2  ?
                                                                 ( <a href='' className='text-viralget-red'>+ {Object.keys(keywords).length - 2} filters</a>)
                                                                 :
                                                             ''
-
                                                             }
                                                             </dt>
                                                     </dl>
@@ -102,14 +101,14 @@ export default function RecentSearches({ data, title, isSaved }) {
                                             </div>
                                         </div>
                                     {/* </Link> */}
-                                    <div className=" px-5 py-3">
+                                    <div className="px-space-17 pb-space-17">
                                         <div className="text-sm flex justify-between">
-                                            <a href={card.href} className="font-medium bg-viralget-gray-200 rounded-md py-[6px] px-[12px] text-cyan-700 hover:text-cyan-900">
-                                                {card.results_count} results
+                                            <a href={card.href} className="font-medium bg-viralget-gray-200 rounded-md py-[6px] px-[12px] text-[#3E4555] hover:text-cyan-900">
+                                                {nFormatter(card.results_count)} results
                                             </a>
                                             <div className='flex items-center '>
-                                                <span className='text-gray-400 text-center'>
-                                                    {formatDate(card.created_at, true)}
+                                                <span className='text-[#3E4555] text-center font-normal text-t-normal'>
+                                                    {formatDate(card.created_at, false, 'DD MMM')}
                                                 </span>        
                                              </div>
                                            

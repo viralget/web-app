@@ -153,7 +153,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
             <div className="flex flex-1 flex-col lg:pl-64">
                 {showHeader && (
-                    < div className={smallHeader ? "  text-black" : "bg-fuchsia-600  bg-gradient-to-r from-fuchsia-600  via-red-500 to-yellow-600    rounded-br-[5rem]"}>
+                    < div className={smallHeader ? "  text-black" : "bg-[#01C5FF] bg-gradient-to-r from-[#01C5FF]  via-[#00AEFF] to-[#0094FE]    rounded-br-[5rem]"}>
                         <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
                             <button
                                 type="button"

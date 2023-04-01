@@ -1,9 +1,15 @@
 import Typography from '@/components/Typography'
-export default function FeatureCard({title, reach, className, images}){
+export default function FeatureCard({title, reach, className, images, TopologySvg}){
 
     return (
              <div className={"w-full p-5 relative rounded-md bg-gradient-to-r  " + className}>
-                    <div  className=" w-full  text-white">
+
+
+                    <div className='absolute top-0 -right-10'>
+                        { TopologySvg}
+                    </div>
+
+                    <div  className="w-full  text-white">
                        <Typography variant='h3' content={title} />
                     </div>
 
