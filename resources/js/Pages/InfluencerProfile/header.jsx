@@ -5,6 +5,7 @@ import ExportIcon from "../../../assets/images/ExportIcon.svg";
 import { PlusIcon } from "@/Utils/icons";
 import { post, get }  from "@/Utils/api";
 import toast from '@/Components/Toast';
+import { nFormatter } from '@/Utils/helpers';
 
 function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
@@ -70,9 +71,8 @@ useEffect(() => {
       return (
             <>
                   <div className={classNames(isMini && 'bg-[#0077F2]',  " w-full rounded-br-3xl mb-[3rem] h-40")}>
-
                         <div className="p-5 absolute top-[3rem] w-full">
-                              <div className="bg-white shadow-md flex  items-center  rounded-md p-3  w-full space-x-3 ">
+                              <div className="bg-white shadow-header-card flex  items-center  rounded-md p-3  w-full space-x-3 ">
 
                                     <div className=" mb-14 ">
                                           <div className={classNames(isMini ? "h-[5rem] w-[5rem]" : "h-[5rem] w-[5rem]", "bg-gray-500 rounded-full overflow-hidden ")}>
@@ -179,21 +179,21 @@ useEffect(() => {
 
                                           <div className="flex mt-3 w-full">
                                                 <div className="flex md:flex-row flex-col mr-3">
-                                                      <span className="font-bold mr-1">{influencer?.followers_count} </span>
+                                                      <span className="font-bold mr-1">{ nFormatter(influencer?.followers_count)} </span>
                                                       <span className="text-viralget-grey"> followers </span>
                                                 </div>
                                                 <div className="flex mr-3 md:flex-row flex-col">
-                                                      <span className="font-bold mr-1">2,311 </span>
+                                                      <span className="font-bold mr-1">{nFormatter(influencer?.tweet_count)}</span>
                                                       <span className="text-viralget-grey">  tweets </span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col">
-                                                      <span className="font-bold mr-1">{influencer?.following_count} </span>
+                                                      <span className="font-bold mr-1">{nFormatter(influencer?.following_count)} </span>
                                                       <span className="text-viralget-grey">  following</span>
                                                 </div>
                                           </div>
 
 
-                                          <div className="flex flex-wrap mt-2">
+                                          <div className="flex flex-wrap mt-2  md:w-space-500">
                                               <span className="text-xs text-viralget-grey mr-2">{influencer.bio}</span>
                                           </div>
                                         
@@ -273,7 +273,7 @@ useEffect(() => {
                                                                   <MenuDropDown 
                                                                      buttonName='Export CSV'
                                                                      buttonIcon={<img src={ExportIcon}  className='w-4 h-4  mt-1'/>}
-                                                                     className='border-viralget-grey border '
+                                                                     className='border-viralget-gray-300 border   shadow-header-card '
                                                                      >
                                                                      <div className='p-3 flex  justify-center items-center'>
                                                                            <span className='font-normal  text-sm'>Coming soon</span>

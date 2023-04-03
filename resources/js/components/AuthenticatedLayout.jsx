@@ -36,7 +36,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
     return (
 
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-white">
             <Transition.Root show={sidebarOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-40 lg:hidden" onClose={setSidebarOpen}>
                     <Transition.Child
@@ -120,9 +120,9 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
             </Transition.Root>
 
             {/* Static sidebar for desktop */}
-            <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
+            <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col ">
                 {/* Sidebar component, swap this element with another sidebar if you like */}
-                <div className="flex flex-grow flex-col overflow-y-auto bg-white pt-5 pb-4">
+                <div className="flex flex-grow flex-col overflow-y-auto  shadow-side-menu  pt-5 pb-4">
                     <div className="flex flex-shrink-0 items-center px-4">
                         <Logo className="h-10 w-auto" />
 
@@ -220,7 +220,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                 )}
 
 
-                {children}
+                {children}   
             </div>
         </div >
     )

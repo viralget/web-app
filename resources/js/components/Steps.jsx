@@ -19,13 +19,13 @@ export default function Staps({steps}) {
              >
         <div   className={classNames(
                 step.status === 'complete' ? 'bg-viralget-red ' : 'bg-[#F5F5F5] ',
-                "relative overflow-hidden lg:flex-1 rounded-lt-md  flex items-center md:w-[6rem]  w-full h-10") }
+                "relative overflow-hidden lg:flex-1 rounded-lt-md  flex items-center md:w-[6rem]   h-10") }
               >
               <div
                 className={classNames(
                   stepIdx === 0 ? 'rounded-t-md border-b-0' : '',
                   stepIdx === steps.length - 1 ? 'rounded-b-md border-t-0' : '',
-                  'overflow-hidden '
+                  'overflow-hidden border border-gray-200 lg:border-0'
                 )}
               >
                 {step.status === 'complete' ? (
@@ -86,6 +86,10 @@ export default function Staps({steps}) {
                       >
                         <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vectorEffect="non-scaling-stroke" />
                       </svg>
+
+                   {/* <svg  className="h-full w-full text-gray-300  " viewBox="0 0 12 82" >
+                    <path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg>
+                    */}
                     </div>
                   </>
                 ) : null}

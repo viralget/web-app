@@ -119,7 +119,7 @@ export default function show({ influencer, list }) {
                               {item.icon}
             
                             </div>
-                            <span className="text-xs capitalize  text-viralget-grey">{item.title}</span>
+                            <span className="text-t-normal capitalize  text-viralget-grey">{item.title}</span>
                         </div>
                         <div className="mt-2">
                         <span className="text-[14px] capitalize  font-Satoshi ">
@@ -173,7 +173,7 @@ export default function show({ influencer, list }) {
             <>
                <div className="relative -mt-40   md:mb-0  mb-[8rem]">
                     <div className="m-5">
-                        <ButtonBack className="text-white"/>
+                        <ButtonBack  fill="white" className="text-white"/>
                     </div>
                     <Header influencer={influencer}  list={list} />
                 </div>

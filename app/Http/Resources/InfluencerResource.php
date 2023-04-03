@@ -23,6 +23,8 @@ class InfluencerResource extends JsonResource
             'engagement_rate' => 0, //$this->engagementRate(), // TODO: engagement_rate and interactions should be db fields, updated daily as CRON jobs to boost performance
             'interactions' => 0, // $this->interactions(),
             'followers_count' => $this->followers_count,
+            'tweet_count' => 0,
+            'following_count' => 0,
             'profile_photo_url' => $this->profile_photo_url,
             'profile_banner_url' => $this->profile_banner_url,
             'profile_url' => $this->profile_url,

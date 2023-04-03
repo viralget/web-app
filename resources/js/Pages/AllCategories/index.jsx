@@ -42,7 +42,7 @@ export default function  AllCategories({categories}){
 
     return(
         <AuthenticatedLayout title="Search through our database of 33.5m+ influencers"  smallHeader={true}>
-        <div className='bg-gray-50 h-screen  mt-3 px-5'>
+        <div className='bg-white h-screen  mt-3 px-5'>
             <ButtonBack />
 
                <div className='flex  pl-0 mt-5 space-x-2 border-b-2 '>
