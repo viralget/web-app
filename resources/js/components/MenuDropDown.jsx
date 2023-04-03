@@ -10,7 +10,7 @@ export default function MenuDropDown({ buttonName, buttonIcon, children, classNa
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className={classNames("inline-flex w-full  justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold ", className)}>
+        <Menu.Button className={classNames("inline-flex w-full bg-white  justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold ", className)}>
           <div className='flex items-center justify-center'>
             {buttonIcon}
           </div>

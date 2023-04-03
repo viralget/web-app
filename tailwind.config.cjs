@@ -11,7 +11,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Satoshi', ...defaultTheme.fontFamily.sans],
+                sans: ['Satoshi Regular', ...defaultTheme.fontFamily.sans],
                 lexend: ['Lexend', 'sans-serif'],
             },
             colors: {
@@ -22,7 +22,7 @@ module.exports = {
                 'viralget-gray-300': '#E8E9F1'
             },
             fontSize: {
-                'h1': ['24px', { lineHeight: '28' }, { fontFamily: 'Lexend' }],
+                'h1': ['24px', { lineHeight: '28' }, { fontFamily: 'font-lexend' }],
                 base: ['14px', { lineHeight: '1', letterSpacing: '-0.01em' }],
                 't-normal': [ '14px', { lineHeight : '18px'}],
                 't-xs': [ '18px', { lineHeight : '22px'}],
@@ -41,12 +41,7 @@ module.exports = {
             boxShadow: {
                 'header-card': '0 4px 16px 0px #CACADB29',
                 'side-menu': '14px  0px 60px 0px #2C30400D',
-              }
-        }
-    },
-    plugins: [
-        require("daisyui"),
-        // require('@tailwindcss/forms')
-
-    ],
+                 },
+    }
+    }
 }

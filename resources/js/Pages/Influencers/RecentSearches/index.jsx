@@ -57,7 +57,7 @@ export default function RecentSearches({ data, title, isSaved }) {
                                                                 <MenuDropDown
                                                                     buttonName=''
                                                                      buttonIcon={<DotsSvg    className='w-4 h-4  mt-1'/>}
-                                                                     className='p-0 py-0 px-0'
+                                                                     className='p-0 py-0 px-0  ring-0'
                                                                      >
                                                                      <div className='p-3 flex flex-col w-40  justify-center items-left  space-y-3'>
                                                                   

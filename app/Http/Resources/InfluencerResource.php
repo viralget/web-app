@@ -30,6 +30,7 @@ class InfluencerResource extends JsonResource
             'profile_url' => $this->profile_url,
             'categories' => $this->categories,
             'location' => $this->location,
+            'is_verified' => $this->is_verified,
             'bio' => $this->bio,
             'gender' => 'Male',
             'age' => 29,
@@ -59,7 +60,7 @@ class InfluencerResource extends JsonResource
                     'increase' => null,
                     'label' => 'Worldwide'
                 ],
-            
+
                 'category_rank' => [
                     'score' => 17,
                     'increase' => null,
@@ -70,7 +71,7 @@ class InfluencerResource extends JsonResource
                     'increase' => null,
                     'label' => '🇳🇬 Nigeria'
                 ],
-           ],
+            ],
             'quality_audience_score' => 0,
             'quality_audience' => 0,
             'total_comments' => 0,

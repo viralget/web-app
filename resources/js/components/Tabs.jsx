@@ -8,7 +8,7 @@ const Tabs = ({ tabs, link, activeTab }) => {
     const urlParams =  url == null ? activeTab: url;
 
     return(
-      <ul className="flex  text-sm font-medium overflow-y-scroll  w-full text-center t border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+      <ul className="flex  text-sm font-medium overflow-y-scroll  w-full text-center  border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
          {
             tabs.map((item) => (
                 <li class="mr-2">
