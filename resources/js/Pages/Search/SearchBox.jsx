@@ -32,7 +32,7 @@ export default function SearchBox(props) {
     const handleSearch = async (e) => {
         e.preventDefault();
         props.onLoading && props.onLoading(true);
-        props.searchActive(true);
+        // props.searchActive(true);
 
         // console.log({ searchParams: searchParams.toString() })
         Inertia.get(route('influencers.search') + '?' + searchParams.toString());

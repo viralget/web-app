@@ -1,15 +1,42 @@
-export default function Avatar({ userName, url, size, className }) {
+import { classNames } from "@/Utils/helpers";
+
+
+export default function Avatar({ user, userName, url, size, className, isEditable, isDark }) {
+    let sizeClass;
+
+    switch (size) {
+        case 'xlarge':
+            sizeClass = 'w-24 h-24'
+            break;
+        case 'large':
+            sizeClass = 'w-12 h-12'
+            break;
+
+        default:
+            sizeClass = 'w-8 h-8'
+            break;
+    }
+
+    const username = userName ?? user?.first_name ?? user?.email;
+    const avatarUrl = url ?? user?.avatar ?? user?.logo_url;
 
     return (
-        url ?
-            <img
-                className={`inline-block rounded-full ${className}`}
-                src={url}
-                alt=""
-            />
-            :
-            <span className={`inline-flex items-center justify-center rounded-full bg-gray-800 ${className} w-8 h-8`} >
-                <span className="text-sm font-medium leading-none text-white">{userName?.charAt(0)}</span>
-            </span >
+        <>
+            <div className={`relative inline-block ${isEditable && 'cursor-pointer'}`}>
+                {avatarUrl ?
+                    <img
+                        className={`inline-block rounded-full ${sizeClass} ${className}`}
+                        src={avatarUrl}
+                        alt=""
+                    />
+                    :
+                    <span className={classNames(`inline-flex items-center justify-center rounded-full`, isDark ? 'bg-secondary' : 'bg-gray-800', className, sizeClass)} >
+                        <span className="text-sm font-medium leading-none text-white">{username?.toUpperCase()?.charAt(0)}</span>
+                    </span >
+                }
+
+            </div>
+
+        </>
     )
 }

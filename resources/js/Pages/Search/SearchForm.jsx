@@ -29,8 +29,8 @@ export default function SearchForm({
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
                 {/* <form action={route('search')} className="sm:mx-auto lg:mx-0"> */}
-                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-3 py-2 rounded-md">
-                    <div className="md:pr-2 md:border-r  border-gray-100">
+                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-5 p-4 rounded-md">
+                    <div className="md:pr-6 md:border-r border-gray-100">
                         {/* <Select options={[
                             { name: 'Any', value: '' },
                             { name: 'Nigeria', value: '' },
@@ -54,7 +54,7 @@ export default function SearchForm({
                             label="Influencer Location"
                         />
                     </div>
-                    <div className="md:pr-2 md:border-r border-gray-100">
+                    <div className="md:pr-6 md:border-r border-gray-100">
                         {/* <Select options={[
                             { name: 'Any', value: '' },
                             { name: 'Nano (1000 - 10,000)', value: 'nano' },
@@ -81,7 +81,7 @@ export default function SearchForm({
                         />
                     </div>
 
-                    <div className="md:pr-2 md:border-r">
+                    <div className="md:pr-6 md:border-r">
                         {/* <Select options={[
                             { name: 'Any', value: '' },
                             { name: 'Nigeria', value: '' },
@@ -105,7 +105,7 @@ export default function SearchForm({
 
                         />
                     </div>
-                    <div className="md:pr-2 md:border-r border-gray-100">
+                    <div className="md:pr-6 md:border-r border-gray-100">
 
 
 
@@ -143,7 +143,7 @@ export default function SearchForm({
                             defaultOptionText="Category"
                         />
                     </div>
-                    <div className="flex-initial w-64 bg-white shadow rounded-md py-1 px-3 ">
+                    {/* <div className="flex-initial w-64 bg-white shadow rounded-md py-1 px-3 ">
                         <MultiDropdown options={[
                             { name: 'Anywhere', },
                             { name: 'In Bio', value: 'bio' },
@@ -167,7 +167,37 @@ export default function SearchForm({
                             placeholder={"Find influencers by keywords or hashtag"}
                             className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
                         />
+                    </div> */}
+
+                    <div className=" flex flex-1 rounded-md shadow bg-white p-1 px-3">
+                        <div className="w-64 border-r border-gray-100 pr-3">
+                            <MultiDropdown options={[
+                                { name: 'Anywhere', },
+                                { name: 'In Bio', value: 'bio' },
+                                { name: 'In Contents', value: 'contents' },
+                            ]}
+                                name="category"
+                                onChange={(e) => handleChange(e, 'Position', 'position')}
+                                className="text-xs"
+                                useBorder={false}
+                                defaultOptionText="Anywhere"
+                            />
+                        </div>
+                        {/* <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                            workcation.com/
+                        </span> */}
+                        <input
+                            id="keywords"
+                            name="keywords"
+                            type="text"
+                            defaultValue={keywords}
+                            onChange={(e) => handleChange(e, 'Keywords', 'keywords')}
+                            placeholder={"Find influencers by keywords or hashtag"}
+                            className="block w-full px-3  flex-grow  text-sm rounded-none rounded-r-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                        // className="block w-full min-w-0 flex-grow rounded-none rounded-r-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
                     </div>
+
                 </div>
 
 

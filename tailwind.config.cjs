@@ -11,7 +11,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Satoshi', ...defaultTheme.fontFamily.sans],
+                sans: ['Satoshi Regular', ...defaultTheme.fontFamily.sans],
                 lexend: ['Lexend', 'sans-serif'],
             },
             colors: {
@@ -21,19 +21,18 @@ module.exports = {
                 'viralget-gray-400': '#748094'
             },
             fontSize: {
-                'h1': ['24px', { lineHeight: '28' }, { fontFamily: 'Lexend' }],
+                'h1': ['24px', { lineHeight: '28' }, { fontFamily: 'font-lexend' }],
                 base: ['14px', { lineHeight: '1', letterSpacing: '-0.01em' }],
-                't-normal': [ '14px', { lineHeight : '18px'}],
-                't-xs': [ '18px', { lineHeight : '22px'}],
-
+                't-normal': ['14px', { lineHeight: '18px' }],
+                't-xs': ['18px', { lineHeight: '22px' }],
             },
             spacing: {
                 'space-16': '16px',
                 'space-17': '17px',
-                'space-20' : '20px',
-                'space-60' : '60px',
-                'space-131' : '131px'
-            }
+                'space-20': '20px',
+                'space-60': '60px',
+                'space-131': '131px'
+            },
         }
     },
     plugins: [

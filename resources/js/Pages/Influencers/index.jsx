@@ -14,11 +14,7 @@ import Feature from './Feature';
 export default function index({ saved_search, search_history, top_categories, top_influencers, categories }) {
     const [list, setList] = useState(false)
     const [searchActive, setSearchActive] = useState(false)
-    // const [result, setSearchActive] = useState(false)
-
     const [loading, setLoading] = useState(false);
-
-
 
     return (
 
@@ -31,23 +27,23 @@ export default function index({ saved_search, search_history, top_categories, to
 
                     <div>
                         <div className="">
-                            {searchActive ?
+                            {/* {searchActive ?
                                 <>
                                     {loading ? <TableSkeleton /> : <List data={list} />}
                                 </>
                                 :
-                                <>
-                                    {saved_search?.length > 0 && (
-                                        <RecentSearches title="Saved Searches" data={saved_search}  isSaved/>
-                                    )}
-                                    {search_history?.length > 0 && (
-                                        <RecentSearches data={search_history} />
-                                    )}
-                                    <Feature />
-                                    <TopCategories data={top_categories} /> 
-                                    <TopInfluencers data={top_influencers} /> 
-                                </>
-                            }
+                                <> */}
+                            {saved_search?.length > 0 && (
+                                <RecentSearches title="Saved Searches" data={saved_search} isSaved />
+                            )}
+                            {search_history?.length > 0 && (
+                                <RecentSearches data={search_history} />
+                            )}
+                            <Feature />
+                            <TopCategories data={top_categories} />
+                            <TopInfluencers data={top_influencers} />
+                            {/* </>
+                            } */}
                         </div>
                     </div>
                 </Container>
