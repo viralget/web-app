@@ -15,8 +15,8 @@ import EmptyState from '@/Components/EmptyState'
 export default function Search({ list, categories }) {
     const [loading, setLoading] = useState(false);
 
-    console.log({ list })
-    console.log("categories:", categories)
+    // console.log("list:", list)
+    // console.log("categories:", categories)
 
     return (
 

@@ -6,12 +6,12 @@ import { inputStyle } from "./Input";
 import { TvIcon } from "@heroicons/react/20/solid";
 
 
-const MultiDropdown = ({ label, name, options, onChange, defaultOptionText }) => {
+const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useSelectedOptions }) => {
     const defaultText = 'Select an option';
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [currentSelectedItem, setCurrentSelectedItem] = useState(defaultOptionText ?? defaultText);
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [selectedOptions, setSelectedOptions] = useState( useSelectedOptions ?? []);
 
     const wrapperRef = useRef(null);
 
@@ -24,7 +24,6 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText }) =>
 
         let _selectedOptions = selectedOptions;
 
-        console.log({ selectedOptions })
         if (_selectedOptions.includes(value)) {
             _selectedOptions.pop(value);
         } else {
