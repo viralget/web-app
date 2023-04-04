@@ -12,12 +12,12 @@ export default function Card({ item }) {
                   {item.icon}
 
                 </div>
-                <span className="text-xs  text-viralget-grey">{item.title}</span>
+                <span className="text-t-normal font-normal  text-viralget-grey">{item.title}</span>
             </div>
         
         
             <div className="mt-3">
-                <span className="font-bold text-xl">{item.score}</span>
+                <span className="font-semibold text-h1  font-lexend ">{item.score}</span>
             </div>
             <div className="flex mt-3">
                
@@ -37,13 +37,13 @@ export default function Card({ item }) {
                     {
                         item.increase ? (
                            
-                            <span className="text-[#28CA42] mr-1">{item.increase}% </span>
+                            <span className="text-[#28CA42] font-medium text-t-normal-x  mr-1">{item.increase}% </span>
                           
                         )
                         : null
                     }
                    
-                    <span className="text-viralget-grey"> {item.increase ? 'vs' : null} {item.label}</span>
+                    <span className="text-viralget-grey  font-normal text-t-normal-x"> {item.increase ? 'vs' : null} {item.label}</span>
                 </div>
             </div>
 

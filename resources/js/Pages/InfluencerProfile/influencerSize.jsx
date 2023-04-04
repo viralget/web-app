@@ -29,13 +29,13 @@ export default function influencerSize({influencer}){
 
    
     return (
-        <div className=" mx-5  border  pb-10 rounded-md ">
-            <div className="pl-7 p-[20px]  pt-[24px]">
-                <span className="font-bold  text-[18px] font-lexend">
+        <div className="border md:w-space-510 md:h-space-190 pb-10 rounded-md ">
+            <div className="pl-7 p-space-20  pt-space-24">
+                <span className="font-bold  text-t-xs font-lexend">
                 Influencer size
                 </span>
             </div>
-            <div className="mt-[20px]">
+            <div className="mt-space-20">
             <Steps  steps={getLevels()} />
             </div>
               

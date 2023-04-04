@@ -104,24 +104,24 @@ export default function show({ influencer, list }) {
         if (urlParams === 'overview') {
             return (
                 <>
-                    <div className="flex   md:flex-row   flex-col space-x-1 mt-5 ">
+                    <div className="flex   md:flex-row   flex-col md:space-x-3 mt-5 ">
 
-                        <div>
+                        <div className="mx-5  md:mr-0 ">
                             <InfluencerSize influencer={influencer} />
                         </div>
-                        <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0   gap-y-4">
+                        <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0   ">
                             {
                                 influencerInformation.map((item) => (
-                                    <div className="border rounded-md  p-space-14 h-[5.5rem] items-left">
+                                    <div className="border rounded-md  p-space-8 h-auto md:w-space-150 items-left justify-center">
                                         <div className="flex  items-center">
                                             <div className="mr-1">
                                                 {item.icon}
 
                                             </div>
-                                            <span className="text-t-normal font-lexend font-medium capitalize   text-viralget-grey">{item.title}</span>
+                                            <span className="text-t-normal font-lexend font-normal capitalize   text-viralget-grey">{item.title}</span>
                                         </div>
                                         <div className="mt-2">
-                                            <span className="text-t-normal capitalize  font-Satoshi ">
+                                            <span className="text-t-normal capitalize  font-medium font-satoshi   text-viralget-grey ">
                                                 {item.label}
                                             </span>
                                         </div>
@@ -136,9 +136,9 @@ export default function show({ influencer, list }) {
 
 
 
-                    <div className="flex md:flex-row   flex-col p-4  md:space-x-5  md:pl-5 mt-5">
+                    <div className="flex md:flex-row   flex-col p-4  md:space-x-3  md:pl-5 mt-5">
 
-                        <div className="w-full">
+                        <div className="lg:w-space-510 lg:h-space-282">
                             <AudienceCard influencer={influencer} />
                         </div>
 

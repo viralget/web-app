@@ -70,7 +70,7 @@ useEffect(() => {
 
       return (
             <>
-                  <div className={classNames(isMini && 'bg-[#0077F2]',  " w-full rounded-br-3xl mb-[3rem] h-40")}>
+                  <div className={classNames(isMini && 'bg-[#0077F2]',  " w-full rounded-br-3xl mb-[5rem] h-40")}>
                         <div className="p-5 absolute top-[3rem] w-full">
                               <div className="bg-white shadow-header-card flex  items-center  rounded-md p-3  w-full space-x-3 ">
 
@@ -83,11 +83,12 @@ useEffect(() => {
                                     <div className="w-full  md:mt-6">
                                           <div className="flex md:flex-row  flex-col justify-between">
                                                 <div className="flex flex-col">
-                                                      <span className="text-xl  font-bold">{influencer?.full_name}</span>
-                                                      <span className="text-xs text-viralget-grey ">@{influencer?.username}</span>
+                                                      <span className="text-h1 font-lexend  font-semibold">{influencer?.full_name}</span>
+                                                      <span className="text-t-xsx text-viralget-gray-400 font-lexend ">@{influencer?.username}</span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col space-y-2  md:space-y-0 md:justify-between md:mt-0 mt-2 w-auto  md:space-x-2 ">
-                                                      <div className="flex  md:space-x-2  ">
+                                                     
+                                                      <div className="flex  md:space-x-2  border-r border-viralget-gray-300 pr-2  h-space-16 ">
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <g clip-path="url(#clip0_958_45476)">
                                                                         <path d="M8 8.5C9.10457 8.5 10 7.60457 10 6.5C10 5.39543 9.10457 4.5 8 4.5C6.89543 4.5 6 5.39543 6 6.5C6 7.60457 6.89543 8.5 8 8.5Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -101,10 +102,10 @@ useEffect(() => {
                                                             </svg>
 
 
-                                                            <span className="text-xs text-viralget-grey">{influencer?.location}</span>
+                                                            <span className="text-t-normal font-satoshi font-medium  text-viralget-grey">{influencer?.location}</span>
 
                                                       </div>
-                                                      <div className="flex md:space-x-2">
+                                                      <div className="flex md:space-x-2 border-r border-viralget-gray-300 pr-2  h-space-16 ">
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <g clip-path="url(#clip0_958_45465)">
                                                                         <path d="M14.5 13.5L11 6.5L7.5 13.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -122,14 +123,14 @@ useEffect(() => {
                                                             </svg>
 
 
-                                                            <span className="text-xs text-viralget-grey">{influencer.language}</span>
+                                                            <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.language}</span>
 
                                                       </div>
                                                       {
                                                     !isMini && (
                                                        <>
 
-                                                        <div className="flex md:space-x-2">
+                                                        <div className="flex md:space-x-2 border-r border-viralget-gray-300 pr-2  h-space-16 ">
                                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <g clip-path="url(#clip0_958_42571)">
                                                                   <path d="M6.50391 8.77484C7.08273 9.97016 8.04929 10.9342 9.24609 11.51C9.33437 11.5518 9.43202 11.5699 9.52942 11.5625C9.62681 11.5551 9.72061 11.5225 9.80156 11.4678L11.5594 10.2936C11.637 10.2409 11.7268 10.2088 11.8202 10.2002C11.9137 10.1916 12.0078 10.2068 12.0937 10.2444L15.3844 11.6577C15.4968 11.7045 15.5908 11.7869 15.6518 11.8924C15.7128 11.9978 15.7374 12.1204 15.7219 12.2412C15.6176 13.0553 15.2202 13.8034 14.6042 14.3457C13.9882 14.8879 13.1957 15.1872 12.375 15.1873C9.83887 15.1873 7.40661 14.1799 5.61329 12.3865C3.81997 10.5932 2.8125 8.16097 2.8125 5.62484C2.81268 4.80415 3.1119 4.01165 3.65416 3.39562C4.19642 2.7796 4.94456 2.38226 5.75859 2.27796C5.87942 2.26244 6.00199 2.28707 6.10745 2.34806C6.2129 2.40904 6.29538 2.503 6.34219 2.61546L7.75547 5.91312C7.79222 5.99774 7.8076 6.0901 7.80024 6.18206C7.79288 6.27402 7.76302 6.36276 7.71328 6.44046L6.53906 8.2264C6.48679 8.30718 6.4561 8.40002 6.44995 8.49604C6.44379 8.59206 6.46237 8.68805 6.50391 8.77484V8.77484Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -143,7 +144,7 @@ useEffect(() => {
 
 
 
-                                                            <span className="text-xs text-viralget-grey">{influencer.phone_number}</span>
+                                                            <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.phone_number}</span>
 
                                                       </div>
 
@@ -165,7 +166,7 @@ useEffect(() => {
 
 
 
-                                                            <span className="text-xs text-viralget-grey">{influencer.email}</span>
+                                                            <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.email}</span>
                                                          </div>
                                                       </>
       
@@ -176,25 +177,25 @@ useEffect(() => {
 
                                           </div>
 
-
-                                          <div className="flex mt-3 w-full">
+ 
+                                          <div className="flex mt-space-16  w-full">
                                                 <div className="flex md:flex-row flex-col mr-3">
-                                                      <span className="font-bold mr-1">{ nFormatter(influencer?.followers_count)} </span>
-                                                      <span className="text-viralget-grey"> followers </span>
+                                                      <span className="font-bold text-t-normal mr-1">{ nFormatter(influencer?.followers_count)} </span>
+                                                      <span className="text-viralget-grey font-normal text-t-xsx  "> followers </span>
                                                 </div>
                                                 <div className="flex mr-3 md:flex-row flex-col">
-                                                      <span className="font-bold mr-1">{nFormatter(influencer?.tweet_count)}</span>
-                                                      <span className="text-viralget-grey">  tweets </span>
+                                                      <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.tweet_count)}</span>
+                                                      <span className="text-viralget-grey font-normal text-t-xsx">  tweets </span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col">
-                                                      <span className="font-bold mr-1">{nFormatter(influencer?.following_count)} </span>
-                                                      <span className="text-viralget-grey">  following</span>
+                                                      <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.following_count)} </span>
+                                                      <span className="text-viralget-grey font-normal text-t-xsx">  following</span>
                                                 </div>
                                           </div>
 
 
                                           <div className="flex flex-wrap mt-2  md:w-space-500">
-                                              <span className="text-xs text-viralget-grey mr-2">{influencer.bio}</span>
+                                              <span className="text-xsx-header text-viralget-gray-400  mr-2">{influencer.bio}</span>
                                           </div>
                                         
 

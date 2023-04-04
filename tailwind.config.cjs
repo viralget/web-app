@@ -22,26 +22,37 @@ module.exports = {
                 'viralget-gray-300': '#E8E9F1'
             },
             fontSize: {
-                'h1': ['24px', { lineHeight: '28' }, { fontFamily: 'font-lexend' }],
+                'h1': ['24px', { lineHeight: '28px' }, { fontFamily: 'font-lexend' }],
                 base: ['14px', { lineHeight: '1', letterSpacing: '-0.01em' }],
+                't-normal-x': [ '12px', { lineHeight : '16px'}],
                 't-normal': [ '14px', { lineHeight : '18px'}],
+                't-xsx-header': [ '14px', { lineHeight : '20px'}],
                 't-xs': [ '18px', { lineHeight : '22px'}],
                 't-xsx': [ '16px', { lineHeight : '20px'}],
+                
 
             },
             spacing: {
+                'space-8': '8px',
+                'space-14': '14px',
                 'space-16': '16px',
-                'space-14': '16px',
                 'space-17': '17px',
                 'space-20' : '20px',
+                'space-24' : '24px',
                 'space-60' : '60px',
+                'space-80' : '80px',
                 'space-131' : '131px',
-                'space-500' : '500px'
+                'space-150' : '150px',
+                'space-190' : '190px',
+                'space-282' : '282px',
+                'space-500' : '500px',
+                'space-510' : '510px',
+
             },
             boxShadow: {
                 'header-card': '0 4px 16px 0px #CACADB29',
                 'side-menu': '14px  0px 60px 0px #2C30400D',
-                 },
+            },
     }
     }
 }

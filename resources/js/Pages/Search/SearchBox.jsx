@@ -24,7 +24,6 @@ export default function SearchBox(props) {
         searchData.forEach(q => {
             urlParams.set(q.query, q.value);
         });
-        // urlParams.set(query, value);
         urlParams.set('page', 1); //force start from page 1
         setSearchParams(urlParams);
     }
@@ -32,9 +31,6 @@ export default function SearchBox(props) {
     const handleSearch = async (e) => {
         e.preventDefault();
         props.onLoading && props.onLoading(true);
-        // props.searchActive(true);
-
-        // console.log({ searchParams: searchParams.toString() })
         Inertia.get(route('influencers.search') + '?' + searchParams.toString());
     }
 

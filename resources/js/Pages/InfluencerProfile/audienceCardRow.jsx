@@ -67,10 +67,10 @@ export default function AudienceCard({ influencer }){
 
 
     return(
-        <div className="  border  w-full h-full rounded-md px-[2rem]  py-3">
+        <div className="  border  w-full h-full rounded-md p-space-20">
                  
                  
-         <span className="font-bold font-Satoshi my-5  text-viralget-grey">Quality audience score</span>
+         <span className="font-bold font-lexend text-t-xs my-5  text-viralget-grey">Quality audience score</span>
          
            <div className="flex  md:flex-row flex-col justify-between w-full space-x-3 " >
                   <div className="mt-2  relative">
@@ -117,13 +117,13 @@ export default function AudienceCard({ influencer }){
 
                   <div className="w-auto p-4">
                     {
-                        list.map((item) => (
-                         <div  className="flex mt-5 border-b pb-2 w-[10rem] ">
+                        list.map((item, index) => (
+                         <div  className={`flex mt-5  pb-2 w-[10rem]  ${ list.length != (index + 1) ? 'border-b' : ''}`}>
                               <div className="mr-2">
                                  {item.icon}
                                </div>
                               <div className="flex flex-col">
-                                  <span className="text-sm  text-viralget-grey"> {item.name}</span>
+                                  <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> {item.name}</span>
                                   <span className="font-bold">{item.value}</span>
                               </div>
                          </div>
