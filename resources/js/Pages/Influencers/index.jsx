@@ -28,14 +28,14 @@ export default function index({ saved_search, search_history, top_categories, to
                     <div>
                         <div className="">
                           
-                            {/* {saved_search?.length > 0 && (
+                            {saved_search?.length > 0 && (
                                 <RecentSearches title="Saved Searches" data={saved_search} isSaved />
                             )}
                             {search_history?.length > 0 && (
                                 <RecentSearches data={search_history} />
                             )}
                             <Feature />
-                            <TopCategories data={top_categories} /> */}
+                            <TopCategories data={top_categories} />
                             <TopInfluencers data={top_influencers} />
                            
                         </div>
