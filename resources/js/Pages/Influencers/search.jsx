@@ -15,9 +15,7 @@ import EmptyState from '@/Components/EmptyState'
 export default function Search({ list, categories }) {
     const [loading, setLoading] = useState(false);
 
-    // console.log("list:", list)
-    // console.log("categories:", categories)
-
+  
     return (
 
         <AuthenticatedLayout title="Search through our database of 33.5m+ influencers">

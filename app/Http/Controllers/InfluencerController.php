@@ -297,8 +297,7 @@ class InfluencerController extends Controller
     }
 
 
-    public   function  getAllCategoriesPage()
-    {
+    public   function  getAllCategoriesPage() {
 
         $categories = Category::get();
 
@@ -306,6 +305,18 @@ class InfluencerController extends Controller
             'AllCategories/index',
             [
                 'categories' => $categories
+            ]
+        );
+    }
+    
+    public function savedSearches(){
+
+        $user = request()->user();
+        $saved_search = Search::where('user_id', $user->id)->where('is_saved', true)->orderBy('id', 'Desc')->get();
+        return Inertia::render(
+            'Influencers/RecentSearches/savedSearches',
+            [
+                'saved_search' => $saved_search
             ]
         );
     }

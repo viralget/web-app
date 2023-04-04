@@ -74,8 +74,8 @@ export default function Profile({ influencer }) {
             <div className="relative md:mb-[5rem]  mb-[10rem]">
                 <Header isMini influencer={influencer} />
             </div>
-            <div  >
-                <InfluencerSize influencer={influencer} />
+            <div   className='px-5'>
+                <InfluencerSize influencer={influencer} isMini/>
             </div>
 
 

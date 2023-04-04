@@ -10,9 +10,6 @@ export default function  AllCategories({categories}){
     const [getCategories, setCategories] = useState([]);
     useEffect(() => {
         handleTopList();
-        // handleCategeories();
-        const cate = categories.filter((item) => { return  item.name.charAt(0) === 'F'})
-        console.log("cate:", cate)
     },[])
 
 
@@ -41,7 +38,7 @@ export default function  AllCategories({categories}){
     }
 
     return(
-        <AuthenticatedLayout title="Search through our database of 33.5m+ influencers"  smallHeader={true}>
+        <AuthenticatedLayout   smallHeader={true}>
         <div className='bg-white h-screen  mt-3 px-5'>
             <ButtonBack />
 

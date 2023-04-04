@@ -59,6 +59,7 @@ Route::middleware('auth')->group(
         Route::post('/search/delete', [InfluencerController::class, 'deleteUserSearch'])->name('influencers.search.delete');
         
         Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
+        Route::get('/saved-searches', [InfluencerController::class, 'savedSearches'])->name('savedsearches.page');
         Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.show');
 
         // profiling.

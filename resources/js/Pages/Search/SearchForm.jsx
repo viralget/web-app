@@ -43,25 +43,25 @@ export default function SearchForm({
         let  searchData = [];
 
         if(influencer_location){
-             searchData.push({ query: 'influencer_location', name: 'Influencer Location', value: influencer_location.split(',')});
+             searchData.push({ query: 'influencer_location', name: 'Influencer Location', value: influencer_location?.split(',')});
         }
        if(size){
             searchData.push({ query: 'size', name: 'Influencer Size', value: size.split(',')});      
         }
         if(audience_location){
-            searchData.push({ query: 'audience_location', name: 'Audience Location', value: audience_location.split(',')});
+            searchData.push({ query: 'audience_location', name: 'Audience Location', value: audience_location?.split(',')});
         }
 
        if(influencer_qas){
-            searchData.push({ query: 'influencer_qas', name: 'Influencer Qas', value: influencer_qas.split(',')});
+            searchData.push({ query: 'influencer_qas', name: 'Influencer Qas', value: influencer_qas?.split(',')});
         }
 
         if(selectedCategory){
-            searchData.push({ query: 'category', name: 'Category', value: selectedCategory.split(',')});
+            searchData.push({ query: 'category', name: 'Category', value: selectedCategory?.split(',')});
         }
 
         if(position){
-            searchData.push({ query: 'position', name: 'Position', value: position.split(',')});
+            searchData.push({ query: 'position', name: 'Position', value: position?.split(',')});
         }
 
         if(Selectedkeywords){
@@ -92,7 +92,7 @@ export default function SearchForm({
                             onChange={(e) => handleChange(e, 'Influencer Location', 'influencer_location')}
                             label="Influencer Location"
                             defaultOptionText={influencer_location}
-                            useSelectedOptions={influencer_location.split(',')}
+                            useSelectedOptions={influencer_location?.split(',')}
                         />
                     </div>
                     <div className="md:pr-6 md:border-r border-gray-100">
@@ -107,7 +107,7 @@ export default function SearchForm({
                             onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
                             label="Influencer Size"
                             defaultOptionText={size}
-                            useSelectedOptions={size.split(',')}
+                            useSelectedOptions={size?.split(',')}
 
                         />
                     </div>
@@ -124,7 +124,7 @@ export default function SearchForm({
                             onChange={(e) => handleChange(e, 'Audience Location', 'audience_location')}
                             label="Audience Location"
                             defaultOptionText={audience_location}
-                            useSelectedOptions={audience_location.split(',')}
+                            useSelectedOptions={audience_location?.split(',')}
 
                         />
                     </div>
@@ -143,7 +143,7 @@ export default function SearchForm({
                             onChange={(e) => handleChange(e, 'Influencer QAS', 'influencer_qas')}
                             label="Influencer QAS"
                             defaultOptionText={influencer_qas}
-                            useSelectedOptions={influencer_qas.split(',')}
+                            useSelectedOptions={influencer_qas?.split(',')}
 
                         />
                     </div>
@@ -166,7 +166,7 @@ export default function SearchForm({
                             name="category"
                             onChange={(e) => handleChange(e, 'Category', 'category')}
                             defaultOptionText={ selectedCategory ? selectedCategory : "Category"}
-                            useSelectedOptions={selectedCategory.split(',')}
+                            useSelectedOptions={selectedCategory?.split(',')}
                             
                         />
                     </div>
@@ -182,7 +182,7 @@ export default function SearchForm({
                                 onChange={(e) => handleChange(e, 'Position', 'position')}
                                 className="text-xs"
                                 useBorder={false}
-                                useSelectedOptions={position.split(',')}
+                                useSelectedOptions={position?.split(',')}
                                 defaultOptionText={ position ? position :"Anywhere"}
                                 
                             />

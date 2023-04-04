@@ -1,6 +1,7 @@
 import Steps  from "@/components/Steps";
+import { classNames } from "@/Utils/helpers";
 
-export default function influencerSize({influencer}){
+export default function influencerSize({ influencer, isMini }){
    
     const steps = [
         { id: '01', name: 'Nano', value:'1K', href: '#', status: 'current' },
@@ -29,7 +30,7 @@ export default function influencerSize({influencer}){
 
    
     return (
-        <div className="border md:w-space-510 md:h-space-190 pb-10 rounded-md ">
+        <div className={ classNames("border pb-10 rounded-md", isMini ? 'w-full h-full' : 'md:w-space-510 md:h-space-190')} >
             <div className="pl-7 p-space-20  pt-space-24">
                 <span className="font-bold  text-t-xs font-lexend">
                 Influencer size

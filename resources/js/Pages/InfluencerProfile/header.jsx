@@ -81,7 +81,7 @@ useEffect(() => {
                                     </div>
 
                                     <div className="w-full  md:mt-6">
-                                          <div className="flex md:flex-row  flex-col justify-between">
+                                          <div className={classNames("flex md:flex-row  flex-col  justify-between", isMini ? 'flex-wrap space-y-2 md:w-[25rem]' : '')}>
                                                 <div className="flex flex-col">
                                                       <span className="text-h1 font-lexend  font-semibold">{influencer?.full_name}</span>
                                                       <span className="text-t-xsx text-viralget-gray-400 font-lexend ">@{influencer?.username}</span>
@@ -105,7 +105,7 @@ useEffect(() => {
                                                             <span className="text-t-normal font-satoshi font-medium  text-viralget-grey">{influencer?.location}</span>
 
                                                       </div>
-                                                      <div className="flex md:space-x-2 border-r border-viralget-gray-300 pr-2  h-space-16 ">
+                                                      <div className={classNames("flex md:space-x-2  pr-2  h-space-16 ", isMini ? '' : 'border-r border-viralget-gray-300')}>
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <g clip-path="url(#clip0_958_45465)">
                                                                         <path d="M14.5 13.5L11 6.5L7.5 13.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -194,7 +194,7 @@ useEffect(() => {
                                           </div>
 
 
-                                          <div className="flex flex-wrap mt-2  md:w-space-500">
+                                          <div className={classNames("flex flex-wrap mt-2  ", isMini ? 'w-full' : 'md:w-space-500')}>
                                               <span className="text-xsx-header text-viralget-gray-400  mr-2">{influencer.bio}</span>
                                           </div>
                                         
