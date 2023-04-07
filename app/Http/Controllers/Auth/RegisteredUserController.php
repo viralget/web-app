@@ -6,6 +6,7 @@ use App\Helpers\LoggerHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\UserVerifyEmail;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'company_name' => 'string|max:255',
+            // 'company_name' => 'string|max:255',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -51,26 +52,60 @@ class RegisteredUserController extends Controller
             $token = Str::random(20);
 
             $user = User::create([
-                'company_name' => $request->company_name,
                 'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                // 'token' => $token
             ]);
 
-            // event(new Registered($user));
+            $imageName = null;
 
-            // Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));
+            if($request->hasFile('file')){
+                $imageName = time().$user->id.'.'.$request->file->extension();
+                $request->file->storeAs('user_images', $imageName);    
+            }
 
-            Auth::login($user);
+           
 
-            // Redirect to update areas of interest, and update profile.
+            $userdetails = new UserDetail;
+            $userdetails->user_id =  $user->id;
+            $userdetails->first_name = $request->first_name;
+            $userdetails->last_name = $request->last_name;
+            $userdetails->image = $imageName;
+            $userdetails->save();
+           
 
-            return redirect(route('home'));
+            if($userdetails){
+
+                // event(new Registered($user));
+                // Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));
+                Auth::login($user);
+               
+                // Redirect to update areas of interest, and update profile.
+                return redirect(route('confirmation.page'));
+            }
+          
         } catch (\Exception $e) {
+            dd($e);
             $this->log($e);
             return redirect()->back()->withError('An error occured. Please try again');
         }
+    }
+
+
+
+
+    public  function confirmation(Request $request){
+        $user = $request->user();
+        if(!$user){
+            redirect(route('login'));
+        }
+        return Inertia::render('Auth/Confirmation');
+    }
+
+    public function resendMail(Request $request){
+        $token = Str::random(20);
+        $user = $request->user();
+        //  Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));            
+        return redirect()->back()->with(['flash' =>'Email resend successfully!!']);
     }
 }

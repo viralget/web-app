@@ -548,4 +548,53 @@ export const FindInfluencer = (props) => (
                 </svg>
 
     )
+
+
+  export   const EmailSvg = () => (
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1046_8676)">
+                <path d="M9 11.8125C10.5533 11.8125 11.8125 10.5533 11.8125 9C11.8125 7.4467 10.5533 6.1875 9 6.1875C7.4467 6.1875 6.1875 7.4467 6.1875 9C6.1875 10.5533 7.4467 11.8125 9 11.8125Z" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12.7336 14.6254C11.4807 15.4572 9.98589 15.8468 8.48634 15.7324C6.9868 15.6179 5.56842 15.006 4.45627 13.9936C3.34412 12.9813 2.6019 11.6265 2.34738 10.1443C2.09286 8.66211 2.34062 7.13735 3.05135 5.81199C3.76207 4.48662 4.89506 3.43656 6.27052 2.82843C7.64599 2.2203 9.18515 2.08893 10.6438 2.45516C12.1024 2.8214 13.397 3.66426 14.322 4.85C15.2471 6.03575 15.7497 7.49647 15.75 9.00037C15.75 10.5543 15.1875 11.8129 13.7813 11.8129C12.375 11.8129 11.8125 10.5543 11.8125 9.00037V6.18787" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+                <clipPath id="clip0_1046_8676">
+                    <rect width="18" height="18" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    );
+
+
+    export const CompanySvg = () => (
+        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.125 14.1875H16.875" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.125 14.1875V1.8125C10.125 1.66332 10.0657 1.52024 9.96025 1.41475C9.85476 1.30926 9.71168 1.25 9.5625 1.25H2.8125C2.66332 1.25 2.52024 1.30926 2.41475 1.41475C2.30926 1.52024 2.25 1.66332 2.25 1.8125V14.1875" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15.75 14.1875V6.3125C15.75 6.16332 15.6907 6.02024 15.5852 5.91475C15.4798 5.80926 15.3367 5.75 15.1875 5.75H10.125" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4.5 4.0625H6.75" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.625 8.5625H7.875" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4.5 11.375H6.75" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12.375 11.375H13.5" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12.375 8.5625H13.5" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+    )
+
+
+    export const PasswordSvg = () => (
+
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_958_91804)">
+                <path d="M14.625 6.1875H3.375C3.06434 6.1875 2.8125 6.43934 2.8125 6.75V14.625C2.8125 14.9357 3.06434 15.1875 3.375 15.1875H14.625C14.9357 15.1875 15.1875 14.9357 15.1875 14.625V6.75C15.1875 6.43934 14.9357 6.1875 14.625 6.1875Z" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.46875 6.1875V3.65625C6.46875 2.98492 6.73543 2.34109 7.21014 1.86639C7.68484 1.39168 8.32867 1.125 9 1.125C9.67133 1.125 10.3152 1.39168 10.7899 1.86639C11.2646 2.34109 11.5312 2.98492 11.5312 3.65625V6.1875" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.24375 10.6875C9.24375 10.8221 9.13462 10.9312 9 10.9312C8.86538 10.9312 8.75625 10.8221 8.75625 10.6875C8.75625 10.5529 8.86538 10.4438 9 10.4438C9.13462 10.4438 9.24375 10.5529 9.24375 10.6875Z" fill="#3E4555" stroke="#3E4555" stroke-width="1.2"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_958_91804">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+                </svg>
+
+
+    )
 // export const   UsersIcon

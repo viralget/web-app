@@ -75,11 +75,34 @@ class AuthenticatedSessionController extends Controller
         if ($request->redirect_url) {
             $request->session()->put('user_auth_redirect_url', $request->redirect_url);
         }
+        // dd($request);
 
         try {
             return Socialite::driver($request->platform)->redirect();
         } catch (\Exception $e) {
             return redirect()->back()->withError('Invalid platform specified');
+        }
+    }
+
+
+    public function googleAuthCallback(Request $request)
+    {
+
+        try {
+            $code = $request->code;
+            $scope = $request->scope;
+            $state = $request->state;
+
+            // dd($scope, $code);
+            $user = Socialite::driver('google')->user();
+            
+            return $this->postSocialLogin($request, $user, 'google');
+
+        } catch (\Exception $e) {
+            dd($e);
+            $this->log($e);
+
+            return redirect()->route('login')->withError('Sorry, Google sign-in service not available at the moment');
         }
     }
 
@@ -166,7 +189,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended($redirect_url);
         } catch (\Exception $e) {
             $this->log($e);
-            // dd($e);
+            dd($e);
 
             return redirect()->route('login')->withError('An error occurred while logging you in');
         }

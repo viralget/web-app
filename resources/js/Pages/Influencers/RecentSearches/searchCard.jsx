@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { LikeSvg, DotsSvg, TrashSvg }  from '@/Utils/icons';
 import { formatDate, nFormatter } from '@/Utils/helpers';
 import { Link } from '@inertiajs/inertia-react';
-import Typography from '@/components/Typography';
 import MenuDropDown from '@/components/MenuDropDown';
 import toast from '@/Components/Toast';
 import { post, del } from '@/Utils/api';

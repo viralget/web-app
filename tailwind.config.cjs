@@ -23,6 +23,8 @@ module.exports = {
             },
             fontSize: {
                 'h1': ['24px', { lineHeight: '28px' }, { fontFamily: 'font-lexend' }],
+                't-lg': ['36px', { lineHeight: '40px' }, { fontFamily: 'font-lexend' }],
+                't-lg-x': ['32px', { lineHeight: '36px' }, { fontFamily: 'font-lexend' }],
                 base: ['14px', { lineHeight: '1', letterSpacing: '-0.01em' }],
                 't-normal-x': [ '12px', { lineHeight : '16px'}],
                 't-normal': [ '14px', { lineHeight : '18px'}],
@@ -39,7 +41,12 @@ module.exports = {
                 'space-17': '17px',
                 'space-20' : '20px',
                 'space-24' : '24px',
+                'space-32' : '32px',
+                'space-34' : '34px',
+                'space-35' : '35px',
+                'space-40' : '40px',
                 'space-60' : '60px',
+                'space-75' : '75px',
                 'space-80' : '80px',
                 'space-131' : '131px',
                 'space-150' : '150px',
@@ -47,6 +54,7 @@ module.exports = {
                 'space-282' : '282px',
                 'space-500' : '500px',
                 'space-510' : '510px',
+                'space-600' : '600px'
 
             },
             boxShadow: {

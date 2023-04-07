@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 // Route::middleware('guest')->group(function () {
+Route::get('email-confirmation', [RegisteredUserController::class, 'confirmation'])->name('confirmation.page');
+Route::get('resend-email', [RegisteredUserController::class, 'resendMail'])->name('resend.email');
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'store']);
 
@@ -33,8 +35,11 @@ Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 /** Social Login */
 Route::get('/auth/social', [AuthenticatedSessionController::class, 'socialAuth'])->name('auth.social');
-
 Route::get('/auth/twitter/callback', [AuthenticatedSessionController::class, 'twitterAuthCallback']);
+Route::get('/auth/google/callback', [AuthenticatedSessionController::class, 'googleAuthCallback'])->name('auth.social.googleCallBack');
+
+
+
 
 // Route::get('/auth/facebook/callback', [AuthenticatedSessionController::class, 'facebookAuthCallback']);
 
