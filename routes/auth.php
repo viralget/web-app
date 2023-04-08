@@ -18,7 +18,7 @@ Route::get('resend-email', [RegisteredUserController::class, 'resendMail'])->nam
 Route::get('account-setup', [RegisteredUserController::class, 'accountSetup'])->name('account.setup');
 Route::post('account-setup', [RegisteredUserController::class, 'storeDetail'])->name('account.setup');
 Route::get('/pricing', [RegisteredUserController::class, 'createPricing'])->name('pricing');
-
+Route::get('verify-email/{id}/{hash}', [RegisteredUserController::class, 'verifyEmail']) ->name('verification.verify');
 
 
 

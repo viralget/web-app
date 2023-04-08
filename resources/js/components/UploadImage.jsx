@@ -11,7 +11,7 @@ const UploadImage = ({ image,  displayFile }) => {
              <div className="relative">
               {image !=null  ?
                 <div className="w-[62px]  h-[62px]">
-                  <img src={image} alt="" className="rounded-md" />
+                  <img src={image} alt="" className="rounded-md w-full h-full object-cover" />
                 </div>
                :
                 <div>

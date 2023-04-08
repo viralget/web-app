@@ -5,7 +5,7 @@ import Button from '@/Components/Button';
 import { useForm } from '@inertiajs/inertia-react';
 import { getEventValue } from '@/Utils/helpers';
 import ValidationErrors from '@/Components/ValidationErrors';
-import { EmailSvg, CompanySvg } from '@/Utils/icons';
+import { EmailSvg, CompanySvg, UserSvg } from '@/Utils/icons';
 
 export default function ContactForm() {
 

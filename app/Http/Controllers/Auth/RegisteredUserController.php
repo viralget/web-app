@@ -16,6 +16,8 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 
+
+
 class RegisteredUserController extends Controller
 {
     use LoggerHelper;
@@ -24,12 +26,12 @@ class RegisteredUserController extends Controller
      * Display the registration view.
      *
      * @return \Inertia\Response
-     */
+    */
+
     public function create()
     {
         return Inertia::render('Auth/Register');
     }
-
     /**
      * Handle an incoming registration request.
      *
@@ -41,7 +43,6 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'company_name' => 'string|max:255',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -49,8 +50,8 @@ class RegisteredUserController extends Controller
         ]);
 
         try {
-            $token = Str::random(20);
 
+            $token = Str::random(20);
             $user = User::create([
                 'first_name' => $request->first_name,
                 'email' => $request->email,
@@ -64,8 +65,6 @@ class RegisteredUserController extends Controller
                 $request->file->storeAs('user_images', $imageName);    
             }
 
-           
-
             $userdetails = new UserDetail;
             $userdetails->user_id =  $user->id;
             $userdetails->first_name = $request->first_name;
@@ -76,8 +75,8 @@ class RegisteredUserController extends Controller
 
             if($userdetails){
 
-                // event(new Registered($user));
-                // Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));
+                event(new Registered($user));
+                Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));
                 Auth::login($user);
                
                 // Redirect to update areas of interest, and update profile.
@@ -92,8 +91,6 @@ class RegisteredUserController extends Controller
     }
 
 
-
-
     public  function confirmation(Request $request){
         $user = $request->user();
         if(!$user){
@@ -105,9 +102,10 @@ class RegisteredUserController extends Controller
     public function resendMail(Request $request){
         $token = Str::random(20);
         $user = $request->user();
-        //  Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));            
+         Mail::to($user->email)->send(new UserVerifyEmail($user, $token));            
         return redirect()->back()->with(['flash' =>'Email resend successfully!!']);
     }
+
     public function accountSetup(Request $request){
         $user = $request->user();
         if(!$user){
@@ -118,8 +116,6 @@ class RegisteredUserController extends Controller
         return Inertia::render('Auth/AccountSetup/index', 
         [ 'user' =>  $data, "image_url" => $userimage]);
     }
-
-
 
     public  function  storeDetail(Request $request){
         $request->validate([
@@ -142,11 +138,25 @@ class RegisteredUserController extends Controller
         if($userdetail){
             return redirect(route('pricing'));
         }
-
-
     }
 
     public  function  createPricing() {
         return Inertia::render('PricingPage/index');
+    }
+
+
+    public function verifyEmail($id, $hash){
+       
+        $hash = $hash;
+        $id = $id;
+        $user = User::find($id);
+        $user->email_verified_at = Now();
+        $user->refresh_token = $hash;
+        $user->update();
+
+        if($user){
+            return redirect(route('account.setup'));
+        }
+
     }
 }
