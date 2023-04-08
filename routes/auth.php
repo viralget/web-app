@@ -11,10 +11,18 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 // Route::middleware('guest')->group(function () {
-Route::get('email-confirmation', [RegisteredUserController::class, 'confirmation'])->name('confirmation.page');
-Route::get('resend-email', [RegisteredUserController::class, 'resendMail'])->name('resend.email');
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'store']);
+Route::get('email-confirmation', [RegisteredUserController::class, 'confirmation'])->name('confirmation.page');
+Route::get('resend-email', [RegisteredUserController::class, 'resendMail'])->name('resend.email');
+Route::get('account-setup', [RegisteredUserController::class, 'accountSetup'])->name('account.setup');
+Route::post('account-setup', [RegisteredUserController::class, 'storeDetail'])->name('account.setup');
+Route::get('/pricing', [RegisteredUserController::class, 'createPricing'])->name('pricing');
+
+
+
+
+
 
 Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('login', [AuthenticatedSessionController::class, 'store']);

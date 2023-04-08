@@ -97,7 +97,7 @@ class RegisteredUserController extends Controller
     public  function confirmation(Request $request){
         $user = $request->user();
         if(!$user){
-            redirect(route('login'));
+           return redirect(route('login'));
         }
         return Inertia::render('Auth/Confirmation');
     }
@@ -107,5 +107,46 @@ class RegisteredUserController extends Controller
         $user = $request->user();
         //  Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));            
         return redirect()->back()->with(['flash' =>'Email resend successfully!!']);
+    }
+    public function accountSetup(Request $request){
+        $user = $request->user();
+        if(!$user){
+           return redirect(route('login'));
+        }
+        $data = User::where('id', $user->id)->with('info')->first();
+        $userimage = storage_path('app/user_images/' . $data->info->image);
+        return Inertia::render('Auth/AccountSetup/index', 
+        [ 'user' =>  $data, "image_url" => $userimage]);
+    }
+
+
+
+    public  function  storeDetail(Request $request){
+        $request->validate([
+            'company_name' => 'required|string|max:255',
+            'job_title' => 'required|string|max:50',
+            'company_type' => 'required|string|max:50',
+            'company_website' => 'required|string|max:50',
+            'company_bio' => 'required|string|max:255',
+        ]);
+        $user = $request->user();
+        $userdetail = UserDetail::where('user_id', $user->id)->first();
+        $userdetail->company_name = $request->company_name;
+        $userdetail->company_type = $request->company_type;
+        $userdetail->company_website = $request->company_website;
+        $userdetail->company_bio = $request->company_bio;
+        $userdetail->job_title = $request->job_title;
+        $userdetail->save();
+
+
+        if($userdetail){
+            return redirect(route('pricing'));
+        }
+
+
+    }
+
+    public  function  createPricing() {
+        return Inertia::render('PricingPage/index');
     }
 }

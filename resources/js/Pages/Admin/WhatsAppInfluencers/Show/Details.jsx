@@ -1,5 +1,5 @@
 import { formatDate } from '@/Utils/helpers'
-import Avatar from '@/Components/Avatar'
+import Avatar from '@/components/Skeleton/Avatar'
 import { Link } from '@inertiajs/inertia-react';
 import ValidationErrors from '@/Components/ValidationErrors';
 

@@ -16,13 +16,16 @@ module.exports = {
             },
             colors: {
                 'viralget-red': '#F37C38',
+                'viralget-red-100':'#FEF2EB',
                 'viralget-grey': '#3E4555',
                 'viralget-gray-200': '#F5F5F5',
                 'viralget-gray-400': '#748094',
-                'viralget-gray-300': '#E8E9F1'
+                'viralget-gray-300': '#E8E9F1',
+                'viralget-gray-500': '#A5ABB5',
             },
             fontSize: {
                 'h1': ['24px', { lineHeight: '28px' }, { fontFamily: 'font-lexend' }],
+                't-xlg': ['44px', { lineHeight: '48px' }, { fontFamily: 'font-lexend' }],
                 't-lg': ['36px', { lineHeight: '40px' }, { fontFamily: 'font-lexend' }],
                 't-lg-x': ['32px', { lineHeight: '36px' }, { fontFamily: 'font-lexend' }],
                 base: ['14px', { lineHeight: '1', letterSpacing: '-0.01em' }],
@@ -60,6 +63,7 @@ module.exports = {
             boxShadow: {
                 'header-card': '0 4px 16px 0px #CACADB29',
                 'side-menu': '14px  0px 60px 0px #2C30400D',
+                'header-card-2': '0px  4px 21px 0px #4D53680F',
             },
     }
     }

@@ -15,7 +15,7 @@ import ExportIcon from "../../../assets/images/ExportIcon.svg"
 import { getEventValue, nFormatter } from '@/Utils/helpers';
 import Card from '@/Components/Card';
 import { CheckBadgeIcon, CheckIcon } from '@heroicons/react/20/solid';
-import Avatar from '@/Components/Avatar';
+import Avatar from '@/components/Skeleton/Avatar';
 import Pagination from '@/Components/Pagination';
 import SimplePagination from '@/Components/SimplePagination';
 
