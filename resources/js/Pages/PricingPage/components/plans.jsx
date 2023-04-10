@@ -28,7 +28,7 @@ export default function Plans() {
        <div className=" w-full  bg-white h-full rounded-tr-lg rounded-tl-lg  -top-10 ">
               
 
-                {/* <div className="flex flex-col justify-center items-center  pt-10">
+                <div className="flex flex-col justify-center items-center  pt-10">
 
                       <div className="flex flex-col justify-center">
                            <h4 className="font-lexend  text-h1  font-semibold">ViralGet subscription plans</h4>
@@ -73,7 +73,7 @@ export default function Plans() {
                             </div>
                      </div>
               </div>
- */}
+
 
 
 

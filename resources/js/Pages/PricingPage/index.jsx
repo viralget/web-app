@@ -15,7 +15,7 @@ export default function PricingPage() {
         <Guest>
             <div className='bg-viralget-red'>
 
-                {/* <div className='relative flex flex-col items-center justify-center'>
+                <div className='relative flex flex-col items-center justify-center'>
                       <Hero />
 
                         <div className='flex  items-center justify-center content-center bottom-0  absolute'>
@@ -28,7 +28,7 @@ export default function PricingPage() {
                                             </button>
                                     </div>
                         </div>
-                </div> */}
+                </div>
 
                 {
                     getTab === 'plans' ? (
