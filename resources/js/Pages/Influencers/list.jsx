@@ -11,13 +11,8 @@ import { Inertia } from '@inertiajs/inertia';
 import InfluencerProfile from '../InfluencerProfile';
 import MenuDropDown from '@/components/MenuDropDown';
 import Modal from '@/components/Modal';
-<<<<<<< HEAD
 import ExportIcon from "../../../assets/images/ExportIcon.svg"
-import { getEventValue, nFormatter } from '@/Utils/helpers';
-=======
-import  ExportIcon  from "../../../assets/images/ExportIcon.svg" 
 
->>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -64,7 +59,7 @@ export default function List(props) {
     }
 
     const handleSelectProfile = (e, item) => {
-   setSelected(
+        setSelected(
             e.target.checked
                 ? [...selected, item]
                 : selected.filter((p) => p.id !== item.id)
@@ -247,15 +242,12 @@ export default function List(props) {
                                     </button>)
                                     }
 
-<<<<<<< HEAD
-=======
-                                <MenuDropDown className="bg-white text-black" buttonName={selected.length > 0 ? 'Export ' + selected.length +' influencers' : 'Export '  +'influencers'} ButtonIcon={<img src={ExportIcon} className='w-4 h-4 ' />}>
-                                    <div className='p-3 flex flex-col  justify-center items-center'>
-                                           <ArrowPathIcon  className='w-10 h-10'/>
-                                           <span className='font-bold  mt-2 text-sm'>Coming soon</span>  
-                                    </div>
-                               </MenuDropDown>
->>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
+                                    <MenuDropDown className="bg-white text-black" buttonName={selected.length > 0 ? 'Export ' + selected.length + ' influencers' : 'Export ' + 'influencers'} ButtonIcon={<img src={ExportIcon} className='w-4 h-4 ' />}>
+                                        <div className='p-3 flex flex-col  justify-center items-center'>
+                                            <ArrowPathIcon className='w-10 h-10' />
+                                            <span className='font-bold  mt-2 text-sm'>Coming soon</span>
+                                        </div>
+                                    </MenuDropDown>
 
                                     <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length + ' influencers' : 'Export ' + 'influencers'}
                                     // buttonIcon={<img src={ExportIcon} className='mt-1 w-3 h-3 ' />}
@@ -266,54 +258,32 @@ export default function List(props) {
                                         </div>
                                     </MenuDropDown>
 
-<<<<<<< HEAD
-
-                                    <MenuDropDown buttonName='Export CSV'
-                                    // buttonIcon={<ExportIcon className='w-4 h-4 ' />}
+                                    <MenuDropDown
+                                        className="bg-white text-black"
+                                        buttonName='Save Search'
+                                        ButtonIcon={<HeartIcon className='w-5 h-5 ' />}
                                     >
-                                        <div className='p-3 flex  justify-center items-center'>
-                                            <span className='font-normal  text-sm'>Coming soon</span>
+                                        <div className='p-3'>
+                                            <form>
+                                                <div>
+                                                    <input
+                                                        id="keywords"
+                                                        name="keywords"
+                                                        type="text"
+                                                        onChange={(e) => setSearchName(getEventValue(e))}
+                                                        placeholder={"Enter search name"}
+                                                        className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                                                    />
+                                                </div>
+
+                                                <div className='w-full mt-3'>
+                                                    <button onClick={handleSaveSearch} className='bg-[#F5F5F5] w-full p-2 rounded-md'>Save search</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </MenuDropDown>
 
 
-                                    {!isSaved &&
-
-                                        <MenuDropDown
-                                            buttonName='Save Search'
-                                            ButtonIcon={<HeartIcon className='w-5 h-5 ' />}
-                                        >
-                                            <div className='p-3'>
-                                                <form>
-                                                    <div>
-=======
-                                    <MenuDropDown 
-                                    className="bg-white text-black" 
-                                    buttonName='Save Search' 
-                                    ButtonIcon={<HeartIcon className='w-5 h-5 ' />}
-                                     >
-                                    <div className='p-3'>
-                                            <form>
-                                                <div>
->>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
-                                                        <input
-                                                            id="keywords"
-                                                            name="keywords"
-                                                            type="text"
-                                                            onChange={(e) => setSearchName(getEventValue(e))}
-                                                            placeholder={"Enter search name"}
-                                                            className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
-                                                        />
-                                                    </div>
-
-                                                    <div className='w-full mt-3'>
-                                                        <button onClick={handleSaveSearch} className='bg-[#F5F5F5] w-full p-2 rounded-md'>Save search</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </MenuDropDown>
-
-                                    }
 
                                     {/* <button
                                     type="button"

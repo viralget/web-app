@@ -6,16 +6,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-<<<<<<< HEAD
-export default function MenuDropDown({ buttonName, buttonIcon, children }) {
-=======
 export default function MenuDropDown({ buttonName, ButtonIcon, children, className }) {
->>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className= { classNames("inline-flex w-full  justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300", className)}>
+        <Menu.Button className={classNames("inline-flex w-full  justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300", className)}>
           <div className='flex items-center justify-center'>
             {buttonIcon}
           </div>
