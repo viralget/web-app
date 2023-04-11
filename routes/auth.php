@@ -17,8 +17,9 @@ Route::get('email-confirmation', [RegisteredUserController::class, 'confirmation
 Route::get('resend-email', [RegisteredUserController::class, 'resendMail'])->name('resend.email');
 Route::get('account-setup', [RegisteredUserController::class, 'accountSetup'])->name('account.setup');
 Route::post('account-setup', [RegisteredUserController::class, 'storeDetail'])->name('account.setup');
-Route::get('/pricing', [RegisteredUserController::class, 'createPricing'])->name('pricing');
+Route::get('/pricing', [RegisteredUserController::class, 'selectPricing'])->name('pricing');
 Route::get('verify-email/{id}/{hash}', [RegisteredUserController::class, 'verifyEmail']) ->name('verification.verify');
+Route::get('/select-payment/{plan_id}', [RegisteredUserController::class, 'selectPayment'])->name('user.payment.page');
 
 
 

@@ -39,9 +39,9 @@ export default function PlanCard({item, isEmpty}) {
                     ${plan?.price}<span className="font-normal text-t-xs  text-viralget-gray-400">/{plan?.duration == 'monthly'? 'mo' : 'yr'}</span> 
                   </span>
 
-                  <button  className="text-viralget-red border mt-3  p-1 hover:bg-viralget-red px-space-20 py-space-10  text-center  flex items-center hover:text-white rounded-md border-viralget-red ">
+                  <a  href={route('user.payment.page', { plan_id: plan?.id })} className="text-viralget-red border mt-3  p-1 hover:bg-viralget-red px-space-20 py-space-10  text-center  flex items-center hover:text-white rounded-md border-viralget-red ">
                     <span  className="text-t-normal  font-bold">Start free 7-day trial</span> 
-                  </button>
+                  </a>
                 </>
               )
              }

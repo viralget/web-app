@@ -113,6 +113,7 @@ class RegisteredUserController extends Controller
         }
         $data = User::where('id', $user->id)->with('info')->first();
         $userimage = storage_path('app/user_images/' . $data->info->image);
+
         return Inertia::render('Auth/AccountSetup/index', 
         [ 'user' =>  $data, "image_url" => $userimage]);
     }
@@ -140,15 +141,18 @@ class RegisteredUserController extends Controller
         }
     }
 
-    public  function  createPricing() {
-        return Inertia::render('PricingPage/index');
+    public  function  selectPricing() {
+
+        $user = request()->user();
+        if(!$user){
+           return redirect(route('login'));
+        }
+        return Inertia::render('Auth/SelectPricing');
     }
 
 
     public function verifyEmail($id, $hash){
        
-        $hash = $hash;
-        $id = $id;
         $user = User::find($id);
         $user->email_verified_at = Now();
         $user->refresh_token = $hash;
@@ -157,6 +161,17 @@ class RegisteredUserController extends Controller
         if($user){
             return redirect(route('account.setup'));
         }
+
+    }
+
+    public function selectPayment($plan_id){
+        $user = request()->user();
+        if(!$user || !$plan_id){
+           return redirect(route('login'));
+        }
+        $data['plan_id'] = $plan_id;
+
+        return Inertia::render('UserPayment/index', $data);
 
     }
 }

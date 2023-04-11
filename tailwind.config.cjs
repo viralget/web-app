@@ -22,6 +22,7 @@ module.exports = {
                 'viralget-gray-400': '#748094',
                 'viralget-gray-300': '#E8E9F1',
                 'viralget-gray-500': '#A5ABB5',
+                'viralget-green-200': '#28CA42'
             },
             fontSize: {
                 'h1': ['24px', { lineHeight: '28px' }, { fontFamily: 'font-lexend' }],
@@ -53,6 +54,7 @@ module.exports = {
                 'space-35' : '35px',
                 'space-40' : '40px',
                 'space-60' : '60px',
+                'space-68' : '68px',
                 'space-75' : '75px',
                 'space-80' : '80px',
                 'space-131' : '131px',
