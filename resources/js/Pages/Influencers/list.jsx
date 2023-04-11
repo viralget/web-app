@@ -11,8 +11,13 @@ import { Inertia } from '@inertiajs/inertia';
 import InfluencerProfile from '../InfluencerProfile';
 import MenuDropDown from '@/components/MenuDropDown';
 import Modal from '@/components/Modal';
+<<<<<<< HEAD
 import ExportIcon from "../../../assets/images/ExportIcon.svg"
 import { getEventValue, nFormatter } from '@/Utils/helpers';
+=======
+import  ExportIcon  from "../../../assets/images/ExportIcon.svg" 
+
+>>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -59,14 +64,11 @@ export default function List(props) {
     }
 
     const handleSelectProfile = (e, item) => {
-        // console.log(e.target.checked, selected.filter((p) => p.id !== item.id), item)
-        setSelected(
+   setSelected(
             e.target.checked
                 ? [...selected, item]
                 : selected.filter((p) => p.id !== item.id)
         )
-
-        // console.log("selected:", selected);
     }
 
     const handleSaveSearch = async (e) => {
@@ -83,7 +85,7 @@ export default function List(props) {
         const response = await post(route('influencers.search.store'), data, true);
 
         if (response?.data?.status) {
-            toast('Search stored successfully!');
+            toast.success('Search stored successfully!');
             setIsSaved(true)
         } else {
             toast.error('An error occured');
@@ -245,6 +247,15 @@ export default function List(props) {
                                     </button>)
                                     }
 
+<<<<<<< HEAD
+=======
+                                <MenuDropDown className="bg-white text-black" buttonName={selected.length > 0 ? 'Export ' + selected.length +' influencers' : 'Export '  +'influencers'} ButtonIcon={<img src={ExportIcon} className='w-4 h-4 ' />}>
+                                    <div className='p-3 flex flex-col  justify-center items-center'>
+                                           <ArrowPathIcon  className='w-10 h-10'/>
+                                           <span className='font-bold  mt-2 text-sm'>Coming soon</span>  
+                                    </div>
+                               </MenuDropDown>
+>>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
 
                                     <MenuDropDown buttonName={selected.length > 0 ? 'Export ' + selected.length + ' influencers' : 'Export ' + 'influencers'}
                                     // buttonIcon={<img src={ExportIcon} className='mt-1 w-3 h-3 ' />}
@@ -255,6 +266,7 @@ export default function List(props) {
                                         </div>
                                     </MenuDropDown>
 
+<<<<<<< HEAD
 
                                     <MenuDropDown buttonName='Export CSV'
                                     // buttonIcon={<ExportIcon className='w-4 h-4 ' />}
@@ -274,6 +286,16 @@ export default function List(props) {
                                             <div className='p-3'>
                                                 <form>
                                                     <div>
+=======
+                                    <MenuDropDown 
+                                    className="bg-white text-black" 
+                                    buttonName='Save Search' 
+                                    ButtonIcon={<HeartIcon className='w-5 h-5 ' />}
+                                     >
+                                    <div className='p-3'>
+                                            <form>
+                                                <div>
+>>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
                                                         <input
                                                             id="keywords"
                                                             name="keywords"

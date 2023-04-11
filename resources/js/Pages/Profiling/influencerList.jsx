@@ -20,15 +20,15 @@ export default function InfluencerList({list}){
               <div>
                    <a href='#'   className='text-xs font-bold  border   px-4  py-2 border-viralget-red text-viralget-red'  >View More</a>
               </div>
-            </div>
+           </div>
 
-              <div>
+        <div>
               
 
                 {influencers?.length > 0 ?
 
-                    <div role="list" className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 ">
-                        {influencers.slice(0,3).map((item) => (
+                    <div role="list" className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 ">
+                        {influencers.slice(0,4).map((item) => (
                             <InfluencerCard influencer={item}   />
                         ))}
                     </div >
