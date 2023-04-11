@@ -51,13 +51,14 @@ Route::middleware('auth')->group(
     function () {
         Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
+        Route::get('/search', [InfluencerController::class, 'index'])->name('search');
 
         Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
-        Route::post('/search/store', [InfluencerController::class, 'storeSearch'])->name('influencers.search.store');
+        Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
         Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
         Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
         Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
-        
+
         // profiling.
         Route::post('/create-profiling', [PageController::class, 'createProfiling'])->name('create.profiling');
         Route::get('/profiling', [PageController::class, 'profilingPage'])->name('profiling');

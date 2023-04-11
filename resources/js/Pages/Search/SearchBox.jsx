@@ -12,17 +12,21 @@ export default function SearchBox(props) {
 
     const handleChange = (e, name, query) => {
 
-        if(e?.target?.value.length === 0) return;
+        if (e?.target?.value.length === 0) return;
 
         const currentURL = window.location.search;
         const urlParams = new URLSearchParams(currentURL);
         const value = e?.target?.value ? e.target.value : e.value;
         const filterData = getSearches.filter((item) => item.name != name);
-        setSearches([...filterData, { name, value }]);
-        urlParams.set(query, value);
+        const searchData = [...filterData, { name, query, value }];
+        setSearches(searchData);
+
+        searchData.forEach(q => {
+            urlParams.set(q.query, q.value);
+        });
+        // urlParams.set(query, value);
         urlParams.set('page', 1); //force start from page 1
         setSearchParams(urlParams);
-       
     }
 
     const handleSearch = async (e) => {
@@ -30,6 +34,7 @@ export default function SearchBox(props) {
         props.onLoading && props.onLoading(true);
         props.searchActive(true);
 
+        // console.log({ searchParams: searchParams.toString() })
         Inertia.get(route('influencers.search') + '?' + searchParams.toString());
     }
 
@@ -40,13 +45,13 @@ export default function SearchBox(props) {
     }
 
     return (
-        <div className="mx-auto -mt-12 relative z-10 rounded-lg">
-            <SearchForm 
-             getSearches={getSearches}
-             handleFiltering={handleFiltering}
-             categories={props?.categories ?? []}
-             handleChange={handleChange}
-             handleSubmit={handleSearch} {...props} />
+        <div className="mx-auto -mt-12 relative z-1 rounded-lg">
+            <SearchForm
+                getSearches={getSearches}
+                handleFiltering={handleFiltering}
+                categories={props?.categories ?? []}
+                handleChange={handleChange}
+                handleSubmit={handleSearch} {...props} />
         </div>
     )
 }

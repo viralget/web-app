@@ -50,7 +50,7 @@ export default function SearchForm({
                             { name: 'Nigeria', value: 'Nigeria' },
                             { name: 'Ghana', value: 'Ghana' },
                         ]}
-                            onChange={(e) => handleChange(e, 'Influencer Location', 'infleuencer_location')}
+                            onChange={(e) => handleChange(e, 'Influencer Location', 'influencer_location')}
                             label="Influencer Location"
                         />
                     </div>
@@ -70,10 +70,10 @@ export default function SearchForm({
 
                         <MultiDropdown options={[
                             { name: 'Any', value: '' },
-                            { name: 'Nano (1000 - 10,000)', value: 'nano' },
-                            { name: 'Micro (10,000 - 50,000)', value: 'micro' },
-                            { name: 'Mid Tier (50,000 - 500k)', value: 'nano' },
-                            { name: 'Macro (500k - 1m)', value: 'macro' },
+                            { name: 'Nano (1000 - 10,000)', value: '10000' },
+                            { name: 'Micro (10,000 - 50,000)', value: '50000' },
+                            { name: 'Mid Tier (50,000 - 500k)', value: '500000' },
+                            { name: 'Macro (500k - 1m)', value: '1000000' },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
                             label="Influencer Size"
@@ -100,7 +100,7 @@ export default function SearchForm({
                             { name: 'Ghana', value: 'Ghana' },
                         ]}
 
-                            onChange={(e) => handleChange(e, 'Audience Location', 'andience_location')}
+                            onChange={(e) => handleChange(e, 'Audience Location', 'audience_location')}
                             label="Audience Location"
 
                         />
@@ -146,8 +146,8 @@ export default function SearchForm({
                     <div className="flex-initial w-64 bg-white shadow rounded-md py-1 px-3 ">
                         <MultiDropdown options={[
                             { name: 'Anywhere', },
-                            { name: 'In Bio', },
-                            { name: 'In Contents', },
+                            { name: 'In Bio', value: 'bio' },
+                            { name: 'In Contents', value: 'contents' },
                         ]}
                             name="category"
                             onChange={(e) => handleChange(e, 'Position', 'position')}
@@ -171,40 +171,42 @@ export default function SearchForm({
                 </div>
 
 
+                {getSearch?.length > 0 && (
+                    <div class="flex  -mt-3 mb-3 flex-wrap p-3 text-sm">
+                        {getSearch.map((item, index) => (
+                            <div
+                                className=" p-2 mr-3 mt-2  flex "
+                                key={index}
+                            >
+                                <span className="font-normal">{item.name}: </span>
+                                {
+                                    Array.isArray(item?.value) ? item.value.map((val, ind) => (
+                                        <span className="ml-2 text-viralget-grey">  {val} {(ind + 1) === item.value.length ? '' : ','} </span>
+                                    ))
+                                        :
+                                        <span className="ml-2 text-viralget-grey">  {item.value} </span>
+                                }
 
-                <div class="flex  -mt-3 mb-3 flex-wrap   bg-white p-3">
-                    {getSearch.map((item, index) => (
-                        <div
-                            className=" p-2 mr-3 mt-2  flex "
-                            key={index}
-                        >
-                            <span className="font-normal">{item.name}: </span>
-                            {
-                                Array.isArray(item?.value) ? item.value.map((val, ind) => (
-                                    <span className="ml-2 text-viralget-grey">  {val} {(ind + 1) === item.value.length ? '' : ','} </span>
-                                ))
-                                    :
-                                    <span className="ml-2 text-viralget-grey">  {item.value} </span>
-                            }
+                                <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
 
-                            <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clipPath="url(#clip0_958_74924)">
+                                            <path d="M10.1595 3.89062L3.88867 10.1615" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M10.1595 10.1615L3.88867 3.89062" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_958_74924">
+                                                <rect width="14" height="14" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
 
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clipPath="url(#clip0_958_74924)">
-                                        <path d="M10.1595 3.89062L3.88867 10.1615" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M10.1595 10.1615L3.88867 3.89062" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_958_74924">
-                                            <rect width="14" height="14" fill="white" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                )}
 
-                            </span>
-                        </div>
-                    ))}
-                </div>
             </form>
         </div>
     );

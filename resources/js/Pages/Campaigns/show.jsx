@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react'
-import Button from '@/Components/Button';
-import Input from '@/Components/Input';
-import TextArea from '@/Components/TextArea';
 import toast from '@/Components/Toast';
 import { useForm } from '@inertiajs/inertia-react';
 import AuthenticatedLayout from '@/Components/AuthenticatedLayout';
@@ -67,12 +64,12 @@ export default function Campaign({ influencers, campaigns, campaign, stats }) {
                 </div>
 
                 <div className='mt-10 grid grid-cols-3 gap-3'>
-                    {/* <div className='border border-gray-300 p-5'>
+                    <div className='border border-gray-300 p-5'>
                         <TitleText text="Influencers" />
                         <div className='text-center'>
                             <div className="radial-progress text-orange-500" style={{ "--value": "70", "--size": "12rem", "--thickness": "1rem" }}>70%</div>
                         </div>
-                    </div> */}
+                    </div>
 
                     <div className='space-y-3'>
                         <Stats stat={nFormatter(stats['qas'])} title="Quality Audience Total" />

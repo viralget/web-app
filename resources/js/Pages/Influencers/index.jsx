@@ -11,7 +11,7 @@ import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table';
 import Feature from './Feature';
 
-export default function index({ search_history, top_categories, top_influencers, categories }) {
+export default function index({ saved_search, search_history, top_categories, top_influencers, categories }) {
     const [list, setList] = useState(false)
     const [searchActive, setSearchActive] = useState(false)
     // const [result, setSearchActive] = useState(false)
@@ -38,6 +38,9 @@ export default function index({ search_history, top_categories, top_influencers,
                                 </>
                                 :
                                 <>
+                                    {saved_search.length > 0 && (
+                                        <RecentSearches title="Saved Searches" data={saved_search} />
+                                    )}
                                     {search_history.length > 0 && (
                                         <RecentSearches data={search_history} />
                                     )}
