@@ -4,11 +4,8 @@ import EmptyState from '@/components/EmptyState';
 import InfluencerCard from '../RecentSearches/InfluencerCard';
 import InfluencerProfile from "@/Pages/InfluencerProfile";
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 604f621106fed629a5724df63650961b9e3b0ddc
 export default function TopInfluencers({ data }) {
 
     const [isOpen, setIsOpen] = useState(false);
