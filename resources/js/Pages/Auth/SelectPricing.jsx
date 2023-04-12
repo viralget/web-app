@@ -1,12 +1,16 @@
 import Header from "./AccountSetup/header";
-import  { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import Hero from '../PricingPage/components/hero';
 import Plans from '../PricingPage/components/plans';
 import { classNames } from '@/Utils/helpers';
 
 const SelectPricing = (props) => {
-   const { auth: { user } } = props;
+   const { auth: { user }, plans } = props;
+
+   
     const [getTab, setTab] = useState('plans');
+    const [getPlans, setPlans] = useState(plans?.filter((item) => !item.is_deleted))
+  
 
     const handleTabs = (tab) => {
         setTab(tab);
@@ -51,7 +55,7 @@ const SelectPricing = (props) => {
             {
                 getTab === 'plans' ? (
                     <div className='mb-10'>
-                    <Plans />
+                    <Plans   plans={getPlans}/>
                     </div>
                 )
                 :

@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Helpers\LoggerHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\UserVerifyEmail;
-use App\Models\User;
-use App\Models\UserDetail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +13,11 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
-
+use App\Services\PaymentMethods\Paystack;
+use App\Models\User;
+use App\Models\UserDetail;
+use App\Models\UserPlan;
+use App\Models\Transaction;
 
 
 class RegisteredUserController extends Controller
@@ -147,7 +149,9 @@ class RegisteredUserController extends Controller
         if(!$user){
            return redirect(route('login'));
         }
-        return Inertia::render('Auth/SelectPricing');
+       $plans = Paystack::fetchPlans();
+       $data['plans']  = $plans?->data ? $plans?->data : [];
+        return Inertia::render('Auth/SelectPricing', $data);
     }
 
 
@@ -169,9 +173,47 @@ class RegisteredUserController extends Controller
         if(!$user || !$plan_id){
            return redirect(route('login'));
         }
+        if (config('services.paystack.mode') == 'live') {
+            $public_key = config('services.paystack.live_pk');
+        } else {
+            $public_key = config('services.paystack.test_pk');
+        }
+        $data['public_key'] = $public_key;
         $data['plan_id'] = $plan_id;
+        $plan = Paystack::fetchPlan($plan_id);
+        $data['plan'] = $plan?->data ?? null;
 
         return Inertia::render('UserPayment/index', $data);
 
+    }
+
+    public function verifyPayment($reference, $plan_id){
+        $verify = Paystack::verify($reference);
+        $data['verify'] = $verify;
+        $plan = Paystack::fetchPlan($plan_id);
+        $user = request()->user();
+        $user_id =  $user->id;
+        if($verify->status){
+            $userPlan =  new userPlan;
+            $userPlan->plan_name = $plan->data->name;
+            $userPlan->plan_code = $plan->data->plan_code;
+            $userPlan->plan_id = $plan->data->id;
+            $userPlan->user_id = $user_id;
+            $userPlan->save();
+
+            if($userPlan){
+                return response(['status' => true, 'message' => $verify->message]);
+            }
+        }else{
+            return response(['status' => false, 'message' => $verify->message]);
+        }
+    }
+
+    function selectSocial(){
+        $user = request()->user();
+        if(!$user){
+           return redirect(route('login'));
+        }
+        return Inertia::render('Auth/SelectSocial');
     }
 }

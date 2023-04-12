@@ -1,25 +1,26 @@
 import { useState } from "react"
 import PlanCard from "./planCard"
-import { plans, availableCurrency} from "@/Utils/constants"
+import {  availableCurrency} from "@/Utils/constants"
 import PlanDetails from "./planDetails";
 import { classNames } from "@/Utils/helpers";
 
-export default function Plans() {
+export default function Plans({plans}) {
+
    
     const [selectedDuration, setSelectedDuration] = useState("monthly");
-    const [filteredPlans, setFilteredPlans] = useState( plans.filter((item) => item.duration == selectedDuration))
-
-
+    const [filteredPlans, setFilteredPlans] = useState( plans.filter((item) => item.interval == selectedDuration))
+    console.log("plans:", filteredPlans);
+   
 
   const   handleSwitch = (e) => {
         let duration;
          if(e.target.checked){
-            duration = 'yearly';
+            duration = 'annually';
          }else {
             duration = 'monthly'; 
          }
          setSelectedDuration(duration)
-       const newPlan = plans.filter((item) => item.duration == duration);
+       const newPlan = plans.filter((item) => item.interval == duration);
        setFilteredPlans(newPlan);
     
   }

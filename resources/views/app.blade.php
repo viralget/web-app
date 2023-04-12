@@ -37,4 +37,6 @@ fbq('track', 'PageView');
   <body>
     @inertia
   </body>
+
+  <!-- <script src="https://js.paystack.co/v2/inline.js"> -->
 </html>

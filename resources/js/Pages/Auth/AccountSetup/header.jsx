@@ -48,14 +48,21 @@ const Header = ({ user, image_url, levels}) => {
 
         <div className="flex justify-between md:px-space-80  px-space-10   shadow-header-card-2  py-space-24">
               <Logo className="w-space-75  h-space-32"/>
+               
 
-               <div className="lg:flex  hidden  space-x-5">
-                     {
-                       levels.map((item, index) => (
-                            <Steps item={item} index={index}  key={index}/>
-                        ))
-                     }
-               </div>
+               {
+                levels?.length > 0 ? (
+                    <div className="lg:flex  hidden  space-x-5">
+                    {
+                      levels?.map((item, index) => (
+                           <Steps item={item} index={index}  key={index}/>
+                       ))
+                    }
+                    </div>
+                ):
+                null
+               }
+              
                <div className="flex space-x-1 items-center">
                   <Avatar userName={user.name} />
                   <span className="text-t-xsx  font-medium font-lexend">Hello, {user.name}</span>
