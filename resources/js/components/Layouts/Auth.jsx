@@ -11,7 +11,7 @@ export default function Auth({ children , type}) {
                     <Logo className="w-space-75  h-space-32"/>
                 </Link>
               
-                <div className="mx-auto  flex flex-col justify-center  h-full px-space-60 ">
+                <div className=" flex flex-col justify-center  h-full px-space-60 ">
                     {children}
                 </div>
             </div>
@@ -57,7 +57,44 @@ export default function Auth({ children , type}) {
 
             </div>
 
-            ):
+            ) : type == 'forgot' ?
+            (
+                <div className="flex justify-center items-center w-full  ">
+                  <div>
+                        <svg width="282" height="364" viewBox="0 0 282 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g filter="url(#filter0_dii_958_84279)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M236.362 151.833H226.895V111.59C226.792 64.3433 188.401 26 141.138 26C93.8536 26 55.4627 64.3406 55.3663 111.59L55.4458 151.835H45.8845C38.2233 151.835 32 158.065 32 165.73L32 312.107C32 319.774 38.2233 326 45.8845 326H236.355C244.035 326 250.263 319.775 250.263 312.107L250.265 165.725C250.263 158.062 244.037 151.83 236.357 151.83L236.362 151.833ZM161.352 282.154H120.91L129.157 231.436C123.74 227.648 120.184 221.381 120.184 214.264C120.184 202.69 129.54 193.315 141.133 193.315C152.695 193.315 162.082 202.692 162.082 214.264C162.082 221.381 158.485 227.648 153.067 231.436L161.352 282.154ZM86.4652 151.833L86.394 111.588C86.4945 81.4774 110.988 57.0368 141.143 57.0368C171.277 57.0368 195.775 81.4827 195.85 111.588L195.871 151.833H86.4652Z" fill="white" fill-opacity="0.9"/>
+                            </g>
+                            <defs>
+                            <filter id="filter0_dii_958_84279" x="0.395618" y="0.0141745" width="281.474" height="363.209" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="5.61856"/>
+                            <feGaussianBlur stdDeviation="15.8022"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.6625 0 0 0 0 0.229115 0 0 0 0 0.47524 0 0 0 0.2 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_958_84279"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_958_84279" result="shape"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-4.21392"/>
+                            <feGaussianBlur stdDeviation="7.72551"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.520833 0 0 0 0 0.0868056 0 0 0 0 0.47743 0 0 0 0.2 0"/>
+                            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_958_84279"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-2.80928"/>
+                            <feGaussianBlur stdDeviation="2.80928"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.808333 0 0 0 0 0.737604 0 0 0 0 0.792773 0 0 0 0.85 0"/>
+                            <feBlend mode="normal" in2="effect2_innerShadow_958_84279" result="effect3_innerShadow_958_84279"/>
+                            </filter>
+                            </defs>
+                            </svg>
+
+                  </div>
+                </div>
+            )
+            
+            :
             (
              <div className="relative overflow-hidden hidden w-0   pt-10 flex-1 justify-center align-middle md:flex lg:block">
                 <div className="text-white px-space-30 text-center max-w-2xl mx-auto">

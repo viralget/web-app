@@ -210,4 +210,12 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+
+    public function createForgotPassword(){
+
+        return Inertia::render(
+            'Auth/ForgotPassword'
+        );
+    }
 }

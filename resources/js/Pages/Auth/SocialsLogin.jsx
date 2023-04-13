@@ -32,7 +32,7 @@ export default function SocialsLogin({ type, redirect_url }) {
     <div>
     <button
         onClick={() => handleSocialLogin('google')}
-        className="inline-flex w-full justify-center space-x-3 rounded-md border  bg-white py-2 px-4 text-sm font-medium text-black "
+        className="inline-flex w-full justify-center space-x-3 rounded-md border  bg-white py-space-16 px-4 text-sm font-medium text-black "
     >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M17.7625 9.20114C17.7625 8.61183 17.7103 8.05236 17.6207 7.50781H9.19141V10.8721H14.0178C13.8014 11.9761 13.1674 12.9086 12.2275 13.5426V15.7805H15.1069C16.7927 14.2214 17.7625 11.9239 17.7625 9.20114Z" fill="#4285F4"/>

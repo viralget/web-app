@@ -9,6 +9,7 @@ import { getEventValue } from '@/Utils/helpers';
 import { Logo } from '@/components/Logo'
 import SocialsLogin from "./SocialsLogin";
 import { useEffect } from "react";
+import { EmailSvg, PasswordSvg } from "@/Utils/icons";
 
 export default function Login() {
 
@@ -37,15 +38,16 @@ export default function Login() {
 
     return (
         <Auth>
+            
 
-            <div>
-                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
-                <p className="mt-2 text-sm text-gray-600">
-                    Or{' '}
-                    <a href="/register" className="font-medium text-fuchsia-600 hover:text-fuchsia-500">
-                        Create an account
-                    </a>
-                </p>
+            <div className="w-full">
+                <h2 className="text-t-lg-x font-lexend  font-bold ">Welcome back!</h2>
+                <p className="mt-2 text-t-normal font-normal  text-gray-600">
+                Not registered yet? {' '}
+                            <a href={route('register')} className="font-bold text-t-normal text-viralget-red">
+                            Create an account
+                            </a>
+                        </p>
             </div>
             <div className="mt-8">
                 <div>
@@ -56,13 +58,13 @@ export default function Login() {
                             <div className="w-full border-t border-gray-300" />
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                            <span className="bg-white px-2 text-gray-500">Or</span>
                         </div>
                     </div>
                 </div>
                 <ValidationErrors errors={errors} />
 
-                <form onSubmit={submit} className="space-y-2">
+                <form onSubmit={submit} className="">
 
 
                     <div className="mt-4">
@@ -72,10 +74,11 @@ export default function Login() {
                             name="email"
                             label="Email Address"
                             value={data.email}
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full  pl-10"
                             autoComplete="email"
                             onChange={onHandleChange}
                             required
+                            icon={<EmailSvg />}
                         />
                     </div>
 
@@ -85,16 +88,37 @@ export default function Login() {
                             label="Password"
                             name="password"
                             value={data.password}
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full pl-10"
                             autoComplete="new-password"
                             onChange={onHandleChange}
                             required
+                            icon={<PasswordSvg />}
                         />
                     </div>
 
-                    <div className="text-center space-y-2 mt-4">
+                    <div className="flex items-center justify-between">
+                            <div className="flex items-center">
+                                <input
+                                    id="remember-me"
+                                    name="remember-me"
+                                    type="checkbox"
+                                    className="h-4 w-4 rounded border-gray-300 text-viralget-red accent-viralget-red focus:ring-indigo-500"
+                                />
+                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                                    Remember me
+                                </label>
+                            </div>
+
+                            <div className="text-sm">
+                                <a href={route('create.forgot.password')} className="font-bold text-viralget-red hover:text-viralget-red">
+                                    Forgot your password?
+                                </a>
+                            </div>
+                        </div>
+
+                    <div className="text-center  mt-space-32">
                         <Button
-                            className='block w-full'
+                            className='block w-full bg-viralget-red rounded-[8px]'
                             processing={processing}>
                             Login
                         </Button>
@@ -135,25 +159,7 @@ export default function Login() {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input
-                                    id="remember-me"
-                                    name="remember-me"
-                                    type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-indigo-500"
-                                />
-                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                    Remember me
-                                </label>
-                            </div>
-
-                            <div className="text-sm">
-                                <a href="#" className="font-medium text-fuchsia-600 hover:text-fuchsia-500">
-                                    Forgot your password?
-                                </a>
-                            </div>
-                        </div>
+                       
 
                         <div>
                             <button

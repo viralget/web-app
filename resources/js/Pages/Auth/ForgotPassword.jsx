@@ -7,6 +7,7 @@ import { Head, useForm } from '@inertiajs/inertia-react';
 import AuthHeader from './AuthHeader';
 import Label from '@/Components/Label';
 import Success from '@/Components/Alerts/Success';
+import Auth from "@/components/Layouts/Auth";
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -24,15 +25,17 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <App>
-            <Head title="Forgot Password" />
-            <AuthHeader title="Forgot Password?" showAuth={false} />
+        <Auth type="forgot">
+            {/* <Head title="Forgot Password" /> */}
+            {/* <AuthHeader title="Forgot Password?" showAuth={false} /> */}
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-
-                    <div className="mb-4 text-sm text-gray-500 leading-normal">
-                        Let's help you reset your password. A password reset link will be sent to your email inbox/spam.
+                {/* <div className="bg-white py-8 px-4  sm:rounded-lg sm:px-10"> */}
+                <h2 className="text-t-lg-x font-lexend  font-bold ">Forgot password?</h2>
+                <span className='mt-space-12 text-t-xsx font-medium text-viralget-grey'>Sometimes it happens to everyone</span>
+                    <div className="mt-space-40">
+                        <span className='font-normal text-t-normal text-viralget-gray-400'>Enter the email connected with your account and we will send you
+                          an email with instructions how to reset your password.</span>
                     </div>
 
                     {status && <Success message={status} />}
@@ -58,7 +61,7 @@ export default function ForgotPassword({ status }) {
                     </form>
 
                 </div>
-            </div>
-        </App>
+            {/* </div> */}
+        </Auth>
     );
 }

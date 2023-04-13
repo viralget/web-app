@@ -25,10 +25,8 @@ Route::get('/select-social', [RegisteredUserController::class, 'selectSocial'])-
 
 Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
-
-// Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-//     ->name('password.request');
+Route::get('forgot-password', [AuthenticatedSessionController::class, 'createForgotPassword'])
+    ->name('create.forgot.password');
 
 // Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
 //     ->name('password.email');
