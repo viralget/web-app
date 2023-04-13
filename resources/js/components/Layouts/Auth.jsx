@@ -94,6 +94,42 @@ export default function Auth({ children , type}) {
                 </div>
             )
             
+            : type == 'forgot-success' ?
+            (
+                <div className="flex justify-center items-center w-full  ">
+                  <div>
+                     
+                <svg width="368" height="295" viewBox="0 0 368 295" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_dii_958_84233)">
+                <path d="M331.733 32.1436C330.202 30.1799 328.102 28.8737 325.821 28.3124H325.819C325.814 28.3124 325.81 28.3103 325.806 28.3103C325.802 28.3103 325.797 28.3082 325.795 28.3082C325.793 28.3082 325.791 28.3082 325.789 28.306C325.541 28.2463 325.289 28.1929 325.037 28.1502C325.033 28.1502 325.029 28.1481 325.025 28.1481C323.464 27.8877 321.842 27.9667 320.28 28.417L41.981 102.743C37.5331 103.931 34.3338 107.816 34.0245 112.411C33.715 117.004 36.3616 121.285 40.6091 123.061L122.251 157.185L136.615 245.93C137.255 249.891 140.049 253.167 143.859 254.425C144.965 254.79 146.102 254.969 147.231 254.969C149.993 254.969 152.697 253.904 154.738 251.917L200.942 206.912L263.077 249.031C264.883 250.254 266.989 250.884 269.113 250.884C270.377 250.884 271.647 250.662 272.863 250.209C276.124 248.997 278.596 246.28 279.499 242.921L333.604 41.6519C333.686 41.3616 333.754 41.0692 333.809 40.7747C333.922 40.1835 333.984 39.5901 333.997 38.9989C334.044 36.9627 333.513 34.901 332.375 33.076C332.183 32.7537 331.965 32.4421 331.733 32.1433L331.733 32.1436ZM247.736 70.0604L131.142 137.583L78.0328 115.384L247.736 70.0604ZM160.685 163.165C159.039 164.568 157.878 166.416 157.308 168.45L157.304 168.448L150.053 194.305L143.716 155.158L225.976 107.517L160.685 163.165ZM168.398 208.582L173.99 188.637L182.766 194.585L168.398 208.582ZM262.651 222.746L185.397 170.377L303.876 69.4042L262.651 222.746Z" fill="white" fill-opacity="0.9"/>
+                </g>
+                <defs>
+                <filter id="filter0_dii_958_84233" x="0.589649" y="0.529266" width="366.821" height="293.789" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="5.93962"/>
+                <feGaussianBlur stdDeviation="16.7052"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.6625 0 0 0 0 0.229115 0 0 0 0 0.47524 0 0 0 0.2 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_958_84233"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_958_84233" result="shape"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="-4.45471"/>
+                <feGaussianBlur stdDeviation="8.16697"/>
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.520833 0 0 0 0 0.0868056 0 0 0 0 0.47743 0 0 0 0.2 0"/>
+                <feBlend mode="normal" in2="shape" result="effect2_innerShadow_958_84233"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="-2.96981"/>
+                <feGaussianBlur stdDeviation="2.96981"/>
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.808333 0 0 0 0 0.737604 0 0 0 0 0.792773 0 0 0 0.85 0"/>
+                <feBlend mode="normal" in2="effect2_innerShadow_958_84233" result="effect3_innerShadow_958_84233"/>
+                </filter>
+                </defs>
+                </svg>
+                 </div>
+                 </div>
+            )
             :
             (
              <div className="relative overflow-hidden hidden w-0   pt-10 flex-1 justify-center align-middle md:flex lg:block">

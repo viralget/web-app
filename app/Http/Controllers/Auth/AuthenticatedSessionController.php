@@ -15,6 +15,7 @@ use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\UserForgotPassword;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -218,4 +219,43 @@ class AuthenticatedSessionController extends Controller
             'Auth/ForgotPassword'
         );
     }
+
+
+    public function sendMailForgotPassword(Request $request){
+
+        try{
+          $email = $request->email;
+          $user = User::where('email', $email)->first();
+     
+          if($user){
+            $send =  Mail::to($email)->send(new UserForgotPassword($user));
+            return redirect()->route('create.forgot.password', [ 'email' => $email]);
+          }else{
+            return redirect()->back()->withError('This user does not exist!');
+          }
+         
+        } catch (\Exception $e) {
+            dd($e);
+            $this->log($e);
+            return redirect()->back()->withError('An error occured. Please try again');
+        }
+
+    }
+  
+    function showSuccessForgotPassword(){
+        return Inertia::render(
+            'Auth/ResetPasswordSuccess'
+        );
+    }
+
+    function createResetPassword(){
+        return Inertia::render(
+            'Auth/ResetPassword'
+        );
+    }
+
+
 }
+
+
+
