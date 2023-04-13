@@ -100,7 +100,7 @@ const UserPayment = (props) => {
                                         value={value}
                                         onChange={onHandleChange}
                                         type="checkbox"
-                                        className="h-4 w-4 rounded-full border-gray-300 text-fuchsia-600 focus:ring-indigo-500"
+                                        className="h-4 w-4 rounded  accent-viralget-red  text-white bg-white"
                         />
                          <span className="text-t-xsx capitalize font-medium font-lexend">
                       {value}
@@ -127,7 +127,7 @@ const UserPayment = (props) => {
 
             <Header  user={user}  levels={Levels}/>
 
-            <div  className="w-full flex items-center mt-space-40  px-space-10  justify-center">
+            <div  className="w-full flex items-center mt-space-80 px-space-10  justify-center">
                 <div className="flex flex-col ">
                     <span className="font-bold font-lexend lg:text-t-xlg  text-t-lg text-center ">Payment method</span>
                      

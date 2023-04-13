@@ -2,6 +2,9 @@ import { InstagramSvg, TwitterSvg, DoneSvg, CancelFillRedSvg} from "@/Utils/icon
 const PlanDetails = () => {
 
 
+
+      // const 
+
    return(
     <div className="w-full flex  px-10 justify-center  items-center ">
         <div className="w-[16%] lg:flex  hidden">
@@ -15,30 +18,30 @@ const PlanDetails = () => {
                                         </tr>
                                   </thead>
                                    <tbody>
-                                        <tr>
-                                            <td className="border text-t-xsx  font-bold px-4">Social media platform</td>
-                                            <td className="border p-3 ">
+                                        <tr >
+                                            <td className="border text-t-xsx w-space-200 font-bold px-4">Social media platform</td>
+                                            <td className="border p-3  w-space-200">
                                                   <div className="flex justify-center space-x-1">
-                                                        <InstagramSvg  className="w-10 h-10 " />
-                                                         <span>Or</span>
+                                                        {/* <InstagramSvg  className="w-10 h-10 " /> */}
+                                                         {/* <span>Or</span> */}
                                                          <TwitterSvg />
                                                   </div>
                                             </td>
-                                            <td className="border p-3 ">
+                                            <td className="border p-3 w-space-200 ">
                                                   <div className="flex justify-center space-x-1">
-                                                        <InstagramSvg  className="w-10 h-10 " />
+                                                        {/* <InstagramSvg  className="w-10 h-10 " /> */}
                                                          <TwitterSvg />
                                                   </div>
                                             </td>
-                                            <td className="border p-3 ">
+                                            <td className="border p-3 w-space-200 ">
                                                   <div className="flex justify-center space-x-1">
-                                                        <InstagramSvg  className="w-10 h-10 " />
+                                                        {/* <InstagramSvg  className="w-10 h-10 " /> */}
                                                          <TwitterSvg />
                                                   </div>
                                             </td>
-                                            <td className="border p-3 ">
+                                            <td className="border p-3 w-space-200 ">
                                                   <div className="flex justify-center space-x-1">
-                                                        <InstagramSvg  className="w-10 h-10 " />
+                                                        {/* <InstagramSvg  className="w-10 h-10 " /> */}
                                                          <TwitterSvg />
                                                   </div>
                                             </td>
@@ -213,7 +216,244 @@ search filters</td>
                                                   </div>
                                             </td>
                                         </tr>
-                                    </tbody>
+
+                                   </tbody>
+
+
+
+
+
+                                   <thead>
+                                        <tr className="bg-viralget-gray-200">
+                                             <th colSpan="5">Advanced profiling datasets</th>
+                                        </tr>
+                                  </thead>
+
+                                  <tbody>
+
+                                     <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Profile analysis</td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">Analyze up to 10 profiles</span>
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">Analyze up to 100 profiles</span>
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">Analyze up to 200 profiles</span>
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                            <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">Analyze up to 500 profiles</span>
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Influencer storage</td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">15</span>
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">120</span>
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">250</span>
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                            <div className="flex justify-center space-x-1">
+                                                     <span className="text-t-normal font-normal">600</span>
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Brand safety</td>
+                                            <td className="border p-3 ">
+                                                <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Influencers conversion rate</td>
+                                            <td className="border p-3 ">
+                                                <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Follower spend power & purchase behaviour</td>
+                                            <td className="border p-3 ">
+                                                <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                 <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Influencer’s follower data signal</td>
+                                            <td className="border p-3 ">
+                                                <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                 <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Export profile analyzed</td>
+                                            <td className="border p-3 ">
+                                                <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                 <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Impressions vs reach</td>
+                                            <td className="border p-3 ">
+                                                <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                 <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td className="border text-t-xsx  font-bold px-4">Growth rate</td>
+                                            <td className="border p-3 ">
+                                                <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                  <div className="flex justify-center space-x-1">
+                                                    <CancelFillRedSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                 <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                            <td className="border p-3 ">
+                                                 <div className="flex justify-center space-x-1">
+                                                    <DoneSvg  className="w-4 h-4"   />
+                                                  </div>
+                                            </td>
+                                        </tr>
+
+                                   </tbody>
                                 </table>
                      </div>
              

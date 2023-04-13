@@ -118,9 +118,9 @@ const AccountSetupForm = () => {
 
                     <div className="text-center  w-full flex justify-start  mt-space-20">
 
-                        <div  className='w-full'>
+                        <div  className='w-auto'>
                                <Button
-                                    className='block w-full bg-viralget-red rounded-[8px]'
+                                    className='block w-auto bg-viralget-red  px-space-80 rounded-[8px]'
                                     processing={processing}
                                     >
                                     Continue

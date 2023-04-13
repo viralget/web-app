@@ -57,6 +57,7 @@ module.exports = {
                 'space-68' : '68px',
                 'space-75' : '75px',
                 'space-80' : '80px',
+                'space-90' : '90px',
                 'space-131' : '131px',
                 'space-143' : '143px',
                 'space-150' : '150px',
@@ -64,6 +65,7 @@ module.exports = {
                 'space-190' : '190px',
                 'space-200' : '200px',
                 'space-282' : '282px',
+                'space-290' : '290px',
                 'space-500' : '500px',
                 'space-510' : '510px',
                 'space-600' : '600px'

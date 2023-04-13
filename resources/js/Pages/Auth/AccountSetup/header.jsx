@@ -52,7 +52,7 @@ const Header = ({ user, image_url, levels}) => {
 
                {
                 levels?.length > 0 ? (
-                    <div className="lg:flex  hidden  space-x-5">
+                    <div className="lg:flex  hidden  space-x-space-60">
                     {
                       levels?.map((item, index) => (
                            <Steps item={item} index={index}  key={index}/>

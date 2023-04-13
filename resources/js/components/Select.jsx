@@ -50,7 +50,7 @@ export default function Select({
                 ref={select}
                 className={
                     // `border-gray-300 focus:border-green-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block` +
-                    `focus:ring-gray-400 ${capitalize && 'capitalize'} ${useBorder && 'border'} px-2 py-3 focus:border-gray-400 block w-full px-2  sm:text-sm border-gray-300 rounded-md ${secondary && 'bg-gray-100'} ` +
+                    `focus:ring-gray-400 ${capitalize && 'capitalize'} ${useBorder && 'border'}  indent-1 py-3 focus:border-gray-400 block w-full px-2  sm:text-sm border-gray-300 rounded-md ${secondary && 'bg-gray-100'} ` +
                     className +
                     'border border-gray-300'
                 }

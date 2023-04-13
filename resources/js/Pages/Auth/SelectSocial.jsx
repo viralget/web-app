@@ -16,7 +16,7 @@ where you want to search for influencers</span>
 
                 <div className="max-w-2xl mx-auto mt-space-16">
 
-                     <div  className="w-[290px]  rounded-md shadow-header-card p-5 items-center justify-center flex flex-col">
+                     <div  className="w-space-290 border border-viralget-gray-200  rounded-md shadow-header-card p-5 items-center justify-center flex flex-col">
                             <div>
                                  <TwitterSvg  />
                             </div>
