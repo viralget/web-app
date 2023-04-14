@@ -42,10 +42,6 @@ class UserVerifyEmail extends Mailable
             'user' => $this->user,
             'verify_url' => $verify_url
         ];
-        // return $this->markdown('users.auth.verify-email', [
-        //     'user' => $this->user,
-        //     'verify_url' => $verify_url,
-        // ])->subject('Verify your email address');
         return $this->view('mail.sendVerificationMail')
         ->subject('Verify your email address')
           ->with('data', $data);

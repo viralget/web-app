@@ -34,8 +34,11 @@ Route::post('forgot-password', [AuthenticatedSessionController::class, 'sendMail
 Route::get('reset-password/{email}', [AuthenticatedSessionController::class, 'createResetPassword'])
         ->name('password.reset');
 
- Route::get('forgot-email-sent/{email}', [AuthenticatedSessionController::class, 'showSuccessForgotPassword'])
-    ->name('success.forgot.password');
+Route::post('reset-password', [AuthenticatedSessionController::class, 'storeResetPassword'])
+    ->name('password.update');
+
+//  Route::get('forgot-email-sent/{email}', [AuthenticatedSessionController::class, 'showSuccessForgotPassword'])
+//     ->name('success.forgot.password');
    
 // Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
 //     ->name('password.email');

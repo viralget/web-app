@@ -16,6 +16,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserForgotPassword;
+use Illuminate\Validation\Rules;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -222,8 +223,12 @@ class AuthenticatedSessionController extends Controller
 
 
     public function sendMailForgotPassword(Request $request){
+        $request->validate([
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
 
         try{
+            
           $email = $request->email;
           $user = User::where('email', $email)->first();
      
@@ -242,18 +247,47 @@ class AuthenticatedSessionController extends Controller
 
     }
   
-    function showSuccessForgotPassword(){
+    // function showSuccessForgotPassword(){
+    //     return Inertia::render(
+    //         'Auth/ResetPasswordSuccess'
+    //     );
+    // }
+
+    function createResetPassword($email){
+        $data['email'] =  $email;
         return Inertia::render(
-            'Auth/ResetPasswordSuccess'
+            'Auth/ResetPassword', $data
         );
     }
+   
 
-    function createResetPassword(){
-        return Inertia::render(
-            'Auth/ResetPassword'
-        );
+    function storeResetPassword(Request $request){
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|confirmed',
+        ]);
+
+        try {
+
+           $email = $request->email;
+           $password_confirmation = $request->password_confirmation;   
+           $user = User::where('email', $email)->first();
+           $user->password = Hash::make($password_confirmation);
+           $user->update();
+
+           if($user){
+            return redirect()->route('password.reset', ['status' => 'success', 'email' => $email]);
+           }
+
+
+        } catch (\Exception $e) {
+            dd($e);
+            $this->log($e);
+            return redirect()->back()->withError('An error occured. Please try again');
+        }
+
+
     }
-
 
 }
 

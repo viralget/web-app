@@ -1,6 +1,6 @@
 import AuthGuest from "../../../assets/images/auth_guest.svg";
 import { Logo } from '@/components/Logo';
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 
 export default function Auth({ children , type}) {
     return (
@@ -57,7 +57,42 @@ export default function Auth({ children , type}) {
 
             </div>
 
-            ) : type == 'forgot' ?
+            ) : type == 'newPassword' ?
+            <div className="flex justify-center items-center w-full  ">
+               <div>
+                    <svg width="406" height="320" viewBox="0 0 406 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g filter="url(#filter0_dii_958_84197)">
+                            <path d="M114.103 26.9469C151.155 23.1207 187.303 43.5271 204.08 76.7821C213.512 95.4663 215.334 114.693 212.215 132.65L361.475 223.874C363.259 224.965 364.541 226.723 365.032 228.757L373.526 263.952C374.548 268.189 371.943 272.454 367.704 273.478L332.509 281.971C330.475 282.462 328.326 282.125 326.541 281.032L303.546 266.978C301.755 265.886 300.475 264.127 299.985 262.093L295.195 242.248L275.348 247.038C273.314 247.529 271.165 247.192 269.38 246.099L255.91 237.867C254.123 236.774 252.843 235.015 252.352 232.981L247.563 213.137L227.716 217.926C225.681 218.417 223.532 218.08 221.748 216.987L177.278 189.809C162.723 200.774 144.782 207.922 123.849 208.051C86.6011 208.282 51.955 185.422 38.4613 150.706C16.5155 94.254 53.8569 33.1613 114.1 26.9473L114.103 26.9469ZM95.1435 119.98C107.86 116.911 115.681 104.116 112.612 91.3989C109.543 78.682 96.7474 70.8619 84.0305 73.9308C71.3136 76.9998 63.4934 89.795 66.5624 102.512C69.6318 115.231 82.4265 123.049 95.1435 119.98Z" fill="white" fill-opacity="0.9"/>
+                            </g>
+                            <defs>
+                            <filter id="filter0_dii_958_84197" x="0.510853" y="0.498549" width="404.842" height="318.912" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="5.61856"/>
+                            <feGaussianBlur stdDeviation="15.8022"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.6625 0 0 0 0 0.229115 0 0 0 0 0.47524 0 0 0 0.2 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_958_84197"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_958_84197" result="shape"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-4.21392"/>
+                            <feGaussianBlur stdDeviation="7.72551"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.520833 0 0 0 0 0.0868056 0 0 0 0 0.47743 0 0 0 0.2 0"/>
+                            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_958_84197"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-2.80928"/>
+                            <feGaussianBlur stdDeviation="2.80928"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.808333 0 0 0 0 0.737604 0 0 0 0 0.792773 0 0 0 0.85 0"/>
+                            <feBlend mode="normal" in2="effect2_innerShadow_958_84197" result="effect3_innerShadow_958_84197"/>
+                            </filter>
+                            </defs>
+                            </svg>
+
+               </div>
+            </div>
+            :
+            type == 'forgot' ?
             (
                 <div className="flex justify-center items-center w-full  ">
                   <div>
@@ -130,6 +165,66 @@ export default function Auth({ children , type}) {
                  </div>
                  </div>
             )
+            : type == 'password-success' ? 
+
+            <div className="flex justify-center items-center w-full  ">
+                <div>
+                     <svg width="368" height="368" viewBox="0 0 368 368" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_di_958_84135)">
+                        <circle cx="184" cy="180" r="150" fill="white" fill-opacity="0.2" shape-rendering="crispEdges"/>
+                        <circle cx="184" cy="180" r="149.5" stroke="url(#paint0_linear_958_84135)" shape-rendering="crispEdges"/>
+                        </g>
+                        <g filter="url(#filter1_dii_958_84135)">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M253.474 128.418C260.692 135.595 260.726 147.266 253.548 154.484L176.493 231.981C169.521 238.993 158.259 239.254 150.969 232.573L115.194 199.785C107.69 192.908 107.182 181.248 114.06 173.744C120.938 166.239 132.597 165.731 140.102 172.609L162.83 193.44L227.407 128.492C234.585 121.274 246.255 121.24 253.474 128.418Z" fill="white" fill-opacity="0.9"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_di_958_84135" x="0" y="0" width="368" height="368" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="4"/>
+                        <feGaussianBlur stdDeviation="17"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0.704167 0 0 0 0 0.266997 0 0 0 0 0.483539 0 0 0 0.15 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_958_84135"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_958_84135" result="shape"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="-4"/>
+                        <feGaussianBlur stdDeviation="7.5"/>
+                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0.883333 0 0 0 0 0.566806 0 0 0 0 0.696808 0 0 0 0.4 0"/>
+                        <feBlend mode="normal" in2="shape" result="effect2_innerShadow_958_84135"/>
+                        </filter>
+                        <filter id="filter1_dii_958_84135" x="77.6124" y="97.0689" width="212.902" height="177.568" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="5.61856"/>
+                        <feGaussianBlur stdDeviation="15.8022"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0.6625 0 0 0 0 0.229115 0 0 0 0 0.47524 0 0 0 0.2 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_958_84135"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_958_84135" result="shape"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="-4.09596"/>
+                        <feGaussianBlur stdDeviation="2.04798"/>
+                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                        <feBlend mode="normal" in2="shape" result="effect2_innerShadow_958_84135"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="-2.45758"/>
+                        <feGaussianBlur stdDeviation="2.45758"/>
+                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.85 0"/>
+                        <feBlend mode="normal" in2="effect2_innerShadow_958_84135" result="effect3_innerShadow_958_84135"/>
+                        </filter>
+                        <linearGradient id="paint0_linear_958_84135" x1="87.3333" y1="58.75" x2="239.833" y2="324.583" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="white" stop-opacity="0.15"/>
+                        <stop offset="1" stop-color="white" stop-opacity="0.3"/>
+                        </linearGradient>
+                        </defs>
+                        </svg>
+
+                        </div>
+                        </div>
+
             :
             (
              <div className="relative overflow-hidden hidden w-0   pt-10 flex-1 justify-center align-middle md:flex lg:block">

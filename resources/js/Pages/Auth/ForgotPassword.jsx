@@ -30,7 +30,6 @@ export default function ForgotPassword({ status }) {
       post(route('sendMail.forgot.password'));
     };
 
-    console.log("getEmail:", getEmail);
 
     return (
         <Auth type={ getEmail ? "forgot-success" : "forgot"} >
@@ -50,7 +49,7 @@ export default function ForgotPassword({ status }) {
 
                     <ValidationErrors errors={errors} />
 
-                    <form onSubmit={submit}>
+                    <form onSubmit={submit} >
                         
                             { getEmail ?  null :
                                 <> 

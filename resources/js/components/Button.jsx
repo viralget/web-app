@@ -29,6 +29,7 @@ function Button({
   variant = 'solid',
   color = 'slate',
   className,
+  processing,
   href,
   ...props
 }) {

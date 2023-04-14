@@ -13,8 +13,12 @@ import { EmailSvg, PasswordSvg } from "@/Utils/icons";
 
 export default function Login() {
 
+    const getEmail = new URLSearchParams(window.location.search).get('email');
+
+    console.log("getEmail:", getEmail)
+   
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
+        email:  getEmail ?? '',
         password: '',
     });
 
