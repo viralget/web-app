@@ -15,16 +15,14 @@ export default function Login() {
 
     const getEmail = new URLSearchParams(window.location.search).get('email');
 
-    console.log("getEmail:", getEmail)
-   
+  
     const { data, setData, post, processing, errors, reset } = useForm({
         email:  getEmail ?? '',
         password: '',
     });
 
     useEffect(() => {
-        // post(route('register'));
-
+      
         return () => {
             reset('password');
         };

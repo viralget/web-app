@@ -6,7 +6,7 @@ export default function Auth({ children , type}) {
     return (
 
         <div className="flex min-h-screen   bg-gradient-to-b from-[#FF9857] via-[#FA699D] to-[#B23AD3]">
-            <div className="flex  md:w-space-600  flex-col py-space-40  px-4 sm:px-6 lg:flex-none lg:px-space-24 xl:px-space-24 rounded-tr-[20px]   rounded-br-3xl  bg-white     ">
+            <div className="flex  md:w-[50%]  flex-col py-space-40  px-4 sm:px-6 lg:flex-none lg:px-space-24 xl:px-space-24 rounded-tr-[20px]   rounded-br-3xl  bg-white     ">
                <Link href="/">
                     <Logo className="w-space-75  h-space-32"/>
                 </Link>

@@ -4,7 +4,6 @@ import { useState} from "react"
 const UploadImage = ({ image,  displayFile }) => {
 
 
-
     return (
 
         <div  className="flex space-x-2">

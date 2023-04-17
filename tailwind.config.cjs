@@ -49,6 +49,7 @@ module.exports = {
                 'space-17': '17px',
                 'space-20' : '20px',
                 'space-24' : '24px',
+                'space-28' : '28px',
                 'space-32' : '32px',
                 'space-34' : '34px',
                 'space-35' : '35px',

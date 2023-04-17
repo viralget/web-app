@@ -37,10 +37,25 @@ export default function ForgotPassword({ status }) {
          
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                <h2 className="text-t-lg-x font-lexend  font-bold ">{ getEmail ? 'Check your inbox!': 'Forgot password?'}</h2>
-                <span className='mt-space-12 text-t-xsx font-medium text-viralget-grey'> { getEmail ? `We\’ve sent you an email with instructions on how to reset your password to ${ getEmail}` :'Sometimes it happens to everyone'}</span>
+               <div className='mt-space-12 '>
+                {
+                    getEmail ? (
+                    <>
+                    <span className='text-t-xsx font-medium text-viralget-gray-400'>We’ve sent you an email with instructions on how to reset your password to</span>
+                    <span className='text-t-xsx font-bold text-viralget-grey'> {getEmail}</span>
+                    </>
+                    )
+                    :
+                    (
+                       <span className='text-t-xsx font-medium text-viralget-grey'> Sometimes it happens to everyone</span>
+                     )
+                }
+                
+
+              </div>
                     
                     <div className="mt-space-40">
-                        <span className='font-normal text-t-normal text-viralget-gray-400'>
+                        <span className='font-normal text-t-normal text-viralget-gray-400 '>
                             
                         { getEmail ? 'Didn’t get the email?' :    'Enter the email connected with your account and we will send you an email with instructions how to reset your password.'}</span>
                     </div>

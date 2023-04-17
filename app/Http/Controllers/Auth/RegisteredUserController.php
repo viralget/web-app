@@ -156,6 +156,8 @@ class RegisteredUserController extends Controller
 
 
     public function verifyEmail($id, $hash){
+
+        
        
         $user = User::find($id);
         $user->email_verified_at = Now();
