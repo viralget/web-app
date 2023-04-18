@@ -5,23 +5,26 @@ import UploadImage from "@/components/UploadImage";
 import Input from "@/components/Input";
 import Select from '@/components/Select';
 import TextArea from '@/components/TextArea';
+import { PasswordSvg, PasswordSvgRed } from '@/Utils/icons';
+import PasswordInput from '@/components/PasswordInput';
 
-export default function Account() {
+export default function Account({ user }) {
     const [agreed, setAgreed] = useState(false)
     const [image, setImageUrl] = useState(null);
+
+    console.log("user:", user)
    
     const { data, setData, post, processing, errors, reset } = useForm({
-        company_name: '',
-        first_name: '',
-        last_name: '',
-        email: '',
+        company_name: user?.info.company_name,
+        first_name: user.info.first_name,
+        last_name: user.info.last_name,
+        email: user.info.email,
         password: '',
         file: '',
-        company_type:'',
-        company_name:'',
-        job_title: '',
-        company_website:'',
-        company_bio: ''
+        company_type:user.info.company_type,
+        job_title: user.info.job_title,
+        company_website:user.info.company_website,
+        company_bio: user.info.company_bio,
     });
 
     const displayFile = (event) => {
@@ -79,7 +82,7 @@ export default function Account() {
                                                     name="first_name"
                                                     label="First Name"
                                                     value={data.first_name}
-                                                    className="mt-1 block "
+                                                    className="mt-1 block   lg:w-space-245   w-full  "
                                                     placeholder="Enter your first name"
                                                     autoComplete="first_name"
                                                     onChange={onHandleChange}
@@ -90,7 +93,7 @@ export default function Account() {
                                                         name="last_name"
                                                         label="Last Name"
                                                         value={data.last_name}
-                                                        className="mt-1 block w-full"
+                                                        className="mt-1 block w-full  lg:w-space-245 "
                                                         autoComplete="family_name"
                                                         placeholder="Enter your last name"
                                                         onChange={onHandleChange}
@@ -112,7 +115,7 @@ export default function Account() {
 
 
 
-                            <div className='mt-space-32'>
+                            <div className='mt-space-32  border-b  border-viralget-gray-300 pb-space-32'>
                                 <div className='flex flex-col'>
                                        <span className='text-t-xs font-lexend font-bold'>Company info</span>
                                        <span className='mt-space-8 text-normal text-viralget-gray-400'>Update your company information here</span>
@@ -131,14 +134,14 @@ export default function Account() {
                                                     label="Company type"
                                                     defaultOptionText="Select company type"
                                                     required
-                                                    className="w-[245px]"
+                                                    className="lg:w-space-245 "
                                                 />
                                            <Input
                                                     type="text"
                                                     name="company_name"
                                                     label="Company name"
                                                     value={data.company_name}
-                                                    className="mt-1 h-11 block w-full"
+                                                    className="mt-1 h-11 block w-full  lg:w-space-245 "
                                                     autoComplete="company_name"
                                                     placeholder="Enter company name"
                                                     onChange={onHandleChange}
@@ -163,7 +166,7 @@ export default function Account() {
                                                         label="Job title"
                                                         defaultOptionText="Select job title"
                                                         required
-                                                        className="w-[245px]"
+                                                        className="lg:w-space-245  w-full"
                                                     />
 
                                             <Input
@@ -171,7 +174,7 @@ export default function Account() {
                                                         name="company_website"
                                                         label="Company Website"
                                                         value={data.company_website}
-                                                        className="mt-1 h-11 block w-full"
+                                                        className="mt-1 h-11 block w-full  lg:w-space-245 "
                                                         autoComplete="company_website"
                                                         placeholder="Enter company website"
                                                         onChange={onHandleChange}
@@ -185,7 +188,7 @@ export default function Account() {
                                             name="company_bio"
                                             label="Company bio"
                                             value={data.company_bio}
-                                            className="mt-1 h-20 block"
+                                            className="mt-1 h-20 block lg:w-space-510"
                                             autoComplete="company_bio"
                                             placeholder="Enter company bio"
                                             onChange={onHandleChange}
@@ -204,6 +207,82 @@ export default function Account() {
                                         </div>
                                </div>
                             </div>
+
+
+
+
+
+
+                            <div className='mt-space-32  lg:w-space-510'>
+                                <div className='flex flex-col'>
+                                       <span className='text-t-xs font-lexend font-bold'>Security settings</span>
+                                       <span className='mt-space-8 text-normal text-viralget-gray-400'>Note that if you signed in with a connected account, you are using that account’s login information and we cannot change or reset those passwords here.</span>
+                               </div>
+                              
+                               <div className='mt-space-24'>
+
+                                        <div className='w-auto mt-space-20'>
+                                                 <PasswordInput
+                                                        type="password"
+                                                        label="Enter current password"
+                                                        name="password"
+                                                        value={data.password}
+                                                        className="mt-1 block w-full pl-10"
+                                                        autoComplete="new-password"
+                                                        onChange={onHandleChange}
+                                                        placeholder="Enter current password"
+                                                        required
+                                                        icon={<PasswordSvg />}
+                                                    />
+                                        </div>
+
+                                        <div className='w-auto mt-space-20'>
+                                                 <PasswordInput
+                                                        type="password"
+                                                        label="Enter new password"
+                                                        name="password"
+                                                        value={data.password}
+                                                        className="mt-1 block w-full pl-10"
+                                                        autoComplete="new-password"
+                                                        onChange={onHandleChange}
+                                                        placeholder="Enter new password"
+                                                        required
+                                                        icon={<PasswordSvg />}
+                                                    />
+                                        </div>
+
+
+                                    <div  className='mt-space-20'>
+                                       <div className='flex flex-col '>
+                                           <span className='text-t-xs font-lexend font-bold'>Reset Password</span>
+                                           <span className='mt-space-8 text-normal text-viralget-gray-400'>If you just forgot your password, don’t worry – we got you!</span>
+                                        </div>  
+                                        <div className='mt-space-20'>
+                                            <a href={route('create.forgot.password')}  className='flex rounded-[8px]  py-space-12  items-center justify-center  space-x-3 text-viralget-red border border-viralget-red w-space-176'>
+                                                <PasswordSvgRed className="text-viralget-red"  stroke="red" /> 
+                                                <span> Reset password</span>
+                                            </a> 
+                                        </div>
+
+                                         
+                                    </div>
+                                    
+
+                                        <div className='mt-space-32 flex space-x-space-16'>
+                                             <button className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
+                                             Save
+                                             </button>
+
+                                             <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
+                                             Cancel
+                                             </button>
+                                        </div>
+                               </div>
+                            </div>
+
+
+
+
                            
                            
                            

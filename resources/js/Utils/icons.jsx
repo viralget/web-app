@@ -579,10 +579,10 @@ export const FindInfluencer = (props) => (
 
     )
 
+    
+    export const PasswordSvg = (props) => (
 
-    export const PasswordSvg = () => (
-
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
                 <g clip-path="url(#clip0_958_91804)">
                 <path d="M14.625 6.1875H3.375C3.06434 6.1875 2.8125 6.43934 2.8125 6.75V14.625C2.8125 14.9357 3.06434 15.1875 3.375 15.1875H14.625C14.9357 15.1875 15.1875 14.9357 15.1875 14.625V6.75C15.1875 6.43934 14.9357 6.1875 14.625 6.1875Z" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M6.46875 6.1875V3.65625C6.46875 2.98492 6.73543 2.34109 7.21014 1.86639C7.68484 1.39168 8.32867 1.125 9 1.125C9.67133 1.125 10.3152 1.39168 10.7899 1.86639C11.2646 2.34109 11.5312 2.98492 11.5312 3.65625V6.1875" stroke="#3E4555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -594,9 +594,23 @@ export const FindInfluencer = (props) => (
                 </clipPath>
                 </defs>
                 </svg>
-
-
     )
+
+    export const PasswordSvgRed = (props) => (
+
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <g clip-path="url(#clip0_958_91804)">
+        <path d="M14.625 6.1875H3.375C3.06434 6.1875 2.8125 6.43934 2.8125 6.75V14.625C2.8125 14.9357 3.06434 15.1875 3.375 15.1875H14.625C14.9357 15.1875 15.1875 14.9357 15.1875 14.625V6.75C15.1875 6.43934 14.9357 6.1875 14.625 6.1875Z" stroke="#F37C38" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6.46875 6.1875V3.65625C6.46875 2.98492 6.73543 2.34109 7.21014 1.86639C7.68484 1.39168 8.32867 1.125 9 1.125C9.67133 1.125 10.3152 1.39168 10.7899 1.86639C11.2646 2.34109 11.5312 2.98492 11.5312 3.65625V6.1875" stroke="#F37C38" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.24375 10.6875C9.24375 10.8221 9.13462 10.9312 9 10.9312C8.86538 10.9312 8.75625 10.8221 8.75625 10.6875C8.75625 10.5529 8.86538 10.4438 9 10.4438C9.13462 10.4438 9.24375 10.5529 9.24375 10.6875Z" fill="#F37C38" stroke="#F37C38" stroke-width="1.2"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_958_91804">
+        <rect width="18" height="18" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg>
+)
 
 
     export const InstagramSvg = () => (

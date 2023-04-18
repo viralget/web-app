@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\InfluencerController;
 use App\Http\Controllers\WhatsAppInfluencerController;
+use App\Http\Controllers\UserProfileController;
 use App\Models\WhatsappInfluencer;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfilingController;
@@ -75,12 +76,7 @@ Route::middleware('auth')->group(
         Route::get('/findprofiled/{id}', [ProfilingController::class, 'findProfiledInfluencer'])->name('influencer.findprofiled');
         Route::post('/influencer-create-list', [ProfilingController::class, 'influencerCreateList'])->name('influencer.addtolist');
        
-        
-
-
-        Route::get('/settings', function () {
-            return Inertia::render('Account/index');
-        })->name('settings');
+       Route::get('/settings', [UserProfileController::class, 'createSettings'])->name('settings');
 
         Route::resources([
             'campaigns' => CampaignController::class,
@@ -90,24 +86,9 @@ Route::middleware('auth')->group(
         Route::post('/campaign/initiate', [CampaignController::class, 'initiateCampaign'])->name('campaign.initiate');
     }
 );
-// Route::group(function () {
+
 Route::get('whatsapp-amplifier', [WhatsAppInfluencerController::class, 'create'])->name('amplifier');
 Route::resources(['whatsapp-influencers' => WhatsAppInfluencerController::class]);
-// });
+
 
 require __DIR__ . '/admin.php';
-
-
-
-// Route::get('/search', function () {
-//     return Inertia::render('Search/index');
-// });
-
-
-
-// Route::get('/register', function () {
-//     return Inertia::render('Auth/Register');
-// });
-// Route::get('/login', function () {
-//     return Inertia::render('Auth/Register');
-// });
