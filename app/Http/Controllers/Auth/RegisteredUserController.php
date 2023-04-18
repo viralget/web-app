@@ -64,7 +64,7 @@ class RegisteredUserController extends Controller
 
             if($request->hasFile('file')){
                 $imageName = time().$user->id.'.'.$request->file->extension();
-                $request->file->storeAs('user_images', $imageName);    
+                $request->file->storeAs('public/user_images', $imageName);    
             }
 
             $userdetails = new UserDetail;

@@ -9,7 +9,6 @@ export default function Plans({plans}) {
    
     const [selectedDuration, setSelectedDuration] = useState("monthly");
     const [filteredPlans, setFilteredPlans] = useState( plans.filter((item) => item.interval == selectedDuration))
-    console.log("plans:", filteredPlans);
    
 
   const   handleSwitch = (e) => {

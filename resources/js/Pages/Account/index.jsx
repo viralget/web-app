@@ -7,19 +7,21 @@ import Select from '@/components/Select';
 import TextArea from '@/components/TextArea';
 import { PasswordSvg, PasswordSvgRed } from '@/Utils/icons';
 import PasswordInput from '@/components/PasswordInput';
+import { getEventValue, classNames } from '@/Utils/helpers';
+import toast from '@/components/Toast';
 
 export default function Account({ user }) {
     const [agreed, setAgreed] = useState(false)
-    const [image, setImageUrl] = useState(null);
-
-    console.log("user:", user)
+    const [image, setImageUrl] = useState(user?.info?.image_url);
+   
    
     const { data, setData, post, processing, errors, reset } = useForm({
         company_name: user?.info.company_name,
         first_name: user.info.first_name,
         last_name: user.info.last_name,
         email: user.info.email,
-        password: '',
+        current_password: '',
+        new_password: '',
         file: '',
         company_type:user.info.company_type,
         job_title: user.info.job_title,
@@ -39,10 +41,8 @@ export default function Account({ user }) {
 }
 
     useEffect(() => {
-        // post(route('register'));
-
         return () => {
-            reset('password', 'password_confirmation');
+            reset('new_password', 'current_password');
         };
     }, []);
 
@@ -53,7 +53,16 @@ export default function Account({ user }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post('/register');
+        post('/update-settings', {
+            onSuccess: (result) => {
+               toast.success('Profile updated successfully');
+               reset('new_password', 'current_password');
+            },
+            onError: (errors) => {
+                toast.error(errors.error);
+                reset('new_password', 'current_password');
+            }
+        })
     };
 
     return (
@@ -86,7 +95,7 @@ export default function Account({ user }) {
                                                     placeholder="Enter your first name"
                                                     autoComplete="first_name"
                                                     onChange={onHandleChange}
-                                                    required
+                                                    
                                                 />
                                                   <Input
                                                         type="text"
@@ -97,7 +106,7 @@ export default function Account({ user }) {
                                                         autoComplete="family_name"
                                                         placeholder="Enter your last name"
                                                         onChange={onHandleChange}
-                                                        required
+                                                        
                                                     />
                                         </div>
                                         <div className='mt-space-32 flex space-x-space-16'>
@@ -105,9 +114,9 @@ export default function Account({ user }) {
                                              Save
                                              </button>
 
-                                             <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
+                                             {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
                                              Cancel
-                                             </button>
+                                             </button> */}
                                         </div>
                                </div>
                             </div>
@@ -132,9 +141,9 @@ export default function Account({ user }) {
                                                     value={data.company_type}
                                                     onChange={onHandleChange}
                                                     label="Company type"
-                                                    defaultOptionText="Select company type"
-                                                    required
+                                                    defaultOptionText="Select company type"  
                                                     className="lg:w-space-245 "
+                                                    defaultValue={data.company_type}
                                                 />
                                            <Input
                                                     type="text"
@@ -145,7 +154,7 @@ export default function Account({ user }) {
                                                     autoComplete="company_name"
                                                     placeholder="Enter company name"
                                                     onChange={onHandleChange}
-                                                    required
+                                                    
                                                 />
                                     
                                 </div>
@@ -165,7 +174,7 @@ export default function Account({ user }) {
                                                         onChange={onHandleChange}
                                                         label="Job title"
                                                         defaultOptionText="Select job title"
-                                                        required
+                                                        defaultValue={data.job_title}
                                                         className="lg:w-space-245  w-full"
                                                     />
 
@@ -178,7 +187,7 @@ export default function Account({ user }) {
                                                         autoComplete="company_website"
                                                         placeholder="Enter company website"
                                                         onChange={onHandleChange}
-                                                        required
+                                                        
                                                     />
                                        
                                     </div>
@@ -192,7 +201,7 @@ export default function Account({ user }) {
                                             autoComplete="company_bio"
                                             placeholder="Enter company bio"
                                             onChange={onHandleChange}
-                                            required
+                                            
                                         />
                                     </div>
 
@@ -201,9 +210,9 @@ export default function Account({ user }) {
                                              Save
                                              </button>
 
-                                             <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
+                                             {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
                                              Cancel
-                                             </button>
+                                             </button> */}
                                         </div>
                                </div>
                             </div>
@@ -225,13 +234,13 @@ export default function Account({ user }) {
                                                  <PasswordInput
                                                         type="password"
                                                         label="Enter current password"
-                                                        name="password"
-                                                        value={data.password}
+                                                        name="current_password"
+                                                        value={data.current_password}
                                                         className="mt-1 block w-full pl-10"
                                                         autoComplete="new-password"
                                                         onChange={onHandleChange}
                                                         placeholder="Enter current password"
-                                                        required
+                                                        
                                                         icon={<PasswordSvg />}
                                                     />
                                         </div>
@@ -240,13 +249,12 @@ export default function Account({ user }) {
                                                  <PasswordInput
                                                         type="password"
                                                         label="Enter new password"
-                                                        name="password"
-                                                        value={data.password}
-                                                        className="mt-1 block w-full pl-10"
+                                                        name="new_password"
+                                                        value={data.new_password}
+                                                        className="mt-1 block w-full pl-10 "
                                                         autoComplete="new-password"
                                                         onChange={onHandleChange}
                                                         placeholder="Enter new password"
-                                                        required
                                                         icon={<PasswordSvg />}
                                                     />
                                         </div>
@@ -269,13 +277,13 @@ export default function Account({ user }) {
                                     
 
                                         <div className='mt-space-32 flex space-x-space-16'>
-                                             <button className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
+                                             <button  className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
                                              Save
                                              </button>
 
-                                             <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
+                                             {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
                                              Cancel
-                                             </button>
+                                             </button> */}
                                         </div>
                                </div>
                             </div>
@@ -286,85 +294,7 @@ export default function Account({ user }) {
                            
                            
                            
-                           
-                           
-                           
-                            {/* <div>
-
-                                <Input
-                                    type="text"
-                                    name="company_name"
-                                    label="Company Name"
-                                    value={data.company_name}
-                                    className="mt-1 block w-full"
-                                    autoComplete="company_name"
-                                    onChange={onHandleChange}
-                                    placeholder="Optional"
-                                    required
-                                />
-                            </div>
-                            <div>
-
-                                <Input
-                                    type="text"
-                                    name="first_name"
-                                    label="First Name"
-                                    value={data.first_name}
-                                    className="mt-1 block w-full"
-                                    autoComplete="first_name"
-                                    onChange={onHandleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div>
-
-                                <Input
-                                    type="text"
-                                    name="last_name"
-                                    label="Last Name"
-                                    value={data.last_name}
-                                    className="mt-1 block w-full"
-                                    autoComplete="family_name"
-                                    onChange={onHandleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="mt-4">
-
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    label="Email Address"
-                                    value={data.email}
-                                    className="mt-1 block w-full"
-                                    autoComplete="email"
-                                    onChange={onHandleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="mt-4">
-                                <PasswordInput
-                                    type="password"
-                                    label="Password"
-                                    name="password"
-                                    value={data.password}
-                                    className="mt-1 block w-full"
-                                    autoComplete="new-password"
-                                    onChange={onHandleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="text-center space-y-2 mt-4">
-                                <Button
-                                    className='block w-full'
-                                    processing={processing}>
-                                    Update Account
-                                </Button>
-                            </div> */}
+                     
                         </form>
                     </div>
                 </div>

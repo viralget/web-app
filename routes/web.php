@@ -77,6 +77,7 @@ Route::middleware('auth')->group(
         Route::post('/influencer-create-list', [ProfilingController::class, 'influencerCreateList'])->name('influencer.addtolist');
        
        Route::get('/settings', [UserProfileController::class, 'createSettings'])->name('settings');
+       Route::post('/update-settings', [UserProfileController::class, 'updateSettings'])->name('update.settings');
 
         Route::resources([
             'campaigns' => CampaignController::class,

@@ -17,6 +17,6 @@ class UserDetail extends Model
             return;
         }
 
-        return url('user_images/'.$this->image);
+        return url('storage/user_images/'.$this->image);
     }
 }

@@ -21,7 +21,7 @@ const UploadImage = ({ image,  displayFile }) => {
                 </div>
              }
 
-                  <input type="file"  accept="image/jpeg, image/png" className="w-40 absolute top-5 opacity-0
+                  <input type="file"  accept="image/jpeg, image/png" className="w-40 h-20 absolute top-5 opacity-0
                     select-none
                     cursor-pointer" 
                     onChange={displayFile}
@@ -31,6 +31,14 @@ const UploadImage = ({ image,  displayFile }) => {
              <div className="flex flex-col  space-y-1 justify-center ">
                   <span className="text-t-normal font-bold text-viralget-grey">Upload an avatar (optional)</span>
                   <span className="text-t-normal w-[271px] font-normal text-viralget-gray-400">Upload PNG or JPEG file. File size limit is up to 4MB</span>
+                 {
+                  image ?
+                  (
+                    <span className="text-t-normal  font-bold text-viralget-red">Change avatar</span>
+               
+                  )
+                  : null
+                 }
              </div>
         </div>
     )
