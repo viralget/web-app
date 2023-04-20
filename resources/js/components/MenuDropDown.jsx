@@ -1,22 +1,21 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function MenuDropDown({ buttonName, ButtonIcon, children }) {
+export default function MenuDropDown({ buttonName, buttonIcon, children, className }) {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full  justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        <Menu.Button className={classNames("inline-flex w-full bg-wh  ite  justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold ", className)}>
           <div className='flex items-center justify-center'>
-           { ButtonIcon  ?  ButtonIcon :  null }
-           </div>
-           { buttonName }
-          </Menu.Button>
+            {buttonIcon}
+          </div>
+          {buttonName}
+        </Menu.Button>
       </div>
 
       <Transition
@@ -28,8 +27,8 @@ export default function MenuDropDown({ buttonName, ButtonIcon, children }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-               {children}
+        <Menu.Items className="absolute right-0 z-10 mt-2  origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          {children}
         </Menu.Items>
       </Transition>
     </Menu>

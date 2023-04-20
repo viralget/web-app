@@ -5,44 +5,45 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
-
+use App\Models\ProfiledInfluencer;
+use App\Http\Resources\InfluencerResource;
+use Inertia\Inertia;
+use App\Models\User;
+use App\Models\InfluencerList;
+use App\Models\InfluencerListsTwitterInfluencer;
 
 class PageController extends Controller
 {
-    //
 
+    public function sendContact(Request $request)
+    {
 
+        $request->validate([
+            'full_name' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'message' => 'required|string',
+        ]);
 
-    public function sendContact(Request $request){
+        $data = [
+            'title' => 'Web contact form',
+            'message' => $request->message,
+            'company_name' => $request->company_name,
+            'email' => $request->email,
+            'full_name' => $request->full_name
+        ];
 
-            $request->validate([
-                'full_name' => 'required|string|max:255',
-                'company_name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255',
-                'message' => 'required|string',
-            ]);
-            
-            $data = [
-                'title' => 'Web contact form',
-                'message' => $request->message,
-                'company_name' => $request->company_name,
-                'email' => $request->email,
-                'full_name' => $request->full_name
-            ];
+        try {
 
-         try {
-    
-             $send =  Mail::to($_ENV['SUPPORT_EMAIL_ADDRESS'])->send(new SendMail($data));
+            $send =  Mail::to($_ENV['SUPPORT_EMAIL_ADDRESS'])->send(new SendMail($data));
 
-               if($send){
-                   return redirect()->back();
-               }
-           
-            } catch (\Exception $e) {
-                return redirect()->back()->withError('An error occured. Please try again');
+            if ($send) {
+                return redirect()->back();
             }
-    
-
-       
+        } catch (\Exception $e) {
+            return redirect()->back()->withError('An error occured. Please try again');
+        }
     }
+
+
 }

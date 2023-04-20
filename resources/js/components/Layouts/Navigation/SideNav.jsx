@@ -2,7 +2,7 @@
 import SlideOver from '@/Components/SlideOver'
 import { classNames } from '@/Utils/helpers'
 import { Link, usePage } from '@inertiajs/inertia-react'
-import Avatar from '@/Components/Avatar'
+import Avatar from '@/components/Skeleton/Avatar'
 import { navigation, auth_routes, guest_routes, services_routes } from './navigation'
 import ApplicationLogo from '@/Components/ApplicationLogo'
 

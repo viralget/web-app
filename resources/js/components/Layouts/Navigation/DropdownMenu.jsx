@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import Avatar from '@/Components/Avatar'
+import Avatar from '@/components/Skeleton/Avatar'
 import Button from '@/Components/Button'
 import { auth_routes } from './navigation'
 import { Link } from '@inertiajs/inertia-react'

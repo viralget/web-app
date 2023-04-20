@@ -37,4 +37,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function profiles()
+    {
+        return  $this->hasMany(ProfiledInfluencer::class);
+    }
+
+    public function account()
+    {
+        return $this->hasOne(UserAccount::class);
+    }
+    
+    public function info()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
 }

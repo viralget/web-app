@@ -1,6 +1,28 @@
+import { useState } from "react"
 import PlanCard from "./planCard"
-export default function Plans() {
+import {  availableCurrency} from "@/Utils/constants"
+import PlanDetails from "./planDetails";
+import { classNames } from "@/Utils/helpers";
 
+export default function Plans({plans}) {
+
+   
+    const [selectedDuration, setSelectedDuration] = useState("monthly");
+    const [filteredPlans, setFilteredPlans] = useState( plans.filter((item) => item.interval == selectedDuration))
+   
+
+  const   handleSwitch = (e) => {
+        let duration;
+         if(e.target.checked){
+            duration = 'annually';
+         }else {
+            duration = 'monthly'; 
+         }
+         setSelectedDuration(duration)
+       const newPlan = plans.filter((item) => item.interval == duration);
+       setFilteredPlans(newPlan);
+    
+  }
 
     return (
        <div className=" w-full  bg-white h-full rounded-tr-lg rounded-tl-lg  -top-10 ">
@@ -8,25 +30,26 @@ export default function Plans() {
 
                 <div className="flex flex-col justify-center items-center  pt-10">
 
-                      <div>
-                           <h4 className="text-sm  font-bold">ViralGet subscription plans</h4>
-                           <span className="text-[10px]  text-[#748094]">Choose a plan that works best for you</span>
+                      <div className="flex flex-col justify-center">
+                           <h4 className="font-lexend  text-h1  font-semibold">ViralGet subscription plans</h4>
+                           <span className="font-normal mt-space-12 text-t-xsx text-center text-viralget-gray-400">Choose a plan that works best for you</span>
                       </div>
 
                       <div class="flex flex-col justify-center  mt-4">
                             <div>
-                                <span className="text-[10px] font-bold mr-2">Billed monthly</span>
+                                <span className="font-semibold font-lexend text-t-xsx mr-2">Billed monthly</span>
                                 <input
                                 class="mt-[0.3rem] mr-2 h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-[rgba(0,0,0,0.25)] outline-none before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-white after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-viralget-red checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-viralget-red checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s]"
                                 type="checkbox"
                                 role="switch"
                                 id="flexSwitchChecked"
+                                onChange={handleSwitch}
                                  />
-                                 <span className="text-[10px] ml-2">Billed monthly</span>
+                                 <span className="font-semibold font-lexend text-t-xsx text-viralget-gray-400">Billed annually</span>
                             </div>
 
                             <div className="flex justify-center mt-2 items-center">
-                                  <span className="text-[10px] font-bold text-viralget-red
+                                  <span className="text-t-xsx font-bold text-viralget-red
                                   ">
                                   Save up to 15%
                                   </span>
@@ -60,40 +83,32 @@ export default function Plans() {
               <div  className="flex  justify-around px-10  mt-10" >
                       
 
-                        <div className="flex flex-col bg-white shadow-md ">
-                                  <button className="border-b p-1 text-sm  bg-viralget-red  text-white">
-                                      <span>USD ($)</span>
-                                  </button>
-                                  <button className="border-b p-1 text-sm  text-[#748094] ">
-                                      <span>NGN (₦)</span>
-                                  </button>
-                                  <button className="border-b p-1 text-sm  text-[#748094]">
-                                      <span>ZAR (R)</span>
-                                  </button>
-
-                                  <button className="border-b p-1 text-sm  text-[#748094]" >
-                                      <span>KES (K)</span>
-                                  </button>
-                                  <button className="border-b p-1 text-sm  text-[#748094]">
-                                      <span>GHS ₵</span>
-                                  </button>
+                        <div className="lg:flex flex-col bg-white h-space-143 hidden  shadow-md ">
+                                  
+                                  {
+                                    availableCurrency.map((item) => (
+                                        <button  disabled={!item.isSelected} className={classNames("border-b p-1 text-sm  ", item.isSelected ? 'bg-viralget-red  text-white' : 'text-viralget-gray-400  disabled')}>
+                                           <span>{item.name} ({item.symbol})</span>
+                                        </button>
+                                    ))
+                                  }
                         </div>
 
 
-                        <div  className="flex   max-w-3xl">
+                        <div  className="flex  flex-wrap">
                                  <PlanCard isEmpty />
-                                 <PlanCard />
-                                 <PlanCard />
-                                 <PlanCard />
-                                 <PlanCard />
-                                 <PlanCard />
-                                 <PlanCard />
 
-
-
-                           
+                                 {
+                                    filteredPlans?.map((item, index) => (
+                                        <PlanCard  item={item}  key={index} /> 
+                                    ))
+                                 }
+                                            
                         </div>
               </div>
+
+
+              <PlanDetails />
 
                   
        </div>  

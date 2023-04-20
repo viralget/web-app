@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import AuthenticatedLayout from '@/Components/AuthenticatedLayout'
 import { Container } from '@/Components/Container'
 import SearchBox from '../Search/SearchBox'
@@ -10,30 +10,31 @@ import RecentSearches from './RecentSearches'
 import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table'
 import Pagination from '@/Components/Pagination'
+import EmptyState from '@/Components/EmptyState'
 
-export default function Search({ list, count, categories }) {
-    const [searchActive, setSearchActive] = useState(false)
+export default function Search({ list, categories }) {
     const [loading, setLoading] = useState(false);
 
-
-    console.log({ list })
-
+  
     return (
 
         <AuthenticatedLayout title="Search through our database of 33.5m+ influencers">
 
             <main className="flex-1 pb-8">
                 <Container>
-                    <SearchBox categories={categories} searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} />
+                    <SearchBox categories={categories} searchActive={() => setLoading(true)} onLoading={() => setLoading(true)} />
 
                     <div>
-                        <div className="space-y-10">
+                        <div className="space-y-10 my-6">
                             {loading ? <TableSkeleton /> :
-                                <>
-                                    <List data={list.data} count={count} />
-                                    <Pagination data={list.meta} />
 
-                                </>
+                                Object.keys(list)?.length > 0 ?
+                                    <>
+                                        <List data={list?.data} count={list?.meta?.total ?? 0} paginationData={list} />
+                                    </>
+
+                                    :
+                                    <EmptyState title="No result found" />
                             }
                         </div>
                     </div>
