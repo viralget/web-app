@@ -1,27 +1,36 @@
-import { CheckBadgeIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { classNames } from "@/Utils/helpers";
+import { ArrowDownIcon, CheckBadgeIcon, CheckIcon, ChevronDownIcon, ChevronUpIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState } from "react";
 import Label from "./Label";
+import { inputStyle } from "./Input";
+import { TvIcon } from "@heroicons/react/20/solid";
 
-const MultiDropdown = ({ label, name, options, onChange, defaultOptionText }) => {
+
+const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useSelectedOptions }) => {
+    const defaultText = 'Select an option';
+
     const [showDropdown, setShowDropdown] = useState(false);
-    const [currentSelectedItem, setCurrentSelectedItem] = useState(defaultOptionText ?? 'Select an option');
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [currentSelectedItem, setCurrentSelectedItem] = useState(defaultOptionText ?? defaultText);
+    const [selectedOptions, setSelectedOptions] = useState( useSelectedOptions ?? []);
 
     const wrapperRef = useRef(null);
+
     useOutsideAlerter(wrapperRef);
 
     const handleSelected = (e, item, value) => {
 
 
-        setCurrentSelectedItem(item.name);
+        setCurrentSelectedItem(item.name ?? value);
 
         let _selectedOptions = selectedOptions;
 
-        if (_selectedOptions.indexOf(value) === -1) {
-            _selectedOptions.push(value);
-        } else {
+        if (_selectedOptions.includes(value)) {
             _selectedOptions.pop(value);
+        } else {
+            _selectedOptions.push(value);
         }
+
+        console.log({ _selectedOptions })
 
         setSelectedOptions(_selectedOptions);
 
@@ -48,45 +57,49 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText }) =>
         }, [ref]);
     }
 
+    const handleClearSelection = () => {
+        setSelectedOptions([]);
+        setCurrentSelectedItem(defaultText)
+    }
+
     return (
         <div className="relative">
             {label &&
                 <Label for={name} value={label} />
             }
             <div onClick={() => setShowDropdown(!showDropdown)} className="w-full py-3 px-0 rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer">
+                {/* <div onClick={() => setShowDropdown(!showDropdown)} className={classNames(inputStyle, "border px-3 flex items-center justify-between cursor-pointer")}> */}
                 <div className="flex justify-between w-full">
-                    <span>{currentSelectedItem ?? label}</span>
-                    <span>{selectedOptions.length > 1 && <span className="text-xs bg-gray-100 p-1 mr-1">+{selectedOptions.length - 1}</span>}</span>
+                    <span>{currentSelectedItem}</span>
+                    <span>{selectedOptions.length > 1 && <span className="text-xs bg-gray-100 text-gray-500 rounded p-1 mr-1">+{selectedOptions.length - 1}</span>}</span>
                 </div>
                 <div>
-                    {showDropdown ? (
-                        <div>
-                            <svg width={10} height={6} viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.00016 0.666664L9.66683 5.33333L0.333496 5.33333L5.00016 0.666664Z" fill="#1F2937" />
-                            </svg>
-                        </div>
+                    {selectedOptions.length > 0 ? (
+                        <XMarkIcon className="w-3 h-3 z-1" onClick={handleClearSelection} />
                     ) : (
-                        <div>
-                            <svg width={10} height={6} viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.00016 5.33333L0.333496 0.666664H9.66683L5.00016 5.33333Z" fill="#1F2937" />
-                            </svg>
-                        </div>
+                        showDropdown ? (
+                            <ChevronUpIcon className="w-3 h-3" />
+                        ) : (
+                            <ChevronDownIcon className="w-3 h-3" />
+                        )
                     )}
                 </div>
             </div>
             {showDropdown && (
                 <div ref={wrapperRef} className="absolute z-10 -left-2 w-full">
-                    <div className="mt-3 w-64 h-auto bg-white shadow rounded">
+                    <div className="mt-2 w-64 p-2 h-auto bg-white shadow rounded">
+                        {label &&
+                            <h4 className="h4 px-2 font-bold">{label}</h4>
+                        }
                         {options.length && options.map((item, index) => {
 
                             const value = item.value ?? item.name;
 
                             return (
-
-                                <div className="flex py-2 px-2 items-center justify-between cursor-pointer hover:bg-gray-50" key={index} onClick={(e) => handleSelected(e, item, value)}>
+                                <div className="flex py-2 px-2 items-center text-sm justify-between cursor-pointer hover:bg-gray-50" key={index} onClick={(e) => handleSelected(e, item, value)}>
                                     <div className="flex items-center">
                                         <div className="flex items-center">
-                                            <p className="text-xs leading-normal ml-2 text-gray-800">{item.name}</p>
+                                            <p className="leading-normal ml-2 text-gray-800">{item.name ?? item.value}</p>
                                         </div>
                                     </div>
                                     {selectedOptions.includes(value) && (

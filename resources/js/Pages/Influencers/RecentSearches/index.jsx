@@ -1,16 +1,54 @@
-
-import TitleText from '@/components/TitleText';
-import { formatDate } from '@/Utils/helpers';
+import { useState } from 'react';
+import { LikeSvg, DotsSvg, TrashSvg }  from '@/Utils/icons';
+import { formatDate, nFormatter } from '@/Utils/helpers';
 import { Link } from '@inertiajs/inertia-react';
+import Typography from '@/components/Typography';
+import MenuDropDown from '@/components/MenuDropDown';
+import toast from '@/Components/Toast';
+import { post, del } from '@/Utils/api';
 
+import SearchCard from './searchCard';
 
-export default function RecentSearches({ data, title }) {
+export default function RecentSearches({ data, title, isSaved }) {
+        
+    const [isLoading, setIsLoading] = useState(false);
+
+  async  function handleDeleteList(id){
+        setIsLoading(true);
+
+        const data = {id};
+
+     const response = await post(route('influencers.search.delete'), data,  true);
+     if (response?.data?.status) {
+             toast.success(response?.data?.message);
+             setTimeout(function() {
+                window.location.reload();
+            }, 1000);
+         } else {
+             toast.error(response?.data?.message);
+             setIsLoading(false)
+         }
+    }
+
 
     return (
-        <div className="mt-8">
+        <div className="mt-space-60">
             <div className="">
-                <TitleText text={title ?? "Recent Searches"} />
-                <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className='flex items-center justify-between'>
+                   <Typography variant='h2' content={title ?? "Recent Searches"}/>
+               
+                {
+                     isSaved &&
+                     (
+                        <div>
+                           <a href={route('savedsearches.page')}   className='text-t-normal font-bold  text-viralget-red'  >Show more</a>
+                        </div>
+                     )
+                }
+                   
+                </div>
+           
+                <div className="mt-space-20 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {/* Card */}
                     {data.map((card, index) => {
 
@@ -18,33 +56,7 @@ export default function RecentSearches({ data, title }) {
 
                         return keywords && (
                             (
-                                <div key={index} className=" rounded-lg bg-white shadow-lg overflow-hidden">
-                                    <Link href={route('influencers.search') + '?' + card.query}>
-                                        <div className="p-5">
-                                            <div className="flex items-center">
-                                                <div className="w-0 flex-1">
-                                                    <dl>
-                                                        <dt className=" text-sm font-medium text-gray-500 space-x-1">
-                                                            {Object.keys(keywords).length > 0 && Object.keys(keywords).splice(0, 2).map((item, index) => (
-                                                                <span className='capitalize' key={index}>{item}:{keywords[item]}, </span>
-                                                            ))}
-                                                            <a href=''>+ 5 filters</a></dt>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                    <div className=" px-5 py-3">
-                                        <div className="text-sm flex justify-between">
-                                            <a href={card.href} className="font-medium text-cyan-700 hover:text-cyan-900">
-                                                {card.results_count}
-                                            </a>
-                                            <span className='text-gray-400'>
-                                                {formatDate(card.created_at, true)}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                                 <SearchCard   card={card}  isSaved={isSaved} key={index} />
                             )
                         )
 

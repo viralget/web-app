@@ -39,7 +39,27 @@ class User extends Authenticatable
     ];
 
 
-    public function profiles(){
+    public function profiles()
+    {
         return  $this->hasMany(ProfiledInfluencer::class);
+    }
+
+    public function account()
+    {
+        return $this->hasOne(UserAccount::class);
+    }
+
+    public function info()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
+    public function userProfilingCountLeft()
+    {
+        $count = $this->profiles()->count();
+
+        $default = 50;
+
+        return $default - $count;
     }
 }

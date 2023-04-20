@@ -1,7 +1,11 @@
 import { nFormatter } from "@/Utils/helpers";
+import Typography from "@/components/Typography";
 
-export default function InfluencerCard({ influencer, showBanner, handleProfile, useShadow }) {
+export default function InfluencerCard({ influencer, showBanner, handleProfile, useShadow, useLink }) {
 
+    const handleProfileClick = () => {
+        useLink ? window.location.href = route('influencer.show', { id: influencer.id }) : handleProfile();
+    }
 
     return (
         <div
@@ -12,32 +16,35 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
 
                 <div className="bg-gray-500">
                     {
-                        influencer.profile_banner_url && (<img class="h-36 w-full object-cover" src={influencer.profile_banner_url} alt="" />)
+                        influencer.profile_banner_url && (<img className="h-space-131 w-full object-cover" src={influencer.profile_banner_url} alt="" />)
                     }
 
                 </div>
             )}
-            <div className={`flex flex-1 flex-col p-8 ${showBanner && '-mt-16'}`}>
-                <img className="mx-auto h-20 w-20 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />
-                <h3 className="mt-6 text-sm font-medium text-gray-900 cursor-pointer" onClick={() => handleProfile()}>@{influencer.username}</h3>
-                <dl className="mt-1 flex flex-grow flex-col justify-between cursor-pointer" onClick={() => handleProfile()}>
-                    <dd className="text-sm text-gray-500">{influencer.full_name}</dd>
+            <div className={`flex flex-1 flex-col p-8 pb-4 ${showBanner && '-mt-16'}`}>
+                <img className="mx-auto h-space-60 w-space-60  border-2 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />
 
-                </dl>
+                <div onClick={() => handleProfileClick()} className="mt-2 cursor-pointer flex flex-col">
+                    <span className="text-t-xs font-bold " >{'@' + influencer.username} </span>
+                    <span className="text-t-normal  font-medium text-viralget-gray-400">{influencer.full_name}</span>
+                </div>
+
             </div>
             <div>
-                <div className="flex justify-between mx-10 mb-5 ">
+                <div className="flex justify-between px-space-20 mb-space-20 ">
                     <div className="text-center items-center flex-col">
-                        <span className="text-xl block">{nFormatter(influencer.followers_count)}</span>
-                        <span className="text-sm text-gray-500">Followers</span>
+                        <span className="text-t-xs font-bold block">{nFormatter(influencer.followers_count)}</span>
+                        <span className="text-t-normal  text-viralget-gray-400  font-normal">
+                        Followers
+                        </span>
                     </div>
                     <div className="text-center items-center flex-col">
-                        <span className="text-xl block p-0">{nFormatter(influencer.interactions)}</span>
-                        <span className="text-sm text-gray-500">Interactions</span>
+                        <span className="text-t-xs font-bold block p-0">{nFormatter(influencer.interactions)}</span>
+                        <span className="text-t-normal  text-viralget-gray-400  font-normal">Interactions</span>
                     </div>
-                    <div className="text-center items-center flex-col">
-                        <span className="text-xl block">{influencer.engagement_rate}</span>
-                        <span className="text-sm text-gray-500">ER</span>
+                    <div className="text-center items-center flex flex-col">
+                        <span className="text-t-xs font-bold block p-0">{influencer.engagement_rate ?? 0}</span>
+                        <span className="text-t-normal text-viralget-gray-400   font-normal">Engagement</span>
                     </div>
 
                 </div>

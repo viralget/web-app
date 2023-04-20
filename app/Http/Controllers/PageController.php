@@ -14,9 +14,6 @@ use App\Models\InfluencerListsTwitterInfluencer;
 
 class PageController extends Controller
 {
-    //
-
-
 
     public function sendContact(Request $request)
     {

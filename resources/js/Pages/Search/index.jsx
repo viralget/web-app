@@ -14,6 +14,7 @@ import SearchBox from './SearchBox'
 import Categories from '@/components/Categories'
 
 export default function Search({ categories }) {
+
   return (
     <>
   

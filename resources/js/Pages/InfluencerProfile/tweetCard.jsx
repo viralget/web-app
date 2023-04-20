@@ -5,7 +5,7 @@ export default  function TweetCard(){
 
 
     return(
-          <div  className="shadow-md  rounded-md p-3">
+          <div  className="border rounded-md p-3">
 
             <div className="flex flex-col">
                  <span  className="text-xs  text-viralget-grey  text-left font-Satoshi">Tomike iya Tomike️ that’s the caption!!  Photography @tayojr Outfit sourced and styled by 
