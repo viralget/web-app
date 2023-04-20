@@ -147,7 +147,7 @@ export function Header({ useShadow = true }) {
                 <DropdownMenu user={user} />
                 :
                 <>
-                  <div className="hidden md:block">
+                  {/* <div className="hidden md:block">
                     <NavLink href="/login">Log in</NavLink>
                   </div>
                   <div className="hidden md:block">
@@ -156,12 +156,12 @@ export function Header({ useShadow = true }) {
                         Create an account
                       </span>
                     </Button>
-                  </div>
-                  {/* <Button href="/join" color="blue">
+                  </div> */}
+                  <Button href="/join" color="blue">
                     <span>
                       Join the waitlist
                     </span>
-                  </Button> */}
+                  </Button>
                 </>
               }
               <div className="-mr-1 md:hidden">

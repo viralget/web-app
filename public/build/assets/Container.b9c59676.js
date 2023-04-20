@@ -1,1 +1,0 @@
-import{R as m}from"./app.7fa3bd1a.js";import{c as t}from"./helpers.97e11027.js";function o({className:a,...e}){return m.createElement("div",{className:t("mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",a),...e})}export{o as C};
