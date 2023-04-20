@@ -10,15 +10,16 @@ import RecentSearches from './RecentSearches'
 import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table';
 import Feature from './Feature';
+import { nFormatter } from '@/Utils/helpers'
 
-export default function index({ saved_search, search_history, top_categories, top_influencers, categories }) {
+export default function index({ saved_search, search_history, top_categories, top_influencers, categories, total_count }) {
     const [list, setList] = useState(false)
     const [searchActive, setSearchActive] = useState(false)
     const [loading, setLoading] = useState(false);
 
     return (
 
-        <AuthenticatedLayout title="Search through our database of 33.5m+ influencers">
+        <AuthenticatedLayout title={`Search through our database of ${nFormatter(total_count)}+ influencers`}>
             {/* </div> */}
 
             <main className="flex-1 pb-8">
@@ -27,7 +28,7 @@ export default function index({ saved_search, search_history, top_categories, to
 
                     <div>
                         <div className="">
-                          
+
                             {saved_search?.length > 0 && (
                                 <RecentSearches title="Saved Searches" data={saved_search} isSaved />
                             )}
@@ -37,7 +38,7 @@ export default function index({ saved_search, search_history, top_categories, to
                             <Feature />
                             <TopCategories data={top_categories} />
                             <TopInfluencers data={top_influencers} />
-                           
+
                         </div>
                     </div>
                 </Container>
