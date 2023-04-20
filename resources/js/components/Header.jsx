@@ -14,7 +14,7 @@ import Badge from './Badge'
 const header_routes = [
   {
     name: "Pricing",
-    // href: route('pricing')
+    href: route('pricing')
   },
   {
     name: "Contact Us",
