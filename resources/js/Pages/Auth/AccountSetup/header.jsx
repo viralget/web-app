@@ -65,7 +65,7 @@ const Header = ({ user, image_url, levels}) => {
               
                <div className="flex space-x-1 items-center">
                   <Avatar userName={user.name} />
-                  <span className="text-t-xsx  font-medium font-lexend">Hello, {user.name}</span>
+                  <span className="text-t-xsx   ml-space-12 font-medium font-lexend">Hello, {user.name}</span>
                </div>
         </div>
     )

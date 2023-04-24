@@ -34,9 +34,9 @@ const AccountSetupForm = () => {
 
                <ValidationErrors errors={errors} />
 
-                <form onSubmit={submit} className="mt-space-40 md:w-1/3   space-y-space-14   ">
+                <form onSubmit={submit} className="mt-space-40 md:w-1/3     ">
 
-                   <div className='flex  w-full  space-x-3'>
+                   <div className='flex  w-full  space-x-3 mt-space-20'>
                        <div className='w-full '>
                             <Select options={[
                                     { name: 'Brand', value: 'brand' },
@@ -51,7 +51,7 @@ const AccountSetupForm = () => {
                                 />
                        </div>
 
-                       <div className='w-full'>
+                       <div className='w-full '>
                             <Input
                                     type="text"
                                     name="company_name"
@@ -67,7 +67,7 @@ const AccountSetupForm = () => {
                  </div>
 
 
-                 <div className='flex  w-full  space-x-3'>
+                 <div className='flex  w-full  space-x-3 mt-space-20'>
                        <div className='w-full'>
                             <Select options={[
                                     { name: 'C-level / VP', value: 'c-level/vp' },
@@ -102,7 +102,7 @@ const AccountSetupForm = () => {
                        </div>
                  </div>
 
-                 <div className='w-full'>
+                 <div className='w-full  mt-space-20'>
                             <TextArea
                                     name="company_bio"
                                     label="Company bio"
@@ -116,7 +116,7 @@ const AccountSetupForm = () => {
                        </div>
                     
 
-                    <div className="text-center  w-full flex justify-start  mt-space-20">
+                    <div className="text-center  w-full flex justify-start  mt-space-32">
 
                         <div  className='w-auto'>
                                <Button
