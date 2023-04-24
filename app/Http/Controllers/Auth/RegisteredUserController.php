@@ -190,6 +190,7 @@ class RegisteredUserController extends Controller
     }
 
     public function verifyPayment($reference, $plan_id){
+        
         $verify = Paystack::verify($reference);
         $data['verify'] = $verify;
         $plan = Paystack::fetchPlan($plan_id);
