@@ -121,7 +121,7 @@ class RegisteredUserController extends Controller
             return redirect(route('login'));
         }
         $data = User::where('id', $user->id)->with('info')->first();
-        $userimage = storage_path('app/user_images/' . $data->info->image);
+        $userimage = $data->info ? storage_path('app/user_images/' . $data->info->image) : null;
 
         return Inertia::render(
             'Auth/AccountSetup/index',
