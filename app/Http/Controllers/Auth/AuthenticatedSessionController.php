@@ -97,9 +97,8 @@ class AuthenticatedSessionController extends Controller
 
             // dd($scope, $code);
             $user = Socialite::driver('google')->user();
-            
-            return $this->postSocialLogin($request, $user, 'google');
 
+            return $this->postSocialLogin($request, $user, 'google');
         } catch (\Exception $e) {
             dd($e);
             $this->log($e);
@@ -214,7 +213,8 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-    public function createForgotPassword(){
+    public function createForgotPassword()
+    {
 
         return Inertia::render(
             'Auth/ForgotPassword'
@@ -222,46 +222,48 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-    public function sendMailForgotPassword(Request $request){
+    public function sendMailForgotPassword(Request $request)
+    {
         $request->validate([
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|exists:users',
         ]);
 
-        try{
-            
-          $email = $request->email;
-          $user = User::where('email', $email)->first();
-     
-          if($user){
-            $send =  Mail::to($email)->send(new UserForgotPassword($user));
-            return redirect()->route('create.forgot.password', [ 'email' => $email]);
-          }else{
-            return redirect()->back()->withError('This user does not exist!');
-          }
-         
+        try {
+
+            $email = $request->email;
+            $user = User::where('email', $email)->first();
+
+            if ($user) {
+                $send =  Mail::to($email)->send(new UserForgotPassword($user));
+                return redirect()->route('create.forgot.password', ['email' => $email]);
+            } else {
+                return redirect()->back()->withError('This user does not exist!');
+            }
         } catch (\Exception $e) {
             dd($e);
             $this->log($e);
             return redirect()->back()->withError('An error occured. Please try again');
         }
-
     }
-  
+
     // function showSuccessForgotPassword(){
     //     return Inertia::render(
     //         'Auth/ResetPasswordSuccess'
     //     );
     // }
 
-    function createResetPassword($email){
+    function createResetPassword($email)
+    {
         $data['email'] =  $email;
         return Inertia::render(
-            'Auth/ResetPassword', $data
+            'Auth/ResetPassword',
+            $data
         );
     }
-   
 
-    function storeResetPassword(Request $request){
+
+    function storeResetPassword(Request $request)
+    {
         $request->validate([
             'email' => 'required|string|email|max:255',
             'password' => 'required|confirmed',
@@ -269,27 +271,19 @@ class AuthenticatedSessionController extends Controller
 
         try {
 
-           $email = $request->email;
-           $password_confirmation = $request->password_confirmation;   
-           $user = User::where('email', $email)->first();
-           $user->password = Hash::make($password_confirmation);
-           $user->update();
+            $email = $request->email;
+            $password_confirmation = $request->password_confirmation;
+            $user = User::where('email', $email)->first();
+            $user->password = Hash::make($password_confirmation);
+            $user->update();
 
-           if($user){
-            return redirect()->route('password.reset', ['status' => 'success', 'email' => $email]);
-           }
-
-
+            if ($user) {
+                return redirect()->route('password.reset', ['status' => 'success', 'email' => $email]);
+            }
         } catch (\Exception $e) {
             dd($e);
             $this->log($e);
             return redirect()->back()->withError('An error occured. Please try again');
         }
-
-
     }
-
 }
-
-
-
