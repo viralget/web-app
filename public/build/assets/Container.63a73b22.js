@@ -1,1 +1,0 @@
-import{R as m}from"./app.ab4375db.js";import{c as t}from"./helpers.1aabcc8a.js";function o({className:a,...e}){return m.createElement("div",{className:t("mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",a),...e})}export{o as C};

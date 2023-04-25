@@ -1,14 +1,18 @@
 import Typography from '@/components/Typography';
+import { usePage } from '@inertiajs/inertia-react';
 import SummaryCard from './summaryCard';
 
 export default function Summary({ profiles_count = 0, instagram_count = 0, twitter_count = 0 }) {
+
+    const { auth } = usePage().props;
+    const { user } = auth;
 
     const total = 50;
 
     const list = [
         {
             title: 'Monthly profilings',
-            left: total - profiles_count,
+            left: user.available_profiling_count, // total - profiles_count,
             level: profiles_count,
             total: total,
             bottomLine: 'Profiled influencers'
