@@ -188,7 +188,7 @@ class AuthenticatedSessionController extends Controller
             // $request->session()->regenerate();
 
             if (!$user->details) {
-                $redirect_url = route('account-setup');
+                $redirect_url = route('account.setup');
             }
 
 
