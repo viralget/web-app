@@ -18,7 +18,7 @@ use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\UserPlan;
 use App\Models\Transaction;
-
+use Carbon\Carbon;
 
 class RegisteredUserController extends Controller
 {
@@ -58,6 +58,7 @@ class RegisteredUserController extends Controller
                 'first_name' => $request->first_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'token' => $token,
             ]);
 
             $imageName = null;
@@ -79,6 +80,7 @@ class RegisteredUserController extends Controller
 
                 event(new Registered($user));
                 Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));
+               
                 Auth::login($user);
                
                 // Redirect to update areas of interest, and update profile.
@@ -104,8 +106,11 @@ class RegisteredUserController extends Controller
     public function resendMail(Request $request){
         $token = Str::random(20);
         $user = $request->user();
-         Mail::to($user->email)->send(new UserVerifyEmail($user, $token));            
-        return redirect()->back()->with(['flash' =>'Email resend successfully!!']);
+        $user->token = $token;
+        $user->update();
+
+         Mail::to($user->email)->send(new UserVerifyEmail($user, $token)); 
+         return redirect(route('confirmation.page'));           
     }
 
     public function accountSetup(Request $request){
@@ -157,11 +162,21 @@ class RegisteredUserController extends Controller
 
     public function verifyEmail($id, $hash){
 
-        
-       
+        $user = request()->user();
+        if(!$user){
+           return redirect(route('login'));
+        }
+
         $user = User::find($id);
+        $oldDate = Carbon::parse($user->updated_at);
+        $currentDate = Carbon::now();
+        $totalDuration = $currentDate->diffInSeconds($oldDate) / 60;
+    
+         if($totalDuration  > 10){
+            return redirect(route('confirmation.page').'?token=expired');
+         }
+
         $user->email_verified_at = Now();
-        $user->refresh_token = $hash;
         $user->update();
 
         if($user){
@@ -190,6 +205,7 @@ class RegisteredUserController extends Controller
     }
 
     public function verifyPayment($reference, $plan_id){
+        
         $verify = Paystack::verify($reference);
         $data['verify'] = $verify;
         $plan = Paystack::fetchPlan($plan_id);
