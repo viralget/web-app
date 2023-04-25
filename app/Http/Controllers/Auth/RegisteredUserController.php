@@ -139,7 +139,9 @@ class RegisteredUserController extends Controller
             'company_bio' => 'required|string|max:255',
         ]);
         $user = $request->user();
-        $userdetail = UserDetail::where('user_id', $user->id)->firstOrCreate();
+        $userdetail = UserDetail::firstOrCreate([
+            'user_id' => $user->id
+        ]);
         $userdetail->company_name = $request->company_name;
         $userdetail->company_type = $request->company_type;
         $userdetail->company_website = $request->company_website;
