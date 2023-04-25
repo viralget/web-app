@@ -25,7 +25,7 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
 
 
     return (
-        <div className='mt-16'>
+        <div className=''>
 
             <div className="flex mb-4 justify-between  w-full">
                 <Typography variant={'h2'} content="Profiling summary" />
@@ -50,11 +50,11 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
 
 
                             {/* <span className='text-xs'>Twitter accounts</span> */}
-                            <Typography variant="b2" content='Twitter accounts'  />
-                            
+                            <Typography variant="b2" content='Twitter accounts' />
+
                         </div>
                         <div className='mt-5'>
-                        <Typography variant="h2" content={twitter_count +' accounts'}  />
+                            <Typography variant="h2" content={twitter_count + ' accounts'} />
                         </div>
                     </div>
 
@@ -68,10 +68,10 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
                             </svg>
 
                             {/* <span className='text-xs'>Instagram accounts</span> */}
-                            <Typography variant="b2" content='Instagram accounts'  />
+                            <Typography variant="b2" content='Instagram accounts' />
                         </div>
                         <div className='mt-5'>
-                            <Typography variant="h2" content={instagram_count +' accounts'}  />
+                            <Typography variant="h2" content={instagram_count + ' accounts'} />
                         </div>
                     </div>
 
