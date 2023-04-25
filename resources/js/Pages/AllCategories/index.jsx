@@ -65,7 +65,7 @@ export default function AllCategories({ categories }) {
                                 <div className="relative">
                                     <div className="relative h-40 w-full overflow-hidden rounded-lg bg-gradient-to-r from-yellow-600 to-fuchsia-600 ">
                                         <img
-                                            src={item.image_url}
+                                            src={item.image_url ?? '/images/categories/' + item.name + '.png'}
                                             alt={item.name}
                                             className="h-full w-full object-cover object-center"
                                         />
