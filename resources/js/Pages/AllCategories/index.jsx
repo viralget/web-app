@@ -39,7 +39,7 @@ export default function AllCategories({ categories }) {
 
     return (
         <AuthenticatedLayout smallHeader={true}>
-            <div className='bg-white h-screen  mt-3 px-5'>
+            <div className='bg-white h-screen  mt-3 px-5 mb-10'>
                 <ButtonBack />
 
                 <div className='flex  pl-0 mt-5 space-x-2 border-b-2 '>
@@ -63,7 +63,7 @@ export default function AllCategories({ categories }) {
                         {getCategories.map((item, index) => (
                             <a href={`/search/?category=${item.name}`} key={index}>
                                 <div className="relative">
-                                    <div className="relative h-40 w-full overflow-hidden rounded-lg bg-gradient-to-r from-yellow-600 to-fuchsia-600 ">
+                                    <div className="relative h-48 w-full overflow-hidden rounded-lg bg-gradient-to-r from-yellow-600 to-fuchsia-600 ">
                                         <img
                                             src={item.image_url ?? '/images/categories/' + item.name + '.png'}
                                             alt={item.name}
@@ -73,9 +73,9 @@ export default function AllCategories({ categories }) {
                                     <div className="absolute inset-x-0 top-0 flex h-full items-end justify-start overflow-hidden rounded-lg p-4">
                                         <div
                                             aria-hidden="true"
-                                            className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-50"
+                                            className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-20"
                                         />
-                                        <p className="relative text-lg font-semibold text-white capitalize ">{item.name}</p>
+                                        <p className="relative text-lg font-bold text-white capitalize  ">{item.name}</p>
                                     </div>
                                 </div>
 

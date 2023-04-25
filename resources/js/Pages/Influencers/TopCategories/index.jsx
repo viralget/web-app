@@ -18,7 +18,7 @@ export default function TopCategories({ data }) {
                     {data.map((item, index) => (
                         <a href={`/search/?category=${item.name}`} key={index}>
                             <div className="relative">
-                                <div className="relative h-40 w-full overflow-hidden rounded-lg bg-gradient-to-r from-yellow-600 to-fuchsia-600 ">
+                                <div className="relative h-48 w-full overflow-hidden rounded-lg bg-gradient-to-r from-yellow-600 to-fuchsia-600 ">
                                     <img
                                         src={item.image_url ?? '/images/categories/' + item.name + '.png'}
                                         alt={item.imageAlt}
@@ -28,7 +28,7 @@ export default function TopCategories({ data }) {
                                 <div className="absolute inset-x-0 top-0 flex h-full items-end justify-start overflow-hidden rounded-lg p-4">
                                     <div
                                         aria-hidden="true"
-                                        className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-50"
+                                        className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-20"
                                     />
 
                                     <h3 className=" relative text-t-xs font-lexend font-bold text-white capitalize ">{item.name}</h3>
