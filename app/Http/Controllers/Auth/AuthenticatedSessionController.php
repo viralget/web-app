@@ -179,11 +179,11 @@ class AuthenticatedSessionController extends Controller
             // Log user in 
             Auth::login($user);
 
-            if ($request->session()->has('user_auth_redirect_url')) {
-                $redirect_url = $request->session()->get('user_auth_redirect_url');
-                // unset the session data
-                $request->session()->forget('user_auth_redirect_url');
-            }
+            // if ($request->session()->has('user_auth_redirect_url')) {
+            //     $redirect_url = $request->session()->get('user_auth_redirect_url');
+            //     // unset the session data
+            //     $request->session()->forget('user_auth_redirect_url');
+            // }
 
             // $request->session()->regenerate();
 
@@ -192,7 +192,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended($redirect_url);
         } catch (\Exception $e) {
             $this->log($e);
-            dd($e);
+            // dd($e);
 
             return redirect()->route('login')->withErrors('An error occurred while logging you in');
         }
