@@ -28,7 +28,7 @@ class RegisteredUserController extends Controller
      * Display the registration view.
      *
      * @return \Inertia\Response
-    */
+     */
 
     public function create()
     {
@@ -63,9 +63,9 @@ class RegisteredUserController extends Controller
 
             $imageName = null;
 
-            if($request->hasFile('file')){
-                $imageName = time().$user->id.'.'.$request->file->extension();
-                $request->file->storeAs('public/user_images', $imageName);    
+            if ($request->hasFile('file')) {
+                $imageName = time() . $user->id . '.' . $request->file->extension();
+                $request->file->storeAs('public/user_images', $imageName);
             }
 
             $userdetails = new UserDetail;
@@ -74,58 +74,63 @@ class RegisteredUserController extends Controller
             $userdetails->last_name = $request->last_name;
             $userdetails->image = $imageName;
             $userdetails->save();
-           
 
-            if($userdetails){
+
+            if ($userdetails) {
 
                 event(new Registered($user));
                 Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));
-               
+
                 Auth::login($user);
-               
+
                 // Redirect to update areas of interest, and update profile.
                 return redirect(route('confirmation.page'));
             }
-          
         } catch (\Exception $e) {
-            dd($e);
+            // dd($e);
             $this->log($e);
             return redirect()->back()->withError('An error occured. Please try again');
         }
     }
 
 
-    public  function confirmation(Request $request){
+    public  function confirmation(Request $request)
+    {
         $user = $request->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
         return Inertia::render('Auth/Confirmation');
     }
 
-    public function resendMail(Request $request){
+    public function resendMail(Request $request)
+    {
         $token = Str::random(20);
         $user = $request->user();
         $user->token = $token;
         $user->update();
 
-         Mail::to($user->email)->send(new UserVerifyEmail($user, $token)); 
-         return redirect(route('confirmation.page'));           
+        Mail::to($user->email)->send(new UserVerifyEmail($user, $token));
+        return redirect(route('confirmation.page'));
     }
 
-    public function accountSetup(Request $request){
+    public function accountSetup(Request $request)
+    {
         $user = $request->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
         $data = User::where('id', $user->id)->with('info')->first();
         $userimage = storage_path('app/user_images/' . $data->info->image);
 
-        return Inertia::render('Auth/AccountSetup/index', 
-        [ 'user' =>  $data, "image_url" => $userimage]);
+        return Inertia::render(
+            'Auth/AccountSetup/index',
+            ['user' =>  $data, "image_url" => $userimage]
+        );
     }
 
-    public  function  storeDetail(Request $request){
+    public  function  storeDetail(Request $request)
+    {
         $request->validate([
             'company_name' => 'required|string|max:255',
             'job_title' => 'required|string|max:50',
@@ -143,52 +148,54 @@ class RegisteredUserController extends Controller
         $userdetail->save();
 
 
-        if($userdetail){
+        if ($userdetail) {
             return redirect(route('pricing'));
         }
     }
 
-    public  function  selectPricing() {
+    public  function  selectPricing()
+    {
 
         $user = request()->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
-       $plans = Paystack::fetchPlans();
-       $data['plans']  = $plans?->data ? $plans?->data : [];
+        $plans = Paystack::fetchPlans();
+        $data['plans']  = $plans?->data ? $plans?->data : [];
         return Inertia::render('Auth/SelectPricing', $data);
     }
 
 
-    public function verifyEmail($id, $hash){
+    public function verifyEmail($id, $hash)
+    {
 
         $user = request()->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
 
         $user = User::find($id);
         $oldDate = Carbon::parse($user->updated_at);
         $currentDate = Carbon::now();
         $totalDuration = $currentDate->diffInSeconds($oldDate) / 60;
-    
-         if($totalDuration  > 10){
-            return redirect(route('confirmation.page').'?token=expired');
-         }
+
+        if ($totalDuration  > 10) {
+            return redirect(route('confirmation.page') . '?token=expired');
+        }
 
         $user->email_verified_at = Now();
         $user->update();
 
-        if($user){
+        if ($user) {
             return redirect(route('account.setup'));
         }
-
     }
 
-    public function selectPayment($plan_id){
+    public function selectPayment($plan_id)
+    {
         $user = request()->user();
-        if(!$user || !$plan_id){
-           return redirect(route('login'));
+        if (!$user || !$plan_id) {
+            return redirect(route('login'));
         }
         if (config('services.paystack.mode') == 'live') {
             $public_key = config('services.paystack.live_pk');
@@ -201,17 +208,17 @@ class RegisteredUserController extends Controller
         $data['plan'] = $plan?->data ?? null;
 
         return Inertia::render('UserPayment/index', $data);
-
     }
 
-    public function verifyPayment($reference, $plan_id){
-        
+    public function verifyPayment($reference, $plan_id)
+    {
+
         $verify = Paystack::verify($reference);
         $data['verify'] = $verify;
         $plan = Paystack::fetchPlan($plan_id);
         $user = request()->user();
         $user_id =  $user->id;
-        if($verify->status){
+        if ($verify->status) {
             $userPlan =  new userPlan;
             $userPlan->plan_name = $plan->data->name;
             $userPlan->plan_code = $plan->data->plan_code;
@@ -219,18 +226,19 @@ class RegisteredUserController extends Controller
             $userPlan->user_id = $user_id;
             $userPlan->save();
 
-            if($userPlan){
+            if ($userPlan) {
                 return response(['status' => true, 'message' => $verify->message]);
             }
-        }else{
+        } else {
             return response(['status' => false, 'message' => $verify->message]);
         }
     }
 
-    function selectSocial(){
+    function selectSocial()
+    {
         $user = request()->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
         return Inertia::render('Auth/SelectSocial');
     }

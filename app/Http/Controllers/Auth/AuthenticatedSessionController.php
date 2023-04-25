@@ -61,6 +61,7 @@ class AuthenticatedSessionController extends Controller
         if ($request->redirect_url) {
             $redirect_url = $request->redirect_url;
         }
+
         return redirect()->intended($redirect_url);
     }
 

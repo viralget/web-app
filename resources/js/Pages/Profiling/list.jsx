@@ -292,14 +292,14 @@ export default function List({ influencerList, profiles }) {
                 </div>
             </div>
 
-            <div className='grid   grid-cols-3  gap-3'>
+            <div>
                 {
                     influencerList.length > 0 ?
-                        (
-                            influencerList.map((item) => (
+                        <div className='grid   grid-cols-3  gap-3'>
+                            {influencerList.map((item) => (
                                 <ListBox item={item} handleAddInfluencer={() => handleModal(item)} />
-                            ))
-                        )
+                            ))}
+                        </div>
                         :
                         (
                             <EmptyState />
