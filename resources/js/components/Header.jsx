@@ -139,7 +139,7 @@ export function Header({ useShadow = true }) {
             </div>
             <div className="hidden font-bold justify-center items-center md:flex md:gap-x-3">
               {header_routes.map((route, index) => (
-                <NavLink key={index} href={route.href}>{route.name}</NavLink>
+                <NavLink key={index} href={route.href}  className="text-t-xsx font-lexend font-medium ">{route.name}</NavLink>
               ))}
             </div>
             <div className="flex items-center gap-x-5 md:gap-x-8">
@@ -148,14 +148,13 @@ export function Header({ useShadow = true }) {
                 :
                 <>
                   <div className="hidden md:block">
-                    <NavLink href="/login">Log in</NavLink>
+                    <NavLink href="/login" className="text-viralget-red rounded-md  text-t-xsx font-lexend font-medium px-space-30  py-space-15   border border-viralget-red">Log in</NavLink>
                   </div>
                   <div className="hidden md:block">
-                    <Button href="/register" color="blue">
-                      <span>
-                        Create an account
-                      </span>
-                    </Button>
+                    <a href="/register"  className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
+                 
+                       <span  className='font-lexend font-medium  text-white text-t-xsx'>Try for free</span>    
+                    </a>
                   </div>
                   {/* <Button href="/join" color="blue">
                     <span>

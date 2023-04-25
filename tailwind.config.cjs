@@ -26,6 +26,8 @@ module.exports = {
             },
             fontSize: {
                 'h1': ['24px', { lineHeight: '28px' }, { fontFamily: 'font-lexend' }],
+                'h1-x': ['24px', { lineHeight: '30px' }, { fontFamily: 'font-lexend' }],
+                't-xxlg': ['64px', { lineHeight: '70px' }, { fontFamily: 'font-lexend' }],
                 't-xlg': ['44px', { lineHeight: '48px' }, { fontFamily: 'font-lexend' }],
                 't-lg': ['36px', { lineHeight: '40px' }, { fontFamily: 'font-lexend' }],
                 't-lg-x': ['32px', { lineHeight: '36px' }, { fontFamily: 'font-lexend' }],
@@ -37,6 +39,7 @@ module.exports = {
                 't-xs': [ '18px', { lineHeight : '22px'}],
                 't-xsx': [ '16px', { lineHeight : '20px'}],
                 
+                
 
             },
             spacing: {
@@ -45,17 +48,21 @@ module.exports = {
                 'space-10': '10px',
                 'space-12': '12px',
                 'space-14': '14px',
+                'space-15': '15px',
                 'space-16': '16px',
                 'space-17': '17px',
                 'space-20' : '20px',
                 'space-24' : '24px',
+                'space-26' : '26px',
                 'space-28' : '28px',
+                'space-30': '30px',
                 'space-32' : '32px',
                 'space-34' : '34px',
                 'space-35' : '35px',
                 'space-40' : '40px',
                 'space-60' : '60px',
                 'space-68' : '68px',
+                'space-70' : '70px',
                 'space-75' : '75px',
                 'space-80' : '80px',
                 'space-90' : '90px',

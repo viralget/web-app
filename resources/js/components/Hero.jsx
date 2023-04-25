@@ -11,6 +11,10 @@ import lordsGin from '@/../assets/images/logos/lords-gin.jpeg'
 import viralgetLanding from '@/../assets/images/screenshots/viralget-landing.png'
 import worldJson from '@/../assets/lottie/world.json'
 import LottieAnimation from '@/components/LottieAnimation'
+import TiktokLogo from "@/../assets/images/tiktok-logo.png";
+import InstagramLogo from "@/../assets/images/instagram-logo.png";
+import YoutubeLogo from "@/../assets/images/youtube-logo.png";
+import TwitterLogo from "@/../assets/images/twitter-logo.png";
 
 const brands = [
   [
@@ -27,11 +31,50 @@ const brands = [
 
 export function Hero() {
   return (
-    <div className='relative w-full' >
-      <div className="hidden sm:absolute sm:inset-0 sm:block w-full" aria-hidden="true">
-        <LottieAnimation animationData={worldJson} className="opacity-20" />
-      </div>
+    <div className='relative w-full h-full' >
+      
+      <div className="overflow-hidden h-screen p-5 relative  pt-10 flex-1 bg-gradient-to-b from-[#FF9857] to-[#751EFB]">
 
+            <div className="flex items-center justify-center   max-w-4xl mx-auto  mt-space-70  ">
+                     <div className='text-white  flex flex-col  text-center'>
+                         <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer marketing platform to drive your business forward</span>
+                         <span  className='font-normal text-center  text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting? 
+<br/>THEN VIRALGET WAS BUILT FOR YOU</span>
+                     </div>
+            </div>
+
+            <div className="absolute bottom-0 hidden md:flex w-full ">
+                    <div className=" relative opacity-25 w-full">
+                            <div className='max-w-32 w-[16rem] absolute -left-[5rem]  bottom-[8rem]'>
+                                    <img src={TiktokLogo} style={{ width: '30px !important' }} className='' />
+                            </div>
+
+                            <div className="w-[8rem] absolute  right-[25rem] bottom-[20rem]  ">
+                                    <img src={InstagramLogo} className='w-[10rem]' />
+                            </div>
+
+                            <div className="w-[8rem] absolute  right-[40rem] bottom-[25rem]  ">
+                                    <img src={TwitterLogo} className='w-[10rem]' />
+                            </div>
+
+                            <div className="w-[16rem] absolute   -right-[7rem]  bottom-[8rem]">
+                                    <img src={YoutubeLogo} className='full' />
+                            </div>
+            </div>
+      </div>
+</div>
+
+
+
+
+
+
+
+
+      {/* <div className="hidden sm:absolute sm:inset-0 sm:block w-full" aria-hidden="true">
+        <LottieAnimation animationData={worldJson} className="opacity-20" />
+      </div> */}
+{/* 
       <Container className="pt-20 pb-16 text-center lg:pt-32 relative">
 
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl">
@@ -48,12 +91,12 @@ export function Hero() {
           </span>{' '}
           end-to-end influencer marketing platform.
         </h1>
-        {/* <h2 className="mx-auto max-w-4xl font-display text-6xl font-medium tracking-tight text-slate-800 sm:text-4xl mt-3">to drive your business forward</h2> */}
+        <h2 className="mx-auto max-w-4xl font-display text-6xl font-medium tracking-tight text-slate-800 sm:text-4xl mt-3">to drive your business forward</h2>
         <p className="mx-auto mt-3 max-w-2xl text-lg tracking-tight text-slate-700">
           Viralget is built for you. Get actionable influencer marketing data insight, track and manage influencers.
-        </p>
-        <div className="mt-6 flex justify-center gap-x-6">
-          <Button href="/join">Join the waitlist </Button>
+        </p> */}
+        {/* <div className="mt-6 flex justify-center gap-x-6">
+          <Button href="/join">Join the waitlist </Button> */}
           {/* <Button href="/explore">Get Started!</Button> */}
           {/* <Button
             href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -67,18 +110,18 @@ export function Hero() {
             </svg>
             <span className="ml-3">Watch video</span>
           </Button> */}
-        </div>
+        {/* </div> */}
 
-        <div className="hidden md:block mt-12 ">
+        {/* <div className="hidden md:block mt-12 ">
           <img
             className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
             src={viralgetLanding}
             // src="https://tailwindui.com/img/component-images/top-nav-with-multi-column-layout-screenshot.jpg"
             alt=""
           />
-        </div>
+        </div> */}
 
-        <div className="mt-16 lg:mt-24">
+        {/* <div className="mt-16 lg:mt-24">
           <p className="font-display font-bold text-base text-slate-900">
             Join the world’s top brands
           </p>
@@ -103,8 +146,8 @@ export function Hero() {
               </li>
             ))}
           </ul>
-        </div>
-      </Container>
+        </div> 
+      </Container>*/}
     </div>
   )
 }
