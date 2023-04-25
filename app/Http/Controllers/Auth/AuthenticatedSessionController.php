@@ -83,7 +83,7 @@ class AuthenticatedSessionController extends Controller
         try {
             return Socialite::driver($request->platform)->redirect();
         } catch (\Exception $e) {
-            return redirect()->back()->withError('Invalid platform specified');
+            return redirect()->back()->withErrors('Invalid platform specified');
         }
     }
 
@@ -101,10 +101,10 @@ class AuthenticatedSessionController extends Controller
 
             return $this->postSocialLogin($request, $user, 'google');
         } catch (\Exception $e) {
-            dd($e);
+            // dd($e);
             $this->log($e);
 
-            return redirect()->route('login')->withError('Sorry, Google sign-in service not available at the moment');
+            return redirect()->route('login')->withErrors('Sorry, Google sign-in service not available at the moment');
         }
     }
 
@@ -131,7 +131,7 @@ class AuthenticatedSessionController extends Controller
             // dd($e);
             $this->log($e);
 
-            return redirect()->route('login')->withError('Sorry, Twitter sign-in service not available at the moment');
+            return redirect()->route('login')->withErrors('Sorry, Twitter sign-in service not available at the moment');
         }
     }
 
@@ -176,16 +176,17 @@ class AuthenticatedSessionController extends Controller
             }
 
 
+            // Log user in 
+            Auth::login($user);
+
             if ($request->session()->has('user_auth_redirect_url')) {
                 $redirect_url = $request->session()->get('user_auth_redirect_url');
                 // unset the session data
                 $request->session()->forget('user_auth_redirect_url');
             }
 
-            $request->session()->regenerate();
+            // $request->session()->regenerate();
 
-            // Log user in 
-            Auth::login($user);
 
 
             return redirect()->intended($redirect_url);
@@ -193,7 +194,7 @@ class AuthenticatedSessionController extends Controller
             $this->log($e);
             dd($e);
 
-            return redirect()->route('login')->withError('An error occurred while logging you in');
+            return redirect()->route('login')->withErrors('An error occurred while logging you in');
         }
     }
     /** 
