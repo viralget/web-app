@@ -172,7 +172,7 @@ class AuthenticatedSessionController extends Controller
 
                 $user->account()->create();
 
-                Mail::to($user->email)->queue(new UserRegistered($user));
+                // Mail::to($user->email)->queue(new UserRegistered($user));
             }
 
 
