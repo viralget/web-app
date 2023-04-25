@@ -23,6 +23,7 @@ import AudienceCard from "./audienceCardRow";
 
 export default function show({ influencer, list }) {
 
+    console.log({ influencer })
     const url = new URLSearchParams(window.location.search).get('tab');
     const urlParams = url == null ? 'overview' : url;
 

@@ -201,11 +201,11 @@ export default function header({ influencer, isMini, list }) {
 
                                           <div className="flex justify-between w-full mt-2">
                                                 <div className="my-3 flex space-x-2">
-                                                      {influencer?.categories?.map((item) => (
+                                                      {/* {influencer?.categories?.map((item) => (
                                                             <span className="text-viralget-grey  bg-[#F5F5F5] px-3 py-1">
                                                                   {item}
                                                             </span>
-                                                      ))}
+                                                      ))} */}
 
                                                 </div>
 
