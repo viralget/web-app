@@ -8,13 +8,11 @@ import shoprite from '@/../assets/images/logos/shoprite.png'
 import powerHorse from '@/../assets/images/logos/power-horse.jpeg'
 import pwc from '@/../assets/images/logos/pwc.png'
 import lordsGin from '@/../assets/images/logos/lords-gin.jpeg'
-import viralgetLanding from '@/../assets/images/screenshots/viralget-landing.png'
-import worldJson from '@/../assets/lottie/world.json'
-import LottieAnimation from '@/components/LottieAnimation'
 import TiktokLogo from "@/../assets/images/tiktok-logo.png";
 import InstagramLogo from "@/../assets/images/instagram-logo.png";
 import YoutubeLogo from "@/../assets/images/youtube-logo.png";
 import TwitterLogo from "@/../assets/images/twitter-logo.png";
+import HeroBanner from "@/../assets/images/hero-banner.svg";
 
 const brands = [
   [
@@ -31,36 +29,47 @@ const brands = [
 
 export function Hero() {
   return (
-    <div className='relative w-full h-full' >
+    <div className='relative w-full  md:h-[65rem]' >
       
-      <div className="overflow-hidden h-screen p-5 relative  pt-10 flex-1 bg-gradient-to-b from-[#FF9857] to-[#751EFB]">
+
+      <div>
+      <div className="overflow-hidden p-5 relative  md:h-[49rem] pt-10 flex-1 bg-gradient-to-b from-[#FF9857]   via-[#FF9857] to-[#FA699D]">
 
             <div className="flex items-center justify-center   max-w-4xl mx-auto  mt-space-70  ">
                      <div className='text-white  flex flex-col  text-center'>
                          <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer marketing platform to drive your business forward</span>
-                         <span  className='font-normal text-center  text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting? 
-<br/>THEN VIRALGET WAS BUILT FOR YOU</span>
+                         <span  className='font-normal text-center  text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting? 
+                       <br/>THEN VIRALGET WAS BUILT FOR YOU</span>
                      </div>
             </div>
 
             <div className="absolute bottom-0 hidden md:flex w-full ">
                     <div className=" relative opacity-25 w-full">
-                            <div className='max-w-32 w-[16rem] absolute -left-[5rem]  bottom-[8rem]'>
+                            <div className='max-w-32 w-[16rem] absolute -left-[6rem]  -bottom-[7rem]'>
                                     <img src={TiktokLogo} style={{ width: '30px !important' }} className='' />
                             </div>
 
-                            <div className="w-[8rem] absolute  right-[25rem] bottom-[20rem]  ">
-                                    <img src={InstagramLogo} className='w-[10rem]' />
+                            <div className="w-[12rem] absolute  right-0 bottom-[30rem]   ">
+                                    <img src={InstagramLogo} className='w-full' />
                             </div>
 
-                            <div className="w-[8rem] absolute  right-[40rem] bottom-[25rem]  ">
+                            <div className="w-[10rem] absolute  left-20 bottom-[15rem]  ">
                                     <img src={TwitterLogo} className='w-[10rem]' />
                             </div>
 
-                            <div className="w-[16rem] absolute   -right-[7rem]  bottom-[8rem]">
+                            <div className="w-[16rem] absolute   right-0  bottom-[8rem]">
                                     <img src={YoutubeLogo} className='full' />
                             </div>
             </div>
+      </div>
+    </div>
+
+
+
+
+
+      <div className=' absolute h-screen  lg:flex  hidden top-[30rem] left-0 right-0  justify-center items-center'>
+          <img  src={HeroBanner}  className="w-full  h-full" />
       </div>
 </div>
 

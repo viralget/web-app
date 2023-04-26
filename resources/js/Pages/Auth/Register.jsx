@@ -46,8 +46,6 @@ export default function Register() {
 
 
     useEffect(() => {
-        // post(route('register'));
-
         return () => {
             reset('password', 'password_confirmation');
         };

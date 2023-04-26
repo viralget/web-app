@@ -22,7 +22,9 @@ module.exports = {
                 'viralget-gray-400': '#748094',
                 'viralget-gray-300': '#E8E9F1',
                 'viralget-gray-500': '#A5ABB5',
-                'viralget-green-200': '#28CA42'
+                'viralget-green-200': '#28CA42',
+                'viralget-gray-light': '#FFFFFFCC',
+                'viralget-black' : '#090218',
             },
             fontSize: {
                 'h1': ['24px', { lineHeight: '28px' }, { fontFamily: 'font-lexend' }],
@@ -38,6 +40,8 @@ module.exports = {
                 't-xsx-header': [ '14px', { lineHeight : '20px'}],
                 't-xs': [ '18px', { lineHeight : '22px'}],
                 't-xsx': [ '16px', { lineHeight : '20px'}],
+                't-large': [ '54px', { lineHeight : '62px'}],
+                'h1-n': [ '24px', { lineHeight : '32px'}],
                 
                 
 
@@ -66,6 +70,7 @@ module.exports = {
                 'space-75' : '75px',
                 'space-80' : '80px',
                 'space-90' : '90px',
+                'space-120' : '120px',
                 'space-131' : '131px',
                 'space-143' : '143px',
                 'space-150' : '150px',
@@ -88,6 +93,11 @@ module.exports = {
                 'side-menu': '14px  0px 60px 0px #2C30400D',
                 'header-card-2': '0px  4px 21px 0px #4D53680F',
             },
+
+            backgroundImage: {
+                'hero-pattern': "url('/img/hero-pattern.svg')",
+                'footer-texture': "url('/img/footer-texture.png')",
+              }
     }
     }
 }
