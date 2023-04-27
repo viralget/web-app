@@ -1,7 +1,10 @@
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import HomeStage from '@/components/HomeStage'
-import AnalyzedAccount from "@/components/AnalyzedAccount"
+import AnalyzedAccount from "@/components/AnalyzedAccount";
+import CustomersReview from '@/components/CustomersReview';
+import TrendingInfluencers from '@/components/TrendingInfluencers';
+import GetStarted from '@/components/Get_Started';
 
 export default function Home() {
   return (
@@ -12,6 +15,9 @@ export default function Home() {
         <Hero />
         <HomeStage />
         <AnalyzedAccount  />
+        <CustomersReview />
+        <TrendingInfluencers/>
+        <GetStarted  />
        
         
       </div>
