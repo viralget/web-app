@@ -70,7 +70,7 @@ const AnalyzedAccount = () => {
             </marquee>
 
             <marquee>
-                <div className="flex space-x-4 mt-4">
+                <div className="grid grid-cols-4 space-x-4 mt-4">
                      <div> 
                         <img src={Card_2}  />
                      </div>
@@ -101,7 +101,7 @@ const AnalyzedAccount = () => {
                        <span className="mt-space-24  font-medium  text-h1-n text-[#FFFFFFB2]">Find the influencer that matches your campaign’s objectives based on their stats – available anytime on your own intuitive database.</span>
                 </div>
 
-                   <div className="mt-space-80  flex  lg:flex-row  lg:py-0  space-y-space-28  flex-col  px-space-80  lg:space-x-space-28">
+                   <div className="mt-space-80  flex  lg:flex-row  lg:py-0  lg:space-y-0 space-y-space-28  flex-col  px-space-80  lg:space-x-space-28">
                          {
                            dataAnalysis?.map((item) => (
                              <DarkCard  item={item} /> 
@@ -116,11 +116,11 @@ const AnalyzedAccount = () => {
       
                 <div className="flex  flex-wrap  spaxe-x-[80px]   mt-[68px]"> 
                      
-                           <div  className="w-space-120  flex items-center">  <img src={Cola}  className="h-space-24"  /> </div>
-                           <div className="w-space-120  flex items-center "> <img src={Loreal}  className="h-space-24" /> </div>
-                           <div className="w-space-120  flex items-center"> <img src={Hm}   className="h-space-24" /></div>
-                           <div className="w-space-120  flex items-center">  <img src={Png}  className="h-space-24" /> </div>
-                           <div className="w-space-120  flex items-center">  <img src={Philips}  className="h-space-24"  /> </div>
+                           <div  className="w-space-120  flex items-center">  <img src={Cola}  className="h-space-40"  /> </div>
+                           <div className="w-space-120  flex items-center "> <img src={Loreal}  className="h-space-40" /> </div>
+                           <div className="w-space-120  flex items-center"> <img src={Hm}   className="h-space-40" /></div>
+                           <div className="w-space-120  flex items-center">  <img src={Png}  className="h-space-40" /> </div>
+                           <div className="w-space-120  flex items-center">  <img src={Philips}  className="h-space-40"  /> </div>
                   </div> 
                   
                   </div>

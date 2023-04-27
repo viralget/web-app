@@ -107,7 +107,7 @@ const HomeStage = () => {
                                  <span className="font-normal text-t-normal-lg text-white  mt-space-16"><Content /></span>
                           </div>
                         
-                          <div className={classNames("lg:w-[40rem] lg:h-[28rem]", tabContent.tabName === 'Manage' ? 'mt-[30px]': '')}>
+                          <div className={classNames("lg:w-[40rem] lg:h-[29rem]", tabContent.tabName === 'Manage' ? 'mt-[30px]': '')}>
                                 <img src={tabContent?.sideImage}   className={classNames("w-full  h-full")}  />
                           </div>
                     </div>
