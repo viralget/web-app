@@ -5,6 +5,7 @@ import AnalyzedAccount from "@/components/AnalyzedAccount";
 import CustomersReview from '@/components/CustomersReview';
 import TrendingInfluencers from '@/components/TrendingInfluencers';
 import GetStarted from '@/components/Get_Started';
+import { Footer } from '@/components/Footer'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <CustomersReview />
         <TrendingInfluencers/>
         <GetStarted  />
+        <Footer />
        
         
       </div>

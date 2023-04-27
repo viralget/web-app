@@ -169,3 +169,17 @@ export     const tabs = [
 
 
     
+    export const header_routes = [
+        {
+          name: "Pricing",
+          href: route('pricing')
+        },
+        {
+          name: "Contact Us",
+          href: route('contact')
+        },
+        {
+          name: "FAQs",
+          href: route('faqs')
+        },
+      ]

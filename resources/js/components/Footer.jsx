@@ -1,28 +1,33 @@
 import { Link } from '@inertiajs/inertia-react'
-
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
+import { header_routes } from '@/Utils/constants'
 
 export function Footer() {
   return (
-    <footer className="bg-slate-50">
+    <footer className="bg-white">
       <Container>
-        {/* <div className="py-16">
+        <div className="py-5  flex  items-center justify-between">
+
+         <div>
+                 <Link href="/" aria-label="Home">
+                  <Logo className="h-10 w-auto" />
+                </Link>
+           </div>
           <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
-              <NavLink href="#features">Features</NavLink>
-              <NavLink href="#testimonials">Testimonials</NavLink>
-              <NavLink href="#pricing">Pricing</NavLink>
+            {header_routes.map((route, index) => (
+                <NavLink key={index} href={route.href}  className="text-t-xsx font-lexend font-medium ">{route.name}</NavLink>
+              ))}
             </div>
           </nav>
-        </div> */}
-        <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
-          <div className="flex gap-x-6">
+
+          <div className="flex gap-x-space-12">
             <a
               href="https://twitter.com/viralget_io"
               target="_blank"
-              className="group"
+              className=" rounded-full p-space-12 border border-viralget-gray-300"
               aria-label="Viralger on Twitter"
             >
               <svg
@@ -35,7 +40,7 @@ export function Footer() {
             <a
               href="https://www.instagram.com/viralget_io/"
               target="_blank"
-              className="group"
+              className=" rounded-full p-space-12 border border-viralget-gray-300"
               aria-label="Viralget on Instagram"
             >
               <svg
@@ -49,11 +54,50 @@ export function Footer() {
                 />
               </svg>
             </a>
+
+            <a
+              href="https://www.instagram.com/viralget_io/"
+              target="_blank"
+              className=" rounded-full p-space-12 border border-viralget-gray-300"
+              aria-label="Viralget on Instagram"
+            >
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.56817 6.59727C5.67587 6.59727 6.57383 5.6993 6.57383 4.5916C6.57383 3.4839 5.67587 2.58594 4.56817 2.58594C3.46047 2.58594 2.5625 3.4839 2.5625 4.5916C2.5625 5.6993 3.46047 6.59727 4.56817 6.59727Z" fill="#3E4555"/>
+                    <path d="M8.4661 8.1168V19.2442H11.921V13.7415C11.921 12.2895 12.1942 10.8833 13.9945 10.8833C15.7701 10.8833 15.7921 12.5434 15.7921 13.8331V19.2451H19.2489V13.1429C19.2489 10.1454 18.6035 7.8418 15.1 7.8418C13.4179 7.8418 12.2904 8.76488 11.8294 9.63846H11.7826V8.1168H8.4661ZM2.83594 8.1168H6.29635V19.2442H2.83594V8.1168Z" fill="#3E4555"/>
+                </svg>
+            </a>
+
+            <a
+              href="https://www.instagram.com/viralget_io/"
+              target="_blank"
+              className=" rounded-full p-space-12 border border-viralget-gray-300"
+              aria-label="Viralget on Instagram"
+            >
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.2822 19.2474V11.7344H14.8168L15.1936 8.79282H12.2822V6.91916C12.2822 6.07032 12.5187 5.48916 13.737 5.48916H15.2807V2.86657C14.5296 2.78608 13.7746 2.74722 13.0192 2.75016C10.7789 2.75016 9.24074 4.11782 9.24074 6.62857V8.78732H6.72266V11.7289H9.24624V19.2474H12.2822Z" fill="#3E4555"/>
+                   </svg>
+            </a>
           </div>
-          <p className="mt-6 text-sm text-slate-500 sm:mt-0">
+  
+
+
+
+         
+
+        </div>
+       
+       
+        <div className="flex mt-space-20  items-center border-t border-viralget-gray-300 py-10  justify-between">
+       
+          <p className="text-t-normal  text-viralget-gray-400  font-normal">
             Copyright &copy; {new Date().getFullYear()} Viralget. All rights
             reserved.
           </p>
+
+          <div  className='flex   space-x-space-36'>
+               <a  href='#'  className='text-t-normal  text-viralget-gray-400  font-normal'>Terms and Conditions</a>
+               <a href='#' className='text-t-normal  text-viralget-gray-400  font-normal' >Privacy Policy</a>
+          </div>
         </div>
       </Container>
     </footer>

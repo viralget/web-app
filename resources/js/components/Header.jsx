@@ -14,7 +14,7 @@ import Badge from './Badge'
 const header_routes = [
   {
     name: "Pricing",
-    // href: route('pricing')
+    href: route('pricing')
   },
   {
     name: "Contact Us",
@@ -24,14 +24,6 @@ const header_routes = [
     name: "FAQs",
     href: route('faqs')
   },
-  // {
-  //   name: <> Track Campaign<Badge text="Coming soon" /> </>,
-  //   href: "/#"
-  // },
-  // {
-  //   name: "FAQs",
-  //   href: route('faqs')
-  // },
 ]
 
 function MobileNavLink({ href, children }) {
