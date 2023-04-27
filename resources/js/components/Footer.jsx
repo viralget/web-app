@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="bg-white">
       <Container>
-        <div className="py-5  flex  items-center justify-between">
+        <div className="py-5  flex  lg:flex-row  flex-col  items-center justify-between">
 
          <div>
                  <Link href="/" aria-label="Home">
