@@ -8,7 +8,7 @@ const TrendingInfluencers = ({ influencers}) => {
    const InfluencerCard = ({ influencer }) => {
 
       return(
-            <div  className="flex flex-col p-space-20 space-y-space-14  shadow-header-card   rounded-[16px] border border-[#1DA1F3]">
+            <a   href={route('influencer.show', { id: influencer.id })} className="flex flex-col p-space-20 space-y-space-14  shadow-header-card cursor-pointer   rounded-[16px] border border-[#1DA1F3]">
                   <div className="flex   space-x-space-12">
                           <div className="h-space-46 w-space-46  relative">
                                <img src={influencer.profile_photo_url}  className=" rounded-full w-full"   />
@@ -51,7 +51,7 @@ const TrendingInfluencers = ({ influencers}) => {
                         </div>
 
                   </div>
-            </div>
+            </a>
       )
    }
 
