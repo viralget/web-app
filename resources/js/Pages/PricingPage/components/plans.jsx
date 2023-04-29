@@ -8,7 +8,7 @@ export default function Plans({plans}) {
 
    
     const [selectedDuration, setSelectedDuration] = useState("monthly");
-    const [filteredPlans, setFilteredPlans] = useState( plans.filter((item) => item.interval == selectedDuration))
+    const [filteredPlans, setFilteredPlans] = useState( plans?.filter((item) => item.interval == selectedDuration))
    
 
   const   handleSwitch = (e) => {

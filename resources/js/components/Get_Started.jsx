@@ -3,7 +3,7 @@ import Get_Started from "@/../assets/images/get_started.png";
 const GetStarted = () => {
   return(
 
-        <div  className="mt-space-120   flex  items-center lg:space-x-space-160  py-space-40 lg:flex-row flex-col bg-gradient-to-r from-[#F38C97]  to-[#82209F] ">
+        <div  className="mt-space-120  absolute flex  items-center lg:space-x-space-160  py-space-40 lg:flex-row flex-col bg-gradient-to-r from-[#F38C97]  to-[#82209F] ">
                <div>
                     <img src={Get_Started}  />
                </div>
@@ -13,6 +13,13 @@ const GetStarted = () => {
                       <a href="/register"   className="mt-space-40  px-space-30 py-space-15 bg-white text-viralget-red rounded-md  text-t-xsx font-lexend font-medium " >
                       Try ViralGet for free
                       </a>
+               </div>
+
+
+               <div className="absolute    top-0  right-0">
+                 <svg width="456" height="349" viewBox="0 0 456 349" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <circle cx="320.5" cy="28.5" r="320.5" fill="white" fill-opacity="0.03"/>
+                 </svg>
                </div>
         </div>
     )

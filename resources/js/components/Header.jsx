@@ -10,21 +10,9 @@ import { NavLink } from '@/components/NavLink'
 import { Head } from '@inertiajs/inertia-react'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import Badge from './Badge'
+import { header_routes } from '@/Utils/constants'
 
-const header_routes = [
-  {
-    name: "Pricing",
-    href: route('pricing')
-  },
-  {
-    name: "Contact Us",
-    href: route('contact')
-  },
-  {
-    name: "FAQs",
-    href: route('faqs')
-  },
-]
+
 
 function MobileNavLink({ href, children }) {
   return (
@@ -110,6 +98,8 @@ function MobileNavigation() {
 
 export function Header({ useShadow = true }) {
   const { auth: { user } } = usePage().props;
+    
+
 
   return (
     <>

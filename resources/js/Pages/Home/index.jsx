@@ -7,7 +7,8 @@ import TrendingInfluencers from '@/components/TrendingInfluencers';
 import GetStarted from '@/components/Get_Started';
 import { Footer } from '@/components/Footer'
 
-export default function Home() {
+export default function Home({ trending_influncers }) {
+
   return (
     <>
    
@@ -17,7 +18,7 @@ export default function Home() {
         <HomeStage />
         <AnalyzedAccount  />
         <CustomersReview />
-        <TrendingInfluencers/>
+        <TrendingInfluencers  influencers={trending_influncers}/>
         <GetStarted  />
         <Footer />
        

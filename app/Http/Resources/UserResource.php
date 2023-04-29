@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'location' => $this->details ? $this->details->location : null,
             'linkedin_url' => $this->details ? $this->details->linkedin_url : null,
             'bio' => $this->details ? $this->details->bio : null,
+            'image_url' => $this->info?->image_url
         ];
     }
 }

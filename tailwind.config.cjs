@@ -45,6 +45,7 @@ module.exports = {
                 't-x-t': [ '22px', { lineHeight : '26px'}],
             },
             spacing: {
+                'space-4': '4px',
                 'space-6': '6px',
                 'space-8': '8px',
                 'space-10': '10px',
@@ -63,6 +64,7 @@ module.exports = {
                 'space-35' : '35px',
                 'space-36' : '36px',
                 'space-40' : '40px',
+                'space-46' : '46px',
                 'space-60' : '60px',
                 'space-68' : '68px',
                 'space-70' : '70px',

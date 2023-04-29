@@ -11,10 +11,19 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\InfluencerList;
 use App\Models\InfluencerListsTwitterInfluencer;
+use App\Models\TwitterInfluencer;
 
 class PageController extends Controller
 {
 
+
+    public function  home(){
+      
+        $result = TwitterInfluencer::limit(8)->get();
+        return Inertia::render('Home/index',
+         [ "trending_influncers" =>  InfluencerResource::collection($result)  ]
+        );
+    }
     public function sendContact(Request $request)
     {
 

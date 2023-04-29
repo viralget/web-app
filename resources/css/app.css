@@ -29,7 +29,6 @@ body, html {
 
 .home-bg{
   background-image:url('@/../assets/images/BG.png');
- 
   /* Full height */
   height: 100%;
 
@@ -37,4 +36,17 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.landing-page-story-section-bg{
+   /* background-color: red; */
+  background-color: #F8FAFC;
+   background-image:url('@/../assets/images/Patternpeople_talks.png');
+   /* Full height */
+   height: 100%;
+ 
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
 }

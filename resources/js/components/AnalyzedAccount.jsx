@@ -46,9 +46,24 @@ const AnalyzedAccount = () => {
 
     return(
 
-        <div className="mt-space-120 ">
+        <div className="mt-space-120  relative ">
              <div className="flex justify-center items-center">
                   <span className="font-bold font-lexend  text-t-lg-x  text-viralget-grey">Recently analyzed account</span>
+            </div>
+
+            <div className="absolute   right-0">
+                 <svg width="721" height="1220" viewBox="0 0 721 1220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_f_1046_14134)">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M595.636 301.376C680.307 302.716 780.673 293.45 832.836 360.158C883.482 424.926 827.971 515.143 827.083 597.357C826.214 677.791 875.016 764.389 827.766 829.487C777.325 898.982 680.325 930.431 595.636 916.233C518.523 903.306 482.327 821.076 430.162 762.832C382.889 710.05 323.494 666.924 310.039 597.357C293.707 512.915 291.087 414.421 350.807 352.529C410.989 290.159 508.976 300.005 595.636 301.376Z" fill="#E85E85" fill-opacity="0.1"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_f_1046_14134" x="0" y="0" width="1154.12" height="1219.57" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                        <feGaussianBlur stdDeviation="150" result="effect1_foregroundBlur_1046_14134"/>
+                        </filter>
+                        </defs>
+                  </svg>
             </div>
             <marquee>
                 <div className="flex space-x-4  mt-space-60">

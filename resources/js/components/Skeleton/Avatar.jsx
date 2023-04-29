@@ -17,8 +17,9 @@ export default function Avatar({ user, userName, url, size, className, isEditabl
             break;
     }
 
-    const username = userName ?? user?.first_name ?? user?.email;
-    const avatarUrl = url ?? user?.avatar ?? user?.logo_url;
+    const username = userName ?? user?.name ?? user?.email;
+    const avatarUrl = url ?? user?.image_url ?? user?.logo_url;
+
 
     return (
         <>

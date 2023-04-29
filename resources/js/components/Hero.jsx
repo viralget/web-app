@@ -29,15 +29,15 @@ const brands = [
 
 export function Hero() {
   return (
-    <div className='relative w-full  md:h-[65rem]' >
+    <div className='relative w-full  lg:h-[65rem]' >
       
 
       <div>
       <div className="overflow-hidden p-5 relative  md:h-[49rem] pt-10 flex-1 bg-gradient-to-b from-[#FF9857]   via-[#FF9857] to-[#FA699D]">
 
-            <div className="flex items-center justify-center   max-w-4xl mx-auto  mt-space-70  ">
+            <div className="flex items-center justify-center   max-w-6xl mx-auto  mt-space-70  ">
                      <div className='text-white  flex flex-col  text-center'>
-                         <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer marketing platform to drive your business forward</span>
+                         <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer <br/> marketing platform to drive your business forward</span>
                          <span  className='font-normal text-center  text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting? 
                        <br/>THEN VIRALGET WAS BUILT FOR YOU</span>
                      </div>
