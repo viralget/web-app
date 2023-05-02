@@ -72,7 +72,7 @@ const HomeStage = () => {
     return(
 
 
-        <div className="lg:px-0  relative px-5">
+        <div className="lg:px-0 lg:mt-space-140  mt-space-90   relative px-5">
 
                
 
@@ -136,7 +136,7 @@ const HomeStage = () => {
 
 
 
-                <div  className="flex  w-full  h-full   flex-col items-center justify-center  lg:mt-space-140  mt-space-90    ">
+                <div  className="flex  w-full  h-full   flex-col items-center justify-center      ">
                     <div  className="max-w-2xl  mx-auto  text-center  flex flex-col">
                         <span  className="font-bold  text-center text-t-large  font-lexend  text-viralget-grey">An experience you’d expect from an <span  className="bg-gradient-to-r   from-[#F37C38]  via-[#EEB31B] to-[#B71BEE]  inline-block text-transparent bg-clip-text">influencer tool</span> </span>
                         <span className="mt-space-24 font-medium  text-h1-x  font-satoshi  text-viralget-gray-400 " >Why break your influencer campaign flow into fragments, making it hard - when you can do it all on ViralGet, with actionable insights 
