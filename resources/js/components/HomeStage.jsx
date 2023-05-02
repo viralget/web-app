@@ -60,18 +60,15 @@ const HomeStage = () => {
     const [ tabContent, setTabContent] = useState(TabContent?.find((item) => item.tabName === selectedTab));
   
     const handleSetTab = (val) => {
-        setSelectedtab(val);
-    //    setTabContent({});
-       const content =  TabContent?.find((item) => item.tabName === val);
-     
+          setSelectedtab(val);
+       const content =  TabContent?.find((item) => item.tabName === val);    
        setTabContent(content);
     }
 
 
-    const SelIcon = tabContent?.icon;
+    const SelfIcon = tabContent?.icon;
     const Content = tabContent.content;
 
-    // console.log("tabContent:", tabContent)
     return(
 
 
@@ -118,7 +115,7 @@ const HomeStage = () => {
 
 
 
-                   <div className="absolute -right-[18rem] bottom-60">
+                   <div className="absolute right-0 bottom-60">
                           <svg width="584" height="933" viewBox="0 0 584 933" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g filter="url(#filter0_f_1046_14131)">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M475.979 224.669C526.213 228.033 575.56 228.255 617.99 255.335C661.061 282.823 697.862 322.292 707.533 372.449C717.104 422.082 684.505 465.118 667.631 512.773C640.449 589.534 659.952 712.821 580.553 731.047C501.666 749.154 474.14 620.812 409.609 571.999C353.812 529.793 266.867 532.416 235.387 469.953C197.936 395.646 178.872 289.255 237.16 229.83C295.114 170.745 393.39 219.138 475.979 224.669Z" fill="url(#paint0_linear_1046_14131)" fill-opacity="0.3"/>
@@ -166,7 +163,7 @@ const HomeStage = () => {
 
                     <div className={classNames(`bg-gradient-to-r flex lg:flex-row  flex-col mt-space-60  rounded-md`, tabContent.tabName === 'Find' ? 'from-[#ECA1A9]  to-[#82209F]' :  tabContent.tabName === 'Filter' ? 'from-[#4CA9D9]  to-[#DADC63]': tabContent.tabName === 'Analyze' ? 'from-[#43A0F6]  to-[#E844A6]': tabContent.tabName === 'Create' ?   'from-[#12FED3]  to-[#D02EF9]'  : tabContent.tabName === 'Manage' ? 'from-[#FE5569]  to-[#FFCD4B]' : 'from-[#4CA9D9]  to-[#DADC63]' )}>
                           <div className={`flex  flex-col md:py-space-60  md:px-space-80 py-5 px-5 max-w-xl`}>
-                                 <SelIcon  />
+                                 <SelfIcon  />
                                  <span className="font-bold font-lexend text-t-lg-x  text-white mt-space-32">{tabContent.title}</span>
                                  <span className="font-normal text-t-normal-lg text-white  mt-space-16"><Content /></span>
                           </div>

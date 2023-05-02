@@ -12,7 +12,8 @@ import TiktokLogo from "@/../assets/images/tiktok-logo.png";
 import InstagramLogo from "@/../assets/images/instagram-logo.png";
 import YoutubeLogo from "@/../assets/images/youtube-logo.png";
 import TwitterLogo from "@/../assets/images/twitter-logo.png";
-import HeroBanner from "@/../assets/images/hero-banner.svg";
+// import HeroBanner from "@/../assets/images/hero-banner.svg";
+import HeroBanner from "@/../assets/images/home_bg.png";
 
 const brands = [
   [
@@ -68,8 +69,8 @@ export function Hero() {
 
 
 
-      <div className=' absolute h-screen  lg:flex  hidden top-[30rem] left-0 right-0  justify-center items-center'>
-          <img  src={HeroBanner}  className="w-full  h-full" />
+      <div className=' absolute h-screen  lg:flex  w-[1000px]  lg:mx-auto bg-gradient-to-b from-[#E0E0E080]   to-[#F2F2F233]  p-space-20  rounded-lg  border border-[#E0E0E04D] hidden top-[30rem] left-0 right-0  justify-center items-center'>
+          <img  src={HeroBanner}  className="w-auto  h-full" />
       </div>
 </div>
 

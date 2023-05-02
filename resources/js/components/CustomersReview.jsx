@@ -7,15 +7,34 @@ import Global from "@/../assets/images/reviews/global.png";
 import Saas from "@/../assets/images/reviews/saas.png";
 
 
-import News_1 from "@/../assets/images/reviews/news_1.png";
-import News_2 from "@/../assets/images/reviews/news_2.png";
-import News_3 from "@/../assets/images/reviews/news_3.png";
-import News_4 from "@/../assets/images/reviews/news_4.png";
-import News_5 from "@/../assets/images/reviews/news_5.png";
-import News_6 from "@/../assets/images/reviews/news_6.png";
+// import News_1 from "@/../assets/images/reviews/news_1.png";
+// import News_2 from "@/../assets/images/reviews/news_2.png";
+// import News_3 from "@/../assets/images/reviews/news_3.png";
+// import News_4 from "@/../assets/images/reviews/news_4.png";
+// import News_5 from "@/../assets/images/reviews/news_5.png";
+// import News_6 from "@/../assets/images/reviews/news_6.png";
+
+import { NewsList } from "@/Utils/constants";
 
 
 const CustomersReview = () => {
+
+
+    const NewsCard = ({ item }) => (
+           <div className="bg-white p-space-28    shadow-header-card flex flex-col  space-y-space-32">
+                   <div   className="w-space-58 h-space-36">
+                        <img  src={item.image}   className="w-full  h-full object-contain"  />
+                   </div>
+                   <div  className="flex flex-col space-y-space-16">
+                        <span className="font-lexend  text-t-xs  text-viralget-grey  font-bold">{item.title}</span>
+                        <span className="font-normal text-t-xsx  text-viralget-grey">{item.content}</span>
+                       <span className="font-normal text-t-normal-x  text-viralget-gray-400">{item.date}</span>
+                   </div>
+                   <div>
+                           <a href="#"   className="font-bold text-t-normal text-viralget-red"  >Read the article</a>
+                   </div>
+           </div>
+    );
 
    return(
         <div  className="mt-space-120 flex flex-col justify-center  relative items-center">
@@ -68,13 +87,13 @@ const CustomersReview = () => {
 
             <div className="flex  mt-space-80 px-space-80 z-10  space-x-space-28">
                   <div className="">
-                      <img src={Review_1}  />
+                      <img src={Review_1}  className="w-full" />
                   </div>
                   <div>
-                      <img src={Review_2}  />
+                      <img src={Review_2}   className="w-full" />
                   </div>
                   <div>
-                      <img src={Review_3}  />
+                      <img src={Review_3}   className="w-full" />
                   </div>
             </div>
 
@@ -82,12 +101,14 @@ const CustomersReview = () => {
                   <span className="font-lexend  text-t-lg-x  text-viralget-grey font-bold text-center">Reviews</span>
            
                  <div className="flex  mt-space-60  px-space-80  space-x-space-28">
-                        <div className="">
-                            <img src={Capterra}  />
-                        </div>
+                      
                         <div>
                             <img src={Influencer}  />
                         </div>
+                        <div className="">
+                            <img src={Capterra}  />
+                        </div>
+
                         <div>
                             <img src={Saas}  />
                         </div>
@@ -107,25 +128,12 @@ const CustomersReview = () => {
 
 
 
-                  <div className="grid grid-cols-3  mt-space-60  px-space-80  gap-space-28">
-                  <div className="">
-                            <img src={News_1}  />
-                        </div>
-                        <div>
-                            <img src={News_2}  />
-                        </div>
-                        <div>
-                            <img src={News_3}  />
-                        </div>
-                        <div>
-                            <img src={News_4}  />
-                        </div>
-                        <div>
-                            <img src={News_5}  />
-                        </div>
-                        <div>
-                            <img src={News_6}  />
-                        </div>
+                  <div className="grid lg:grid-cols-3 grid-cols-1 mt-space-60  lg:px-space-80  px-space-10  gap-space-28">
+                         {
+                            NewsList?.length > 0 && NewsList?.map((item) => (
+                                <NewsCard  item={item} />
+                            ))
+                         }
                   </div>
          </div>
         </div>

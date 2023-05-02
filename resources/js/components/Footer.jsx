@@ -15,7 +15,7 @@ export function Footer() {
                   <Logo className="h-10 w-auto" />
                 </Link>
            </div>
-          <nav className="mt-10 text-sm" aria-label="quick links">
+          <nav className="mt-10 text-sm   lg:mb-0  mb-4" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
             {header_routes.map((route, index) => (
                 <NavLink key={index} href={route.href}  className="text-t-xsx font-lexend font-medium ">{route.name}</NavLink>

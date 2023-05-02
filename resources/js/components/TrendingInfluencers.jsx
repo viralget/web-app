@@ -2,13 +2,11 @@
 import { nFormatter } from "@/Utils/helpers";
 const TrendingInfluencers = ({ influencers}) => {
 
-   console.log("trending_influncers:", influencers);
- 
 
    const InfluencerCard = ({ influencer }) => {
 
       return(
-            <a   href={route('influencer.show', { id: influencer.id })} className="flex flex-col p-space-20 space-y-space-14  shadow-header-card cursor-pointer   rounded-[16px] border border-[#1DA1F3]">
+            <a   href={route('influencer.show', { id: influencer.id })} className="flex flex-col p-space-20   space-y-space-14  shadow-header-card cursor-pointer   rounded-[16px] border border-[#1DA1F3]">
                   <div className="flex   space-x-space-12">
                           <div className="h-space-46 w-space-46  relative">
                                <img src={influencer.profile_photo_url}  className=" rounded-full w-full"   />
@@ -60,7 +58,7 @@ const TrendingInfluencers = ({ influencers}) => {
          <div className="mt-space-120  relative">
 
 
-            <div className="absolute -top-[3rem] -right-[20rem]  z-0 ">
+            <div className="absolute  -right-20   bottom-0  z-0 ">
                 <svg width="705" height="370" viewBox="0 0 705 370" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_f_1046_14376)">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M495.843 233.572C553.761 220.516 609.457 204.042 667.788 221.708C726.998 239.639 783.796 273.881 814.169 329.976C844.224 385.485 824.197 447.487 823.683 509.624C822.854 609.713 892.7 749.045 810.298 797.55C728.427 845.742 647.578 703.147 555.902 667.249C476.636 636.211 379.671 668.805 319.943 605.539C248.888 530.276 186.096 410.797 228.711 320.682C271.082 231.081 400.623 255.036 495.843 233.572Z" fill="url(#paint0_linear_1046_14376)" fill-opacity="0.09"/>
@@ -104,7 +102,7 @@ const TrendingInfluencers = ({ influencers}) => {
                    <span className="font-bold font-lexend  text-t-lg-x  text-viralget-grey">Trending Influencers</span>
                  </div>
 
-                 <div className="grid grid-cols-4  gap-space-28  px-space-80 z-10 mt-space-60">
+                 <div className="grid lg:grid-cols-4   grid-cols-1 gap-space-28  lg:px-space-80  px-space-10 z-10 mt-space-60">
                         
 
                         { influencers?.length > 0 && influencers.map((influencer) => (
