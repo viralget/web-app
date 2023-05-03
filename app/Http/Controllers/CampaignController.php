@@ -20,9 +20,7 @@ class CampaignController extends Controller
     public function index()
     {
         $campaigns = Campaign::where('user_id', request()->user()->id)->get();
-
         $campaigns = CampaignResource::collection($campaigns);
-
         // My campaigns
         return Inertia::render('Campaigns/list', compact('campaigns'));
     }
@@ -154,5 +152,14 @@ class CampaignController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+
+
+    public  function  trackCampaignPage(){
+
+        return Inertia::render('TrackCampaigns/index');
     }
 }

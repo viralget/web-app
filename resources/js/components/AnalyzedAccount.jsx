@@ -105,10 +105,10 @@ const AnalyzedAccount = () => {
 
 
             <div className="mt-space-60">
-                   <ScrollBanner  images={images} speed={20000} />
+                   <ScrollBanner  images={images} speed={1000} />
            </div>
            <div className="mt-space-28">
-                   <ScrollBanner  images={images_2} speed={20000} />
+                   <ScrollBanner  images={images_2} speed={5000} />
            </div>
             {/* <marquee>
                 <div className="flex space-x-4  mt-space-60">
