@@ -30,7 +30,7 @@ export default function TopInfluencers({ data }) {
 
                 <div role="list" className="mt-space-20 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 ">
                     {data.map((item, index) => (
-                        <InfluencerCard useShadow influencer={item} key={index} showBanner handleProfile={() => handleProfile(item)} />
+                        <InfluencerCard useShadow useLink influencer={item} key={index} showBanner handleProfile={() => handleProfile(item)} />
                     ))}
                 </div >
                 :

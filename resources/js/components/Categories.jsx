@@ -74,8 +74,8 @@ export default function Categories() {
                             <div className="relative">
                                 <div className="relative h-72 w-full overflow-hidden rounded-lg">
                                     <img
-                                        src={product.imageSrc}
-                                        alt={product.imageAlt}
+                                        src={product.image_url}
+                                        alt={product.name}
                                         className="h-full w-full object-cover object-center"
                                     />
                                 </div>

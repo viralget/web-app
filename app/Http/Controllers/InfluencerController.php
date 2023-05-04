@@ -44,7 +44,8 @@ class InfluencerController extends Controller
                 'saved_search' => $saved_search,
                 'top_influencers' => InfluencerResource::collection($top_influencers),
                 'top_categories' => $top_categories,
-                'categories' => $categories
+                'categories' => $categories,
+                'total_count' => $this->influencer->count()
             ]
         );
     }
@@ -145,7 +146,8 @@ class InfluencerController extends Controller
             [
                 'list' => $result ? InfluencerResource::collection($result) : [], //InfluencerResource::collection($result->latest()->paginate(10)),
                 'count' => $result ? $result->count() : 0, // $result->count(), //$result->count(),
-                'categories' => $categories
+                'categories' => $categories,
+                'total_count' => $this->influencer->count()
             ]
         );
         // return $result->get();
@@ -297,7 +299,8 @@ class InfluencerController extends Controller
     }
 
 
-    public   function  getAllCategoriesPage() {
+    public   function  getAllCategoriesPage()
+    {
 
         $categories = Category::get();
 
@@ -308,8 +311,9 @@ class InfluencerController extends Controller
             ]
         );
     }
-    
-    public function savedSearches(){
+
+    public function savedSearches()
+    {
 
         $user = request()->user();
         $saved_search = Search::where('user_id', $user->id)->where('is_saved', true)->orderBy('id', 'Desc')->get();

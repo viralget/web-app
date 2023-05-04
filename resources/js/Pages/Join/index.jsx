@@ -122,8 +122,9 @@ export default function Join() {
                                         </label>
                                         <input type="email" name="EMAIL" required
                                             class="required email flex-1 block w-full p-3  min-w-0 rounded-md sm:text-sm border border-gray-300"
-                                            id="mce-EMAIL" pattern="^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$"
-                                            onInvalid={() => alert('Please provide a valid work email address')}
+                                            id="mce-EMAIL"
+                                        // pattern="^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!live.com)(?!outlook.com)[a-zA-Z0-9_-]+.[a-zA-Z0-9-.]{2,61}$"
+                                        // onInvalid={() => alert('Please provide a valid work email address')}
                                         />
                                         <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
                                     </div>

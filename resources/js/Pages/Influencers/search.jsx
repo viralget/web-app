@@ -11,14 +11,15 @@ import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table'
 import Pagination from '@/Components/Pagination'
 import EmptyState from '@/Components/EmptyState'
+import { nFormatter, numberFormat } from '@/Utils/helpers'
 
-export default function Search({ list, categories }) {
+export default function Search({ list, categories, total_count }) {
     const [loading, setLoading] = useState(false);
 
-  
+
     return (
 
-        <AuthenticatedLayout title="Search through our database of 33.5m+ influencers">
+        <AuthenticatedLayout title={`Search through our database of ${nFormatter(total_count)}+ influencers`}>
 
             <main className="flex-1 pb-8">
                 <Container>

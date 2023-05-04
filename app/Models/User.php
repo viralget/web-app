@@ -48,9 +48,24 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserAccount::class);
     }
-    
+
     public function info()
     {
         return $this->hasOne(UserDetail::class);
+    }
+
+    public function details()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
+
+    public function userProfilingCountLeft()
+    {
+        $count = $this->profiles()->count();
+
+        $default = 50;
+
+        return $default - $count;
     }
 }

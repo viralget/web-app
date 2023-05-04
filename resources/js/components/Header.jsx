@@ -13,6 +13,28 @@ import Badge from './Badge'
 import { header_routes } from '@/Utils/constants'
 
 
+const header_routes = [
+  {
+    name: "Pricing",
+    href: route('pricing')
+  },
+  {
+    name: "Contact Us",
+    href: route('contact')
+  },
+  {
+    name: "FAQs",
+    href: route('faqs')
+  },
+  // {
+  //   name: <> Track Campaign<Badge text="Coming soon" /> </>,
+  //   href: "/#"
+  // },
+  // {
+  //   name: "FAQs",
+  //   href: route('faqs')
+  // },
+]
 
 function MobileNavLink({ href, children }) {
   return (
@@ -98,7 +120,7 @@ function MobileNavigation() {
 
 export function Header({ useShadow = true }) {
   const { auth: { user } } = usePage().props;
-    
+
 
 
   return (
@@ -121,7 +143,7 @@ export function Header({ useShadow = true }) {
             </div>
             <div className="hidden font-bold justify-center items-center md:flex md:gap-x-3">
               {header_routes.map((route, index) => (
-                <NavLink key={index} href={route.href}  className="text-t-xsx font-lexend font-medium ">{route.name}</NavLink>
+                <NavLink key={index} href={route.href} className="text-t-xsx font-lexend font-medium ">{route.name}</NavLink>
               ))}
             </div>
             <div className="flex items-center gap-x-5 md:gap-x-8">
@@ -133,9 +155,9 @@ export function Header({ useShadow = true }) {
                     <NavLink href="/login" className="text-viralget-red rounded-md  text-t-xsx font-lexend font-medium px-space-30  py-space-15   border border-viralget-red">Log in</NavLink>
                   </div>
                   <div className="hidden md:block">
-                    <a href="/register"  className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
-                 
-                       <span  className='font-lexend font-medium  text-white text-t-xsx'>Try for free</span>    
+                    <a href="/register" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
+
+                      <span className='font-lexend font-medium  text-white text-t-xsx'>Try for free</span>
                     </a>
                   </div>
                   {/* <Button href="/join" color="blue">

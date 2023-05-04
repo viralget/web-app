@@ -23,6 +23,27 @@
   display: none;
 }
 
+<<<<<<< HEAD
+.influencer-size {
+  position: relative;
+}
+
+.influencer-size-arrow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -9px;
+  z-index: 10;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  top: 18px;
+
+  /* Primary/Orange/solid */
+
+  /* background: black; */
+  transform: rotate(-45deg);
+}
+=======
 body, html {
   height: 100%;
 }
@@ -96,3 +117,4 @@ body, html {
     transform: translate(-100%);
   }
 }
+>>>>>>> feature/landing-page

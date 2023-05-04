@@ -23,6 +23,7 @@ import AudienceCard from "./audienceCardRow";
 
 export default function show({ influencer, list }) {
 
+    console.log({ influencer })
     const url = new URLSearchParams(window.location.search).get('tab');
     const urlParams = url == null ? 'overview' : url;
 
@@ -37,8 +38,8 @@ export default function show({ influencer, list }) {
         {
             title: 'Engagement rate',
             icon: (<EngagementRateWithBSvg />),
-            score: engagement_rate.score + '%',
-            increase: engagement_rate.increase,
+            score: engagement_rate?.score + '%',
+            increase: engagement_rate?.increase,
             label: engagement_rate.label
         },
 
@@ -46,7 +47,7 @@ export default function show({ influencer, list }) {
         {
             title: 'Global rank',
             icon: (<SvgRank />),
-            score: '#' + global_rank.score,
+            score: '#' + global_rank?.score,
             increase: null,
             label: global_rank.label
         },
@@ -60,7 +61,7 @@ export default function show({ influencer, list }) {
         {
             title: 'Category rank',
             icon: (<SvgCategory />),
-            score: '#' + category_rank.score,
+            score: '#' + category_rank?.score,
             increase: null,
             label: category_rank.label
         }
@@ -104,7 +105,7 @@ export default function show({ influencer, list }) {
         if (urlParams === 'overview') {
             return (
                 <>
-                    <div className="flex   md:flex-row   flex-col md:space-x-3 mt-5 ">
+                    <div className="grid grid-cols-2 md:space-x-3 mt-5 ">
 
                         <div className="mx-5  md:mr-0 ">
                             <InfluencerSize influencer={influencer} />
@@ -112,7 +113,7 @@ export default function show({ influencer, list }) {
                         <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0   ">
                             {
                                 influencerInformation.map((item) => (
-                                    <div className="border rounded-md  p-space-8 h-auto md:w-space-150 items-left justify-center">
+                                    <div className="border rounded-md  p-space-8 h-auto  items-left justify-center">
                                         <div className="flex  items-center">
                                             <div className="mr-1">
                                                 {item.icon}
@@ -170,7 +171,7 @@ export default function show({ influencer, list }) {
             <>
                 <div className="relative -mt-40   md:mb-0  mb-[8rem]">
                     <div className="m-5">
-                        <ButtonBack  fill="white" className="text-white"/>
+                        <ButtonBack fill="white" className="text-white" />
                     </div>
                     <Header influencer={influencer} list={list} />
                 </div>
