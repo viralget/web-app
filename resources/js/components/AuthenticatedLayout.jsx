@@ -25,7 +25,7 @@ const navigation = [
     { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
     { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-    { name: 'Track Campaigns', href: 'coming-soon', icon: TrackCampaigns  , current: false },
+    { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns  , current: false },
     { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
 ]
 

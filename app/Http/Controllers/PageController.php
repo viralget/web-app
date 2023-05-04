@@ -17,13 +17,16 @@ class PageController extends Controller
 {
 
 
-    public function  home(){
-      
+    public function  home()
+    {
+
         $result = TwitterInfluencer::limit(8)->get();
-        return Inertia::render('Home/index',
-         [ "trending_influncers" =>  InfluencerResource::collection($result)  ]
+        return Inertia::render(
+            'Home/index',
+            ["trending_influncers" =>  InfluencerResource::collection($result)]
         );
     }
+
     public function sendContact(Request $request)
     {
 
