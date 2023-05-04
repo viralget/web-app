@@ -13,28 +13,28 @@ import Badge from './Badge'
 import { header_routes } from '@/Utils/constants'
 
 
-const header_routes = [
-  {
-    name: "Pricing",
-    href: route('pricing')
-  },
-  {
-    name: "Contact Us",
-    href: route('contact')
-  },
-  {
-    name: "FAQs",
-    href: route('faqs')
-  },
-  // {
-  //   name: <> Track Campaign<Badge text="Coming soon" /> </>,
-  //   href: "/#"
-  // },
-  // {
-  //   name: "FAQs",
-  //   href: route('faqs')
-  // },
-]
+// const header_routes = [
+//   {
+//     name: "Pricing",
+//     href: route('pricing')
+//   },
+//   {
+//     name: "Contact Us",
+//     href: route('contact')
+//   },
+//   {
+//     name: "FAQs",
+//     href: route('faqs')
+//   },
+//   // {
+//   //   name: <> Track Campaign<Badge text="Coming soon" /> </>,
+//   //   href: "/#"
+//   // },
+//   // {
+//   //   name: "FAQs",
+//   //   href: route('faqs')
+//   // },
+// ]
 
 function MobileNavLink({ href, children }) {
   return (

@@ -156,10 +156,11 @@ class CampaignController extends Controller
 
 
 
-
-
     public  function  trackCampaignPage(){
+       return Inertia::render('TrackCampaigns/index');
+    }
 
-        return Inertia::render('TrackCampaigns/index');
+    public  function  campaignMetricsPage(){
+        return Inertia::render('TrackCampaigns/Metrics');
     }
 }
