@@ -24,7 +24,7 @@ class InfluencerResource extends JsonResource
             'interactions' => 0, // $this->interactions(),
             'followers_count' => $this->followers_count,
             'tweet_count' => 0,
-            'following_count' => 0,
+            'following_count' => $this->friends_count,
             'profile_photo_url' => $this->profile_photo_url,
             'profile_banner_url' => $this->profile_banner_url,
             'profile_url' => $this->profile_url,

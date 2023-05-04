@@ -22,7 +22,9 @@ return new class extends Migration
             $table->boolean('is_verified')->boolean(false);
             $table->integer('followers_count');
             $table->integer('following_count');
+            $table->integer('tweets_count');
             $table->string('location');
+            $table->string('geocode');
             $table->string('bio');
             $table->string('profile_url');
             $table->boolean('is_protected')->boolean(false);

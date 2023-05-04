@@ -22,9 +22,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home/index');
-})->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 
 Route::get('/join', function () {
     return Inertia::render('Join/index');
