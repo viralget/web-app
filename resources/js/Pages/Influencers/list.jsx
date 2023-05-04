@@ -18,17 +18,12 @@ import { CheckBadgeIcon, CheckIcon } from '@heroicons/react/20/solid';
 import Avatar from '@/components/Skeleton/Avatar';
 import Pagination from '@/Components/Pagination';
 import SimplePagination from '@/Components/SimplePagination';
-import { usePage } from '@inertiajs/inertia-react';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function List(props) {
-
-
-    const { auth } = usePage().props;
-    const { user } = auth;
 
     const { count, data, paginationData } = props;
 
@@ -168,7 +163,7 @@ export default function List(props) {
                                             <div className='flex space-x-4 px- py-2 justify-between border-b w-full '>
                                                 <div className='flex flex-col border-r pr-5 '>
                                                     <span className='text-xs font-bold'>Available to profile </span>
-                                                    <span className='text-viralget-red text-xs font-bold'>{user.available_profiling_count} influencers</span>
+                                                    <span className='text-viralget-red text-xs font-bold'>20 influencers</span>
                                                 </div>
 
                                                 <div className='flex flex-col'>
@@ -388,7 +383,7 @@ export default function List(props) {
                                                         <div className="flex items-center">
                                                             <Avatar url={item.profile_photo_url} />
                                                             <div className="ml-3">
-                                                                <span className="font-medium flex items-center ">{item.username} {item.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
+                                                                <span className="font-medium flex items-center ">{item.username} {item.is_verified && <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" />}</span>
                                                                 <span className="block text-gray-400 text-md">{item.full_name}</span>
                                                             </div>
                                                         </div>

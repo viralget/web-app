@@ -68,10 +68,7 @@ export default function SearchForm({
             searchData.push({ query: 'keywords', name: 'Keywords', value: Selectedkeywords});
         }
        
-       
-
-        setSearches(searchData);
-       
+        setSearches(searchData);    
 
     }
  
