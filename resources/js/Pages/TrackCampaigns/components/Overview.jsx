@@ -86,15 +86,15 @@ const Overview = () => {
                                   <span className="font-bold">20</span>
                               </div>
                               <div className="flex flex-col">
-                                  <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> No. of contributors</span>
+                                  <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> Original contributors</span>
                                   <span className="font-bold">20</span>
                               </div>
                               <div className="flex flex-col">
-                                  <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> No. of contributors</span>
+                                  <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> Avg. tweet per contributors </span>
                                   <span className="font-bold">20</span>
                               </div>
                               <div className="flex flex-col">
-                                  <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> No. of contributors</span>
+                                  <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> Avg. follower per contributors</span>
                                   <span className="font-bold">20</span>
                               </div>
             </div>
