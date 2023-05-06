@@ -26,7 +26,7 @@ export default function Avatar({ user, userName, url, size, className, isEditabl
             <div className={`relative inline-block ${isEditable && 'cursor-pointer'}`}>
                 {avatarUrl ?
                     <img
-                        className={`inline-block rounded-full ${sizeClass} ${className}`}
+                        className={`inline-block rounded-md ${sizeClass} ${className}`}
                         src={avatarUrl}
                         alt=""
                     />

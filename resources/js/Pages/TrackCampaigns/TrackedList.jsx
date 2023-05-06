@@ -1,19 +1,31 @@
-
 import Card from '@/Components/Card';
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-
 export default function TrackedList(props) {
 
+
+    const searches = [
+        {
+            id: 1,
+            keywords:'myMtn, #mymtnGlobal',
+            date: new Date().toDateString()
+        },
+        {
+            id: 2,
+            keywords:'myAirtel, #myairtelGlobal',
+            date: new Date().toDateString()
+        },
+        {
+            id: 3,
+            keywords:'gloNG, #glo',
+            date: new Date().toDateString()
+        }
+    ]
     return (
         <div className="flex flex-col  px-10  mt-space-60">
           <div className="inline-block min-w-full align-middle">
                 <Card usePadding={false} useBorder>
                     <div className="relative overflow-hidden ring-1 ring-black border-0 ring-opacity-5">
                         <div className='flex p-4 justify-between align-middle items-center'>
-                             <h3 className="font-bold text-gray-600">12 Searches</h3>
+                             <h3 className="font-bold text-gray-600"> { searches?.length } Searches</h3>
                         </div >
                       
                          <table className="min-w-full table-fixed divide-y divide-gray-300">
@@ -33,21 +45,18 @@ export default function TrackedList(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100 bg-white px-6">
-                                        <tr>
-                                               <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">myMtn, #mymtnGlobal</td>
-                                                <td className="whitespace-nowrap py-4 text-sm text-gray-500">{new Date().toDateString()}</td>
-                                                <td className="whitespace-nowrap py-4 text-sm text-blue-500"><a  href='#'>View Metrics</a></td>            
-                                        </tr>
-                                        <tr>
-                                               <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">myAirtel, #myairtelGlobal</td>
-                                                <td className="whitespace-nowrap py-4 text-sm text-gray-500">{new Date().toDateString()}</td>
-                                                <td className="whitespace-nowrap py-4 text-sm text-blue-500"><a  href='#'>View Metrics</a></td>            
-                                        </tr>
-                                        <tr>
-                                               <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">gloNG, #glo</td>
-                                                <td className="whitespace-nowrap py-4 text-sm text-gray-500">{new Date().toDateString()}</td>
-                                                <td className="whitespace-nowrap py-4 text-sm text-blue-500"><a  href='#'>View Metrics</a></td>            
-                                        </tr>
+
+                                        {
+                                            searches?.map((item)=> (
+                                            <tr>
+                                                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{item.keywords}</td>
+                                                 <td className="whitespace-nowrap py-4 text-sm text-gray-500">{item.date}</td>
+                                                 <td className="whitespace-nowrap py-4 text-sm text-blue-500"><a  href={route('metrics.campaign.page', {id : item.id})}>View Metrics</a></td>            
+                                             </tr>
+                                            ))
+                                        }
+                                      
+                                      
                                     </tbody>
                                 </table>
                             
