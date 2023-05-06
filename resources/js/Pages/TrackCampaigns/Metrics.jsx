@@ -3,6 +3,7 @@ import ButtonBack from "@/components/ButtonBack";
 import MetricsHeader from "./components/MetricsHeader";
 import Overview from "./components/Overview";
 import Contributors from "./components/Contributors";
+import TweetPerformance from "./components/TweetPerformance";
 const  Metrics = () => {
 
     return(
@@ -12,6 +13,7 @@ const  Metrics = () => {
             <MetricsHeader />
             <Overview />
             <Contributors />
+            <TweetPerformance />
         </div>
         </AuthenticatedLayout>
     )

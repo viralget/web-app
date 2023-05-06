@@ -1,6 +1,4 @@
-export default  function TweetCard(){
-
-
+export default  function TweetCard({ video }){
 
 
 
@@ -8,9 +6,17 @@ export default  function TweetCard(){
           <div  className="border rounded-md p-3">
 
             <div className="flex flex-col">
-                 <span  className="text-xs  text-viralget-grey  text-left font-Satoshi">Tomike iya Tomike️ that’s the caption!!  Photography @tayojr Outfit sourced and styled by 
-                      @tmtbylayinka #26 @ PDK - Dekalb Peachtree Airport
-                </span>
+                  {
+                        video ?
+                        ( <img src="http://127.0.0.1:8000/storage/user_images/16827594553.jpg"  className="rounded-md" />)
+                        :
+                        (
+                       <span  className="text-xs  text-viralget-grey  text-left font-Satoshi">Tomike iya Tomike️ that’s the caption!!  Photography @tayojr Outfit sourced and styled by 
+                              @tmtbylayinka #26 @ PDK - Dekalb Peachtree Airport
+                        </span>
+                        )
+                  }
+                
 
                 <span  className="text-xs mt-4 mb-2">
                 May 24, 2022
