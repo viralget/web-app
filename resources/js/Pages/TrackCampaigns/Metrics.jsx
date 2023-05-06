@@ -2,7 +2,7 @@ import AuthenticatedLayout from "@/components/AuthenticatedLayout";
 import ButtonBack from "@/components/ButtonBack";
 import MetricsHeader from "./components/MetricsHeader";
 import Overview from "./components/Overview";
-
+import Contributors from "./components/Contributors";
 const  Metrics = () => {
 
     return(
@@ -11,6 +11,7 @@ const  Metrics = () => {
             <ButtonBack />
             <MetricsHeader />
             <Overview />
+            <Contributors />
         </div>
         </AuthenticatedLayout>
     )

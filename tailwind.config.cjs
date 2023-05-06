@@ -25,6 +25,7 @@ module.exports = {
                 'viralget-green-200': '#28CA42',
                 'viralget-gray-light': '#FFFFFFCC',
                 'viralget-black' : '#090218',
+                'viralget-twitter-blue': '#01C5FF'
             },
             fontSize: {
                 'h1': ['24px', { lineHeight: '28px' }, { fontFamily: 'font-lexend' }],
