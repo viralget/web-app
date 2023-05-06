@@ -23,10 +23,6 @@
   display: none;
 }
 
-<<<<<<< HEAD
-body,
-html {
-=======
 .influencer-size {
   position: relative;
 }
@@ -46,8 +42,9 @@ html {
   /* background: black; */
   transform: rotate(-45deg);
 }
-body, html {
->>>>>>> 87593ee70669663278ec55ab064d7fe41b73acf6
+
+body,
+html {
   height: 100%;
 }
 
@@ -119,8 +116,4 @@ body, html {
   100% {
     transform: translate(-100%);
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 87593ee70669663278ec55ab064d7fe41b73acf6
