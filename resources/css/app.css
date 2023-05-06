@@ -23,8 +23,31 @@
   display: none;
 }
 
+<<<<<<< HEAD
 body,
 html {
+=======
+.influencer-size {
+  position: relative;
+}
+
+.influencer-size-arrow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -9px;
+  z-index: 10;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  top: 18px;
+
+  /* Primary/Orange/solid */
+
+  /* background: black; */
+  transform: rotate(-45deg);
+}
+body, html {
+>>>>>>> 87593ee70669663278ec55ab064d7fe41b73acf6
   height: 100%;
 }
 
@@ -96,4 +119,8 @@ html {
   100% {
     transform: translate(-100%);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 87593ee70669663278ec55ab064d7fe41b73acf6
