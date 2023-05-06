@@ -23,33 +23,13 @@
   display: none;
 }
 
-<<<<<<< HEAD
-.influencer-size {
-  position: relative;
-}
-
-.influencer-size-arrow {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  right: -9px;
-  z-index: 10;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  top: 18px;
-
-  /* Primary/Orange/solid */
-
-  /* background: black; */
-  transform: rotate(-45deg);
-}
-=======
-body, html {
+body,
+html {
   height: 100%;
 }
 
-.home-bg{
-  background-image:url('@/../assets/images/BG.png');
+.home-bg {
+  background-image: url('@/../assets/images/BG.png');
   /* Full height */
   height: 100%;
 
@@ -59,17 +39,17 @@ body, html {
   background-size: cover;
 }
 
-.landing-page-story-section-bg{
-   /* background-color: red; */
+.landing-page-story-section-bg {
+  /* background-color: red; */
   background-color: #F8FAFC;
-   background-image:url('@/../assets/images/Patternpeople_talks.png');
-   /* Full height */
-   height: 100%;
- 
-   /* Center and scale the image nicely */
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
+  background-image: url('@/../assets/images/Patternpeople_talks.png');
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
@@ -117,4 +97,3 @@ body, html {
     transform: translate(-100%);
   }
 }
->>>>>>> feature/landing-page
