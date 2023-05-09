@@ -2,9 +2,9 @@ import TweetCard from "@/Pages/InfluencerProfile/tweetCard";
 
 const TweetPerformance = () => {
     return(
-        <div className="mt-space-20">
+        <div className="mt-space-60">
                <div className="flex justify-start mb-4">
-                      <span className="text-t-lg  font-lexend  font-bold text-viralget-grey">Tweet  Performance</span>
+                      <span className="font-lexend font-semibold  text-2xl text-viralget-grey">Tweet  Performance</span>
                 </div>
 
 

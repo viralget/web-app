@@ -32,7 +32,7 @@ const MetricsHeader = () => {
     ]
 
     return(
-        <div  className="grid  lg:grid-cols-4  mt-10  grid-cols-1  gap-y-5s lg:gap-x-space-4"> 
+        <div  className="grid  lg:grid-cols-4  mt-space-60  grid-cols-1  gap-y-5 lg:gap-x-space-8"> 
               
                {
                 metricsData?.length > 0 && metricsData?.map((item) => (

@@ -1,12 +1,11 @@
 import ContributorsCard from "./ContributorsCard";
+
 const contributors = () => {
 
-
-
-    return(
-        <div  className="flex flex-col  mt-space-20">
+  return(
+        <div  className="flex flex-col  mt-space-60">
                 <div className="flex justify-start mb-4">
-                      <span className="text-t-lg  font-lexend  font-bold text-viralget-grey">Contributor Ranking</span>
+                      <span className="font-lexend font-semibold  text-2xl text-viralget-grey">Contributor Ranking</span>
                 </div>
                 <div className="grid ld:grid-cols-3 md:grid-cols-3 grid-cols-1    gap-5 ">
                       <ContributorsCard title="Top Contributors" subTitle="contributions" />
@@ -14,10 +13,7 @@ const contributors = () => {
                       <ContributorsCard title="Most Active" subTitle="tweets" />
                       <ContributorsCard title="Original Tweets" subTitle="tweets" />
                       <ContributorsCard title="Retweeters" subTitle="tweets" />
-                </div>
-               
-
-                
+                </div>        
         </div>
     )
 }
