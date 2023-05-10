@@ -63,7 +63,7 @@ const Overview = () => {
             label: 'medial tweets'
         },
        
-    ]
+    ];
 
 
 
@@ -71,9 +71,9 @@ const Overview = () => {
         <div className="mt-space-60 flex flex-col space-y-10">
 
               <div className="flex  lg:flex-row   flex-col  lg:space-x-5 w-full  lg:space-y-0 space-y-3">
-                <div className="w-auto">
-                    <PieChart chartData={chartData} /> 
-                </div>
+                 <div className="w-auto">
+                     <PieChart chartData={chartData} /> 
+                 </div>
                
                 <div className="grid lg:grid-cols-3 grid-cols-2  w-full   gap-3 md:pl-0  lg:gap-5">
                         {
@@ -83,7 +83,7 @@ const Overview = () => {
                         }
                 </div>
              </div> 
-            <div className="mt-5   grid grid-cols-2 gap-5 ">
+            <div className="   grid grid-cols-2 gap-5 ">
                              <div className="flex flex-col border p-3 rounded-md">
                                   <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> No. of contributors</span>
                                   <span className="font-semibold text-h1  font-lexend ">20</span>

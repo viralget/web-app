@@ -20,7 +20,7 @@ const ContributorsCard = ({ title, subTitle }) => {
 
                 </div> 
                 <div class="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-700">
-                   <div class="bg-viralget-red h-1 rounded-full" style={{ width: rank +'%' }}></div>
+                   <div class="bg-[#F37C38] h-1 rounded-full" style={{ width: rank +'%' }}></div>
                 </div>
 
         </div>
@@ -29,7 +29,7 @@ const ContributorsCard = ({ title, subTitle }) => {
     return(
 
         <div  className="flex flex-col">
-                <div  className="bg-viralget-red py-5 px-3 mb-3 flex justify-between">
+                <div  className="bg-[#F37C38]  py-5 px-3 mb-3 flex justify-between">
                       <span className="text-t-normal font-normal text-white font-lexend uppercase">{ title }</span>
                       <span className="font-normal  text-t-xsx text-white font-lexend">{ subTitle }</span>
                 </div>
