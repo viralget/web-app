@@ -15,8 +15,12 @@ const  Metrics = ({ search }) => {
     function  getMetrics(){
 
             get("http://extractor.viralget.io/twitter/extract-keywords?keyword="+ search.keyword)
-            .then((result) => {
-            console.log("result:", result);
+            .then(( { data }) => {
+
+                if(data.status){
+                    setMetrics(data.data);
+                }
+            
             }).catch((error) => {
                 console.log(error);
             }).finally(() => setIsLoading(false))
@@ -44,10 +48,10 @@ const  Metrics = ({ search }) => {
                 (
                     <>
                  <ButtonBack />
-                 <MetricsHeader />
-                <Overview />
-                <Contributors />
-                <TweetPerformance /> 
+                <MetricsHeader metrics={metrics} />
+                <Overview metrics={metrics} />
+                <Contributors metrics={metrics} />
+                <TweetPerformance  metrics={metrics}/> 
                     </>
                 )
             }

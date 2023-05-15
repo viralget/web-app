@@ -21,7 +21,7 @@ export default function Card({ item }) {
             </div>
             <div className="flex mt-3">
 
-                {item?.increase ? (
+                {item?.increase > 0 ? (
 
                     <div className="mt-1 mr-1">
                         <svg width="8" height="8" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,20 +30,25 @@ export default function Card({ item }) {
                         </svg>
                     </div>
                 )
-                    : null
+                    : <span className="text-red-400 text-[10px] mr-1">↓</span>
                 }
 
                 <div className="text-xs">
                     {
-                        item?.increase ? (
+                        item?.increase >  0 ? (
 
                             <span className="text-[#28CA42] font-medium text-t-normal-x  mr-1">{item.increase}% </span>
 
                         )
-                            : null
+                            : 
+                            (
+
+                                <span className="text-red-400 font-medium text-t-normal-x  mr-1">{item.increase}% </span>
+    
+                            )
                     }
 
-                    <span className="text-viralget-grey  font-normal text-t-normal-x"> {item.increase ? 'vs' : null} {item.label}</span>
+                    <span className="text-viralget-grey  font-normal text-t-normal-x"> {item.label ? 'vs' : null} {item.label}</span>
                 </div>
             </div>
 
