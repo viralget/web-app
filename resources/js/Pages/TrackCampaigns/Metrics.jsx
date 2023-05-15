@@ -14,7 +14,7 @@ const  Metrics = ({ search }) => {
 
     function  getMetrics(){
 
-            fetch("http://extractor.viralget.io/twitter/extract-keywords?keyword=afrobeat")
+            get("http://extractor.viralget.io/twitter/extract-keywords?keyword="+ search.keyword)
             .then((result) => {
             console.log("result:", result);
             }).catch((error) => {
