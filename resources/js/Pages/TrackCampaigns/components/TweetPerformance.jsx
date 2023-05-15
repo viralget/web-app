@@ -1,6 +1,13 @@
 import TweetCard from "@/Pages/InfluencerProfile/tweetCard";
 
-const TweetPerformance = () => {
+const TweetPerformance = ({ metrics }) => {
+
+    const recent_tweets = metrics.recent_tweets;
+    const replies_tweets = metrics.replies_to_tweets;
+    const best_performing_tweets = metrics.best_performing_tweets;
+    const best_performing_videos = metrics.best_performing_videos;
+
+
     return(
         <div className="mt-space-60">
                <div className="flex justify-start mb-4">
@@ -21,10 +28,11 @@ const TweetPerformance = () => {
                     </div>
 
                     <div  className="grid  md:grid-cols-3  grid-cols-1  md:gap-2  gap-y-3 mt-5">
-                             <TweetCard />
-                             <TweetCard />
-                             <TweetCard />
-                             <TweetCard />
+                           {
+                            recent_tweets?.map((item, index) => (
+                                <TweetCard  tweet={item}  key={index} />
+                            ))
+                           }    
                    </div>
                     
                </div>
@@ -44,10 +52,11 @@ const TweetPerformance = () => {
                     </div>
 
                     <div  className="grid  md:grid-cols-3  grid-cols-1  md:gap-2  gap-y-3 mt-5">
-                             <TweetCard />
-                             <TweetCard />
-                             <TweetCard />
-                             <TweetCard />
+                         {
+                            replies_tweets?.map((item, index) => (
+                                <TweetCard  tweet={item}  key={index} />
+                            ))
+                           } 
                    </div>
                     
                </div>
@@ -66,10 +75,11 @@ const TweetPerformance = () => {
                     </div>
 
                     <div  className="grid  md:grid-cols-3  grid-cols-1  md:gap-2  gap-y-3 mt-5">
-                             <TweetCard />
-                             <TweetCard />
-                             <TweetCard />
-                             <TweetCard />
+                         {
+                            best_performing_tweets?.map((item, index) => (
+                                <TweetCard  tweet={item}  key={index} />
+                            ))
+                           } 
                    </div>
                     
                </div>
@@ -88,10 +98,11 @@ const TweetPerformance = () => {
                     </div>
 
                     <div  className="grid  md:grid-cols-3  grid-cols-1  md:gap-2  gap-y-3 mt-5">
-                             <TweetCard  video/>
-                             <TweetCard  video />
-                             <TweetCard video />
-                             <TweetCard video />
+                         {
+                            best_performing_videos?.map((item, index) => (
+                                <TweetCard  tweet={item}  key={index} />
+                            ))
+                           } 
                    </div>
                     
                </div>

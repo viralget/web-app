@@ -1,4 +1,4 @@
-export default  function TweetCard({ video }){
+export default  function TweetCard({ video, tweet }){
 
 
 
@@ -11,15 +11,14 @@ export default  function TweetCard({ video }){
                         ( <img src="http://127.0.0.1:8000/storage/user_images/16827594553.jpg"  className="rounded-md" />)
                         :
                         (
-                       <span  className="text-xs  text-viralget-grey  text-left font-Satoshi">Tomike iya Tomike️ that’s the caption!!  Photography @tayojr Outfit sourced and styled by 
-                              @tmtbylayinka #26 @ PDK - Dekalb Peachtree Airport
+                       <span  className="text-xs  text-viralget-grey  text-left font-Satoshi">{ tweet?.text }
                         </span>
                         )
                   }
                 
 
                 <span  className="text-xs mt-4 mb-2">
-                May 24, 2022
+                { tweet?.created_at }
                 </span>
             </div>
              
@@ -41,7 +40,7 @@ export default  function TweetCard({ video }){
 
                               </div>
 
-                              <span className=" text-viralget-grey">2K</span>
+                              <span className=" text-viralget-grey">{tweet?.replies_count}</span>
                       </div>
 
                       <div className="flex">
@@ -52,7 +51,7 @@ export default  function TweetCard({ video }){
                                     </svg>
                               </div>
 
-                              <span className=" text-viralget-grey">300</span>
+                              <span className=" text-viralget-grey">{ tweet.quotes_count}</span>
                       </div>
 
                       <div className="flex">
@@ -70,7 +69,7 @@ export default  function TweetCard({ video }){
 
                               </div>
 
-                              <span className=" text-viralget-grey">300</span>
+                              <span className=" text-viralget-grey">{tweet.likes_count}</span>
                       </div>
                 </div>
           </div>
