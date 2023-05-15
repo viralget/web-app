@@ -1,24 +1,24 @@
 import Card from '@/Components/Card';
-export default function TrackedList(props) {
+export default function TrackedList({ searches }) {
 
 
-    const searches = [
-        {
-            id: 1,
-            keywords:'myMtn, #mymtnGlobal',
-            date: new Date().toDateString()
-        },
-        {
-            id: 2,
-            keywords:'myAirtel, #myairtelGlobal',
-            date: new Date().toDateString()
-        },
-        {
-            id: 3,
-            keywords:'gloNG, #glo',
-            date: new Date().toDateString()
-        }
-    ]
+    // const searches = [
+    //     {
+    //         id: 1,
+    //         keywords:'myMtn, #mymtnGlobal',
+    //         date: new Date().toDateString()
+    //     },
+    //     {
+    //         id: 2,
+    //         keywords:'myAirtel, #myairtelGlobal',
+    //         date: new Date().toDateString()
+    //     },
+    //     {
+    //         id: 3,
+    //         keywords:'gloNG, #glo',
+    //         date: new Date().toDateString()
+    //     }
+    // ]
     return (
         <div className="flex flex-col  px-10  mt-space-60">
           <div className="inline-block min-w-full align-middle">
@@ -47,11 +47,11 @@ export default function TrackedList(props) {
                                     <tbody className="divide-y divide-gray-100 bg-white px-6">
 
                                         {
-                                            searches?.map((item)=> (
-                                            <tr>
-                                                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{item.keywords}</td>
-                                                 <td className="whitespace-nowrap py-4 text-sm text-gray-500">{item.date}</td>
-                                                 <td className="whitespace-nowrap py-4 text-sm text-blue-500"><a  href={route('metrics.campaign.page', {id : item.id})}>View Metrics</a></td>            
+                                            searches?.map((item, index)=> (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{item.keyword}</td>
+                                                 <td className="whitespace-nowrap py-4 text-sm text-gray-500">{new Date(item.updated_at).toDateString()}</td>
+                                                 <td className="whitespace-nowrap py-4 text-sm text-blue-500"><a  href={route('metrics.campaign.page', { query : item.keyword})}>View Metrics</a></td>            
                                              </tr>
                                             ))
                                         }

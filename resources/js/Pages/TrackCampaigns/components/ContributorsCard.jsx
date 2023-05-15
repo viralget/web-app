@@ -36,7 +36,7 @@ const ContributorsCard = ({ title, subTitle }) => {
                 <div className="flex  flex-col  space-y-3">
                      <Row   rank={90} />
                      <Row    rank={70}  />
-                     <Row  rank={50}  />
+                     <Row   rank={50}  />
                      <Row   rank={30}  />
                      <Row   rank={20} />
                      <Row   rank={10}  />
