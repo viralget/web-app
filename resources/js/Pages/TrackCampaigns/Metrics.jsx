@@ -7,13 +7,14 @@ import TweetPerformance from "./components/TweetPerformance";
 import { useState, useEffect } from "react";
 import { get } from "@/Utils/api";
 
-const  Metrics = ({ search }) => {
+const  Metrics = ({ search, result }) => {
 
     const [isLoading, setIsLoading] = useState(true);
-    const [metrics, setMetrics] = useState([]);
+    const [metrics, setMetrics] = useState(result);
+
 
     function  getMetrics(){
-
+        setIsLoading(true)
             get("http://extractor.viralget.io/twitter/extract-keywords?keyword="+ search.keyword)
             .then(( { data }) => {
 
@@ -28,7 +29,8 @@ const  Metrics = ({ search }) => {
     }
 
     useEffect(() => {
-        getMetrics()
+        // getMetrics()
+        setIsLoading(false);
     },[]);
 
 
@@ -48,7 +50,7 @@ const  Metrics = ({ search }) => {
                 (
                     <>
                  <ButtonBack />
-                <MetricsHeader metrics={metrics} />
+                <MetricsHeader metrics={metrics} onRefetch={() => getMetrics()} />
                 <Overview metrics={metrics} />
                 <Contributors metrics={metrics} />
                 <TweetPerformance  metrics={metrics}/> 

@@ -3,7 +3,7 @@ import {
     EngagementRateWithBSvg
 } from '@/Utils/icons';
 import Card from "@/Pages/InfluencerProfile/card";
-const MetricsHeader = ({ metrics }) => {
+const MetricsHeader = ({ metrics, onRefetch }) => {
 
        const data = metrics;
     
@@ -42,7 +42,7 @@ const MetricsHeader = ({ metrics }) => {
     return(
         <div className="mt-space-60 ">
                 <div className="flex    justify-end">
-                        <a href="#"    className='p-2  px-5  rounded-md bg-viralget-red  text-white font-lexend'> Refetch </a>
+                        <button  onClick={onRefetch}  className='p-2  px-5  rounded-md bg-viralget-red  text-white font-lexend'> Refetch </button>
                 </div>
                 <div  className="grid mt-space-60  lg:grid-cols-4   grid-cols-1  gap-y-5 lg:gap-x-space-8"> 
                     

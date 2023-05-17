@@ -10,6 +10,7 @@ use App\Models\TwitterInfluencer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Http;
 
 class CampaignController extends Controller
 {
@@ -165,21 +166,27 @@ class CampaignController extends Controller
 
     public  function  campaignMetricsPage($query){
        $user_id = request()->user()->id;
-    if ($query) {
+    
+       if ($query) {
 
-          $data['search'] =   CampaignSearch::firstOrCreate(
-                [
-                     'keyword' => $query,
-                     'user_id' => $user_id
-                ],
-                [
-                    'keyword' => $query,
-                    'user_id' => $user_id
-               ]
-            );
+                $findIfExist = CampaignSearch::where('user_id', $user_id)->where('keyword', $query)->first();
 
-        }
+                if($findIfExist && $findIfExist?->result != ""){
+                    $data['search'] =  $findIfExist;
+                    $data['result'] =  json_decode($findIfExist->result);
+                }else{
+                    $searches = Http::get('http://extractor.viralget.io/twitter/extract-keywords?keyword='. $query)['data'];
+                    $campaignSearch = new  CampaignSearch;
+                    $campaignSearch->keyword = $query;
+                    $campaignSearch->user_id = $user_id;
+                    $campaignSearch->result = json_encode($searches);
+                    $campaignSearch->save();
 
+                    $data['search'] =  $campaignSearch;
+                    $data['result'] =   $searches;
+                    }  
+
+         }
         return Inertia::render('TrackCampaigns/Metrics', $data);
     }
 }
