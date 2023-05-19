@@ -204,16 +204,17 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             </div>
                         </div>
                         {!smallHeader && (
-                            <Container className="relative">
-                                <div className="w-[70%]  my-16 ">
-                                    <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
-                                        {title}
-                                    </h1>
-                                    {subtitle && (
-                                        <p className='text-sm text-gray-50'>{subtitle}</p>
-                                    )}
-                                </div>
-                            </Container>
+                            // <Container className="relative">
+                            <div className=" px-5 sm:px-6 lg:px-8  my-16 ">
+                                {/* <div className="w-[70%]  my-16 "> */}
+                                <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
+                                    {title}
+                                </h1>
+                                {subtitle && (
+                                    <p className='text-sm text-gray-50'>{subtitle}</p>
+                                )}
+                            </div>
+                            // </Container>
                         )}
 
                     </div>

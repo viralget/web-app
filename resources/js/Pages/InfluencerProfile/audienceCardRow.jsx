@@ -117,7 +117,7 @@ export default function AudienceCard({ influencer }){
 
                   <div className="w-auto p-4">
                     {
-                        list.map((item, index) => (
+                        list.map((item, index) => ( 
                          <div  className={`flex mt-5  pb-2 w-[10rem]  ${ list.length != (index + 1) ? 'border-b' : ''}`}>
                               <div className="mr-2">
                                  {item.icon}

@@ -1,0 +1,1 @@
+const t="http://viralget.test/build/assets/tiktok-logo.2bb50e5a.png",s="http://viralget.test/build/assets/instagram-logo.8b2d2fc1.png",o="http://viralget.test/build/assets/youtube-logo.0cecafd9.png",a="http://viralget.test/build/assets/twitter-logo.ae479095.png";export{s as I,t as T,o as Y,a};
