@@ -18,7 +18,7 @@ const Overview = ({ metrics }) => {
 
     const chartData = {
         dataLabels: ['Tweets', 'Retweets', 'Replies'],
-        data: [tweetsCount, metrics?.total_retweets?.value, metrics.total_replies.value],
+        data: [tweetsCount, metrics?.total_retweets?.value, metrics.total_replies?.value],
         chartName: 'metrics',
         colors: ['#eb4034', '#18a81c', '#aa1cc9']
 
