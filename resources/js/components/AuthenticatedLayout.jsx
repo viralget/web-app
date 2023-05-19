@@ -16,7 +16,7 @@ import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, usePage } from '@inertiajs/inertia-react'
-import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns} from '@/Utils/icons';
+import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns } from '@/Utils/icons';
 
 
 
@@ -24,8 +24,8 @@ import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaign
 const navigation = [
     { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
-    { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-    { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns  , current: false },
+    // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
+    { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
     { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
 ]
 
@@ -135,14 +135,14 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                     key={item.name}
                                     href={route(item.href)}
                                     className={classNames(
-                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' : 
-                                        'text-[#748094]  hover:text-[#A5ABB5]',
+                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' :
+                                            'text-[#748094]  hover:text-[#A5ABB5]',
                                         'group flex  space-x-3 items-center font-satoshi  px-2 py-2 text-sm leading-6 rounded-lg'
                                     )}
                                     aria-current={item.href == route().current() ? 'page' : undefined}
                                 >
-                                    <item.icon   className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
-                                   <span className={ item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>  
+                                    <item.icon className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
+                                    <span className={item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>
                                 </a>
                             ))}
                         </div>
@@ -204,16 +204,17 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             </div>
                         </div>
                         {!smallHeader && (
-                            <Container className="relative">
-                                <div className="w-[70%]  my-16 ">
-                                    <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
-                                        {title}
-                                    </h1>
-                                    {subtitle && (
-                                        <p className='text-sm text-gray-50'>{subtitle}</p>
-                                    )}
-                                </div>
-                            </Container>
+                            // <Container className="relative">
+                            <div className=" px-5 sm:px-6 lg:px-8  my-16 ">
+                                {/* <div className="w-[70%]  my-16 "> */}
+                                <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
+                                    {title}
+                                </h1>
+                                {subtitle && (
+                                    <p className='text-sm text-gray-50'>{subtitle}</p>
+                                )}
+                            </div>
+                            // </Container>
                         )}
 
                     </div>
@@ -221,7 +222,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                 )}
 
 
-                {children}   
+                {children}
             </div>
         </div >
     )

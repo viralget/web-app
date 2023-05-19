@@ -18,7 +18,7 @@ export default function Home({ trending_influncers }) {
         <HomeStage />
         <AnalyzedAccount />
         <CustomersReview />
-        <TrendingInfluencers influencers={trending_influncers} />
+        {/* <TrendingInfluencers influencers={trending_influncers} /> */}
         <GetStarted />
         <Footer />
 

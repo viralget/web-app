@@ -22,24 +22,24 @@ export default function Search({ list, categories, total_count }) {
         <AuthenticatedLayout title={`Search through our database of ${nFormatter(total_count)}+ influencers`}>
 
             <main className="flex-1 pb-8">
-                <Container>
-                    <SearchBox categories={categories} searchActive={() => setLoading(true)} onLoading={() => setLoading(true)} />
+                {/* <Container> */}
+                <SearchBox categories={categories} searchActive={() => setLoading(true)} onLoading={() => setLoading(true)} />
 
-                    <div>
-                        <div className="space-y-10 my-6">
-                            {loading ? <TableSkeleton /> :
+                <div>
+                    <div className="space-y-10 my-6">
+                        {loading ? <TableSkeleton /> :
 
-                                Object.keys(list)?.length > 0 ?
-                                    <>
-                                        <List data={list?.data} count={list?.meta?.total ?? 0} paginationData={list} />
-                                    </>
+                            Object.keys(list)?.length > 0 ?
+                                <>
+                                    <List data={list?.data} count={list?.meta?.total ?? 0} paginationData={list} />
+                                </>
 
-                                    :
-                                    <EmptyState title="No result found" />
-                            }
-                        </div>
+                                :
+                                <EmptyState title="No result found" />
+                        }
                     </div>
-                </Container>
+                </div>
+                {/* </Container> */}
             </main>
 
             {/*  */}

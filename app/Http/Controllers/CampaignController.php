@@ -7,9 +7,11 @@ use App\Http\Resources\InfluencerResource;
 use App\Models\Campaign;
 use App\Models\CampaignSearch;
 use App\Models\TwitterInfluencer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Http;
 
 class CampaignController extends Controller
 {
@@ -157,29 +159,38 @@ class CampaignController extends Controller
 
 
 
-    public  function  trackCampaignPage(){
+    public  function  trackCampaignPage()
+    {
         $user_id = request()->user()->id;
         $data['searches'] = CampaignSearch::where('user_id', $user_id)->get();
         return Inertia::render('TrackCampaigns/index', $data);
     }
 
-    public  function  campaignMetricsPage($query){
-       $user_id = request()->user()->id;
-    if ($query) {
+    public  function  campaignMetricsPage($query)
+    {
+        $user_id = request()->user()->id;
 
-          $data['search'] =   CampaignSearch::firstOrCreate(
-                [
-                     'keyword' => $query,
-                     'user_id' => $user_id
-                ],
-                [
-                    'keyword' => $query,
-                    'user_id' => $user_id
-               ]
-            );
+        if ($query) {
 
+            $findIfExist = CampaignSearch::where('user_id', $user_id)->where('keyword', $query)->latest()->first();
+
+            if ($findIfExist && $findIfExist?->result != "") {
+                $data['search'] =  $findIfExist;
+                $data['result'] =  json_decode($findIfExist->result);
+                $data['updated_at'] =   Carbon::now();
+            } else {
+                $searches = Http::get('http://extractor.viralget.io/twitter/extract-keywords?keyword=' . $query)['data'];
+                $campaignSearch = new  CampaignSearch;
+                $campaignSearch->keyword = $query;
+                $campaignSearch->user_id = $user_id;
+                $campaignSearch->result = json_encode($searches);
+                $campaignSearch->save();
+
+                $data['search'] =  $campaignSearch;
+                $data['result'] =   $searches;
+                $data['updated_at'] =   $campaignSearch->updated_at;
+            }
         }
-
         return Inertia::render('TrackCampaigns/Metrics', $data);
     }
 }
