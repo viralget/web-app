@@ -48,7 +48,8 @@ const Metrics = ({ search, result, updated_at }) => {
                         :
                         (
                             <>
-                                <ButtonBack url={route('track.campaign.page ')} />
+                                <ButtonBack />
+                                {/* <ButtonBack url={route('track.campaign.page ')} /> */}
                                 <MetricsHeader metrics={metrics} updated_at={updated_at} onRefetch={() => getMetrics()} />
                                 <Overview metrics={metrics} />
                                 <Contributors metrics={metrics} />
