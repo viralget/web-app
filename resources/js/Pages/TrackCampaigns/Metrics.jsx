@@ -15,7 +15,7 @@ const Metrics = ({ search, result, updated_at }) => {
 
     function getMetrics() {
         setIsLoading(true)
-        get("http://extractor.viralget.io/twitter/extract-keywords?keyword=" + search.keyword)
+        get("https://extractor.viralget.io/twitter/extract-keywords?keyword=" + search.keyword)
             .then(({ data }) => {
 
                 if (data.status) {
@@ -48,7 +48,7 @@ const Metrics = ({ search, result, updated_at }) => {
                         :
                         (
                             <>
-                                <ButtonBack />
+                                <ButtonBack url={route('track.campaign.page ')} />
                                 <MetricsHeader metrics={metrics} updated_at={updated_at} onRefetch={() => getMetrics()} />
                                 <Overview metrics={metrics} />
                                 <Contributors metrics={metrics} />
