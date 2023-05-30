@@ -65,3 +65,62 @@ export function formatMailTo(job) {
 }
 
 export const nairaSymbol = "₦";
+
+
+export function getQASValue(score) {
+    let value;
+
+
+    switch (true) {
+        case (score <= 25):
+            value = 'Poor'
+            break;
+        case (score <= 40):
+            value = 'Average'
+            break;
+        case (score <= 60):
+            value = 'Good'
+            break;
+        case (score <= 80):
+            value = 'Very Good'
+            break;
+        case (score >= 90):
+            value = 'Excellent'
+            break;
+
+        default:
+            value = 'N/A'
+
+            break;
+    }
+
+    return value
+}
+
+export function getQASColor(score) {
+    let value;
+
+    switch (true) {
+        case (score <= 25):
+            value = 'bg-red-50 text-red-500'
+            break;
+        case (score <= 40):
+            value = 'bg-blue-50 text-blue-500'
+            break;
+        case (score <= 60):
+            value = 'bg-yellow-50 text-yellow-500'
+            break;
+        case (score <= 80):
+            value = 'bg-green-50 text-yellow-500'
+            break;
+        case (score >= 90):
+            value = 'bg-green-100 text-yellow-900'
+            break;
+
+        default:
+            value = 'bg-gray-100 text-gray-900'
+            break;
+    }
+
+    return value
+}

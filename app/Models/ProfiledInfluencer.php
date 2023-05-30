@@ -9,13 +9,15 @@ class ProfiledInfluencer extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
-
-   public   function  user(){
-       return  $this->belongsTo(User::class, 'user_id');
+    public   function  user()
+    {
+        return  $this->belongsTo(User::class, 'user_id');
     }
 
-    public function influencer(){
+    public function influencer()
+    {
         return  $this->belongsTo(TwitterInfluencer::class, 'influencer_id');
     }
 }

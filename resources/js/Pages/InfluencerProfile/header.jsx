@@ -105,7 +105,7 @@ export default function header({ influencer, isMini, list }) {
                                                             <span className="text-t-normal font-satoshi font-medium  text-viralget-grey">{influencer?.location}</span>
 
                                                       </div>
-                                                      <div className={classNames("flex md:space-x-2  pr-2  h-space-16 ", isMini ? '' : 'border-r border-viralget-gray-300')}>
+                                                      {/* <div className={classNames("flex md:space-x-2  pr-2  h-space-16 ", isMini ? '' : 'border-r border-viralget-gray-300')}>
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <g clip-path="url(#clip0_958_45465)">
                                                                         <path d="M14.5 13.5L11 6.5L7.5 13.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -125,11 +125,11 @@ export default function header({ influencer, isMini, list }) {
 
                                                             <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.language}</span>
 
-                                                      </div>
+                                                      </div> */}
                                                       {
                                                             !isMini && (
                                                                   <>
-
+                                                                        {/* 
                                                                         <div className="flex md:space-x-2 border-r border-viralget-gray-300 pr-2  h-space-16 ">
                                                                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                     <g clip-path="url(#clip0_958_42571)">
@@ -146,9 +146,9 @@ export default function header({ influencer, isMini, list }) {
 
                                                                               <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.phone_number}</span>
 
-                                                                        </div>
+                                                                        </div> */}
 
-                                                                        <div className="flex space-x-2">
+                                                                        {/* <div className="flex space-x-2">
                                                                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                     <g clip-path="url(#clip0_958_42561)">
                                                                                           <path d="M15.75 3.9375L9 10.125L2.25 3.9375" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -167,7 +167,7 @@ export default function header({ influencer, isMini, list }) {
 
 
                                                                               <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.email}</span>
-                                                                        </div>
+                                                                        </div> */}
                                                                   </>
 
                                                             )

@@ -19,7 +19,7 @@ export default function index({ saved_search, search_history, top_categories, to
 
     return (
 
-        <AuthenticatedLayout title={`Search through our database of ${nFormatter(total_count)}+ influencers`}>
+        <AuthenticatedLayout title={`Search through our database of influencers`}>
             {/* </div> */}
 
             <main className="flex-1 pb-8 px-10">

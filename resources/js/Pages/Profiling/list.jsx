@@ -6,6 +6,7 @@ import { post } from '@/Utils/api';
 import toast from '@/Components/Toast';
 import ListBox from './listBox';
 import Modal from '@/components/Modal';
+import Button from '@/Components/Button';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -17,13 +18,13 @@ export default function List({ influencerList, profiles }) {
 
     const [getValue, setValue] = useState('')
     const [showModal, setShowModal] = useState(false);
+    const [showNewListModal, setShowNewListModal] = useState(false);
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
     const [selected, setSelected] = useState([]);
     const [selectedList, setSelectedList] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
-
 
 
     function handleModal(item) {
@@ -70,6 +71,7 @@ export default function List({ influencerList, profiles }) {
         }
 
 
+        setShowNewListModal(false);
     }
 
 
@@ -264,30 +266,9 @@ export default function List({ influencerList, profiles }) {
                 <Typography variant="h2" content="My Lists" />
                 <div >
 
-                    <MenuDropDown buttonName="Create List" className="bg-viralget-red text-white" ButtonIcon={<UserSvg className='w-4 h-4 ' />}>
-                        <div className='p-2 flex flex-col  justify-center items-center'>
-                            <form onSubmit={handleCreateList}>
-                                <div>
-                                    <input
-                                        id="keywords"
-                                        name="keywords"
-                                        type="text"
-                                        value={getValue}
-                                        onChange={(e) => setValue(e.target.value)}
-                                        placeholder={"Enter  name"}
-                                        className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
-                                    />
-                                </div>
-
-                                <div className='w-full mt-3'>
-                                    <button disabled={isLoading} className={
-                                        classNames('bg-viralget-red text-white  w-full p-2 rounded-md',
-                                            isLoading ? 'opacity-10' : ''
-                                        )}>Create list</button>
-                                </div>
-                            </form>
-                        </div>
-                    </MenuDropDown>
+                    <Button onClick={() => setShowNewListModal(true)} usePrimary>Create List</Button>
+                    {/* <MenuDropDown buttonName="Create List" className="bg-viralget-red text-white" ButtonIcon={<UserSvg className='w-4 h-4 ' />}>
+                    </MenuDropDown> */}
 
                 </div>
             </div>
@@ -307,6 +288,35 @@ export default function List({ influencerList, profiles }) {
                 }
 
             </div>
+
+            <Modal iDisplay={showNewListModal} handleModal={() => setShowNewListModal(!showNewListModal)}>
+                <div className='bg-white  rounded-md relative  w-full px-5 py-3 '>
+                    <h3 className='text-bold text-lg py-3'>Create new list</h3>
+                    <div className='p-2 flex flex-col  justify-center items-center'>
+                        <form onSubmit={handleCreateList}>
+                            <div>
+                                <input
+                                    id="keywords"
+                                    name="keywords"
+                                    type="text"
+                                    value={getValue}
+                                    onChange={(e) => setValue(e.target.value)}
+                                    placeholder={"Enter  name"}
+                                    className="block w-full shadow px-3 py-3 text-sm  rounded-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                                />
+                            </div>
+
+                            <div className='w-full mt-3'>
+                                <button disabled={isLoading} className={
+                                    classNames('bg-viralget-red text-white  w-full p-2 rounded-md',
+                                        isLoading ? 'opacity-10' : ''
+                                    )}>Create list</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </Modal>
+
         </div>
     )
 }

@@ -4,7 +4,7 @@ import Typography from "@/components/Typography";
 export default function InfluencerCard({ influencer, showBanner, handleProfile, useShadow, useLink }) {
 
     const handleProfileClick = () => {
-        useLink ? window.location.href = route('influencer.show', { id: influencer.id }) : handleProfile();
+        useLink ? window.location.href = route('influencer.show', { influencer: influencer.username }) : handleProfile();
     }
 
     return (
@@ -35,7 +35,7 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
                     <div className="text-center items-center flex-col">
                         <span className="text-t-xs font-bold block">{nFormatter(influencer.followers_count)}</span>
                         <span className="text-t-normal  text-viralget-gray-400  font-normal">
-                        Followers
+                            Followers
                         </span>
                     </div>
                     <div className="text-center items-center flex-col">

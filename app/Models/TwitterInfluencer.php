@@ -11,6 +11,11 @@ class TwitterInfluencer extends Model
 
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
 
     public function categories()
     {
@@ -43,5 +48,10 @@ class TwitterInfluencer extends Model
     public function interactions()
     {
         return $likes = $this->tweets()->sum('favorite_count') * 5;
+    }
+
+    public function metrics()
+    {
+        return $this->hasOne(InfluencerMetrics::class, 'influencer_id');
     }
 }

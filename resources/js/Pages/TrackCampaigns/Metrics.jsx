@@ -6,32 +6,33 @@ import Contributors from "./components/Contributors";
 import TweetPerformance from "./components/TweetPerformance";
 import { useState, useEffect } from "react";
 import { get } from "@/Utils/api";
+import { getKeywordData } from "@/Services/TwitterExtractorService";
+import toast from "@/Components/Toast";
+import EmptyState from "@/Components/EmptyState";
 
 const Metrics = ({ search, result, updated_at }) => {
 
     const [isLoading, setIsLoading] = useState(true);
+    const [dataFetched, setDataFetched] = useState(false);
     const [metrics, setMetrics] = useState(result);
 
+    useEffect(() => {
+        getMetrics();
+    }, []);
 
     function getMetrics() {
         setIsLoading(true)
-        get("https://extractor.viralget.io/twitter/extract-keywords?keyword=" + search.keyword)
-            .then(({ data }) => {
-
-                if (data.status) {
-                    setMetrics(data.data);
+        getKeywordData(search.keyword)
+            .then((response) => {
+                console.log({ response })
+                if (response) {
+                    setMetrics(response);
+                    setDataFetched(true);
                 }
-
             }).catch((error) => {
-                console.log(error);
+                toast.error('Error fetching keyword data')
             }).finally(() => setIsLoading(false))
     }
-
-    useEffect(() => {
-        // getMetrics()
-        setIsLoading(false);
-    }, []);
-
 
     const EmptyElment = () => (
         <div className="flex flex-col h-full items-center justify-center  space-y-5 ">
@@ -39,7 +40,7 @@ const Metrics = ({ search, result, updated_at }) => {
         </div>
     )
     return (
-        <AuthenticatedLayout smallHeader={true}>
+        <AuthenticatedLayout showSearchForm={false} smallHeader={true}>
             <div className='bg-white h-screen  mt-3 px-10 mb-10'>
 
                 {
@@ -47,14 +48,17 @@ const Metrics = ({ search, result, updated_at }) => {
                         (<EmptyElment />)
                         :
                         (
-                            <>
-                                <ButtonBack />
-                                {/* <ButtonBack url={route('track.campaign.page ')} /> */}
-                                <MetricsHeader metrics={metrics} updated_at={updated_at} onRefetch={() => getMetrics()} />
-                                <Overview metrics={metrics} />
-                                <Contributors metrics={metrics} />
-                                <TweetPerformance metrics={metrics} />
-                            </>
+                            dataFetched ?
+                                <>
+                                    <ButtonBack href={route('track.campaign.page')} />
+                                    {/* <ButtonBack url={route('track.campaign.page ')} /> */}
+                                    <MetricsHeader metrics={metrics} updated_at={updated_at} onRefetch={() => getMetrics()} />
+                                    <Overview metrics={metrics} />
+                                    <Contributors metrics={metrics} />
+                                    <TweetPerformance metrics={metrics} />
+                                </>
+                                :
+                                <EmptyState title="An error occurred" subtitle="We are having troubles fetching data at the moment. Please try again" />
                         )
                 }
 

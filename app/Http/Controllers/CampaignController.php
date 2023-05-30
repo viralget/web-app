@@ -174,21 +174,23 @@ class CampaignController extends Controller
 
             $findIfExist = CampaignSearch::where('user_id', $user_id)->where('keyword', $query)->latest()->first();
 
-            if ($findIfExist && ($findIfExist?->result != "")) {
+            if ($findIfExist) {
+                // if ($findIfExist && ($findIfExist?->result != "")) {
                 $data['search'] =  $findIfExist;
-                $data['result'] =  json_decode($findIfExist->result);
+                // $data['result'] =  json_decode($findIfExist->result);
                 $data['updated_at'] =   Carbon::now();
             } else {
-                $searches = Http::get('http://extractor.viralget.io/twitter/extract-keywords?keyword=' . $query)['data'];
+                // dd(env('TWITTER_EXTRACTOR_URL') . 'extract-keywords?keyword=' . $query);
+                // $searches = Http::get(env('TWITTER_EXTRACTOR_URL') . 'extract-keywords?keyword=' . $query)['data'];
 
                 $campaignSearch = new  CampaignSearch;
                 $campaignSearch->keyword = $query;
                 $campaignSearch->user_id = $user_id;
-                $campaignSearch->result = json_encode($searches);
+                // $campaignSearch->result = json_encode($searches);
                 $campaignSearch->save();
 
                 $data['search'] =  $campaignSearch;
-                $data['result'] =   $searches;
+                // $data['result'] =   $searches;
                 $data['updated_at'] =   $campaignSearch->updated_at;
             }
         }

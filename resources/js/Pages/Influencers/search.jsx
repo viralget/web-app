@@ -19,9 +19,9 @@ export default function Search({ list, categories, total_count }) {
 
     return (
 
-        <AuthenticatedLayout title={`Search through our database of ${nFormatter(total_count)}+ influencers`}>
+        <AuthenticatedLayout title={`Search through our database of influencers`}>
 
-            <main className="flex-1 pb-8">
+            <main className="flex-1 pb-8 px-10">
                 {/* <Container> */}
                 <SearchBox categories={categories} searchActive={() => setLoading(true)} onLoading={() => setLoading(true)} />
 

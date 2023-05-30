@@ -40,7 +40,7 @@ const UserPayment = (props) => {
         paystack.newTransaction({
             key: public_key,
             email: user.email,
-            amount: plan.amount * 100,
+            amount: 1, //plan.amount * 100,
             reference: (new Date()).getTime().toString(),
             plan: plan.plan_code,
 
@@ -60,7 +60,7 @@ const UserPayment = (props) => {
     }
 
     function verifyPayment(reference) {
-        setPaymentText("verifying payment..")
+        setPaymentText("Verifying payment..")
         get(route("user.verify.payment", { reference, plan_id }))
             .then((item) => {
                 if (item.data.status) {
@@ -99,6 +99,7 @@ const UserPayment = (props) => {
                         id={value}
                         name={value}
                         value={value}
+                        checked={getPaymentMethod == 'paystack'}
                         onChange={onHandleChange}
                         type="checkbox"
                         className="h-4 w-4 rounded  accent-viralget-red  text-white bg-white"

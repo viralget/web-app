@@ -30,7 +30,7 @@ const navigation = [
 ]
 
 
-export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, smallHeader = false }) {
+export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = false }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
@@ -165,43 +165,45 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                 <Bars3CenterLeftIcon className={smallHeader ? "h-6 w-6 text-black" : "h-6 w-6 text-white"} aria-hidden="true" />
                             </button>
                             {/* Search bar */}
-                            <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
-                                <div className="hidden md:flex flex-1">
-                                    <div className="w-full max-w-sm  mt-3">
-                                        <form action={route('influencers.search')} method="get">
+                            {showSearchForm && (
+                                <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
+                                    <div className="hidden md:flex flex-1">
+                                        <div className="w-full max-w-sm  mt-3">
+                                            <form action={route('influencers.search')} method="get">
 
-                                            <label htmlFor="search" className="sr-only">
-                                                Search
-                                            </label>
-                                            <div className="relative">
-                                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-50" aria-hidden="true" />
+                                                <label htmlFor="search" className="sr-only">
+                                                    Search
+                                                </label>
+                                                <div className="relative">
+                                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                                        <MagnifyingGlassIcon className="h-5 w-5 text-gray-50" aria-hidden="true" />
+                                                    </div>
+                                                    <input
+                                                        id="keywords"
+                                                        name="keywords"
+                                                        className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
+                                                        placeholder="Enter keywords"
+                                                        type="search"
+                                                    />
                                                 </div>
-                                                <input
-                                                    id="keywords"
-                                                    name="keywords"
-                                                    className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
-                                                    placeholder="Enter keywords"
-                                                    type="search"
-                                                />
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="ml-4 flex items-center md:ml-6 space-x-3">
-                                    <button
-                                        type="button"
-                                        className={smallHeader ? "text-black rounded-lg border border-black-50/40 bg-black-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}  >
-                                        <span className="sr-only">View notifications</span>
-                                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                    </button>
+                                    <div className="ml-4 flex items-center md:ml-6 space-x-3">
+                                        <button
+                                            type="button"
+                                            className={smallHeader ? "text-black rounded-lg border border-black-50/40 bg-black-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}  >
+                                            <span className="sr-only">View notifications</span>
+                                            <BellIcon className="h-6 w-6" aria-hidden="true" />
+                                        </button>
 
-                                    {/* Profile dropdown */}
-                                    <div className={smallHeader ? "w-full rounded-lg border border-black-50/40 bg-black-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : " w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}>
-                                        <DropdownMenu user={user} light={!smallHeader} />
+                                        {/* Profile dropdown */}
+                                        <div className={smallHeader ? "w-full rounded-lg border border-black-50/40 bg-black-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : " w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}>
+                                            <DropdownMenu user={user} light={!smallHeader} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                         {!smallHeader && (
                             // <Container className="relative">

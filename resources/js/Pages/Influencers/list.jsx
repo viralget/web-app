@@ -12,7 +12,7 @@ import InfluencerProfile from '../InfluencerProfile';
 import MenuDropDown from '@/components/MenuDropDown';
 import Modal from '@/components/Modal';
 import ExportIcon from "../../../assets/images/ExportIcon.svg"
-import { getEventValue, nFormatter } from '@/Utils/helpers';
+import { getEventValue, getQASColor, getQASValue, nFormatter } from '@/Utils/helpers';
 import Card from '@/Components/Card';
 import { CheckBadgeIcon, CheckIcon } from '@heroicons/react/20/solid';
 import Avatar from '@/components/Skeleton/Avatar';
@@ -383,7 +383,7 @@ export default function List(props) {
                                                         <div className="flex items-center">
                                                             <Avatar url={item.profile_photo_url} />
                                                             <div className="ml-3">
-                                                                <span className="font-medium flex items-center ">{item.username} {item.is_verified && <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" />}</span>
+                                                                <span className="font-medium flex items-center ">{item.username} {item.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
                                                                 <span className="block text-gray-400 text-md">{item.full_name}</span>
                                                             </div>
                                                         </div>
@@ -392,9 +392,9 @@ export default function List(props) {
                                                 </td>
                                                 {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text="Good" /></td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.quality_audience}</td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">
                                                     <a href={'https://twitter.com/' + item.username} target="_blank">
                                                         <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

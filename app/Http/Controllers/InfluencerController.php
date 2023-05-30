@@ -82,12 +82,14 @@ class InfluencerController extends Controller
             $category = $request->category;
             $keywords = $request->keyword;
             $keywords_position = $request->position;
+            $qas = $request->influencer_qas;
 
             if ($influencer_location) {
                 $influencer_location = explode(',', $influencer_location);
 
                 $result = $result->where(function ($query) use ($influencer_location) {
                     foreach ($influencer_location as $location) {
+                        if ($location == 'any') continue;
                         $query->orWhere('location', 'LIKE', "%$location%");
                     }
                 });
@@ -98,6 +100,7 @@ class InfluencerController extends Controller
 
                 $result = $result->where(function ($query) use ($audience_size) {
                     foreach ($audience_size as $size) {
+                        if ($size == 'any') continue;
                         $query->orWhere('followers', '>=', "%$size%");
                     }
                 });
@@ -110,6 +113,20 @@ class InfluencerController extends Controller
                     foreach ($category as $cat) {
                         $query->orWhereHas('categories', function ($q) use ($cat) {
                             $q->where('name', $cat);
+                        });
+                    }
+                });
+            }
+
+
+            if ($qas) {
+                $qas = explode(',', $qas);
+
+                $result = $result->where(function ($query) use ($qas) {
+                    foreach ($qas as $score) {
+                        if ($score == 'any') continue;
+                        $query->orWhereHas('metrics', function ($q) use ($score) {
+                            $q->where('quality_audience', '>=', $score);
                         });
                     }
                 });
@@ -171,19 +188,22 @@ class InfluencerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, TwitterInfluencer $id)
+    public function show(Request $request, TwitterInfluencer $influencer)
+    // public function show(Request $request, $influencer)
     {
-        $list = [];
-        $influencer = $id;
-        $findProfiled = ProfiledInfluencer::find($id);
-        $user_id = $request->user()->id;
-        if ($findProfiled) {
-            $list = InfluencerList::with('influencers')->where('user_id', $user_id)->get();
-        }
+        // $list = [];
+
+        // $influencer = $id;
+        // $findProfiled = ProfiledInfluencer::where('')->first(); // ProfiledInfluencer::find($id);
+        // $user_id = $request->user()->id;
+        // if ($findProfiled) {
+        $list = InfluencerList::with('influencers')->where('user_id', $influencer->id)->get();
+        // }
 
         return Inertia::render(
             'InfluencerProfile/show',
             [
+                // 'username' => $influencer,
                 'influencer' => InfluencerResource::make($influencer),
                 'list' => $list
             ]

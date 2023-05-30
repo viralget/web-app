@@ -20,8 +20,36 @@ import {
 } from "@/Utils/icons";
 import Card from './card';
 import AudienceCard from "./audienceCardRow";
+import { useEffect, useState } from "react";
+import EmptyState from "@/Components/EmptyState";
+import { getInfluencerData } from "@/Services/TwitterExtractorService";
+import toast from "@/Components/Toast";
 
-export default function show({ influencer, list }) {
+export default function show({ list, influencer }) {
+
+    // const [influencer, setInfluencer] = useState({});
+    const [loading, setLoading] = useState(false);
+    // const [dataFetched, setDataFetched] = useState(false);
+
+    // useEffect(() => {
+    //     getMetrics();
+    // }, []);
+
+    // const getMetrics = async () => {
+    //     setLoading(true)
+
+    //     const response = await getInfluencerData(username);
+
+    //     console.log('Yos', { response })
+    //     if (response) {
+    //         setMetrics(response);
+    //         setDataFetched(true);
+    //     } else {
+    //         toast.error('Error fetching influencer data')
+    //     }
+
+    //     setLoading(false);
+    // }
 
     const url = new URLSearchParams(window.location.search).get('tab');
     const urlParams = url == null ? 'overview' : url;
@@ -39,7 +67,7 @@ export default function show({ influencer, list }) {
             icon: (<EngagementRateWithBSvg />),
             score: engagement_rate?.score + '%',
             increase: engagement_rate?.increase,
-            label: engagement_rate.label
+            label: engagement_rate?.label
         },
 
 
@@ -48,21 +76,21 @@ export default function show({ influencer, list }) {
             icon: (<SvgRank />),
             score: '#' + global_rank?.score,
             increase: null,
-            label: global_rank.label
+            label: global_rank?.label
         },
         {
             title: 'Country rank',
             icon: (<SvgCountry />),
             score: '#' + country_rank?.score,
             increase: null,
-            label: country_rank.label
+            label: country_rank?.label
         },
         {
             title: 'Category rank',
             icon: (<SvgCategory />),
             score: '#' + category_rank?.score,
             increase: null,
-            label: category_rank.label
+            label: category_rank?.label
         }
     ]
 
@@ -70,22 +98,22 @@ export default function show({ influencer, list }) {
         {
             title: 'Gender & age',
             icon: <Gender />,
-            label: influencer.gender + ' • ' + influencer.age + ' y.o'
+            label: influencer?.gender + ' • ' + influencer?.age + ' y.o'
         },
         {
             title: 'Marital status',
             icon: <Marital />,
-            label: influencer.marital_status
+            label: influencer?.marital_status
         },
         {
             title: 'Parental status',
             icon: <Parental />,
-            label: influencer.parental_status
+            label: influencer?.parental_status
         },
         {
             title: 'Ethnicity',
             icon: <Ethnicity />,
-            label: influencer.ethinic
+            label: influencer?.ethinic
         },
         {
             title: 'Est. Income',
@@ -95,7 +123,7 @@ export default function show({ influencer, list }) {
         {
             title: 'Education',
             icon: <Education />,
-            label: influencer.education
+            label: influencer?.education
         }
     ]
 
@@ -104,12 +132,12 @@ export default function show({ influencer, list }) {
         if (urlParams === 'overview') {
             return (
                 <>
-                    <div className="grid grid-cols-2 md:space-x-3 mt-5 ">
+                    <div className="grid grid-cols-1 md:space-x-3 mt-5 ">
 
                         <div className="mx-5  md:mr-0 ">
                             <InfluencerSize influencer={influencer} />
                         </div>
-                        <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0   ">
+                        {/* <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0   ">
                             {
                                 influencerInformation.map((item) => (
                                     <div className="border rounded-md  p-space-8 h-auto  items-left justify-center">
@@ -129,12 +157,9 @@ export default function show({ influencer, list }) {
                                     </div>
                                 ))
                             }
-                        </div>
+                        </div> */}
 
                     </div>
-
-
-
 
                     <div className="flex md:flex-row   flex-col p-4  md:space-x-3  md:pl-5 mt-5">
 
@@ -167,20 +192,27 @@ export default function show({ influencer, list }) {
     }
     return (
         <AuthenticatedLayout>
-            <>
-                <div className="relative -mt-40   md:mb-0  mb-[8rem]">
-                    <div className="m-5">
-                        <ButtonBack fill="white" className="text-white" />
+            {loading ? 'Loading...' :
+                // dataFetched ?
+                <>
+                    <>
+                        <div className="relative -mt-40   md:mb-0  mb-[8rem]">
+                            <div className="m-5">
+                                <ButtonBack fill="white" className="text-white" />
+                            </div>
+                            <Header influencer={influencer} list={list} />
+                        </div>
+                    </>
+
+                    <div className="w-full p-4  md:mt-5  mt-10 ">
+                        <Tabs activeTab={urlParams} tabs={tabs} link={route('influencer.show', { influencer: influencer.username })} />
                     </div>
-                    <Header influencer={influencer} list={list} />
-                </div>
-            </>
 
-            <div className="w-full p-4  md:mt-5  mt-10 ">
-                <Tabs activeTab={urlParams} tabs={tabs} link={route('influencer.show', { id: influencer.id })} />
-            </div>
-
-            <Render />
+                    <Render />
+                </>
+                // :
+                // <EmptyState />
+            }
         </AuthenticatedLayout>
     )
 }

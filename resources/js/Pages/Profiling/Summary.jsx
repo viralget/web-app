@@ -13,12 +13,14 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
         {
             title: 'Monthly profilings',
             left: user.available_profiling_count, // total - profiles_count,
+            used: total - user.available_profiling_count, // total - profiles_count,
             level: profiles_count,
             total: total,
             bottomLine: 'Profiled influencers'
         },
         {
             title: 'Influencer storage',
+            used: 0, // total - profiles_count,
             left: total,
             level: 0,
             total: total,
@@ -41,7 +43,6 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
                             <SummaryCard item={item} />
                         ))
                     }
-
                 </div>
                 <div className='flex flex-col w-full space-y-5'>
 
