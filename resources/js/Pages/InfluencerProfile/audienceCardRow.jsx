@@ -1,5 +1,6 @@
 
 
+import { nFormatter } from '@/Utils/helpers'
 import GaugeChart from 'react-gauge-chart'
 
 export default function AudienceCard({ influencer }) {
@@ -9,7 +10,7 @@ export default function AudienceCard({ influencer }) {
     const list = [
         {
             name: 'Quality audience',
-            value: influencer.quality_audience ?? 0,
+            value: nFormatter(influencer.quality_audience ?? 0),
             icon: (
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_958_43749)">
@@ -29,7 +30,7 @@ export default function AudienceCard({ influencer }) {
         },
         {
             name: 'Total likes',
-            value: influencer.total_likes ?? 0,
+            value: nFormatter(influencer.total_likes ?? 0),
             icon: (
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_958_43737)">
@@ -46,7 +47,7 @@ export default function AudienceCard({ influencer }) {
         },
         {
             name: 'Total comments',
-            value: influencer.total_comments ?? 0,
+            value: nFormatter(influencer.total_comments ?? 0),
             icon: (
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_958_43732)">

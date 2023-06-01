@@ -2,6 +2,10 @@
 import { get } from "@/Utils/api";
 
 const BASE_URL = 'http://extractor.viralget.io/twitter/';
+// const BASE_URL = 'http://localhost:8002/twitter/';
+
+
+
 
 export const getKeywordData = async (keyword) => {
     const response = await get(BASE_URL + 'extract-keywords?keyword=' + keyword);
@@ -10,7 +14,7 @@ export const getKeywordData = async (keyword) => {
         return response.data.data;
     }
 
-    console.log({ response });
+    // console.log({ response });
     return false;
 }
 

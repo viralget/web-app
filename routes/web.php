@@ -88,6 +88,7 @@ Route::middleware('auth')->group(
         Route::post('/campaign/initiate', [CampaignController::class, 'initiateCampaign'])->name('campaign.initiate');
         Route::get('/track-campaign', [CampaignController::class, 'trackCampaignPage'])->name('track.campaign.page');
         Route::get('/campaign-metrics/{query}', [CampaignController::class, 'campaignMetricsPage'])->name('metrics.campaign.page');
+        Route::post('/campaign-metrics/', [CampaignController::class, 'storeMetrics'])->name('metrics.campaign.store');
     }
 );
 

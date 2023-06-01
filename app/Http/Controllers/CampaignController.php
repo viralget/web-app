@@ -7,8 +7,10 @@ use App\Http\Resources\InfluencerResource;
 use App\Models\Campaign;
 use App\Models\CampaignSearch;
 use App\Models\TwitterInfluencer;
+use App\Models\UserCampaignSearch;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
@@ -170,30 +172,54 @@ class CampaignController extends Controller
     {
         $user_id = request()->user()->id;
 
-        if ($query) {
+        $data['keyword'] = $query;
 
-            $findIfExist = CampaignSearch::where('user_id', $user_id)->where('keyword', $query)->latest()->first();
+        $metrics = CampaignSearch::where('keyword', $query)->latest()->first();
 
-            if ($findIfExist) {
-                // if ($findIfExist && ($findIfExist?->result != "")) {
-                $data['search'] =  $findIfExist;
-                // $data['result'] =  json_decode($findIfExist->result);
-                $data['updated_at'] =   Carbon::now();
-            } else {
-                // dd(env('TWITTER_EXTRACTOR_URL') . 'extract-keywords?keyword=' . $query);
-                // $searches = Http::get(env('TWITTER_EXTRACTOR_URL') . 'extract-keywords?keyword=' . $query)['data'];
+        if ($metrics) {
 
-                $campaignSearch = new  CampaignSearch;
-                $campaignSearch->keyword = $query;
-                $campaignSearch->user_id = $user_id;
-                // $campaignSearch->result = json_encode($searches);
-                $campaignSearch->save();
+            UserCampaignSearch::updateOrCreate([
+                'user_id' => Auth::user()->id,
+                'campaign_search_id' => $metrics->id
+            ]);
 
-                $data['search'] =  $campaignSearch;
-                // $data['result'] =   $searches;
-                $data['updated_at'] =   $campaignSearch->updated_at;
-            }
+            // if ($findIfExist && ($findIfExist?->result != "")) {
+            $data['search'] =  $metrics;
+            $data['result'] =  json_decode($metrics->result);
+            $data['updated_at'] = $metrics->updated_at ?? $metrics->created_at;
         }
+
         return Inertia::render('TrackCampaigns/Metrics', $data);
+    }
+
+    public function storeMetrics(Request $request)
+    {
+        $request->validate([
+            'result' => 'required',
+            'keyword' => 'required',
+        ]);
+
+        try {
+
+            // dd($request->result);
+            $metrics =  CampaignSearch::updateOrCreate(
+                [
+                    'keyword' => $request->keyword,
+                ],
+                [
+                    // 'user_id' => Auth::user()->id,
+                    'result' => json_encode($request->result)
+                ]
+            );
+
+            UserCampaignSearch::firstOrCreate([
+                'user_id' => Auth::user()->id,
+                'campaign_search_id' => $metrics->id
+            ]);
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

@@ -5,34 +5,56 @@ import Overview from "./components/Overview";
 import Contributors from "./components/Contributors";
 import TweetPerformance from "./components/TweetPerformance";
 import { useState, useEffect } from "react";
-import { get } from "@/Utils/api";
+import { get, post } from "@/Utils/api";
 import { getKeywordData } from "@/Services/TwitterExtractorService";
 import toast from "@/Components/Toast";
 import EmptyState from "@/Components/EmptyState";
 
-const Metrics = ({ search, result, updated_at }) => {
+const Metrics = ({ search, result, keyword, updated_at }) => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [dataFetched, setDataFetched] = useState(false);
-    const [metrics, setMetrics] = useState(result);
+    const [metrics, setMetrics] = useState(result ?? null);
 
     useEffect(() => {
-        getMetrics();
+        console.log({ metrics })
+        if (!metrics) {
+            getMetrics();
+        } else {
+            setIsLoading(false)
+            setDataFetched(true)
+        }
     }, []);
 
-    function getMetrics() {
+    const getMetrics = async () => {
         setIsLoading(true)
-        getKeywordData(search.keyword)
-            .then((response) => {
-                console.log({ response })
-                if (response) {
-                    setMetrics(response);
-                    setDataFetched(true);
-                }
-            }).catch((error) => {
-                toast.error('Error fetching keyword data')
-            }).finally(() => setIsLoading(false))
+        const response = await getKeywordData(keyword);
+
+        if (response) {
+            setMetrics(response);
+            setDataFetched(true);
+
+            storeData(response);
+        } else {
+            toast.error('Error fetching keyword data')
+        }
+
+
+        setIsLoading(false);
     }
+
+    const storeData = async (result) => {
+        const data = {
+            result,
+            keyword: keyword
+        }
+
+        const response = await post(route('metrics.campaign.store'), data, true);
+
+        console.log({ response, data })
+
+    }
+
 
     const EmptyElment = () => (
         <div className="flex flex-col h-full items-center justify-center  space-y-5 ">
@@ -55,7 +77,7 @@ const Metrics = ({ search, result, updated_at }) => {
                                     <MetricsHeader metrics={metrics} updated_at={updated_at} onRefetch={() => getMetrics()} />
                                     <Overview metrics={metrics} />
                                     <Contributors metrics={metrics} />
-                                    <TweetPerformance metrics={metrics} />
+                                    <TweetPerformance metrics={metrics} keyword={keyword} />
                                 </>
                                 :
                                 <EmptyState title="An error occurred" subtitle="We are having troubles fetching data at the moment. Please try again" />

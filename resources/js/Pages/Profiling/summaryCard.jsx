@@ -33,8 +33,6 @@ export default function summaryCard({ item }) {
                 {/* <span className="text-xs text-viralget-grey "> {item.bottomLine} </span> */}
             </div>
 
-
-
         </div>
     )
 }
