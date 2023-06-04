@@ -13,11 +13,11 @@ export default function Home({ trending_influncers }) {
     <>
 
       <Header useShadow={false} />
-      <div className="home-bg  h-screen"  >
+      <div className="home-bg  h-screen overflow-hidden"  >
         <Hero />
         <HomeStage />
-        {/* <AnalyzedAccount /> */}
-        <CustomersReview />
+        <AnalyzedAccount />
+        {/* <CustomersReview /> */}
         {/* <TrendingInfluencers influencers={trending_influncers} /> */}
         <GetStarted />
         <Footer />

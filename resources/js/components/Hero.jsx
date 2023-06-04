@@ -31,48 +31,50 @@ const brands = [
 export function Hero() {
   return (
     <div className='relative w-full  lg:h-[65rem]' >
-      
+
 
       <div>
-      <div className="overflow-hidden p-5 relative  md:h-[49rem] pt-10 flex-1 bg-gradient-to-b from-[#FF9857]   via-[#FF9857] to-[#FA699D]">
+        <div className="overflow-hidden p-5 relative  md:h-[49rem] pt-10 flex-1 bg-gradient-to-b from-[#FF9857]   via-[#FF9857] to-[#FA699D]">
 
-            <div className="flex items-center justify-center   max-w-6xl mx-auto  mt-space-70  ">
-                     <div className='text-white  flex flex-col  text-center'>
-                         <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer <br/> marketing platform to drive your business forward</span>
-                         <span  className='font-normal text-center  text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting? 
-                       <br/>THEN VIRALGET WAS BUILT FOR YOU</span>
-                     </div>
+          <div className="flex items-center justify-center   max-w-6xl mx-auto  mt-space-70  ">
+            <div className='text-white  flex flex-col  text-center'>
+              <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer <br /> marketing platform to drive your business forward</span>
+              <span className='font-normal text-center  text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting?
+                <br />THEN VIRALGET WAS BUILT FOR YOU</span>
             </div>
+          </div>
 
-            <div className="absolute bottom-0 hidden md:flex w-full ">
-                    <div className=" relative opacity-25 w-full">
-                            <div className='max-w-32 w-[16rem] absolute -left-[6rem]  -bottom-[7rem]'>
-                                    <img src={TiktokLogo} style={{ width: '30px !important' }} className='' />
-                            </div>
+          <div className="absolute bottom-0 hidden md:flex w-full ">
+            <div className=" relative opacity-25 w-full">
+              <div className='max-w-32 w-[16rem] absolute -left-[6rem]  -bottom-[7rem]'>
+                <img src={TiktokLogo} style={{ width: '30px !important' }} className='' />
+              </div>
 
-                            <div className="w-[12rem] absolute  right-0 bottom-[30rem]   ">
-                                    <img src={InstagramLogo} className='w-full' />
-                            </div>
+              <div className="w-[12rem] absolute  right-0 bottom-[30rem]   ">
+                <img src={InstagramLogo} className='w-full' />
+              </div>
 
-                            <div className="w-[10rem] absolute  left-20 bottom-[15rem]  ">
-                                    <img src={TwitterLogo} className='w-[10rem]' />
-                            </div>
+              <div className="w-[10rem] absolute  left-20 bottom-[15rem]  ">
+                <img src={TwitterLogo} className='w-[10rem]' />
+              </div>
 
-                            <div className="w-[16rem] absolute   right-0  bottom-[8rem]">
-                                    <img src={YoutubeLogo} className='full' />
-                            </div>
+              <div className="w-[16rem] absolute   right-0  bottom-[8rem]">
+                <img src={YoutubeLogo} className='full' />
+              </div>
             </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div className=' absolute h-[500px]  lg:flex  overflow-hidden w-[1000px] lg:mx-auto bg-gradient-to-b from-[#E0E0E080]   to-[#F2F2F233]    rounded-lg  border border-[#E0E0E04D] hidden top-[30rem] left-0 right-0  justify-center items-center'>
+          <div className='p-5 w-full h-full overflow-hidden  rounded-lg '>
+            <img src={HeroBanner} className="object-cover" />
+          </div>
+        </div>
       </div>
-    </div>
-
-
-
-
-
-      <div className=' absolute h-screen  lg:flex  w-[1000px]  lg:mx-auto bg-gradient-to-b from-[#E0E0E080]   to-[#F2F2F233]  p-space-20  rounded-lg  border border-[#E0E0E04D] hidden top-[30rem] left-0 right-0  justify-center items-center'>
-          <img  src={HeroBanner}  className="w-auto  h-full" />
-      </div>
-</div>
 
 
 
@@ -84,7 +86,7 @@ export function Hero() {
       {/* <div className="hidden sm:absolute sm:inset-0 sm:block w-full" aria-hidden="true">
         <LottieAnimation animationData={worldJson} className="opacity-20" />
       </div> */}
-{/* 
+      {/* 
       <Container className="pt-20 pb-16 text-center lg:pt-32 relative">
 
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl">
@@ -105,10 +107,10 @@ export function Hero() {
         <p className="mx-auto mt-3 max-w-2xl text-lg tracking-tight text-slate-700">
           Viralget is built for you. Get actionable influencer marketing data insight, track and manage influencers.
         </p> */}
-        {/* <div className="mt-6 flex justify-center gap-x-6">
+      {/* <div className="mt-6 flex justify-center gap-x-6">
           <Button href="/join">Join the waitlist </Button> */}
-          {/* <Button href="/explore">Get Started!</Button> */}
-          {/* <Button
+      {/* <Button href="/explore">Get Started!</Button> */}
+      {/* <Button
             href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             variant="outline"
           >
@@ -120,9 +122,9 @@ export function Hero() {
             </svg>
             <span className="ml-3">Watch video</span>
           </Button> */}
-        {/* </div> */}
+      {/* </div> */}
 
-        {/* <div className="hidden md:block mt-12 ">
+      {/* <div className="hidden md:block mt-12 ">
           <img
             className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
             src={viralgetLanding}
@@ -131,7 +133,7 @@ export function Hero() {
           />
         </div> */}
 
-        {/* <div className="mt-16 lg:mt-24">
+      {/* <div className="mt-16 lg:mt-24">
           <p className="font-display font-bold text-base text-slate-900">
             Join the world’s top brands
           </p>

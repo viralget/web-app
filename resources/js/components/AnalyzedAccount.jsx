@@ -7,6 +7,12 @@ import Card_7 from "@/../assets/images/cards/7.png";
 import Card_8 from "@/../assets/images/cards/8.png";
 import Card_5 from "@/../assets/images/cards/5.png";
 
+import nestle from '@/../assets/images/logos/nestle.jpeg'
+import remita from '@/../assets/images/logos/remita.png'
+import shoprite from '@/../assets/images/logos/shoprite.png'
+import powerHorse from '@/../assets/images/logos/power-horse.jpeg'
+import pwc from '@/../assets/images/logos/pwc.png'
+import lordsGin from '@/../assets/images/logos/lords-gin.jpeg'
 
 import Hm from "@/../assets/images/logos/h-m.png"
 import Cola from "@/../assets/images/logos/coca-cola.png"
@@ -15,6 +21,15 @@ import Png from "@/../assets/images/logos/p&g.png"
 import Philips from "@/../assets/images/logos/philips.png"
 
 import { ScrollBanner } from "./ScrollBanner";
+
+const brands = [
+   { name: 'Nestle', logo: nestle },
+   { name: 'Power Horse', logo: powerHorse },
+   { name: 'Pwc', logo: pwc },
+   { name: 'Shoprite', logo: shoprite },
+   { name: 'Remita', logo: remita },
+   { name: 'Lord\'s Gin', logo: lordsGin },
+];
 
 // const images = [
 //    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80",
@@ -84,7 +99,7 @@ const AnalyzedAccount = () => {
    return (
 
       <div className="mt-space-120  relative ">
-         <div className="flex justify-center items-center">
+         {/* <div className="flex justify-center items-center">
             <span className="font-bold font-lexend  text-t-lg-x  text-viralget-grey">Recently analyzed account</span>
          </div>
 
@@ -109,7 +124,7 @@ const AnalyzedAccount = () => {
          </div>
          <div className="mt-space-28">
             <ScrollBanner images={images_2} speed={50000} />
-         </div>
+         </div> */}
          {/* <marquee>
                 <div className="flex space-x-4  mt-space-60">
                      <div> 
@@ -175,12 +190,14 @@ const AnalyzedAccount = () => {
                <span className="font-lexend font-bold  text-t-lg-x text-white">Join the world’s top brands</span>
 
                <div className="flex  flex-wrap  spaxe-x-[80px]   mt-[68px]">
+                  {brands.map((company, groupIndex) => (
+                     <div key={groupIndex} className="w-space-120  flex items-center">  <img src={company.logo} className="h-space-40" /> </div>
+                  ))}
 
-                  <div className="w-space-120  flex items-center">  <img src={Cola} className="h-space-40" /> </div>
-                  <div className="w-space-120  flex items-center "> <img src={Loreal} className="h-space-40" /> </div>
-                  <div className="w-space-120  flex items-center"> <img src={Hm} className="h-space-40   mx-auto" /></div>
-                  <div className="w-space-120  flex items-center">  <img src={Png} className="h-space-40" /> </div>
-                  <div className="w-space-120  flex items-center">  <img src={Philips} className="h-space-40" /> </div>
+                  {/* // <div className="w-space-120  flex items-center "> <img src={Loreal} className="h-space-40" /> </div>
+                  // <div className="w-space-120  flex items-center"> <img src={Hm} className="h-space-40   mx-auto" /></div>
+                  // <div className="w-space-120  flex items-center">  <img src={Png} className="h-space-40" /> </div>
+                  // <div className="w-space-120  flex items-center">  <img src={Philips} className="h-space-40" /> </div> */}
                </div>
 
             </div>
