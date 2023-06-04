@@ -21,16 +21,16 @@ import TwitterLogo from "@/../assets/images/twitter-logo.png";
 import HeroBanner from "@/../assets/images/home_bg.png";
 
 const brands = [
-  [
-    { name: 'Nestle', logo: nestle },
-    { name: 'Power Horse', logo: powerHorse },
-    { name: 'Pwc', logo: pwc },
-  ],
-  [
-    { name: 'Shoprite', logo: shoprite },
-    { name: 'Remita', logo: remita },
-    { name: 'Lord\'s Gin', logo: lordsGin },
-  ],
+  // [
+  //   { name: 'Nestle', logo: nestle },
+  //   { name: 'Power Horse', logo: powerHorse },
+  //   { name: 'Pwc', logo: pwc },
+  // ],
+  // [
+  //   { name: 'Shoprite', logo: shoprite },
+  //   { name: 'Remita', logo: remita },
+  //   { name: 'Lord\'s Gin', logo: lordsGin },
+  // ],
 ];
 
 export function Hero() {
