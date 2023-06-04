@@ -84,7 +84,21 @@ class InfluencerController extends Controller
             $keywords = $request->keyword;
             $keywords_position = $request->position;
             $qas = $request->influencer_qas;
+            $size = $request->size;
             $any = 'Any';
+
+            if ($size && $size != $any) {
+
+                $size = explode(',', $size);
+
+                $result = $result->where(function ($query) use ($size) {
+                    foreach ($size as $_size) {
+                        if ($_size == 'any') continue;
+                        $query->orWhere('followers_count', 'LIKE', "%$_size%");
+                    }
+                });
+            }
+
 
             if ($influencer_location && $influencer_location != $any) {
 
