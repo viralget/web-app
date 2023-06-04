@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import EmptyState from "@/Components/EmptyState";
 import { getInfluencerData } from "@/Services/TwitterExtractorService";
 import toast from "@/Components/Toast";
+import Profile from "./Profile";
 
 export default function show({ list, influencer }) {
 
@@ -204,9 +205,9 @@ export default function show({ list, influencer }) {
                         </div>
                     </>
 
-                    <div className="w-full p-4  md:mt-5  mt-10 ">
+                    {/* <div className="w-full p-4  md:mt-5  mt-10 ">
                         <Tabs activeTab={urlParams} tabs={tabs} link={route('influencer.show', { influencer: influencer.username })} />
-                    </div>
+                    </div> */}
 
                     <Render />
                 </>

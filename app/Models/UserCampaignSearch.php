@@ -12,4 +12,9 @@ class UserCampaignSearch extends Model
     protected $guarded = [];
 
     public $timestamps = ['created_at'];
+
+    public function search()
+    {
+        return $this->hasOne(CampaignSearch::class, 'id', 'campaign_search_id');
+    }
 }

@@ -12,10 +12,12 @@ const ContributorsCard = ({ title, subTitle, contributors, total_contributors })
                 return (<div className=" flex flex-col space-y-2 w-full">
                         <div className="flex  justify-between">
                                 <div className="flex justify-start space-x-2">
-                                        <img src={profile_image_url} className="rounded-full w-space-40 h-space-40" />
+                                        <a href={"https://twitter.com/" + username} target="_blank">
+                                                <img src={profile_image_url} className="rounded-full w-space-40 h-space-40" />
+                                        </a>
                                         <div className="flex flex-col space-y-1">
-                                                <span className="text-t-xs  font-lexend  font-bold">{username}</span>
-                                                <span className="text-t-normal font-lexend  text-viralget-gray-400 font-normal">Contributions: {value}</span>
+                                                <a href={"https://twitter.com/" + username} target="_blank" className="text-t-x  font-bold">@{username}</a>
+                                                <span className="text-t-normal  text-viralget-gray-400 font-normal capitalize">{subTitle}: {value}</span>
                                         </div>
                                 </div>
 

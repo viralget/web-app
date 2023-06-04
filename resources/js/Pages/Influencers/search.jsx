@@ -13,10 +13,11 @@ import Pagination from '@/Components/Pagination'
 import EmptyState from '@/Components/EmptyState'
 import { nFormatter, numberFormat } from '@/Utils/helpers'
 
-export default function Search({ list, categories, total_count }) {
+export default function Search({ list, categories, total_count, has_query }) {
     const [loading, setLoading] = useState(false);
 
 
+    console.log({ has_query })
     return (
 
         <AuthenticatedLayout title={`Search through our database of influencers`}>
@@ -29,13 +30,15 @@ export default function Search({ list, categories, total_count }) {
                     <div className="space-y-10 my-6">
                         {loading ? <TableSkeleton /> :
 
-                            Object.keys(list)?.length > 0 ?
-                                <>
-                                    <List data={list?.data} count={list?.meta?.total ?? 0} paginationData={list} />
-                                </>
+                            has_query ?
+                                Object.keys(list)?.length > 0 ?
+                                    <>
+                                        <List data={list?.data} count={list?.meta?.total ?? 0} paginationData={list} />
+                                    </>
 
-                                :
-                                <EmptyState title="No result found" />
+                                    :
+                                    <EmptyState title="No result found" />
+                                : <EmptyState title="Please use the search filter to set your search preferences" />
                         }
                     </div>
                 </div>

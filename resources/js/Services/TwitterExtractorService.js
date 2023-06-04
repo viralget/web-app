@@ -1,9 +1,8 @@
 
 import { get } from "@/Utils/api";
 
-const BASE_URL = 'http://extractor.viralget.io/twitter/';
-// const BASE_URL = 'http://localhost:8002/twitter/';
-
+// const BASE_URL = 'http://extractor.viralget.io/twitter/';
+const BASE_URL = 'http://localhost:8002/twitter/';
 
 
 

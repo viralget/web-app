@@ -73,6 +73,7 @@ class InfluencerController extends Controller
 
         if (count($request->all()) > 0) {
 
+            $has_query = true;
             $result = TwitterInfluencer::query();
 
             $request_categories = explode(',', $request->category);
@@ -83,8 +84,10 @@ class InfluencerController extends Controller
             $keywords = $request->keyword;
             $keywords_position = $request->position;
             $qas = $request->influencer_qas;
+            $any = 'Any';
 
-            if ($influencer_location) {
+            if ($influencer_location && $influencer_location != $any) {
+
                 $influencer_location = explode(',', $influencer_location);
 
                 $result = $result->where(function ($query) use ($influencer_location) {
@@ -95,7 +98,7 @@ class InfluencerController extends Controller
                 });
             }
 
-            if ($audience_size) {
+            if ($audience_size && $audience_size != $any) {
                 $audience_size = explode(',', $audience_size);
 
                 $result = $result->where(function ($query) use ($audience_size) {
@@ -106,7 +109,7 @@ class InfluencerController extends Controller
                 });
             }
 
-            if ($category) {
+            if ($category && $category != $any) {
                 $category = explode(',', $category);
 
                 $result = $result->where(function ($query) use ($category) {
@@ -119,7 +122,7 @@ class InfluencerController extends Controller
             }
 
 
-            if ($qas) {
+            if ($qas && $qas != $any) {
                 $qas = explode(',', $qas);
 
                 $result = $result->where(function ($query) use ($qas) {
@@ -135,7 +138,7 @@ class InfluencerController extends Controller
 
 
 
-            if ($keywords) {
+            if ($keywords && $keywords != $any) {
 
                 if ($keywords_position == 'bio') {
                     $result->where('bio', 'like', "%$request->keywords%");
@@ -155,6 +158,7 @@ class InfluencerController extends Controller
             $result = $result->latest()->paginate(10)->appends($_GET);
         } else {
             $result = null;
+            $has_query = false;
         }
 
 
@@ -164,7 +168,8 @@ class InfluencerController extends Controller
                 'list' => $result ? InfluencerResource::collection($result) : [], //InfluencerResource::collection($result->latest()->paginate(10)),
                 'count' => $result ? $result->count() : 0, // $result->count(), //$result->count(),
                 'categories' => $categories,
-                'total_count' => $this->influencer->count()
+                'total_count' => $this->influencer->count(),
+                'has_query' => $has_query
             ]
         );
         // return $result->get();

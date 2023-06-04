@@ -20,6 +20,7 @@ export default function Profile({ influencer }) {
     const engagement_rate = influencer?.metrics?.engagement_rate;
     const avg_comments = influencer?.metrics?.avg_comments;
     const avg_retweet = influencer?.metrics?.avg_retweet;
+    const interactions = influencer?.metrics?.interactions;
     const global_rank = influencer?.metrics?.global_rank;
     const country_rank = influencer?.metrics?.country_rank;
     const category_rank = influencer?.metrics?.category_rank;
@@ -46,6 +47,14 @@ export default function Profile({ influencer }) {
             increase: avg_retweet?.increase,
             label: avg_retweet?.label
         },
+        {
+            title: 'Interactions',
+            icon: (<SvgRank />),
+            score: '#' + interactions?.score ?? 0,
+            increase: null,
+            label: interactions?.label
+        },
+
         {
             title: 'Global rank',
             icon: (<SvgRank />),
@@ -78,11 +87,13 @@ export default function Profile({ influencer }) {
                 <InfluencerSize influencer={influencer} isMini />
             </div>
 
+            <div className="px-5 ">
+                <AudienceCard influencer={influencer} />
+            </div>
 
-            <div className="flex   md:flex-row  flex-col justify-between mt-4 ">
-                <div className="px-5 md:pr-2 ">
-                    <AudienceCard influencer={influencer} />
-                </div>
+
+            {/* <div className="flex   md:flex-row  flex-col justify-between mt-4 "> */}
+            <div className='p-5'>
                 <div className="grid grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0  md:gap-3">
                     {
                         cardsList.map((item) => (
@@ -91,8 +102,9 @@ export default function Profile({ influencer }) {
                     }
                 </div>
             </div>
+            {/* </div> */}
 
-            <TweetList influencer={influencer} />
+            {/* <TweetList influencer={influencer} /> */}
             <Profiling />
 
             <Footer influencer={influencer} />

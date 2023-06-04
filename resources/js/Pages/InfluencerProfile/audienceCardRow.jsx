@@ -5,8 +5,6 @@ import GaugeChart from 'react-gauge-chart'
 
 export default function AudienceCard({ influencer }) {
 
-
-
     const list = [
         {
             name: 'Quality audience',
@@ -66,7 +64,7 @@ export default function AudienceCard({ influencer }) {
     ]
 
 
-
+    // console.log({ influencer })
 
     return (
         <div className="  border  w-full h-full rounded-md p-space-20">
@@ -81,7 +79,7 @@ export default function AudienceCard({ influencer }) {
                         animate
                         arcsLength={[0.2, 0.2, 0.2, 0.2, 0.2]}
                         colors={['#E46361', '#FEB702', '#0BCEF9', '#25EEB2', '#28CA42']}
-                        // percent={{ 0.37 }}
+                        percent={influencer.quality_audience_score}
                         arcPadding={0.02}
                         textColor={'#3E4555'}
                         needleColor={'#748094'}

@@ -16,6 +16,8 @@ class InfluencerResource extends JsonResource
     public function toArray($request)
     {
 
+        $quality_audience = $this->followers_count * 0.3;
+
         return [
             'id' => $this->id,
             'username' => $this->username,
@@ -72,10 +74,10 @@ class InfluencerResource extends JsonResource
                     'label' => '🇳🇬 Nigeria'
                 ],
             ],
-            'quality_audience_score' => $this->metrics?->quality_audience_score,
+            'quality_audience_score' => $this->metrics?->quality_audience_score, // (float)(($this->metrics?->engagement_rate * $quality_audience) / $this->metrics?->interactions),
             'engagement_rate' => $this->metrics?->engagement_rate,
-            'quality_audience' => $this->metrics?->quality_audience,
-            'total_comments' => $this->metrics?->total_reply,
+            'quality_audience' =>  (int)$quality_audience, // $this->metrics?->quality_audience,
+            'total_comments' => $this->metrics?->total_replies,
             'total_likes' => $this->metrics?->total_likes,
             'language' => 'English',
             'phone_number' => '+234094614109',

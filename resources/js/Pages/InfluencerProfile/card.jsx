@@ -35,16 +35,16 @@ export default function Card({ item }) {
 
                 <div className="text-xs">
                     {
-                        item?.increase >  0 ? (
+                        item?.increase > 0 ? (
 
                             <span className="text-[#28CA42] font-medium text-t-normal-x  mr-1">{item.increase}% </span>
 
                         )
-                            : 
+                            :
                             (
 
                                 <span className="text-red-400 font-medium text-t-normal-x  mr-1">{item.increase}% </span>
-    
+
                             )
                     }
 

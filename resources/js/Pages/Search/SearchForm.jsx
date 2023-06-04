@@ -78,7 +78,7 @@ export default function SearchForm({
     return (
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
-                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-5 p-4 rounded-md">
+                <div className="hidden md:grid grid-cols-4 gap-4 bg-white shadow px-5 p-4 rounded-md">
                     <div className="md:pr-6 md:border-r border-gray-100">
 
                         <MultiDropdown options={[
@@ -109,7 +109,7 @@ export default function SearchForm({
                         />
                     </div>
 
-                    <div className="md:pr-6 md:border-r">
+                    {/* <div className="md:pr-6 md:border-r">
 
 
                         <MultiDropdown options={[
@@ -124,7 +124,7 @@ export default function SearchForm({
                             useSelectedOptions={audience_location?.split(',')}
 
                         />
-                    </div>
+                    </div> */}
                     <div className="md:pr-6 md:border-r border-gray-100">
 
 

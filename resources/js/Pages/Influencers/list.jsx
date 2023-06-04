@@ -27,6 +27,7 @@ export default function List(props) {
 
     const { count, data, paginationData } = props;
 
+    // console.log({ paginationData })
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -318,7 +319,7 @@ export default function List(props) {
                             </div >
                         </div >
                         {
-                            data.length > 0 ?
+                            data?.length > 0 ?
                                 <table className="min-w-full table-fixed divide-y divide-gray-300">
                                     <thead className="bg-gray-100 border-t border-b">
                                         <tr>
@@ -341,7 +342,7 @@ export default function List(props) {
                                                 Quality audience
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                ER
+                                                ER (%)
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 QAS
@@ -392,7 +393,7 @@ export default function List(props) {
                                                 </td>
                                                 {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.quality_audience}</td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.quality_audience)}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">

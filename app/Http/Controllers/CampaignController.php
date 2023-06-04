@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CampaignResource;
 use App\Http\Resources\InfluencerResource;
+use App\Http\Resources\UserCampaignSearchResource;
 use App\Models\Campaign;
 use App\Models\CampaignSearch;
 use App\Models\TwitterInfluencer;
@@ -164,7 +165,10 @@ class CampaignController extends Controller
     public  function  trackCampaignPage()
     {
         $user_id = request()->user()->id;
-        $data['searches'] = CampaignSearch::where('user_id', $user_id)->get();
+        $user_searches = UserCampaignSearch::where('user_id', $user_id)->latest()->get();
+
+        $data['searches'] = UserCampaignSearchResource::collection($user_searches);
+
         return Inertia::render('TrackCampaigns/index', $data);
     }
 
