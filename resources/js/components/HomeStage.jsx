@@ -8,7 +8,7 @@ import ManageImage from "@/../assets/images/display-manage.png"
 // import ManageImage from "@/../assets/images/display-manage.png"
 import { FindIcon, FilterIcon, AnalyzeIcon, CreateIcon, ManageIcon } from "@/Utils/icons";
 
-const Tabs = ['Find', "Filter", "Analyze", "Create", "Manage"];
+const Tabs = ['Find', "Filter", "Analyze", "Create"];
 
 
 const TabContent = [

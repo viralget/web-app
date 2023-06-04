@@ -2,12 +2,17 @@
 
 import Button from '@/components/Button'
 import { Container } from '@/components/Container'
-import nestle from '@/../assets/images/logos/nestle.jpeg'
-import remita from '@/../assets/images/logos/remita.png'
-import shoprite from '@/../assets/images/logos/shoprite.png'
-import powerHorse from '@/../assets/images/logos/power-horse.jpeg'
+// import nestle from '@/../assets/images/logos/nestle.jpeg'
+// import remita from '@/../assets/images/logos/remita.png'
+// import shoprite from '@/../assets/images/logos/shoprite.png'
+import powerHorse from '@/../assets/images/logos/powerhorse.png'
+import lagos from '@/../assets/images/logos/lagos.png'
+import emergencyresponse from '@/../assets/images/logos/emergency-response.png'
+import chi from '@/../assets/images/logos/chi.png'
+import gomoney from '@/../assets/images/logos/gomoney.png'
+import nestle from '@/../assets/images/logos/nestle.png'
 import pwc from '@/../assets/images/logos/pwc.png'
-import lordsGin from '@/../assets/images/logos/lords-gin.jpeg'
+// import lordsGin from '@/../assets/images/logos/lords-gin.jpeg'
 import TiktokLogo from "@/../assets/images/tiktok-logo.png";
 import InstagramLogo from "@/../assets/images/instagram-logo.png";
 import YoutubeLogo from "@/../assets/images/youtube-logo.png";
