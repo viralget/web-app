@@ -43,13 +43,13 @@ const TabContent = [
         content: () => (<span className="text-[#FFFFFFCC]">   Create a campaign list and add your selected influencers. <br />  <br /> When you’re ready to run your campaign, all your saved influencers will be just a click away </span>),
         sideImage: CreateImage
     },
-    {
-        tabName: 'Manage',
-        icon: ManageIcon,
-        title: 'Campaigns list',
-        content: () => (<span className="text-[#FFFFFFCC]">Seamlessly manage your entire influencer marketing campaign execution process. <br /> <br /> Starting from contacting, briefing, negotiating, content approval, & finishing with influencer posting, realtime tracking, payment and performance measurement.</span>),
-        sideImage: ManageImage
-    },
+    // {
+    //     tabName: 'Manage',
+    //     icon: ManageIcon,
+    //     title: 'Campaigns list',
+    //     content: () => (<span className="text-[#FFFFFFCC]">Seamlessly manage your entire influencer marketing campaign execution process. <br /> <br /> Starting from contacting, briefing, negotiating, content approval, & finishing with influencer posting, realtime tracking, payment and performance measurement.</span>),
+    //     sideImage: ManageImage
+    // },
 ]
 
 
