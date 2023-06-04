@@ -7,12 +7,14 @@ import Card_7 from "@/../assets/images/cards/7.png";
 import Card_8 from "@/../assets/images/cards/8.png";
 import Card_5 from "@/../assets/images/cards/5.png";
 
-import nestle from '@/../assets/images/logos/nestle.jpeg'
-import remita from '@/../assets/images/logos/remita.png'
-import shoprite from '@/../assets/images/logos/shoprite.png'
-import powerHorse from '@/../assets/images/logos/power-horse.jpeg'
+import powerHorse from '@/../assets/images/logos/powerhorse.png'
+import lagos from '@/../assets/images/logos/lagos.png'
+import emergencyresponse from '@/../assets/images/logos/emergency-response.png'
+import chi from '@/../assets/images/logos/chi.png'
+import gomoney from '@/../assets/images/logos/gomoney.png'
+import nestle from '@/../assets/images/logos/nestle.png'
 import pwc from '@/../assets/images/logos/pwc.png'
-import lordsGin from '@/../assets/images/logos/lords-gin.jpeg'
+
 
 import Hm from "@/../assets/images/logos/h-m.png"
 import Cola from "@/../assets/images/logos/coca-cola.png"
@@ -23,12 +25,13 @@ import Philips from "@/../assets/images/logos/philips.png"
 import { ScrollBanner } from "./ScrollBanner";
 
 const brands = [
-   { name: 'Nestle', logo: nestle },
+   { name: 'Lagos State Govt', logo: lagos },
    { name: 'Power Horse', logo: powerHorse },
    { name: 'Pwc', logo: pwc },
-   { name: 'Shoprite', logo: shoprite },
-   { name: 'Remita', logo: remita },
-   { name: 'Lord\'s Gin', logo: lordsGin },
+   { name: 'Emergency Response', logo: emergencyresponse },
+   { name: 'GoMoney', logo: gomoney },
+   { name: 'Nestle', logo: nestle },
+   { name: 'Chi', logo: chi },
 ];
 
 // const images = [
@@ -189,9 +192,9 @@ const AnalyzedAccount = () => {
             <div className="text-center  mt-space-120   mb-20">
                <span className="font-lexend font-bold  text-t-lg-x text-white">Join the world’s top brands</span>
 
-               <div className="flex  flex-wrap  spaxe-x-[80px]   mt-[68px]">
+               <div className="flex  flex-wrap  spaxe-x-5   mt-[68px]">
                   {brands.map((company, groupIndex) => (
-                     <div key={groupIndex} className="w-space-120  flex items-center">  <img src={company.logo} className="h-space-40" /> </div>
+                     <div key={groupIndex} className="p-5 flex items-center">  <img src={company.logo} className="h-space-40" /> </div>
                   ))}
 
                   {/* // <div className="w-space-120  flex items-center "> <img src={Loreal} className="h-space-40" /> </div>
