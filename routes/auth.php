@@ -19,7 +19,7 @@ Route::get('resend-email', [RegisteredUserController::class, 'resendMail'])->nam
 Route::get('account-setup', [RegisteredUserController::class, 'accountSetup'])->name('account.setup');
 Route::post('account-setup', [RegisteredUserController::class, 'storeDetail'])->name('account.setup');
 Route::get('/pricing', [RegisteredUserController::class, 'selectPricing'])->name('pricing');
-Route::get('verify-email/{id}/{hash}', [RegisteredUserController::class, 'verifyEmail']) ->name('verification.verify');
+Route::get('verify-email/{id}/{hash}', [RegisteredUserController::class, 'verifyEmail'])->name('verification.verify');
 Route::get('/select-payment/{plan_id}', [RegisteredUserController::class, 'selectPayment'])->name('user.payment.page');
 Route::get('/verify-payment/{reference}/{plan_id}', [RegisteredUserController::class, 'verifyPayment'])->name('user.verify.payment');
 Route::get('/select-social', [RegisteredUserController::class, 'selectSocial'])->name('select.social');
@@ -28,12 +28,12 @@ Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('lo
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::get('forgot-password', [AuthenticatedSessionController::class, 'createForgotPassword'])
     ->name('create.forgot.password');
-    
+
 Route::post('forgot-password', [AuthenticatedSessionController::class, 'sendMailForgotPassword'])
     ->name('sendMail.forgot.password');
 
 Route::get('reset-password/{email}', [AuthenticatedSessionController::class, 'createResetPassword'])
-        ->name('password.reset');
+    ->name('password.reset');
 
 Route::post('reset-password', [AuthenticatedSessionController::class, 'storeResetPassword'])
     ->name('password.update');

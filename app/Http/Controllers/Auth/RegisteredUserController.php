@@ -158,13 +158,16 @@ class RegisteredUserController extends Controller
     public  function  selectPricing()
     {
 
-        $user = request()->user();
-        if (!$user) {
-            return redirect(route('login'));
-        }
         $plans = Paystack::fetchPlans();
         $data['plans']  = $plans?->data ? $plans?->data : [];
-        return Inertia::render('Auth/SelectPricing', $data);
+
+        $user = request()->user();
+        if (!$user) {
+            return Inertia::render('Pricing/Guest/index', $data);
+            // return redirect(route('login'));
+        }
+
+        return Inertia::render('Pricing/index', $data);
     }
 
 

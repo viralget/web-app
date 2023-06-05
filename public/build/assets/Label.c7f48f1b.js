@@ -1,1 +1,0 @@
-import{R as r}from"./app.e915e160.js";function o({forInput:e,value:t,className:a="",children:m}){return r.createElement("label",{htmlFor:e,className:"block text-sm text-[#748094] mb-1"+a},t||m)}export{o as L};
