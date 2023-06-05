@@ -200,7 +200,7 @@ class RegisteredUserController extends Controller
     {
         $user = request()->user();
         if (!$user || !$plan_id) {
-            return redirect(route('login'));
+            return redirect(route('register'));
         }
         if (config('services.paystack.mode') == 'live') {
             $public_key = config('services.paystack.live_pk');
