@@ -37,7 +37,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/pricing-page', function () {
-    return route('pricing');
+    return redirect(route('pricing'));
     // return Inertia::render('PricingPage/index');
 })->name('pricing.page');
 
