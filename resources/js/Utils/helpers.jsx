@@ -75,13 +75,13 @@ export function getQASValue(score) {
         case (score <= 25):
             value = 'Poor'
             break;
-        case (score <= 40):
+        case (score <= 40 && score > 25):
             value = 'Average'
             break;
-        case (score <= 60):
+        case (score <= 60 && score > 40):
             value = 'Good'
             break;
-        case (score <= 80):
+        case (score <= 80 && score > 60):
             value = 'Very Good'
             break;
         case (score >= 90):
@@ -104,17 +104,17 @@ export function getQASColor(score) {
         case (score <= 25):
             value = 'bg-red-50 text-red-500'
             break;
-        case (score <= 40):
+        case (score <= 40 && score > 25):
             value = 'bg-blue-50 text-blue-500'
             break;
-        case (score <= 60):
+        case (score <= 60 && score > 40):
             value = 'bg-yellow-50 text-yellow-500'
             break;
-        case (score <= 80):
-            value = 'bg-green-50 text-yellow-500'
+        case (score <= 80 && score > 60):
+            value = 'bg-green-50 text-green-500'
             break;
-        case (score <= 90):
-            value = 'bg-green-100 text-yellow-900'
+        case (score >= 90):
+            value = 'bg-green-100 text-green-900'
             break;
 
 

@@ -74,7 +74,7 @@ class InfluencerResource extends JsonResource
                     'label' => '🇳🇬 Nigeria'
                 ],
             ],
-            'quality_audience_score' => $this->metrics?->quality_audience_score, // (float)(($this->metrics?->engagement_rate * $quality_audience) / $this->metrics?->interactions),
+            'quality_audience_score' => $this->metrics?->quality_audience, // (float)(($this->metrics?->engagement_rate * $quality_audience) / $this->metrics?->interactions),
             'engagement_rate' => $this->metrics?->engagement_rate,
             'quality_audience' =>  (int)$quality_audience, // $this->metrics?->quality_audience,
             'total_comments' => $this->metrics?->total_replies,
