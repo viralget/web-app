@@ -96,10 +96,10 @@ export default function SearchForm({
 
                         <MultiDropdown options={[
                             { name: 'Any' },
-                            { name: 'Nano (1000 - 10,000)', value: '10000' },
-                            { name: 'Micro (10,000 - 50,000)', value: '50000' },
-                            { name: 'Mid Tier (50,000 - 500k)', value: '500000' },
-                            { name: 'Macro (500k - 1m)', value: '1000000' },
+                            { name: 'Nano (1000 - 10,000)', value: 'Nano' },
+                            { name: 'Micro (10,000 - 50,000)', value: 'Micro' },
+                            { name: 'Mid Tier (50,000 - 500k)', value: 'Mid-Tier' },
+                            { name: 'Macro (500k - 1m)', value: 'Macro' },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
                             label="Influencer Size"
@@ -131,11 +131,11 @@ export default function SearchForm({
 
                         <MultiDropdown options={[
                             { name: 'Any' },
-                            { name: 'Excellent >90', value: '90' },
-                            { name: 'Very Good >80', value: '80' },
-                            { name: 'Good >60', value: '60' },
-                            { name: 'Average >40', value: '40' },
-                            { name: 'Poor >25', value: '25' },
+                            { name: 'Excellent >90' },
+                            { name: 'Very Good >80' },
+                            { name: 'Good >60' },
+                            { name: 'Average >40' },
+                            { name: 'Poor >25' },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer QAS', 'influencer_qas')}
                             label="Influencer QAS"
@@ -208,10 +208,10 @@ export default function SearchForm({
                                 <span className="font-normal">{item.name}: </span>
                                 {
                                     Array.isArray(item?.value) ? item.value.map((val, ind) => (
-                                        <span className="ml-2 text-viralget-grey">  {val} {(ind + 1) === item.value.length ? '' : ','} </span>
+                                        <span className="ml-2 text-viralget-grey">{val} {(ind + 1) === item.value.length ? '' : ','} </span>
                                     ))
                                         :
-                                        <span className="ml-2 text-viralget-grey">  {item.value} </span>
+                                        <span className="ml-2 text-viralget-grey">{item.value}</span>
                                 }
 
                                 <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >

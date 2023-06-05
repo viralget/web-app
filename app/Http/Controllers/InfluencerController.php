@@ -91,10 +91,12 @@ class InfluencerController extends Controller
 
                 $size = explode(',', $size);
 
+
                 $result = $result->where(function ($query) use ($size) {
                     foreach ($size as $_size) {
                         if ($_size == 'any') continue;
-                        $query->orWhere('followers_count', 'LIKE', "%$_size%");
+                        $_size = $this->getsizeRange($_size);
+                        $query->orWhereBetween('followers_count', $_size);
                     }
                 });
             }
@@ -141,7 +143,8 @@ class InfluencerController extends Controller
 
                 $result = $result->where(function ($query) use ($qas) {
                     foreach ($qas as $score) {
-                        if ($score == 'any') continue;
+                        $score = $this->getQASValue($score);
+                        if (!$score) continue;
                         $query->orWhereHas('metrics', function ($q) use ($score) {
                             $q->where('quality_audience', '>=', $score);
                         });
@@ -362,5 +365,47 @@ class InfluencerController extends Controller
                 'saved_search' => $saved_search
             ]
         );
+    }
+
+    private function getSizeRange($size)
+    {
+
+        switch ($size) {
+            case 'Nano':
+                return [100, 10000];
+            case 'Micro':
+                return [10000, 50000];
+            case 'Mid-Tier':
+                return [50000, 500000];
+            case 'Macro':
+                return [5000000, 1000000];
+
+            default:
+                # code...
+                break;
+        }
+    }
+
+    private function getQASValue($value)
+    {
+
+        switch ($value) {
+            case 'Any':
+                return '';
+            case 'Excellent >90':
+                return 90;
+            case 'Very Good >80':
+                return '80';
+            case 'Good >60':
+                return 60;
+            case 'Average >40':
+                return 40;
+            case 'Poor >25':
+                return 25;
+
+            default:
+                # code...
+                break;
+        }
     }
 }

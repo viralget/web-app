@@ -113,14 +113,16 @@ export function getQASColor(score) {
         case (score <= 80):
             value = 'bg-green-50 text-yellow-500'
             break;
-        case (score >= 90):
+        case (score <= 90):
             value = 'bg-green-100 text-yellow-900'
             break;
+
+
 
         default:
             value = 'bg-gray-100 text-gray-900'
             break;
     }
-
+    console.log({ value, score })
     return value
 }

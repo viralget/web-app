@@ -52,7 +52,7 @@ export default function SideContact() {
                                                 </div>
                                                 <span className='font-bold  text-white'>Phone number</span>
 
-                                                <span className='text-white  text-xs'>+234-09-461-4000</span>
+                                                <span className='text-white  text-xs'>+234 8106115322</span>
                                         </div>
 
                                         <div className='flex flex-col  md:mt-0  space-y-3  mt-5 px-5'>
@@ -73,7 +73,8 @@ export default function SideContact() {
 
                                                 <span className='font-bold  text-white'>Location</span>
 
-                                                <span className='text-xs text-white w-32'>Abiodun St, Fadeyi 102215, Lagos, Nigeria</span>
+                                                <span className='text-xs text-white w-32'>350, Workstation, 360 Ikorodu-Ososun Rd, Maryland, Lagos
+                                                </span>
                                         </div>
                                 </div>
                         </div>
