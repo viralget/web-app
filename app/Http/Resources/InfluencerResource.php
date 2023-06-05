@@ -31,7 +31,7 @@ class InfluencerResource extends JsonResource
             'profile_banner_url' => $this->profile_banner_url,
             'profile_url' => $this->profile_url,
             'categories' => $this->categories,
-            'location' => $this->location,
+            'location' => $this->geo_location?->name,
             'is_verified' => $this->is_verified,
             'bio' => $this->bio,
             // 'gender' => 'Male',

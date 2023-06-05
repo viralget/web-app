@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\InfluencerResource;
 use App\Models\Category;
 use App\Models\Influencer;
+use App\Models\InfluencerCountry;
 use App\Models\Search;
 use App\Models\TwitterInfluencer;
 use App\Models\ProfiledInfluencer;
@@ -37,6 +38,8 @@ class InfluencerController extends Controller
         $top_influencers = $this->influencer->limit(8)->get();
         $categories = Category::get();
 
+        $countries = InfluencerCountry::get();
+
         return Inertia::render(
             'Influencers/index',
             [
@@ -45,6 +48,7 @@ class InfluencerController extends Controller
                 'top_influencers' => InfluencerResource::collection($top_influencers),
                 'top_categories' => $top_categories,
                 'categories' => $categories,
+                'countries' => $countries,
                 'total_count' => $this->influencer->count()
             ]
         );
@@ -87,6 +91,8 @@ class InfluencerController extends Controller
             $size = $request->size;
             $any = 'Any';
 
+            $countries = InfluencerCountry::get();
+
             if ($size && $size != $any) {
 
                 $size = explode(',', $size);
@@ -109,7 +115,9 @@ class InfluencerController extends Controller
                 $result = $result->where(function ($query) use ($influencer_location) {
                     foreach ($influencer_location as $location) {
                         if ($location == 'any') continue;
-                        $query->orWhere('location', 'LIKE', "%$location%");
+                        $query->orWhereHas('geo_location', function ($q) use ($location) {
+                            $q->where('name', $location);
+                        });
                     }
                 });
             }
@@ -155,6 +163,7 @@ class InfluencerController extends Controller
 
 
 
+
             if ($keywords && $keywords != $any) {
 
                 if ($keywords_position == 'bio') {
@@ -185,6 +194,7 @@ class InfluencerController extends Controller
                 'list' => $result ? InfluencerResource::collection($result) : [], //InfluencerResource::collection($result->latest()->paginate(10)),
                 'count' => $result ? $result->count() : 0, // $result->count(), //$result->count(),
                 'categories' => $categories,
+                'countries' => $countries,
                 'total_count' => $this->influencer->count(),
                 'has_query' => $has_query
             ]

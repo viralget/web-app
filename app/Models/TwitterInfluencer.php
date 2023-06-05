@@ -50,6 +50,11 @@ class TwitterInfluencer extends Model
         return $likes = $this->tweets()->sum('favorite_count') * 5;
     }
 
+    public function geo_location()
+    {
+        return $this->hasOne(InfluencerCountry::class, 'geocode', 'geocode');
+    }
+
     public function metrics()
     {
         return $this->hasOne(InfluencerMetrics::class, 'influencer_id');

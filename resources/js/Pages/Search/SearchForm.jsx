@@ -83,8 +83,8 @@ export default function SearchForm({
 
                         <MultiDropdown options={[
                             { name: 'Any' },
-                            { name: 'Nigeria', value: 'Nigeria' },
-                            { name: 'Ghana', value: 'Ghana' },
+                            { name: 'Nigeria', },
+                            { name: 'Ghana', },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer Location', 'influencer_location')}
                             label="Influencer Location"

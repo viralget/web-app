@@ -72,10 +72,10 @@ export function getQASValue(score) {
 
 
     switch (true) {
-        case (score <= 25):
+        case (score < 25):
             value = 'Poor'
             break;
-        case (score <= 40 && score > 25):
+        case (score <= 40 && score >= 25):
             value = 'Average'
             break;
         case (score <= 60 && score > 40):
@@ -101,10 +101,10 @@ export function getQASColor(score) {
     let value;
 
     switch (true) {
-        case (score <= 25):
+        case (score < 25):
             value = 'bg-red-50 text-red-500'
             break;
-        case (score <= 40 && score > 25):
+        case (score <= 40 && score >= 25):
             value = 'bg-blue-50 text-blue-500'
             break;
         case (score <= 60 && score > 40):
