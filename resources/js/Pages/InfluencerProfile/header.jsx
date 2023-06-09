@@ -6,6 +6,7 @@ import { PlusIcon } from "@/Utils/icons";
 import { post, get } from "@/Utils/api";
 import toast from '@/Components/Toast';
 import { nFormatter } from '@/Utils/helpers';
+import { Link } from '@inertiajs/inertia-react';
 
 function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
@@ -14,8 +15,6 @@ export default function header({ influencer, isMini, list }) {
 
 
       const checkbox = useRef()
-      const [checked, setChecked] = useState(false)
-      const [indeterminate, setIndeterminate] = useState(false)
       const [selected, setSelected] = useState([]);
       const [listName, setListName] = useState('');
       const [isProfiled, setIsProfiled] = useState(false);
@@ -69,7 +68,7 @@ export default function header({ influencer, isMini, list }) {
       }
 
       return (
-            <>
+            <Link href={route('influencer.show', { influencer: influencer.username })}>
                   <div className={classNames(isMini && 'bg-[#0077F2]', " w-full rounded-br-3xl mb-[5rem] h-40")}>
                         <div className="p-5 absolute top-[3rem] w-full">
                               <div className="bg-white shadow-header-card flex  items-center  rounded-md p-3  w-full space-x-3 ">
@@ -80,6 +79,7 @@ export default function header({ influencer, isMini, list }) {
                                           </div>
                                     </div>
 
+
                                     <div className="w-full  md:mt-6">
                                           <div className={classNames("flex md:flex-row  flex-col  justify-between", isMini ? 'flex-wrap space-y-2 md:w-[25rem]' : '')}>
                                                 <div className="flex flex-col">
@@ -88,23 +88,23 @@ export default function header({ influencer, isMini, list }) {
                                                 </div>
                                                 <div className="flex md:flex-row flex-col space-y-2  md:space-y-0 md:justify-between md:mt-0 mt-2 w-auto  md:space-x-2 ">
 
-                                                      <div className="flex  md:space-x-2  border-r border-viralget-gray-300 pr-2  h-space-16 ">
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                  <g clip-path="url(#clip0_958_45476)">
-                                                                        <path d="M8 8.5C9.10457 8.5 10 7.60457 10 6.5C10 5.39543 9.10457 4.5 8 4.5C6.89543 4.5 6 5.39543 6 6.5C6 7.60457 6.89543 8.5 8 8.5Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                        <path d="M13 6.5C13 11 8 14.5 8 14.5C8 14.5 3 11 3 6.5C3 5.17392 3.52678 3.90215 4.46447 2.96447C5.40215 2.02678 6.67392 1.5 8 1.5C9.32608 1.5 10.5979 2.02678 11.5355 2.96447C12.4732 3.90215 13 5.17392 13 6.5V6.5Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                  </g>
-                                                                  <defs>
-                                                                        <clipPath id="clip0_958_45476">
-                                                                              <rect width="16" height="16" fill="white" />
-                                                                        </clipPath>
-                                                                  </defs>
-                                                            </svg>
+                                                      {influencer?.location && (
+                                                            <div className="flex  md:space-x-2  border-r border-viralget-gray-300 pr-2  h-space-16 ">
+                                                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g clip-path="url(#clip0_958_45476)">
+                                                                              <path d="M8 8.5C9.10457 8.5 10 7.60457 10 6.5C10 5.39543 9.10457 4.5 8 4.5C6.89543 4.5 6 5.39543 6 6.5C6 7.60457 6.89543 8.5 8 8.5Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                              <path d="M13 6.5C13 11 8 14.5 8 14.5C8 14.5 3 11 3 6.5C3 5.17392 3.52678 3.90215 4.46447 2.96447C5.40215 2.02678 6.67392 1.5 8 1.5C9.32608 1.5 10.5979 2.02678 11.5355 2.96447C12.4732 3.90215 13 5.17392 13 6.5V6.5Z" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                        </g>
+                                                                        <defs>
+                                                                              <clipPath id="clip0_958_45476">
+                                                                                    <rect width="16" height="16" fill="white" />
+                                                                              </clipPath>
+                                                                        </defs>
+                                                                  </svg>
+                                                                  <span className="text-t-normal font-satoshi font-medium  text-viralget-grey">{influencer?.location}</span>
+                                                            </div>
+                                                      )}
 
-
-                                                            <span className="text-t-normal font-satoshi font-medium  text-viralget-grey">{influencer?.location}</span>
-
-                                                      </div>
                                                       {/* <div className={classNames("flex md:space-x-2  pr-2  h-space-16 ", isMini ? '' : 'border-r border-viralget-gray-300')}>
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <g clip-path="url(#clip0_958_45465)">
@@ -294,7 +294,7 @@ export default function header({ influencer, isMini, list }) {
                         </div>
                   </div>
 
-            </>
+            </Link>
       )
 
 }

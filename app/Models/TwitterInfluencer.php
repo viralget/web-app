@@ -28,6 +28,10 @@ class TwitterInfluencer extends Model
         return $this->hasMany(TwitterPost::class, 'user_id', 'twitter_id');
     }
 
+    public function country()
+    {
+        return $this->hasOne(InfluencerCountry::class, 'geocode', 'geocode');
+    }
 
     public function engagementRate()
     {

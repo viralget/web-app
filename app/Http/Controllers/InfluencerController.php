@@ -48,7 +48,7 @@ class InfluencerController extends Controller
                 'top_influencers' => InfluencerResource::collection($top_influencers),
                 'top_categories' => $top_categories,
                 'categories' => $categories,
-                'countries' => $countries,
+                // 'countries' => $countries,
                 'total_count' => $this->influencer->count()
             ]
         );
@@ -91,7 +91,7 @@ class InfluencerController extends Controller
             $size = $request->size;
             $any = 'Any';
 
-            $countries = InfluencerCountry::get();
+            // $countries = InfluencerCountry::get();
 
             if ($size && $size != $any) {
 
@@ -194,7 +194,7 @@ class InfluencerController extends Controller
                 'list' => $result ? InfluencerResource::collection($result) : [], //InfluencerResource::collection($result->latest()->paginate(10)),
                 'count' => $result ? $result->count() : 0, // $result->count(), //$result->count(),
                 'categories' => $categories,
-                'countries' => $countries,
+                // 'countries' => $countries,
                 'total_count' => $this->influencer->count(),
                 'has_query' => $has_query
             ]
@@ -233,7 +233,7 @@ class InfluencerController extends Controller
         // }
 
         return Inertia::render(
-            'InfluencerProfile/show',
+            'InfluencerProfile/Show/index',
             [
                 // 'username' => $influencer,
                 'influencer' => InfluencerResource::make($influencer),

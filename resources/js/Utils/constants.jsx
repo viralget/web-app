@@ -64,40 +64,6 @@ export const NewsList = [
 ]
 
 
-
-export const tabs = [
-    {
-        name: 'Overview',
-        value: 'overview'
-    },
-    {
-        name: 'Influencer',
-        value: 'influencer'
-    },
-    {
-        name: 'Audience',
-        value: 'audience'
-    },
-    {
-        name: 'Content',
-        value: 'content'
-    },
-    {
-        name: 'Value',
-        value: 'value'
-    },
-    {
-        name: 'Brand',
-        value: 'brand'
-    },
-    {
-        name: 'Lookalike influencer',
-        value: 'lookalike_influencer'
-    },
-
-
-];
-
 export const BoardcadsList = [
     {
         label: 'Quality Audience Total',

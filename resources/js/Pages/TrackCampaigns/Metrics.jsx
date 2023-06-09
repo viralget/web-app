@@ -9,6 +9,7 @@ import { get, post } from "@/Utils/api";
 import { getKeywordData } from "@/Services/TwitterExtractorService";
 import toast from "@/Components/Toast";
 import EmptyState from "@/Components/EmptyState";
+import Loading from "@/Components/Loading";
 
 const Metrics = ({ search, result, keyword, updated_at }) => {
 
@@ -67,7 +68,7 @@ const Metrics = ({ search, result, keyword, updated_at }) => {
 
                 {
                     isLoading ?
-                        (<EmptyElment />)
+                        (<Loading />)
                         :
                         (
                             dataFetched ?

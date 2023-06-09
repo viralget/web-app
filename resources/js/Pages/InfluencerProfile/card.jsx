@@ -2,6 +2,30 @@
 
 export default function Card({ item }) {
 
+    return (
+
+        <div className="border rounded-md  flex flex-col p-3 h-full w-full    justify-center  items-left">
+            <div className="flex  items-center">
+                <div className="mr-1">
+                    {item.icon}
+
+                </div>
+                <span className="text-t-normal font-normal  text-viralget-grey">{item.title}</span>
+            </div>
+
+            <div className="mt-3">
+                <span className="font-semibold text-h1  font-lexend ">{item?.score}</span>
+            </div>
+            <div className="flex mt-3">
+
+                <div className="text-xs">
+                    <span className="text-viralget-grey  font-normal text-t-normal-x"> {item.label}</span>
+                </div>
+            </div>
+
+
+        </div>
+    )
 
 
     return (

@@ -70,6 +70,7 @@ export const nairaSymbol = "₦";
 export function getQASValue(score) {
     let value;
 
+    console.log({ score })
 
     switch (true) {
         case (score < 25):
@@ -78,18 +79,18 @@ export function getQASValue(score) {
         case (score <= 40 && score >= 25):
             value = 'Average'
             break;
-        case (score <= 60 && score > 40):
+        case (score <= 60 && score >= 40):
             value = 'Good'
             break;
-        case (score <= 80 && score > 60):
+        case (score <= 80 && score >= 60):
             value = 'Very Good'
             break;
-        case (score >= 90):
+        case (score >= 80):
             value = 'Excellent'
             break;
 
-        default:
-            value = 'N/A'
+            // default:
+            //     value = 'N/A'
 
             break;
     }
@@ -123,6 +124,65 @@ export function getQASColor(score) {
             value = 'bg-gray-100 text-gray-900'
             break;
     }
-    console.log({ value, score })
+    // console.log({ value, score })
+    return value
+}
+
+
+export function safetyLevelColor(score) {
+    let value;
+
+    switch (true) {
+        case (score < 25):
+            value = 'bg-red-50 text-red-500'
+            break;
+        case (score <= 40 && score >= 25):
+            value = 'bg-blue-50 text-blue-500'
+            break;
+        case (score <= 60 && score > 40):
+            value = 'bg-yellow-50 text-yellow-500'
+            break;
+        case (score <= 80 && score > 60):
+            value = 'bg-green-50 text-green-500'
+            break;
+        case (score >= 90):
+            value = 'bg-green-100 text-green-900'
+            break;
+
+
+
+        default:
+            value = 'bg-gray-100 text-gray-900'
+            break;
+    }
+    // console.log({ value, score })
+    return value
+}
+
+
+
+export function safetyLevel(score) {
+    let value;
+
+    switch (true) {
+        case (score <= 40):
+            value = 'Not Safe'
+            break;
+        case (score <= 60 && score >= 40):
+            value = 'Quite Safe'
+            break;
+        case (score <= 80 && score >= 60):
+            value = 'Safe'
+            break;
+        case (score >= 80):
+            value = 'Very Safe'
+            break;
+
+            // default:
+            //     value = 'N/A'
+
+            break;
+    }
+
     return value
 }

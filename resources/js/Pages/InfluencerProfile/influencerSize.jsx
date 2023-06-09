@@ -12,8 +12,6 @@ export default function influencerSize({ influencer, isMini }) {
     ]
 
 
-
-
     function getLevels() {
 
         const data = steps;

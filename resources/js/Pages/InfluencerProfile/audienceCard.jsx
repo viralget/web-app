@@ -1,5 +1,6 @@
-import { nFormatter } from "@/Utils/helpers"
+import { getQASColor, getQASValue, nFormatter } from "@/Utils/helpers"
 import GaugeChart from "react-gauge-chart"
+import QAS from "./QAS"
 
 
 
@@ -70,29 +71,7 @@ export default function AudienceCard({ influencer }) {
 
     return (
         <div className="flex  border  items-center  justify-center w-full h-full rounded-md p-3 my-3">
-            <div className=" relative  text-center">
-                <span className="font-medium  text-viralget-grey">Quality audience score</span>
-
-                <GaugeChart id="gauge-chart5"
-                    nrOfLevels={420}
-                    animate
-                    arcsLength={[0.2, 0.2, 0.2, 0.2, 0.2]}
-                    colors={['#E46361', '#FEB702', '#0BCEF9', '#25EEB2', '#28CA42']}
-                    percent={influencer.quality_audience_score}
-                    arcPadding={0.02}
-                    textColor={'#3E4555'}
-                    needleColor={'#748094'}
-                // arcWidth={[4, 2, 2, 2, 2]}
-                // arcHeight={[2, 2, 2, 2, 2]}
-                />
-
-                <div className="absolute  flex flex-col top-8 left-8">
-                    <span className="text-2xl font-bold  text-viralget-grey">{influencer.quality_audience_score}</span>
-                    {/* <span className="text-[#28CA42] font-bold">Excellent</span> */}
-                </div>
-
-            </div>
-
+            <QAS influencer={influencer} />
 
             <div className="w-auto">
                 {

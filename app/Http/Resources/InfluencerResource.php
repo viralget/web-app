@@ -16,14 +16,14 @@ class InfluencerResource extends JsonResource
     public function toArray($request)
     {
 
-        $quality_audience = $this->followers_count * 0.3;
+        $quality_audience = ($this->followers_count * 0.8);
+
 
         return [
             'id' => $this->id,
             'username' => $this->username,
             'full_name' => $this->full_name,
             'engagement_rate' => $this->metrics?->engagement_rate, //$this->engagementRate(), // TODO: engagement_rate and interactions should be db fields, updated daily as CRON jobs to boost performance
-            'interactions' => $this->metrics?->interactions, // $this->interactions(),
             'followers_count' => $this->followers_count,
             'tweet_count' => $this->tweets_count,
             'following_count' => $this->following_count,
@@ -42,8 +42,38 @@ class InfluencerResource extends JsonResource
             // 'income' => '$10-25k',
             // 'education' => 'bachelor',
             'metrics' => [
-                'avg_comments' => [
-                    'score' => $this->metrics?->total_replies,
+                'reach' => [
+                    'score' => $this->metrics?->reach,
+                    'increase' => 3.3,
+                    'label' => 'last 30 days'
+                ],
+                'reachability' => [
+                    'score' => $this->metrics?->reachability,
+                    'increase' => 0.24,
+                    'label' => 'last 30 days'
+                ],
+                'impressions' => [
+                    'score' => $this->metrics?->impressions,
+                    'increase' => 0.24,
+                    'label' => 'last 30 days'
+                ],
+                'avg_impressions' => [
+                    'score' => $this->metrics?->average_impressions,
+                    'increase' => 3.3,
+                    'label' => 'last 30 days'
+                ],
+                'media_value' => [
+                    'score' => $this->metrics?->media_value,
+                    'increase' => 0.24,
+                    'label' => 'last 30 days'
+                ],
+                'avg_cpe' => [
+                    'score' => $this->metrics?->average_cpe,
+                    'increase' => 3.3,
+                    'label' => 'last 30 days'
+                ],
+                'avg_cpm' => [
+                    'score' => $this->metrics?->average_cpm,
                     'increase' => 3.3,
                     'label' => 'last 30 days'
                 ],
@@ -52,29 +82,43 @@ class InfluencerResource extends JsonResource
                     'increase' => 0.24,
                     'label' => 'last 7 days'
                 ],
+                'interactions' => [
+                    'score' => $this->metrics?->interactions,
+                    'increase' => 0.24,
+                    'label' => 'last 30 days'
+                ],
                 'avg_retweet' => [
                     'score' => $this->metrics?->total_retweets,
                     'increase' => 0.24,
-                    'label' => 'last 7 days'
+                    'label' => 'last 30 days'
+                ],
+                'avg_impressions' => [
+                    'score' => $this->metrics?->average_impressions,
+                    'increase' => 0.24,
+                    'label' => 'last 30 days'
                 ],
                 'global_rank' => [
-                    'score' => 40204,
+                    'score' => '-',
                     'increase' => null,
                     'label' => 'Worldwide'
                 ],
 
                 'category_rank' => [
-                    'score' => 17,
+                    'score' => '-',
                     'increase' => null,
-                    'label' => 'Beauty in Nigeria'
+                    'label' => $this->categories[0]?->name,
                 ],
                 'country_rank' => [
-                    'score' => 358,
+                    'score' => '-',
                     'increase' => null,
-                    'label' => '🇳🇬 Nigeria'
+                    'label' => $this->country?->name
                 ],
             ],
-            'quality_audience_score' => $this->metrics?->quality_audience, // (float)(($this->metrics?->engagement_rate * $quality_audience) / $this->metrics?->interactions),
+            'brand_safety_level'  => $this->metrics?->brand_safety_level  ?? 0,
+            'most_used_hashtags'  => json_decode($this->metrics?->most_used_hashatags),
+            'best_performing_tweets'  => json_decode($this->metrics?->best_performing_tweets),
+            'quality_audience_score' => (float)(($this->metrics?->engagement_rate * $quality_audience) / ($this->metrics?->interactions ?? 1)) * 100,
+            'quality_audience' => $this->metrics?->quality_audience, // (float)(($this->metrics?->engagement_rate * $quality_audience) / $this->metrics?->interactions),
             'engagement_rate' => $this->metrics?->engagement_rate,
             'quality_audience' =>  (int)$quality_audience, // $this->metrics?->quality_audience,
             'total_comments' => $this->metrics?->total_replies,
