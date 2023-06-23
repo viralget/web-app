@@ -49,10 +49,10 @@ class TwitterInfluencer extends Model
         return $engagementRate;
     }
 
-    public function interactions()
-    {
-        return $this->tweets()->sum('favorite_count') * 5;
-    }
+    // public function interactions()
+    // {
+    //     return $this->tweets()->sum('favorite_count') * 5;
+    // }
 
     public function geo_location()
     {
