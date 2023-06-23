@@ -51,7 +51,7 @@ class TwitterInfluencer extends Model
 
     public function interactions()
     {
-        return $likes = $this->tweets()->sum('favorite_count') * 5;
+        return $this->tweets()->sum('favorite_count') * 5;
     }
 
     public function geo_location()
