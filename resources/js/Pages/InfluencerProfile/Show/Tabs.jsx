@@ -38,7 +38,7 @@ const Tabs = ({ influencer }) => {
     {
       name: 'Value',
       value: 'value',
-      component: <Value title="Feature coming soon" />
+      component: <Value title="Feature coming soon" influencer={influencer} />
 
     },
     {

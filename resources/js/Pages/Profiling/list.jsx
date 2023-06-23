@@ -32,10 +32,12 @@ export default function List({ influencerList, profiles }) {
         setSelectedList(item);
     }
 
-    const influencers = profiles.map((item) => {
+    const influencers = profiles.filter((profile) => profile.influencer).map((item) => {
         const influencer = item.influencer
         return influencer;
     });
+
+    console.log({ profiles, influencers })
 
     function toggleAll() {
         setSelected(checked || indeterminate ? [] : influencers)
@@ -209,8 +211,8 @@ export default function List({ influencerList, profiles }) {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {influencers.map((item) => (
-                                        <tr key={item.email}
+                                    {influencers.map((item, index) => (
+                                        <tr key={index}
                                             className={selected.includes(item) ? 'bg-gray-50' : undefined}
                                         >
                                             <td className="relative w-12 px-6 sm:w-16 sm:px-8">

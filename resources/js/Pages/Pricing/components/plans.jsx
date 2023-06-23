@@ -5,6 +5,55 @@ import PlanDetails from "./planDetails";
 import { classNames } from "@/Utils/helpers";
 import { Container } from "@/Components/Container";
 
+// const plans = [
+//    {
+//       name: 'Free',
+//       href: '#',
+//       interval: 'monthly',
+//       amount: '100,000',
+//       amount_usd: '100,000',
+//       isPopular: false,
+//       priceMonthlyUSD: 12,
+//       plan_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//       plan_usd_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//    },
+//    {
+//       name: 'Free',
+//       href: '#',
+//       interval: 'monthly',
+//       amount: '100,000',
+//       amount_usd: '100,000',
+//       isPopular: false,
+//       priceMonthlyUSD: 12,
+//       plan_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//       plan_usd_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//    },
+//    {
+//       name: 'Free',
+//       href: '#',
+//       interval: 'monthly',
+//       amount: '100,000',
+//       amount_usd: '100,000',
+//       isPopular: false,
+//       priceMonthlyUSD: 12,
+//       plan_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//       plan_usd_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//    },
+//    {
+//       name: 'Free',
+//       href: '#',
+//       interval: 'monthly',
+//       amount: '100,000',
+//       amount_usd: '100,000',
+//       isPopular: false,
+//       priceMonthlyUSD: 12,
+//       plan_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//       plan_usd_code: 'PLN_oum2jsizxurq4w4', // 'PLN_oum2jsizxurq4w4',
+//    }
+
+// ];
+
+
 export default function Plans({ plans }) {
 
 

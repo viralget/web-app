@@ -16,13 +16,16 @@ import {
 import AudienceCard from "../audienceCardRow";
 import DataCard from "../card";
 import BrandSafetyLevel from "../Components/BrandSafetyLevel";
+import SectionTitle from "@/Components/SectionTitle";
+import EmptyState from "@/Components/EmptyState";
 
 
 export default function ({ influencer }) {
 
     const {
         engagement_rate, global_rank, country_rank, category_rank,
-        avg_cpe, avg_cpm, reachability, avg_impressions, reach, impressions
+        avg_cpe, avg_cpm, reachability, avg_impressions, reach, impressions,
+        average_tweet_per_contributor, average_follower_per_contributor, engagements, total_retweets
 
     } = influencer?.metrics;
 
@@ -63,24 +66,24 @@ export default function ({ influencer }) {
 
     const influencerInformation = [
         {
-            title: 'Reach',
+            title: 'Average Tweet Per Contributor',
             icon: <Gender />,
-            label: nFormatter(reach?.score) ?? 'no data'
+            label: nFormatter(average_tweet_per_contributor?.score) ?? 'no data'
         },
         {
-            title: 'Reachability',
+            title: 'Average Follower Per Contributor',
             icon: <Ethnicity />,
-            label: nFormatter(reachability?.score) ?? 'no data'
+            label: nFormatter(average_follower_per_contributor?.score) ?? 'no data'
         },
         {
-            title: 'Impressions',
+            title: 'Engagements',
             icon: <Marital />,
-            label: nFormatter(impressions?.score) ?? 'no data'
+            label: nFormatter(engagements?.score) ?? 'no data'
         },
         {
-            title: 'Average Impressions',
+            title: 'Total Retweets',
             icon: <Parental />,
-            label: avg_impressions?.score ?? 'no data'
+            label: total_retweets?.score ?? 'no data'
         },
 
         {
@@ -98,8 +101,8 @@ export default function ({ influencer }) {
 
 
     return (
-        <>
-            <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0   ">
+        <div className="space-y-5">
+            <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4 mt-5 gap-3 md:pr-5 md:pl-0   ">
                 {
                     influencerInformation.map((item) => (
                         <div className="border rounded-md  p-space-8 h-auto  items-left justify-center">
@@ -120,8 +123,51 @@ export default function ({ influencer }) {
                     ))
                 }
             </div>
+            <div className="flex space-x-3">
+                <div className="w-1/3">
+                    <Card useBorder useShadow={false}>
+                        <SectionTitle title="Audience Type" />
+                        <EmptyState title="Coming soon" />
+                    </Card>
+                </div>
+                <div className="flex-1">
+                    <Card useBorder useShadow={false}>
+                        <SectionTitle title="Audience Location" />
+                        <EmptyState title="Coming soon" />
+                    </Card>
+                </div>
+            </div>
+
+            <div className="flex space-x-3">
+                <div className="flex-1">
+                    <Card useBorder useShadow={false}>
+                        <SectionTitle title="Audience age and gender" />
+                        <EmptyState title="Coming soon" />
+                    </Card>
+                </div>
+                <div className="w-1/3">
+                    <Card useBorder useShadow={false}>
+                        <SectionTitle title="Relationship status" />
+                        <EmptyState title="Coming soon" />
+                    </Card>
+                </div>
+            </div>
 
 
-        </>
+            <div className="flex space-x-3">
+                <div className="">
+                    <Card useBorder useShadow={false}>
+                        <SectionTitle title="Audience education level" />
+                        <EmptyState title="Coming soon" />
+                    </Card>
+                </div>
+                <div className="w-1/3">
+                    <Card useBorder useShadow={false}>
+                        <SectionTitle title="Audience spend power" />
+                        <EmptyState title="Coming soon" />
+                    </Card>
+                </div>
+            </div>
+        </div>
     )
 }

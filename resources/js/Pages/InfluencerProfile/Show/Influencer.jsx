@@ -1,5 +1,5 @@
 import Card from "@/Components/Card";
-import { nFormatter } from "@/Utils/helpers";
+import { nFormatter, numberFormat } from "@/Utils/helpers";
 import {
     Gender,
     Marital,
@@ -130,7 +130,7 @@ export default function ({ influencer }) {
     // ]
 
     return (
-        <>
+        <div className="space-y-5">
 
             <div className="grid sm:grid-cols-2 p-4 md:space-x-3 ">
 
@@ -146,14 +146,41 @@ export default function ({ influencer }) {
             </div>
 
             <Card useBorder={true} useShadow={false}>
-                Most Used Hashtags
 
-                {influencer.most_used_hashtags?.map((item, index) => {
-                    <span className="m-2 bg-gray-50 " key={index}>{item}</span>
-                })}
+                <span className="font-bold text-t-xs font-lexend">Impressions vs Reach</span>
+
+                <div className="my-3 space-x-3 flex">
+                    <DataCard item={{
+                        title: 'Impressions',
+                        icon: (<EngagementRateWithBSvg />),
+                        score: nFormatter(impressions?.score ?? 0),
+                        increase: impressions?.increase,
+                        label: impressions?.label
+                    }} />
+
+                    <DataCard item={{
+                        title: 'Reach',
+                        icon: (<EngagementRateWithBSvg />),
+                        score: nFormatter(reach?.score ?? 0),
+                        increase: reach?.increase,
+                        label: reach?.label
+                    }} />
+
+                </div>
             </Card>
 
-        </>
+            <Card useBorder={true} useShadow={false}>
+
+                <span className="font-bold text-t-xs font-lexend">Most Used Hashtags</span>
+
+                <div className="my-3 space-x-3">
+                    {influencer.most_used_hashtags?.map((item, index) => (
+                        <span className="p-2 bg-gray-50 rounded-md" key={index}>#{item}</span>
+                    ))}
+                </div>
+            </Card>
+
+        </div>
     )
 }
 

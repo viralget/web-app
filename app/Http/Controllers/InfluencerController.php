@@ -89,6 +89,7 @@ class InfluencerController extends Controller
             $keywords_position = $request->position;
             $qas = $request->influencer_qas;
             $size = $request->size;
+            $reach = $request->influener_reach;
             $any = 'Any';
 
             // $countries = InfluencerCountry::get();
@@ -140,6 +141,22 @@ class InfluencerController extends Controller
                     foreach ($category as $cat) {
                         $query->orWhereHas('categories', function ($q) use ($cat) {
                             $q->where('name', $cat);
+                        });
+                    }
+                });
+            }
+
+
+
+            if ($reach && $reach != $any) {
+                $reach = explode(',', $reach);
+
+                $result = $result->where(function ($query) use ($reach) {
+                    foreach ($reach as $_reach) {
+                        $query->orWhereHas('metrics', function ($q) use ($_reach) {
+                            $reach_value = $this->getReachRange($_reach);
+
+                            $q->whereBetween('reach', [$reach_value[0], $reach_value[1]]);
                         });
                     }
                 });
@@ -380,6 +397,24 @@ class InfluencerController extends Controller
     private function getSizeRange($size)
     {
 
+        switch ($size) {
+            case 'Nano':
+                return [100, 10000];
+            case 'Micro':
+                return [10000, 50000];
+            case 'Mid-Tier':
+                return [50000, 500000];
+            case 'Macro':
+                return [5000000, 1000000];
+
+            default:
+                # code...
+                break;
+        }
+    }
+
+    private function getReachRange($size)
+    {
         switch ($size) {
             case 'Nano':
                 return [100, 10000];

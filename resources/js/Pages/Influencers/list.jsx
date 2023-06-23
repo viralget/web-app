@@ -341,7 +341,7 @@ export default function List(props) {
                                                 Followers
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Quality audience
+                                                Reach
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 ER (%)
@@ -362,8 +362,8 @@ export default function List(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100 bg-white">
-                                        {data.map((item) => (
-                                            <tr key={item.email} className={selected.includes(item) ? 'bg-gray-50' : undefined}>
+                                        {data.map((item, index) => (
+                                            <tr key={index} className={selected.includes(item) ? 'bg-gray-50' : undefined}>
                                                 <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                     {selected.includes(item) && (
                                                         <div className="absolute inset-y-0 left-0 w-0.5 bg-gray-900" />
@@ -395,7 +395,7 @@ export default function List(props) {
                                                 </td>
                                                 {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.quality_audience)}</td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.reach)}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">

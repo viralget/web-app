@@ -16,6 +16,8 @@ import {
 import AudienceCard from "../audienceCardRow";
 import DataCard from "../card";
 import BrandSafetyLevel from "../Components/BrandSafetyLevel";
+import SectionTitle from "@/Components/SectionTitle";
+import EmptyState from "@/Components/EmptyState";
 
 
 export default function ({ influencer }) {
@@ -26,52 +28,7 @@ export default function ({ influencer }) {
 
     } = influencer?.metrics;
 
-
-    const cardsList = [
-        {
-            title: 'Engagement rate',
-            icon: (<EngagementRateWithBSvg />),
-            score: engagement_rate?.score + '%',
-            increase: engagement_rate?.increase,
-            label: engagement_rate?.label
-        },
-
-
-        {
-            title: 'Global rank',
-            icon: (<SvgRank />),
-            score: global_rank?.score,
-            increase: null,
-            label: global_rank?.label
-        },
-        {
-            title: 'Country rank',
-            icon: (<SvgCountry />),
-            score: country_rank?.score,
-            increase: null,
-            label: country_rank?.label
-        },
-        {
-            title: 'Category rank',
-            icon: (<SvgCategory />),
-            score: category_rank?.score,
-            increase: null,
-            label: category_rank?.label
-        },
-
-    ]
-
     const influencerInformation = [
-        {
-            title: 'Reach',
-            icon: <Gender />,
-            label: nFormatter(reach?.score) ?? 'no data'
-        },
-        {
-            title: 'Reachability',
-            icon: <Ethnicity />,
-            label: nFormatter(reachability?.score) ?? 'no data'
-        },
         {
             title: 'Impressions',
             icon: <Marital />,
@@ -98,12 +55,21 @@ export default function ({ influencer }) {
 
 
     return (
-        <>
-            <div className="grid md:grid-cols-3 grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0   ">
-                Value
+        <div className="grid md:grid-cols-2 gap-3">
+            <div>
+                <Card useBorder useShadow={false}>
+                    <SectionTitle title="Influencer media value" />
+                    <EmptyState title="Coming soon" />
+                </Card>
             </div>
 
-
-        </>
+            <div className="grid grid-cols-2 md:mt-0 mt-4    gap-3  w-full  ">
+                {
+                    influencerInformation.map((item) => (
+                        <DataCard item={item} />
+                    ))
+                }
+            </div>
+        </div>
     )
 }

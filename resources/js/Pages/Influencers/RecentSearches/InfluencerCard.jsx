@@ -7,9 +7,12 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
         useLink ? window.location.href = route('influencer.show', { influencer: influencer.username }) : handleProfile();
     }
 
+
+    if (!influencer) return <></>;
+
     return (
         <div
-            key={influencer.id}
+            key={influencer?.id}
             className={`col-span-1 bg-white rounded-lg text-center ${useShadow ? 'shadow-lg' : 'border'} overflow-hidden`}
         >
             {showBanner && (

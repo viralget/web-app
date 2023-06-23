@@ -33,6 +33,7 @@ export default function SearchForm({
     const influencer_location = new URLSearchParams(window.location.search).get('influencer_location');
     const size = new URLSearchParams(window.location.search).get('size');
     const audience_location = new URLSearchParams(window.location.search).get('audience_location');
+    const influencer_reach = new URLSearchParams(window.location.search).get('influencer_reach');
     const influencer_qas = new URLSearchParams(window.location.search).get('influencer_qas');
     const selectedCategory = new URLSearchParams(window.location.search).get('category');
     const position = new URLSearchParams(window.location.search).get('position');
@@ -54,6 +55,10 @@ export default function SearchForm({
 
         if (influencer_qas) {
             searchData.push({ query: 'influencer_qas', name: 'Influencer Qas', value: influencer_qas?.split(',') });
+        }
+
+        if (influencer_qas) {
+            searchData.push({ query: 'influencer_reach', name: 'Influencer Reach', value: influencer_reach?.split(',') });
         }
 
         if (selectedCategory) {
@@ -128,8 +133,20 @@ export default function SearchForm({
                     <div className="md:pr-6 md:border-r border-gray-100">
 
 
-
                         <MultiDropdown options={[
+                            { name: 'Any' },
+                            { name: 'Nano (1000 - 10,000)', value: 'Nano' },
+                            { name: 'Micro (10,000 - 50,000)', value: 'Micro' },
+                            { name: 'Mid Tier (50,000 - 500k)', value: 'Mid-Tier' },
+                            { name: 'Macro (500k - 1m)', value: 'Macro' },
+                        ]}
+                            onChange={(e) => handleChange(e, 'Influencer Reach', 'influencer_reach')}
+                            label="Influencer Reach"
+                            defaultOptionText={influencer_reach?.split(',')[0]}
+                            useSelectedOptions={influencer_reach?.split(',')}
+                        />
+
+                        {/* <MultiDropdown options={[
                             { name: 'Any' },
                             { name: 'Excellent >90' },
                             { name: 'Very Good >80' },
@@ -141,7 +158,7 @@ export default function SearchForm({
                             label="Influencer QAS"
                             defaultOptionText={influencer_qas?.split(',')[0]}
                             useSelectedOptions={influencer_qas?.split(',')}
-                        />
+                        /> */}
                     </div>
 
 

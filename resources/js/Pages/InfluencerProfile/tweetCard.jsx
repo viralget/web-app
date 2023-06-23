@@ -1,7 +1,5 @@
 export default function TweetCard({ isMedia, tweet }) {
 
-      console.log({ tweet })
-
       return (
             <div className="border rounded-md p-3">
 
