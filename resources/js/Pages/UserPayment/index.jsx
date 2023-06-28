@@ -8,8 +8,9 @@ import PaystackPop from '@paystack/inline-js';
 import { get } from "@/Utils/api";
 import toast from '@/Components/Toast';
 
-const UserPayment = (props) => {
+export const PaymentProccess = (props) => {
     const { auth: { user }, plan_id, plan, public_key } = props;
+
     const [getPaymentMethod, setPaymentMethod] = useState("");
     const [buttText, setPaymentText] = useState("Continue");
     const [isLoading, setIsLoading] = useState(false);
@@ -127,7 +128,6 @@ const UserPayment = (props) => {
     return (
         <div>
 
-            <Header user={user} levels={Levels} />
 
             <div className="w-full flex items-center mt-space-80 px-space-10  justify-center">
                 <div className="flex flex-col ">
@@ -155,6 +155,17 @@ const UserPayment = (props) => {
                 </div>
             </div>
         </div>
+    )
+}
+
+
+const UserPayment = (props) => {
+    return (
+        <>
+            <Header user={user} levels={Levels} />
+
+            <PaymentProccess {...props} />
+        </>
     )
 }
 

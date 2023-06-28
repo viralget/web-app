@@ -2,6 +2,7 @@
 export default function Button({ type = 'submit', size = 'large', isDark = false, isLight, icon, rounded = true, transparent, block = false, usePrimary, bgColor = "bg-white", textColor = 'text-gray-900', borderColor, className = '', processing, children, href, onClick, disabled, target }) {
 
 
+
   const isBlock = block ? 'w-full' : '';
   // const buttonTextColor = transparent ? textColor ? textColor : 'text-white' : 'text-black';
   const buttonBorderColor = borderColor ? borderColor : transparent ? `border-gray-900` : ' border';

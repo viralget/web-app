@@ -18,7 +18,8 @@ import InstagramLogo from "@/../assets/images/instagram-logo.png";
 import YoutubeLogo from "@/../assets/images/youtube-logo.png";
 import TwitterLogo from "@/../assets/images/twitter-logo.png";
 // import HeroBanner from "@/../assets/images/hero-banner.svg";
-import HeroBanner from "@/../assets/images/home_bg.png";
+// import HeroBanner from "@/../assets/images/home_bg.png";
+import HeroBanner from "@/../assets/images/display-find.png";
 
 const brands = [
   // [
@@ -44,8 +45,11 @@ export function Hero() {
           <div className="flex items-center justify-center   max-w-6xl mx-auto  mt-space-70  ">
             <div className='text-white  flex flex-col  text-center'>
               <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer <br /> marketing platform to drive your business forward</span>
-              <span className='font-normal text-center  text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting?
-                <br />THEN VIRALGET WAS BUILT FOR YOU</span>
+              <span className='font-normal text-center  text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Save valuable time by reducing the effort spent on influencer discovery. Gain access to a comprehensive database of influencers.</span>
+
+              <div className="my-5">
+                <Button href={route('dashboard')}>Get Started &rarr;</Button>
+              </div>
             </div>
           </div>
 
