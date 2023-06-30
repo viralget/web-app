@@ -36,7 +36,7 @@ const CTA = () => {
                             ></div>
 
                             <a
-                                href="#"
+                                href="/pre-order"
                                 title=""
                                 className="relative inline-flex items-center justify-center py-3.5 text-base font-bold text-white transition-all duration-200 bg-gray-900 border border-transparent px-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl"
                                 role="button"

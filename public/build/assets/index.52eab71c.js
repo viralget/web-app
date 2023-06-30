@@ -1,0 +1,1 @@
+import{R as r}from"./app.1ddb5203.js";import o from"./Dashboard.ae7f6ca7.js";import"./Avatar.e289f2c3.js";import"./helpers.f008556a.js";import"./moment.9709ab41.js";import"./XMarkIcon.228d75d9.js";import"./transition.800aedd5.js";import"./dialog.3b7c40f3.js";import"./use-event-listener.b5592bea.js";function f(){return r.createElement(o,null,"Hello")}export{f as default};

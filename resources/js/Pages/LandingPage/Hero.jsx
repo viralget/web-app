@@ -41,18 +41,18 @@ export function Hero() {
       <div>
         <div className="overflow-hidden p-5 relative py-20 flex-1 bg-gradient-to-b from-[#FF9857]   via-[#FF9857] to-[#FA699D]">
 
-          <div className='grid md:grid-cols-2 container mx-auto items-center md:text-left'>
+          <div className='grid md:grid-cols-2 container mx-auto items-center sm:text-left text-center'>
             <div>
               <div className="">
                 <div className='text-white  flex flex-col '>
-                  <span className='font-lexend font-bold  text-t-xxlg text-center '>Spend less time searching for Influencers.</span>
+                  <span className='font-lexend font-bold  text-t-xxlg '>Spend less time searching for Influencers.</span>
                   <span className='font-normal text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'> Get access to a database of influencers.</span>
                 </div>
               </div>
 
               <div className='py-10'>
 
-                <a href="#preorder" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
+                <a href="/pre-order" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
 
                   <span className='font-lexend font-medium  text-white text-t-xsx'>Pre Order Now</span>
                 </a>
