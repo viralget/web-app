@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Button from '@/Components/Button'
 import { usePage } from '@inertiajs/inertia-react'
 import PaystackPop from '@paystack/inline-js';
-import { nairaSymbol } from '@/Utils/helpers'
+import { getEventValue, nairaSymbol } from '@/Utils/helpers'
 import toast from '@/Components/Toast'
 import { post } from '@/Utils/api'
 import App from '@/Components/Layouts/App';
@@ -21,10 +21,15 @@ export default function Preorder() {
 
     const [buttText, setPaymentText] = useState("Continue");
     const [isLoading, setIsLoading] = useState(false);
+    const [email, setEmail] = useState('');
 
 
     function payWithPaystack(e) {
         e.preventDefault();
+
+        if (!email) {
+            alert('Please enter your email address')
+        }
 
         setIsLoading(true);
         setPaymentText("Initiating payment...");
@@ -33,7 +38,7 @@ export default function Preorder() {
         const paystack = new PaystackPop();
         paystack.newTransaction({
             key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
-            email: user.email,
+            email: email,
             amount: amount * 100, //plan.amount * 100,
             reference: (new Date()).getTime().toString(),
             // plan: plan.plan_code,
@@ -85,7 +90,7 @@ export default function Preorder() {
                         <div className='grid md:grid-cols-2 gap-3 '>
                             <Input type='text' label="Full Name" required />
                             <Input type='text' label="Company Name (optional)" />
-                            <Input type='text' label="Email Address" required />
+                            <Input type='text' label="Email Address" required onChange={(e) => setEmail(getEventValue(e))} />
                             <Input type='text' label="Phone Number" />
                             <MultiSelect
                                 options={[
