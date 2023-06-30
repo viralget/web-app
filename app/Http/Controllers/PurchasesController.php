@@ -71,6 +71,39 @@ class PurchasesController extends Controller
         // return Inertia::render('Recruiters/Pages/Purchases/Billing');
     }
 
+    public function preOrder(Request $request)
+    {
+
+        $reference = $request->reference;
+
+        $verify = Paystack::verify($reference);
+        $data['verify'] = $verify;
+
+        $user = request()->user();
+
+        $user_id =  $user->id;
+        if ($verify->status) {
+            $invoice = Invoice::create([
+                'user_id' => $user->id,
+                'amount' => $verify->data->amount / 100,
+                'description' => 'Influencers database',
+                'items' => 'Influencers database',
+                'total_amount' => $verify->data->amount / 100,
+                'tax' => 0,
+                'tax_rate' => 0,
+                'currency' => 'NGN',
+                'status' => 'paid',
+                'reference' => $request->reference,
+            ]);
+
+            if ($invoice) {
+                return response(['status' => true, 'message' => $verify->message]);
+            }
+        } else {
+            return response(['status' => false, 'message' => $verify->message]);
+        }
+    }
+
     public function verifyPayment(Request $request)
     {
 

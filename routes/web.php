@@ -26,6 +26,13 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/find-influencers', function () {
+    return Inertia::render('LandingPage/index');
+})->name('landing-page');
+Route::get('/pre-order', function () {
+    return Inertia::render('LandingPage/Preorder/index');
+})->name('preorder');
+Route::post('/pre-order', [PurchasesController::class, 'preOrder'])->name('preorder');
 
 Route::get('/join', function () {
     return Inertia::render('Join/index');

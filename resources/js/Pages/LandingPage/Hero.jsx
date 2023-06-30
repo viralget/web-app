@@ -18,7 +18,7 @@ import InstagramLogo from "@/../assets/images/instagram-logo.png";
 import YoutubeLogo from "@/../assets/images/youtube-logo.png";
 import TwitterLogo from "@/../assets/images/twitter-logo.png";
 // import HeroBanner from "@/../assets/images/hero-banner.svg";
-import HeroBanner from "@/../assets/images/home_bg.png";
+import HeroBanner from "@/../assets/images/display-find-landing-page.png";
 
 const brands = [
   // [
@@ -35,19 +35,39 @@ const brands = [
 
 export function Hero() {
   return (
-    <div className='relative w-full  lg:h-[65rem]' >
+    <div className='relative w-full ' >
 
 
       <div>
-        <div className="overflow-hidden p-5 relative  md:h-[49rem] pt-10 flex-1 bg-gradient-to-b from-[#FF9857]   via-[#FF9857] to-[#FA699D]">
+        <div className="overflow-hidden p-5 relative py-20 flex-1 bg-gradient-to-b from-[#FF9857]   via-[#FF9857] to-[#FA699D]">
 
-          <div className="flex items-center justify-center   max-w-6xl mx-auto  mt-space-70  ">
-            <div className='text-white  flex flex-col  text-center'>
-              <span className='font-lexend font-bold  text-t-xxlg   '>Data-driven End-to-end influencer <br /> marketing platform to drive your business forward</span>
-              <span className='font-normal text-center  text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Does your current influencer marketing lack data insight? Is your influencer management, execution & tracking approach exhausting?
-                <br />THEN VIRALGET WAS BUILT FOR YOU</span>
+          <div className='grid md:grid-cols-2 container mx-auto items-center md:text-left'>
+            <div>
+              <div className="">
+                <div className='text-white  flex flex-col '>
+                  <span className='font-lexend font-bold  text-t-xxlg text-center '>Spend less time searching for Influencers.</span>
+                  <span className='font-normal text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'> Get access to a database of influencers.</span>
+                </div>
+              </div>
+
+              <div className='py-10'>
+
+                <a href="#preorder" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
+
+                  <span className='font-lexend font-medium  text-white text-t-xsx'>Pre Order Now</span>
+                </a>
+
+              </div>
+            </div>
+            <div>
+              <div className=' lg:flex  overflow-hidden w-[600px] lg:mx-auto bg-gradient-to-b from-[#E0E0E080]   to-[#F2F2F233]    rounded-lg  border border-[#E0E0E04D] hidden top-[30rem] left-0 right-0  justify-center items-center'>
+                <div className='p-5 w-full h-full overflow-hidden  rounded-lg '>
+                  <img src={HeroBanner} className="object-cover" />
+                </div>
+              </div>
             </div>
           </div>
+
 
           <div className="absolute bottom-0 hidden md:flex w-full ">
             <div className=" relative opacity-25 w-full">
@@ -74,11 +94,7 @@ export function Hero() {
 
 
 
-        <div className=' absolute h-[500px]  lg:flex  overflow-hidden w-[1000px] lg:mx-auto bg-gradient-to-b from-[#E0E0E080]   to-[#F2F2F233]    rounded-lg  border border-[#E0E0E04D] hidden top-[30rem] left-0 right-0  justify-center items-center'>
-          <div className='p-5 w-full h-full overflow-hidden  rounded-lg '>
-            <img src={HeroBanner} className="object-cover" />
-          </div>
-        </div>
+
       </div>
 
 

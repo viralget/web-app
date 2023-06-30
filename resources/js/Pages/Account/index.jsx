@@ -159,6 +159,7 @@ export default function Account({ user }) {
 
                                     </div>
 
+
                                     <div className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20 lg:space-y-0 space-y-space-20 mt-space-20'>
                                         <Select options={[
                                             { name: 'C-level / VP', value: 'c-level/vp' },
