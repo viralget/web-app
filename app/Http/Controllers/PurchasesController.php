@@ -111,13 +111,13 @@ class PurchasesController extends Controller
 
         $verify = Paystack::verify($reference);
         $data['verify'] = $verify;
+        // dd($verify);
 
         $user = request()->user();
 
-        $user_id =  $user->id;
         if ($verify->status) {
             $invoice = Invoice::create([
-                'user_id' => $user->id,
+                'user_id' => $user?->id ?? 0,
                 'amount' => $verify->data->amount / 100,
                 'description' => 'Influencers database',
                 'items' => 'Influencers database',

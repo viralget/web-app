@@ -46,7 +46,7 @@ export function Hero() {
               <div className="">
                 <div className='text-white  flex flex-col '>
                   <span className='font-lexend font-bold  text-t-xxlg '>Spend less time searching for Influencers.</span>
-                  <span className='font-normal text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'> Get access to a database of influencers.</span>
+                  <span className='font-normal text-viralget-gray-light text-h1-x font-lexend mt-space-26 px-space-5'>Get access to a community of influencers. With the help of data filters, seamlessly activate and manage 100s of influencers from any location and industry of your choosing.</span>
                 </div>
               </div>
 

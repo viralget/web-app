@@ -154,7 +154,7 @@ export function Header({ useShadow = true }) {
                   {/* <div className="hidden md:block">
                     <NavLink href="/login" className="text-viralget-red rounded-md  text-t-xsx font-lexend font-medium px-space-30  py-space-15   border border-viralget-red">Log in</NavLink>
                   </div> */}
-                  <div className="hidden md:block">
+                  <div className=" md:block">
                     <a href="/register" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
 
                       <span className='font-lexend font-medium  text-white text-t-xsx'>Pre Order</span>
@@ -167,9 +167,9 @@ export function Header({ useShadow = true }) {
                   </Button> */}
                 </>
               }
-              <div className="-mr-1 md:hidden">
+              {/* <div className="-mr-1 md:hidden">
                 <MobileNavigation />
-              </div>
+              </div> */}
             </div>
           </nav>
         </Container>

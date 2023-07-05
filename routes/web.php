@@ -58,6 +58,8 @@ Route::get('/coming-soon', function () {
     return Inertia::render('ComingSoon/index');
 })->name('coming-soon');
 
+Route::post('/payments/verify/{reference}', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
+
 Route::middleware('auth')->group(
     function () {
         Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
@@ -107,7 +109,7 @@ Route::middleware('auth')->group(
             // Route::patch('/update-profile', [SettingsController::class, 'updateProfile'])->name('profile.update');
             // Route::patch('/update-password', [SettingsController::class, 'updatePassword'])->name('password.update');
         });
-        Route::post('/payments/verify/{reference}', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
+        // Route::post('/payments/verify/{reference}', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
 
 
         Route::resource('influencers', InfluencerController::class)->except('show');
