@@ -1,0 +1,1 @@
+import{R as e,L as o}from"./app.d447292e.js";const r="https://viralget.io/build/assets/logo.f2567785.png";function a(t){return e.createElement(o,{href:route("home")},e.createElement("img",{src:r,...t}))}export{a as L,r as l};
