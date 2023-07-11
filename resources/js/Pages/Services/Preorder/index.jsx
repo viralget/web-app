@@ -104,8 +104,8 @@ export default function Preorder() {
 
                     <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
                         <h1 className='leading-5 text-3xl my-10 font-extrabold text-center font-lexend'>Pre-order</h1>
-                        <h2 className="text-xl text-extrabold  text-center ">Access influencers based on your needs</h2>
-                        <p className=' text-center '>Get a compiled list of 60 influencers of any size in any industry of your choosing.</p>
+                        <h2 className="text-xl text-extrabold  text-center ">AAccess influencers based on your needs</h2>
+                        <p className=' text-center '>Get access to a community of influencers of any size and in any industry and location of your choosing</p>
 
                         <form className="my-10">
 
@@ -177,7 +177,7 @@ export default function Preorder() {
                                     </div>
 
                                 </div>
-                                {/* <p className='text-sm my-5'>First 60 business owners/brands to pre-order gets an extra 15 influencers *. Offer valid until 8th of July, 2023</p> */}
+                                {/* <p className='text-sm my-5'>First 60 business owners/brands to pre-order gets an extra 15 influencers *. Offer valid until 24th of July, 2023</p> */}
 
                             </div>
                         </form>
@@ -195,8 +195,14 @@ const Success = () => {
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="px-8 py-10 overflow-hidden lg:px-24 md:py-20 bg-gray-50 rounded-3xl">
                     <div className="max-w-2xl mx-auto text-center space-y-5">
-                        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-lexend">Thank you for making a pre-order!</h2>
-                        <p>We have received your request, and our team is processing already. We will send you the comprehensive influencer database within the next 24 hours.</p>
+                        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-lexend">Thank you for signing up as an early bird to #ViralGetPlatform! </h2>
+                        <p>We are thrilled to have you on board as a member of the #ViralGetPlatform community! 🎉and can’t wait for you to unleash the full potential of your influencer marketing campaigns with the help of data filters to seamlessly activate the right influencers for your campaign and manage them.</p>
+
+                        <p>On the last week of July 2023, access to our platform will be live 🚀 and you’ll be able to self serve yourself to access anyone of the 90,000+ influencers in our database.</p>
+
+                        <p> If you have any questions or need assistance, please don't hesitate to reach out to our friendly support team at <a className='font-bold text-primary' href="mailto:support@viralget.com.ng">support@viralget.com.ng</a></p>
+
+                        <p> Stay viral and keep creating!</p>
                     </div>
 
 

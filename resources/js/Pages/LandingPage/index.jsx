@@ -61,7 +61,7 @@ export default function Home({ trending_influncers }) {
                                         <div className='py-5'>
                                             <a href="/pre-order" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
 
-                                                <span className='font-lexend font-medium  text-white text-t-xsx'>Pre Order Now</span>
+                                                <span className='font-lexend font-medium  text-white text-t-xsx'>Early Bird Signup Now</span>
                                             </a>
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@ export default function Home({ trending_influncers }) {
                         <h2 class="text-xl font-medium text-gray-900">Trusted by the world’s top brands</h2>
                     </div>
 
-                    <div className="flex  flex-wrap  ">
+                    <div className="flex  flex-wrap justify-center ">
                         {brands.map((company, groupIndex) => (
                             <div key={groupIndex} className="p-5 flex items-center">  <img src={company.logo} className="h-space-40 invert" /> </div>
                         ))}

@@ -11,6 +11,7 @@ import Input from '@/Components/Input';
 import Select from '@/Components/Select';
 import MultiSelect from '@/Components/MultiSelect';
 import Label from '@/Components/Label';
+import { countries } from '@/Utils/defaults';
 
 export default function Preorder() {
 
@@ -112,9 +113,9 @@ export default function Preorder() {
 
                             <div className='grid md:grid-cols-2 gap-3 '>
                                 <Input type='text' label="Full Name" required name="full_name" onChange={handleChange} />
-                                <Input type='text' label="Company Name (optional)" name="company_name" onChange={handleChange} />
-                                <Input type='text' label="Email Address" required onChange={(e) => setEmail(getEventValue(e))} />
-                                <Input type='text' label="Phone Number" name="phone_number" onChange={handleChange} />
+                                <Input type='text' required label="Company Name (optional)" name="company_name" onChange={handleChange} />
+                                <Input type='text' required label="Email Address" onChange={(e) => setEmail(getEventValue(e))} />
+                                <Input type='text' required label="Phone Number" name="phone_number" onChange={handleChange} />
                                 <MultiSelect
                                     options={[
                                         { value: 'Instagram' },
@@ -122,9 +123,17 @@ export default function Preorder() {
                                     ]}
                                     label='Platform'
                                     name="platform"
+                                    required
                                     onChange={(values) => [...data?.platform ?? [], ...values].filter(onlyUnique)}
                                 />
-                                <Input type='text' label="Industry" name="industry" onChange={handleChange} />
+                                <Select
+                                    options={countries}
+                                    label='Country'
+                                    name="country"
+                                    required
+                                    onChange={(values) => [...data?.country ?? [], ...values].filter(onlyUnique)}
+                                />
+                                <Input type='text' required label="Industry" name="industry" onChange={handleChange} />
                             </div>
                             <div className='py-5'>
                                 <p className='text-bold text-xl my-2 font-lexend'>Size of Influencers</p>
@@ -177,7 +186,7 @@ export default function Preorder() {
                                     </div>
 
                                 </div>
-                                {/* <p className='text-sm my-5'>First 60 business owners/brands to pre-order gets an extra 15 influencers *. Offer valid until 8th of July, 2023</p> */}
+                                {/* <p className='text-sm my-5'>First 60 business owners/brands to pre-order gets an extra 15 influencers *. Offer valid until 24th of July, 2023</p> */}
 
                             </div>
                         </form>

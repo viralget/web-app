@@ -157,7 +157,7 @@ export function Header({ useShadow = true }) {
                   <div className=" md:block">
                     <a href="/register" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
 
-                      <span className='font-lexend font-medium  text-white text-t-xsx'>Pre Order</span>
+                      <span className='font-lexend font-medium  text-white text-t-xsx'>Early Bird Signup</span>
                     </a>
                   </div>
                   {/* <Button href="/join" color="blue">

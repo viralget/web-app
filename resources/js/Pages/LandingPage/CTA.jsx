@@ -22,7 +22,7 @@ const CTA = () => {
                             <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span className="ml-3 text-lg font-bold font-pj"> First 60 purchases gets 15 additional influencers </span>
+                            {/* <span className="ml-3 text-lg font-bold font-pj"> First 60 purchases gets 15 additional influencers </span> */}
                         </li>
 
 
@@ -52,7 +52,7 @@ const CTA = () => {
                             </a> */}
                         </div>
 
-                        <p className="mt-5 text-sm font-normal text-gray-500 font-pj">Offer valid until 8th of July, 2023. The first 100 business owner/brand to pre-order get access to 20 extra influencers</p>
+                        <p className="mt-5 text-sm font-normal text-gray-500 font-pj">Offer valid until 24th of July, 2023. The first 100 business owner/brand to pre-order get access to 20 extra influencers</p>
                     </div>
                 </div>
             </div>

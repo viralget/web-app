@@ -12,7 +12,7 @@ export default function Feature1() {
                     </div>
 
                     <div>
-                        <img className="w-full max-w-md mx-auto" src={Feature1Img} alt="" />
+                        <img className="w-full max-w-lg mx-auto" src={Feature1Img} alt="" />
                     </div>
                 </div>
             </div>

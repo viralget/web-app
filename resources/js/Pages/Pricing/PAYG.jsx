@@ -151,7 +151,7 @@ export default function PAYG({ plan }) {
                             </div>
 
                         </div>
-                        <p className='text-sm my-5'>First 60 business owners/brands to pre-order gets an extra 15 influencers *. Offer valid until 8th of July, 2023</p>
+                        <p className='text-sm my-5'>First 60 business owners/brands to pre-order gets an extra 15 influencers *. Offer valid until 24th of July, 2023</p>
 
                     </div>
                 </form>

@@ -54,7 +54,7 @@ export function Hero() {
 
                 <a href="/pre-order" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
 
-                  <span className='font-lexend font-medium  text-white text-t-xsx'>Pre Order Now</span>
+                  <span className='font-lexend font-medium  text-white text-t-xsx'>Early Bird Signup Now</span>
                 </a>
 
               </div>
