@@ -193,6 +193,10 @@ export const availableCurrency = [
 
 export const header_routes = [
     {
+        name: "Services",
+        href: route('services')
+    },
+    {
         name: "Pricing",
         href: route('pricing.page')
     },

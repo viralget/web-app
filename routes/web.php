@@ -42,6 +42,10 @@ Route::get('/faqs', function () {
     return Inertia::render('Faqs/index');
 })->name('faqs');
 
+Route::get('/services', function () {
+    return Inertia::render('Services/index');
+})->name('services');
+
 Route::get('/contact', function () {
     return Inertia::render('Contact/index');
 })->name('contact');
