@@ -20,7 +20,8 @@ export default defineConfig({
         jsxInject: `import React from 'react'`,
     },
     server: {
-        host: 'viralget.io',
+        // host: 'viralget.io'
+        // host: 'localhost',
         // port: 3000,
     }
 });
