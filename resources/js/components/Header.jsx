@@ -136,9 +136,9 @@ export function Header({ useShadow = true }) {
           <nav className="relative flex justify-between">
             <div className="flex items-center md:gap-x-12">
               <div>
-                <Link href="/" aria-label="Home">
-                  <Logo className="h-10 w-auto" />
-                </Link>
+                {/* <Link href="/" aria-label="Home"> */}
+                <Logo className="h-10 w-auto" />
+                {/* </Link> */}
               </div>
             </div>
             <div className="hidden font-bold justify-center items-center md:flex md:gap-x-3">

@@ -1,3 +1,4 @@
+import { classNames } from "@/Utils/helpers";
 
 export default function Button({ type = 'submit', size = 'large', isDark = false, isLight, icon, rounded = true, transparent, block = false, usePrimary, bgColor = "bg-white", textColor = 'text-gray-900', borderColor, className = '', processing, children, href, onClick, disabled, target }) {
 
@@ -21,6 +22,7 @@ export default function Button({ type = 'submit', size = 'large', isDark = false
         href={href}
         className={_className}
         onClick={onClick}
+        disabled={disabled}
         target={target ?? '_self'}
       >
         <div className="flex w-full text-center justify-center focus:ring-offset-0">
@@ -34,7 +36,7 @@ export default function Button({ type = 'submit', size = 'large', isDark = false
         disabled={processing || disabled}
         onClick={onClick}
       >
-        <div className=" w-full text-center justify-center items-center inline-flex">
+        <div className={classNames(" w-full text-center justify-center items-center inline-flex", disabled && 'opacity-20')}>
           {icon}
           {processing && 'Please wait...'} {children}
         </div>

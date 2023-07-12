@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '@/Components/Button'
 import { usePage } from '@inertiajs/inertia-react'
 import PaystackPop from '@paystack/inline-js';
@@ -12,6 +12,7 @@ import Select from '@/Components/Select';
 import MultiSelect from '@/Components/MultiSelect';
 import Label from '@/Components/Label';
 import { countries } from '@/Utils/defaults';
+import ValidationErrors from '@/Components/ValidationErrors';
 
 export default function Preorder() {
 
@@ -25,7 +26,20 @@ export default function Preorder() {
     const [email, setEmail] = useState('');
     const [data, setData] = useState({});
     const [showSuccess, setShowSuccess] = useState(false);
+    const [canMakePayment, setCanMakePayment] = useState(false);
+    const [errors, setErrors] = useState({});
 
+    // useEffect(() => {
+    //     console.log({ data })
+
+    //     if (email && data.full_name && data.country && data.company_name && data.phone_number && data.industry && data.platform) {
+    //         console.log('can go')
+    //         setCanMakePayment(true);
+    //     } else {
+    //         setCanMakePayment(false);
+    //     }
+
+    // })
 
     function handleChange(e) {
         e.preventDefault(e);
@@ -47,9 +61,40 @@ export default function Preorder() {
     function payWithPaystack(e) {
         e.preventDefault();
 
-        console.log({ data })
+        let _errors = [];
+
+
         if (!email) {
-            alert('Please enter your email address')
+            _errors.push('Please enter your email address')
+        }
+
+        if (!data.full_name) {
+            _errors.push('Fullname field is required')
+        }
+
+        if (!data.country) {
+            _errors.push('Country field is required')
+        }
+
+        if (!data.phone_number) {
+            _errors.push('Phone number field is required')
+        }
+
+        if (!data.industry) {
+            _errors.push('Industry field is required')
+        }
+        if (!data.platform) {
+            _errors.push('Platform field is required')
+        }
+
+        // if (email && data.full_name && data.country && data.company_name && data.phone_number && data.industry && data.platform) {
+
+
+        if (_errors.length) {
+            toast.error('Please fill out all required fields');
+            window.location.href = "#pre-order"
+            setErrors(_errors)
+            return;
         }
 
         setIsLoading(true);
@@ -69,10 +114,12 @@ export default function Preorder() {
                 // Payment complete! Reference: transaction.reference 
                 // console.log({ transaction })
                 verifyPayment(transaction.reference);
+                setErrors({})
             },
             onCancel: () => {
                 // user closed popup
                 console.log("You need this, stay back!")
+                setErrors({})
             }
         });
 
@@ -108,7 +155,9 @@ export default function Preorder() {
                         <h2 className="text-xl text-extrabold  text-center ">Access influencers based on your needs</h2>
                         <p className=' text-center '>Get a compiled list of 60 influencers of any size in any industry of your choosing.</p>
 
-                        <form className="my-10">
+                        <form className="my-10" id="pre-order">
+
+                            <ValidationErrors errors={errors} />
 
 
                             <div className='grid md:grid-cols-2 gap-3 '>
@@ -124,14 +173,14 @@ export default function Preorder() {
                                     label='Platform'
                                     name="platform"
                                     required
-                                    onChange={(values) => [...data?.platform ?? [], ...values].filter(onlyUnique)}
+                                    onChange={(values) => handleUpdateData('platform', [...data?.platform ?? [], ...values].filter(onlyUnique))}
                                 />
                                 <Select
                                     options={countries}
                                     label='Country'
                                     name="country"
                                     required
-                                    onChange={(values) => [...data?.country ?? [], ...values].filter(onlyUnique)}
+                                    onChange={handleChange}
                                 />
                                 <Input type='text' required label="Industry" name="industry" onChange={handleChange} />
                             </div>
@@ -179,6 +228,7 @@ export default function Preorder() {
                                 >Make Payment</PaymentButton> */}
                                         <Button isDark block className='block'
                                             onClick={payWithPaystack}
+                                        // disabled={!canMakePayment}
                                         >
                                             Pre-Order now
                                         </Button>
