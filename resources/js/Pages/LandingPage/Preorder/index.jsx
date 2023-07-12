@@ -44,8 +44,20 @@ export default function Preorder() {
     function handleChange(e) {
         e.preventDefault(e);
 
+
         let field = e.target.name;
         let value = e.target.value;
+
+        console.log({ field })
+
+        if (['nano_count', 'micro_count', 'macro_count', 'mega_count', 'mid_tier_count'].includes(field)) {
+            if (value > 20 || value < 1) {
+                alert(`Value can only be between 1 and 20`)
+                value = 1;
+                return;
+            }
+        }
+
 
         handleUpdateData(field, value)
     }
