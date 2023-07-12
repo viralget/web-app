@@ -14,6 +14,11 @@ import Label from '@/Components/Label';
 import { countries } from '@/Utils/defaults';
 import ValidationErrors from '@/Components/ValidationErrors';
 
+const influencer_types = ['nano', 'micro', 'macro', 'mega', 'mid-tier'];
+
+const influencer_type_options = new Array(20).fill(0).map((value, index) => ({ value: index + 1 }));
+
+console.log({ influencer_type_options })
 export default function Preorder() {
 
     const { auth } = usePage().props;
@@ -50,10 +55,10 @@ export default function Preorder() {
 
         console.log({ field })
 
-        if (['nano_count', 'micro_count', 'macro_count', 'mega_count', 'mid_tier_count'].includes(field)) {
+        if (influencer_types.includes(field)) {
             if (value > 20 || value < 1) {
                 alert(`Value can only be between 1 and 20`)
-                value = 1;
+                // value = 1;
                 return;
             }
         }
@@ -100,7 +105,7 @@ export default function Preorder() {
             _errors.push('Industry field is required')
         }
 
-        console.log({ p: data })
+        // console.log({ p: data })
         if (data.platform.length <= 0) {
             _errors.push('Platform field is required')
         }
@@ -205,11 +210,22 @@ export default function Preorder() {
                             <div className='py-5'>
                                 <p className='text-bold text-xl my-2 font-lexend'>Size of Influencers</p>
                                 <div className='grid md:grid-cols-3 gap-3'>
-                                    <Input type='number' min="0" max="20" label="Nano" name="nano_count" onChange={handleChange} />
+
+                                    {influencer_types.map(type => (
+                                        <Select
+                                            options={influencer_type_options}
+                                            label={type}
+                                            name={type}
+                                            required
+                                            onChange={handleChange}
+                                        />
+                                    )
+                                    )}
+                                    {/* <Input type='number' min="0" max="20" label="Nano" name="nano_count" onChange={handleChange} />
                                     <Input type='number' min="0" max="20" label="Micro" name="micro_count" onChange={handleChange} />
                                     <Input type='number' min="0" max="20" label="Mid-tier" name="mid_tier_count" onChange={handleChange} />
                                     <Input type='number' min="0" max="20" label="Macro" name="macro_count" onChange={handleChange} />
-                                    <Input type='number' min="0" max="20" label="Mega" name="mega_count" onChange={handleChange} />
+                                    <Input type='number' min="0" max="20" label="Mega" name="mega_count" onChange={handleChange} /> */}
                                 </div>
                             </div>
 

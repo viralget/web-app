@@ -59,9 +59,15 @@ export default function Select({
                 onChange={(e) => onChange(e)}
             >
                 <option value="">{defaultOptionText ?? 'Select option'}</option>
-                {options.length && options.map((item, key) => (
-                    <option value={item.value || item.value == '' ? item.value : item.name} className="capitalize" key={key}>{item.name.replace('-', ' ')}</option>
-                ))}
+                {options.length && options.map((item, key) => {
+                    let name = (item.name ?? item.value).toString();
+                    let value = item.value ?? item.name;
+
+                    return (
+                        <option value={item.value || item.value == '' ? item.value : item.name} className="capitalize" key={key}>{name != '' ? name.replace('-', ' ') : name} </option>
+                    )
+                }
+                )}
             </select>
         </div>
     );

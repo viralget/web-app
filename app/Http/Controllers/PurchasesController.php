@@ -107,33 +107,37 @@ class PurchasesController extends Controller
     public function verifyPayment(Request $request)
     {
 
-        $reference = $request->reference;
+        try {
+            $reference = $request->reference;
 
-        $verify = Paystack::verify($reference);
-        $data['verify'] = $verify;
-        // dd($verify);
+            $verify = Paystack::verify($reference);
+            $data['verify'] = $verify;
+            // dd($verify);
 
-        $user = request()->user();
+            $user = request()->user();
 
-        if ($verify->status) {
-            $invoice = Invoice::create([
-                'user_id' => $user?->id ?? 0,
-                'amount' => $verify->data->amount / 100,
-                'description' => 'Influencers database',
-                'items' => 'Influencers database',
-                'total_amount' => $verify->data->amount / 100,
-                'tax' => 0,
-                'tax_rate' => 0,
-                'currency' => 'NGN',
-                'status' => 'paid',
-                'reference' => $request->reference,
-            ]);
+            if ($verify->status) {
+                $invoice = Invoice::create([
+                    'user_id' => $user?->id ?? 0,
+                    'amount' => $verify->data->amount / 100,
+                    'description' => 'Influencers database',
+                    'items' => 'Influencers database',
+                    'total_amount' => $verify->data->amount / 100,
+                    'tax' => 0,
+                    'tax_rate' => 0,
+                    'currency' => 'NGN',
+                    'status' => 'paid',
+                    'reference' => $request->reference,
+                ]);
 
-            if ($invoice) {
-                return response(['status' => true, 'message' => $verify->message]);
+                if ($invoice) {
+                    return response(['status' => true, 'message' => $verify->message]);
+                }
+            } else {
+                return response(['status' => false, 'message' => $verify->message]);
             }
-        } else {
-            return response(['status' => false, 'message' => $verify->message]);
+        } catch (\Exception $e) {
+            return response(['status' => false, 'message' => $e->getMessage()]);
         }
     }
 }
