@@ -6,22 +6,23 @@ import Label from './Label';
 export const inputStyle = "block text-md text-gray-500 w-full appearance-none rounded-md border border-gray-200/90 p-3 py-3 placeholder-gray-400 focus:border-black focus:ring-black";
 
 
-export default function Input({
-    type = 'text',
-    label,
-    explainer,
-    id,
-    name,
-    value,
-    className,
-    autoComplete,
-    required,
-    isFocused,
-    onChange,
-    placeholder,
-    defaultValue,
-    icon
-}) {
+export default function Input(props) {
+    const {
+        type = 'text',
+        label,
+        explainer,
+        id,
+        name,
+        value,
+        className,
+        autoComplete,
+        required,
+        isFocused,
+        onChange,
+        placeholder,
+        defaultValue,
+        icon,
+    } = props;
     // const input = useRef();
 
     // useEffect(() => {
@@ -60,6 +61,7 @@ export default function Input({
                     autoComplete={autoComplete}
                     required={required}
                     onChange={(e) => onChange(e)}
+                    {...props}
                 />
             </div>
         </div>
