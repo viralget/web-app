@@ -158,7 +158,7 @@ export default function Preorder() {
             setTimeout(function () {
                 setShowSuccess(true);
 
-                // window.location.href = route('billings.index');
+                // window.location.href = route('preorder.success');
             }, 2000);
         } else {
             toast.error('Something went wrong');

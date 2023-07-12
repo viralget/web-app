@@ -33,7 +33,9 @@ Route::get('/pre-order', function () {
     return Inertia::render('LandingPage/Preorder/index');
 })->name('preorder');
 Route::post('/pre-order', [PurchasesController::class, 'preOrder'])->name('preorder');
-
+Route::get('/pre-order/success', function () {
+    return Inertia::render('LandingPage/Preorder/Success');
+})->name('preorder.success');
 Route::get('/join', function () {
     return Inertia::render('Join/index');
 })->name('join');

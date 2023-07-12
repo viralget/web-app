@@ -81,6 +81,7 @@ class PurchasesController extends Controller
 
         $user = request()->user();
 
+
         $user_id =  $user->id;
         if ($verify->status) {
             $invoice = Invoice::create([
@@ -93,6 +94,7 @@ class PurchasesController extends Controller
                 'tax_rate' => 0,
                 'currency' => 'NGN',
                 'status' => 'paid',
+                // 'status_comment' => json_encode(''),
                 'reference' => $request->reference,
             ]);
 
@@ -100,6 +102,7 @@ class PurchasesController extends Controller
                 return response(['status' => true, 'message' => $verify->message]);
             }
         } else {
+            // dd('');
             return response(['status' => false, 'message' => $verify->message]);
         }
     }
@@ -127,6 +130,7 @@ class PurchasesController extends Controller
                     'tax_rate' => 0,
                     'currency' => 'NGN',
                     'status' => 'paid',
+                    'status_comment' => json_encode($verify->data->metadata),
                     'reference' => $request->reference,
                 ]);
 
