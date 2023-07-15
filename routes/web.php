@@ -64,7 +64,15 @@ Route::get('/coming-soon', function () {
     return Inertia::render('ComingSoon/index');
 })->name('coming-soon');
 
-Route::post('/payments/verify/{reference}', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
+Route::post('/payments/verify', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
+Route::prefix('transactions')->name('payments.')->group(
+    function () {
+
+
+        Route::post('/create-customer', [PurchasesController::class, 'stripeCreateCustomer'])->name('stripe.customer.create');
+        Route::post('/stripe-create-intent', [PurchasesController::class, 'stripeCreateIntent'])->name('stripe.intent');
+    }
+);
 
 Route::middleware('auth')->group(
     function () {

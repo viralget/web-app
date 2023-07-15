@@ -13,18 +13,21 @@ import MultiSelect from '@/Components/MultiSelect';
 import Label from '@/Components/Label';
 import { countries } from '@/Utils/defaults';
 import ValidationErrors from '@/Components/ValidationErrors';
+import CurrencySelector from './CurrencySelector';
+import StripePaymentButton from '@/Components/PaymentButton/StripePaymentButton';
 
 const influencer_types = ['nano', 'micro', 'macro', 'mega', 'mid-tier'];
 
 const influencer_type_options = new Array(20).fill(0).map((value, index) => ({ value: index + 1 }));
 
-console.log({ influencer_type_options })
+// console.log({ influencer_type_options })
 export default function Preorder() {
 
     const { auth } = usePage().props;
     const { user } = auth;
 
     const amount = 19999;
+    const amount_usd = 20;
 
     const [buttText, setPaymentText] = useState("Continue");
     const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +36,7 @@ export default function Preorder() {
     const [showSuccess, setShowSuccess] = useState(false);
     const [canMakePayment, setCanMakePayment] = useState(false);
     const [errors, setErrors] = useState({});
+    const [currency, setCurrency] = useState('NGN');
 
     // useEffect(() => {
     //     console.log({ data })
@@ -136,7 +140,14 @@ export default function Preorder() {
             onSuccess: (transaction) => {
                 // Payment complete! Reference: transaction.reference 
                 // console.log({ transaction })
-                verifyPayment(transaction.reference);
+
+                const payment_data = {
+                    reference: transaction.reference,
+                    payment_gateway: 'paystack',
+                    metadata: data
+                }
+
+                verifyPayment(payment_data);
                 setErrors({})
             },
             onCancel: () => {
@@ -149,16 +160,16 @@ export default function Preorder() {
 
     }
 
-    async function verifyPayment(reference) {
+    async function verifyPayment(payment_data) {
         setPaymentText("Verifying payment..")
-        const response = await post(route("payments.verify", { reference }));
+        const response = await post(route("payments.verify"), payment_data);
 
         if (response.data.status) {
             toast.success('Payment verification successful');
             setTimeout(function () {
                 setShowSuccess(true);
 
-                // window.location.href = route('preorder.success');
+                window.location.href = route('preorder.success');
             }, 2000);
         } else {
             toast.error('Something went wrong');
@@ -174,7 +185,7 @@ export default function Preorder() {
                 <div className="home-bg  h-screen overflow-hidden"  >
 
                     <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-                        <h1 className='leading-5 text-3xl my-10 font-extrabold text-center font-lexend'>Pre-order</h1>
+                        <h1 className='leading-5 text-3xl my-10 font-extrabold text-center font-lexend'>Early Bird Signup</h1>
                         <h2 className="text-xl text-extrabold  text-center ">Access influencers based on your needs</h2>
                         <p className=' text-center '>Get access to a community of influencers of any size and in any industry and location of your choosing.</p>
 
@@ -182,6 +193,9 @@ export default function Preorder() {
 
                             <ValidationErrors errors={errors} />
 
+                            <div class="text-center py-10">
+                                <CurrencySelector onChange={setCurrency} />
+                            </div>
 
                             <div className='grid md:grid-cols-2 gap-3 '>
                                 <Input type='text' label="Full Name" required name="full_name" onChange={handleChange} />
@@ -237,7 +251,7 @@ export default function Preorder() {
                                     <dl className="space-y-6 border-gray-200 px-4 py-6 sm:px-6">
                                         <div className="flex items-center justify-between pt-6">
                                             <dt className="text-base font-medium">Total</dt>
-                                            <dd className="text-base font-medium text-gray-900">{nairaSymbol} {amount}  <s className='text-red-600'>60,000</s></dd>
+                                            <dd className="text-base font-medium text-gray-900">{currency == 'NGN' ? <>{nairaSymbol} {amount}</> : <>${amount_usd}</>} <s className='text-red-600'>{currency == 'NGN' ? '60,000' : 45}</s></dd>
                                         </div>
                                     </dl>
 
@@ -260,13 +274,29 @@ export default function Preorder() {
                                 }}
 
                                 >Make Payment</PaymentButton> */}
-                                        <Button isDark block className='block'
-                                            onClick={payWithPaystack}
-                                        // disabled={!canMakePayment}
-                                        >
-                                            Pre-Order now
-                                        </Button>
+                                        {currency == 'NGN' ?
+                                            <Button isDark block className='block'
+                                                onClick={payWithPaystack}
+                                            // disabled={!canMakePayment}
+                                            >
+                                                Early Bird signup now
+                                            </Button>
+                                            :
+                                            <StripePaymentButton
+                                                {...{
+                                                    email,
+                                                    amount_usd: amount_usd,
+                                                    metadata: data,
+                                                    paymentDataExtras: {
+                                                        // job_listing_id: job.id,
+                                                    },
+                                                    type: 'paid-listing',
+                                                    paymentVerificationRoute: route("payments.verify"),
+                                                    successRedirectsTo: route('preorder.success'),
+                                                }}
 
+                                                amount={amount_usd ?? amount} >Early Bird signup now</StripePaymentButton>
+                                        }
                                     </div>
 
                                 </div>

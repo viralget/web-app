@@ -63,5 +63,7 @@ return [
         'live_sk' => env('PAYSTACK_SK'),
     ],
 
-
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET_KEY'),
+    ],
 ];
