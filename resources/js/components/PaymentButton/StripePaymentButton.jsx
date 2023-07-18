@@ -26,6 +26,7 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
     const stripe = useStripe();
     const [paymentRequest, setPaymentRequest] = useState(null);
 
+    // console.log({ metadata })
     // amount = 
 
     useEffect(() => {
@@ -73,7 +74,7 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
             // redirect to success page
 
             setInterval(() => {
-                window.location.href = successRedirectsTo;
+                // window.location.href = successRedirectsTo;
             }, 300);
         } else {
             toast.error('An error occurred. Please contact admin')
@@ -107,6 +108,7 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
 
             if (!customer?.data) {
                 ev.complete('fail');
+                return;
             }
 
             console.log({ ev, customer })
@@ -117,13 +119,13 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
             }
 
             const response = await post(route('payments.stripe.intent'), data)
-            console.log({ response, data })
 
             const clientSecret = response?.data?.client_secret;
 
 
             if (!clientSecret) {
                 ev.complete('fail');
+                return;
             }
 
             const confirmation = await stripe.confirmCardPayment(
@@ -134,7 +136,7 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
 
             const { paymentIntent, error: confirmError } = confirmation;
 
-            console.log({ confirmation })
+            // console.log({ confirmation })
 
             // console.log({ clientSecret, response })
 
@@ -143,6 +145,7 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
                 // re-show the payment interface, or show an error message and close
                 // the payment interface.
                 ev.complete('fail');
+                return;
             } else {
                 // Report to the browser that the confirmation was successful, prompting
                 // it to close the browser payment method collection interface.
@@ -170,13 +173,13 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
         });
 
 
-        return <Button isLink={isLink} usePrimary block disabled={disabled} className={className} onClick={() => {
+        return <Button block type="button" isLink={isLink} usePrimary disabled={disabled} className={className} onClick={() => {
             paymentRequest.show()
         }}>{children ?? 'Make Payment'}</Button>
         return <PaymentRequestButtonElement options={options} />
     }
 
-    return null;
+    return <Button block type="button" isLink={isLink} usePrimary disabled={true} className={className} >{children ?? 'Make Payment'}</Button>;
 
 };
 

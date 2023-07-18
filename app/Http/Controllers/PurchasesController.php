@@ -149,7 +149,7 @@ class PurchasesController extends Controller
                     'tax_rate' => 0,
                     'currency' => 'NGN',
                     'status' => 'paid',
-                    'status_comment' => json_encode($verify['data']['metadata']),
+                    'status_comment' => json_encode($verify['data']['metadata'], JSON_PRETTY_PRINT),
                     'reference' => $request->reference,
                 ]);
 
@@ -162,7 +162,7 @@ class PurchasesController extends Controller
         } catch (\Exception $e) {
             $this->log($e);
 
-            dd($e);
+            // dd($e);
             return response(['status' => false, 'message' => $e->getMessage()]);
         }
     }
@@ -193,7 +193,6 @@ class PurchasesController extends Controller
                 $metadata =  array_merge($metadata, $request->metadata);
             }
 
-
             $intent = $this->stripeService->createPaymentIntent([
                 'amount' => $request->amount,
                 'customer' => $request->customer_id,
@@ -205,7 +204,6 @@ class PurchasesController extends Controller
         } catch (\Exception $e) {
             $this->log($e);
 
-            dd($e);
             return false;
         }
     }

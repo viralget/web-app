@@ -53,9 +53,10 @@ class StripeService implements PaymentServiceInterface
                     'payment_gateway' => 'stripe',
                     'currency' => 'USD',
                     'plan_id' => isset($response['metadata']['plan_id']) ? $response['metadata']['plan_id'] : null,
-                    'metadata' => (array)$response['metadata'],
+                    'metadata' => $response['metadata'],
                     // 'metadata' => $,
                 ]
+
 
                 // 'data' => json_decode($response->body(), true),
             ];

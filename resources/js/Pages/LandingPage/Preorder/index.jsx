@@ -15,6 +15,7 @@ import { countries } from '@/Utils/defaults';
 import ValidationErrors from '@/Components/ValidationErrors';
 import CurrencySelector from './CurrencySelector';
 import StripePaymentButton from '@/Components/PaymentButton/StripePaymentButton';
+import { useRef } from 'react';
 
 const influencer_types = ['nano', 'micro', 'macro', 'mega', 'mid-tier'];
 
@@ -23,13 +24,9 @@ const influencer_type_options = new Array(20).fill(0).map((value, index) => ({ v
 // console.log({ influencer_type_options })
 export default function Preorder() {
 
-    const { auth } = usePage().props;
-    const { user } = auth;
-
     const amount = 19999;
     const amount_usd = 20;
 
-    const [buttText, setPaymentText] = useState("Continue");
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [data, setData] = useState({});
@@ -37,18 +34,27 @@ export default function Preorder() {
     const [canMakePayment, setCanMakePayment] = useState(false);
     const [errors, setErrors] = useState({});
     const [currency, setCurrency] = useState('NGN');
+    const [stripeProps, setStripeProps] = useState({});
 
-    // useEffect(() => {
-    //     console.log({ data })
 
-    //     if (email && data.full_name && data.country && data.company_name && data.phone_number && data.industry && data.platform) {
-    //         console.log('can go')
-    //         setCanMakePayment(true);
-    //     } else {
-    //         setCanMakePayment(false);
-    //     }
+    useEffect(() => {
+        checkIsValidFields();
+        // console.log({ data })
+    }, [email, data])
 
-    // })
+    useEffect(() => {
+        setStripeProps({
+            email,
+            amount_usd: amount_usd,
+            metadata: data,
+            paymentDataExtras: {
+                // job_listing_id: job.id,
+            },
+            type: 'paid-listing',
+            paymentVerificationRoute: route("payments.verify"),
+            successRedirectsTo: route('preorder.success'),
+        })
+    }, [email, data])
 
     function handleChange(e) {
         e.preventDefault(e);
@@ -56,16 +62,6 @@ export default function Preorder() {
 
         let field = e.target.name;
         let value = e.target.value;
-
-        console.log({ field })
-
-        if (influencer_types.includes(field)) {
-            if (value > 20 || value < 1) {
-                alert(`Value can only be between 1 and 20`)
-                // value = 1;
-                return;
-            }
-        }
 
 
         handleUpdateData(field, value)
@@ -76,14 +72,12 @@ export default function Preorder() {
 
         _data[field] = value;
 
-        setData(data)
+        setData(_data);
+        checkIsValidFields()
     }
 
-    function payWithPaystack(e) {
-        e.preventDefault();
-
-        let _errors = [];
-
+    const checkIsValidFields = () => {
+        const _errors = [];
 
         if (!email) {
             _errors.push('Please enter your email address')
@@ -110,9 +104,22 @@ export default function Preorder() {
         }
 
         // console.log({ p: data })
-        if (data.platform.length <= 0) {
+        if (!data.platform) {
             _errors.push('Platform field is required')
         }
+
+        console.log({ x: _errors.length, data })
+        if (_errors.length) {
+            setCanMakePayment(false);
+        } else {
+            setCanMakePayment(true);
+        }
+
+        return _errors;
+    }
+
+    function handleValidate() {
+        const _errors = checkIsValidFields();
 
         // if (email && data.full_name && data.country && data.company_name && data.phone_number && data.industry && data.platform) {
 
@@ -121,11 +128,32 @@ export default function Preorder() {
             toast.error('Please fill out all required fields');
             window.location.href = "#pre-order"
             setErrors(_errors)
-            return;
+            // e.stopPropagation();
+
+            return false;
         }
 
+        setErrors([]);
+        return true;
+    }
+
+    function payWithStripe() {
+
+
+        if (handleValidate()) {
+            return true;
+        }
+        return false;
+    }
+
+    function payWithPaystack(e) {
+        e.preventDefault();
+
+
+        handleValidate(e);
+
         setIsLoading(true);
-        setPaymentText("Initiating payment...");
+        // setPaymentText("Initiating payment...");
         // console.log({ d: import.meta.env })
 
         const paystack = new PaystackPop();
@@ -134,7 +162,10 @@ export default function Preorder() {
             email: email,
             amount: amount * 100, //plan.amount * 100,
             reference: (new Date()).getTime().toString(),
-            metadata: data,
+            metadata: {
+                ...data,
+                platform: data.platform
+            },
             // plan: plan.plan_code,
 
             onSuccess: (transaction) => {
@@ -161,16 +192,14 @@ export default function Preorder() {
     }
 
     async function verifyPayment(payment_data) {
-        setPaymentText("Verifying payment..")
+        // setPaymentText("Verifying payment..")
         const response = await post(route("payments.verify"), payment_data);
 
         if (response.data.status) {
             toast.success('Payment verification successful');
-            setTimeout(function () {
-                setShowSuccess(true);
 
-                window.location.href = route('preorder.success');
-            }, 2000);
+            window.location.href = route('preorder.success');
+
         } else {
             toast.error('Something went wrong');
         }
@@ -191,11 +220,12 @@ export default function Preorder() {
 
                         <form className="my-10" id="pre-order">
 
-                            <ValidationErrors errors={errors} />
 
-                            <div class="text-center py-10">
+                            <div className="text-center py-10">
                                 <CurrencySelector onChange={setCurrency} />
                             </div>
+
+                            <ValidationErrors errors={errors} />
 
                             <div className='grid md:grid-cols-2 gap-3 '>
                                 <Input type='text' label="Full Name" required name="full_name" onChange={handleChange} />
@@ -210,7 +240,7 @@ export default function Preorder() {
                                     label='Platform'
                                     name="platform"
                                     required
-                                    onChange={(values) => handleUpdateData('platform', [...data?.platform ?? [], ...values].filter(onlyUnique))}
+                                    onChange={(values) => handleUpdateData('platform', [...values]?.filter(onlyUnique).join(','))}
                                 />
                                 <Select
                                     options={countries}
@@ -225,22 +255,26 @@ export default function Preorder() {
                                 <p className='text-bold text-xl my-2 font-lexend'>Size of Influencers</p>
                                 <div className='grid md:grid-cols-3 gap-3'>
 
-                                    {influencer_types.map(type => (
-                                        <Select
-                                            options={influencer_type_options}
-                                            label={type}
-                                            name={type}
-                                            required
-                                            onChange={handleChange}
-                                        />
+                                    {influencer_types.map((type, index) => (
+                                        <Input type='number' min="0" max="100" label="Micro" name="micro_count" onChange={handleChange} />
+                                        // <Select
+                                        //     key={index}
+                                        //     options={influencer_type_options}
+                                        //     label={type}
+                                        //     name={type}
+                                        //     // required
+                                        //     onChange={handleChange}
+                                        // />
                                     )
                                     )}
+
                                     {/* <Input type='number' min="0" max="20" label="Nano" name="nano_count" onChange={handleChange} />
                                     <Input type='number' min="0" max="20" label="Micro" name="micro_count" onChange={handleChange} />
                                     <Input type='number' min="0" max="20" label="Mid-tier" name="mid_tier_count" onChange={handleChange} />
                                     <Input type='number' min="0" max="20" label="Macro" name="macro_count" onChange={handleChange} />
                                     <Input type='number' min="0" max="20" label="Mega" name="mega_count" onChange={handleChange} /> */}
                                 </div>
+                                <p className='font-bold text-sm my-3'>NB: Only a maximum sum total of 100 influencers is allowed </p>
                             </div>
 
                             {/* Order summary */}
@@ -277,25 +311,20 @@ export default function Preorder() {
                                         {currency == 'NGN' ?
                                             <Button isDark block className='block'
                                                 onClick={payWithPaystack}
-                                            // disabled={!canMakePayment}
+                                                disabled={!canMakePayment}
                                             >
                                                 Early Bird signup now
                                             </Button>
                                             :
-                                            <StripePaymentButton
-                                                {...{
-                                                    email,
-                                                    amount_usd: amount_usd,
-                                                    metadata: data,
-                                                    paymentDataExtras: {
-                                                        // job_listing_id: job.id,
-                                                    },
-                                                    type: 'paid-listing',
-                                                    paymentVerificationRoute: route("payments.verify"),
-                                                    successRedirectsTo: route('preorder.success'),
-                                                }}
+                                            <>
 
-                                                amount={amount_usd ?? amount} >Early Bird signup now</StripePaymentButton>
+                                                <div className=''>
+                                                    <StripePaymentButton
+                                                        {...stripeProps}
+                                                        disabled={!canMakePayment}
+                                                        amount={amount_usd ?? amount} >Early Bird signup now</StripePaymentButton>
+                                                </div>
+                                            </>
                                         }
                                     </div>
 
