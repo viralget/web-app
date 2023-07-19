@@ -35,7 +35,7 @@ export default function Input(props) {
         <div className="relative">
 
             {icon && (
-                <div className='absolute  bottom-4 left-3 '>
+                <div className='absolute  bottom-4 left-3 capitalize'>
                     {icon}
                 </div>
 

@@ -256,7 +256,7 @@ export default function Preorder() {
                                 <div className='grid md:grid-cols-3 gap-3'>
 
                                     {influencer_types.map((type, index) => (
-                                        <Input type='number' min="0" max="100" label="Micro" name="micro_count" onChange={handleChange} />
+                                        <Input type='number' min="0" max="100" label={type} name={type} onChange={handleChange} />
                                         // <Select
                                         //     key={index}
                                         //     options={influencer_type_options}
@@ -285,7 +285,7 @@ export default function Preorder() {
                                     <dl className="space-y-6 border-gray-200 px-4 py-6 sm:px-6">
                                         <div className="flex items-center justify-between pt-6">
                                             <dt className="text-base font-medium">Total</dt>
-                                            <dd className="text-base font-medium text-gray-900">{currency == 'NGN' ? <>{nairaSymbol} {amount}</> : <>${amount_usd}</>} <s className='text-red-600'>{currency == 'NGN' ? '60,000' : 45}</s></dd>
+                                            <dd className="text-base font-medium text-gray-900">{currency == 'NGN' ? <>{nairaSymbol} {amount}</> : <>${amount_usd}</>} <s className='text-red-600'>{currency == 'NGN' ? '60,000' : 60}</s></dd>
                                         </div>
                                     </dl>
 
