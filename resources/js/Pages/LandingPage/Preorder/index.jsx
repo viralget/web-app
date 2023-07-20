@@ -25,7 +25,7 @@ const influencer_type_options = new Array(20).fill(0).map((value, index) => ({ v
 export default function Preorder() {
 
     const amount = 19999;
-    const amount_usd = 20;
+    const amount_usd = 27;
 
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState('');
