@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Helpers\LoggerHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\InvoiceResource;
+use App\Mail\NewPaymentEmail;
+use App\Mail\PreOrderReceived;
 use App\Models\Invoice;
 use App\Models\RecruiterSubscriptionPlans;
 use App\Services\PaymentMethods\Paystack;
 use App\Services\PaymentMethods\StripeService;
 use App\Services\PaymentMethods\PaystackService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class PurchasesController extends Controller
@@ -137,7 +140,6 @@ class PurchasesController extends Controller
 
             $user = request()->user();
 
-
             if ($verify['status']) {
                 $invoice = Invoice::create([
                     'user_id' => $user?->id ?? 0,
@@ -154,8 +156,11 @@ class PurchasesController extends Controller
                 ]);
 
                 if ($invoice) {
+                    @Mail::to('paul.adewumi@viralget.com.ng')->send(new PreOrderReceived($invoice));
+
                     return response(['status' => true, 'message' => 'Payment successful']);
                 }
+                return response(['status' => false, 'message' => 'Error generating invoice']);
             } else {
                 return response(['status' => false, 'message' => 'Payment failed. Please contact support']);
             }

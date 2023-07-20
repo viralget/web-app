@@ -46,7 +46,7 @@ export default function Preorder() {
         setStripeProps({
             email,
             amount_usd: amount_usd,
-            metadata: data,
+            metadata: { ...data, email },
             paymentDataExtras: {
                 // job_listing_id: job.id,
             },
@@ -164,7 +164,8 @@ export default function Preorder() {
             reference: (new Date()).getTime().toString(),
             metadata: {
                 ...data,
-                platform: data.platform
+                platform: data.platform,
+                email,
             },
             // plan: plan.plan_code,
 
