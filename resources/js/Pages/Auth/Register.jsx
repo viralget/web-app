@@ -57,7 +57,7 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-
+         console.log("Error:::",errors)
         if(!data.termCondition){
             toast.error("Please select the term and condition.");
             return;

@@ -53,6 +53,7 @@ Route::middleware('auth')->group(
         Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
         Route::get('/search', [InfluencerController::class, 'index'])->name('search');
+        Route::get('/messages', [MessagesController::class, 'index'])->name('get.messages');
 
         Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
