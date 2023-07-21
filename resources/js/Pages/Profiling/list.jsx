@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import EmptyState from '@/components/EmptyState';
-import TitleText from '@/components/TitleText';
+import Typography from '@/components/Typography';
 import MenuDropDown from '@/components/MenuDropDown';
 import { post } from '@/Utils/api';
 import toast from '@/Components/Toast';
@@ -14,7 +14,6 @@ function classNames(...classes) {
 
 export default function List({influencerList, profiles}){
 
-    console.log("influencerList:", profiles);
 
      const [getValue, setValue] = useState('')
      const [showModal, setShowModal] = useState(false);
@@ -123,7 +122,7 @@ export default function List({influencerList, profiles}){
 
 
     return(
-        <div className="px-10 py-2  mt-10">
+        <div className="py-2  mt-16">
            
            <Modal  iDisplay={showModal}  handleModal={ () => handleModal()}>
                 <div className='bg-white  rounded-md relative  w-full '>
@@ -261,9 +260,9 @@ export default function List({influencerList, profiles}){
                 </div>
            </Modal>
 
-          <div className="flex  justify-between  w-full">
-               <TitleText text="My Lists" />
-              <div>
+          <div className="flex  justify-between mb-4  w-full">
+               <Typography variant="h2" content="My Lists" />
+              <div >
 
               <MenuDropDown buttonName="Create List" className="bg-viralget-red text-white" ButtonIcon={<UserSvg className='w-4 h-4 ' />}>
                                     <div className='p-2 flex flex-col  justify-center items-center'>

@@ -16,13 +16,16 @@ import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, usePage } from '@inertiajs/inertia-react'
+import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns} from '@/Utils/icons';
+
+
 
 const navigation = [
-    { name: 'Find Influencers', href: 'explore', icon: HomeIcon, current: true },
-    { name: 'Profile Influencers', href: 'profiling', icon: UsersIcon, current: false },
-    { name: 'My Campaigns', href: 'coming-soon', icon: ClockIcon, current: false },
-    { name: 'Track Campaigns', href: 'coming-soon', icon: ScaleIcon, current: false },
-    // { name: 'FAQs', href: 'faqs', icon: CreditCardIcon, current: false },
+    { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
+    { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+    { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
+    { name: 'Track Campaigns', href: 'coming-soon', icon: TrackCampaigns  , current: false },
+    { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
 ]
 
 
@@ -33,7 +36,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
     return (
 
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-white">
             <Transition.Root show={sidebarOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-40 lg:hidden" onClose={setSidebarOpen}>
                     <Transition.Child
@@ -95,9 +98,9 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                 href={route(item.href)}
                                                 className={classNames(
                                                     item.href == route().current()
-                                                        ? 'bg-orange-100 text-gray-900'
+                                                        ? 'bg-orange-100 text-[#580877]'
                                                         : 'text-gray-400 hover:text-white hover:bg-gray-600',
-                                                    'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                                                    'group flex items-center px-2 py-2 text-base  rounded-md'
                                                 )}
                                                 aria-current={item.href == route().current() ? 'page' : undefined}
                                             >
@@ -117,27 +120,28 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
             </Transition.Root>
 
             {/* Static sidebar for desktop */}
-            <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
+            <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col ">
                 {/* Sidebar component, swap this element with another sidebar if you like */}
-                <div className="flex flex-grow flex-col overflow-y-auto bg-white pt-5 pb-4">
+                <div className="flex flex-grow flex-col overflow-y-auto  shadow-side-menu  pt-5 pb-4">
                     <div className="flex flex-shrink-0 items-center px-4">
                         <Logo className="h-10 w-auto" />
 
                     </div>
-                    <nav className="mt-5 flex flex-1 flex-col divide-y divide-gray-800 overflow-y-auto" aria-label="Sidebar">
-                        <div className="space-y-1 px-2">
+                    <nav className="mt-10 flex flex-1 flex-col divide-y divide-gray-800 overflow-y-auto" aria-label="Sidebar">
+                        <div className="space-y-1 px-3">
                             {navigation.map((item) => (
                                 <a
                                     key={item.name}
                                     href={route(item.href)}
                                     className={classNames(
-                                        item.href == route().current() ? 'bg-fuchsia-50 rounded group-text-fuchsia-900' : 'text-gray-500 hover:text-white hover:bg-gray-600',
-                                        'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md'
+                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' : 
+                                        'text-[#748094]  hover:text-[#A5ABB5]',
+                                        'group flex  space-x-3 items-center font-satoshi  px-2 py-2 text-sm leading-6 rounded-lg'
                                     )}
                                     aria-current={item.href == route().current() ? 'page' : undefined}
                                 >
-                                    <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-300 " aria-hidden="true" />
-                                    {item.name}
+                                    <item.icon   className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
+                                   <span className={ item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>  
                                 </a>
                             ))}
                         </div>
@@ -149,7 +153,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
             <div className="flex flex-1 flex-col lg:pl-64">
                 {showHeader && (
-                    < div className={smallHeader ? "  text-black" : "bg-fuchsia-600  bg-gradient-to-r from-fuchsia-600  via-red-500 to-yellow-600    rounded-br-[5rem]"}>
+                    < div className={smallHeader ? "  text-black" : "bg-[#01C5FF] bg-gradient-to-r from-[#01C5FF]  via-[#00AEFF] to-[#0094FE]    rounded-br-[5rem]"}>
                         <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
                             <button
                                 type="button"
@@ -176,7 +180,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                     id="keywords"
                                                     name="keywords"
                                                     className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
-                                                    placeholder="Enter keywords, skills or company name"
+                                                    placeholder="Enter keywords"
                                                     type="search"
                                                 />
                                             </div>
@@ -200,8 +204,8 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                         </div>
                         {!smallHeader && (
                             <Container className="relative">
-                                <div className="w-3/5  my-16 ">
-                                    <h1 className="font-display pb-5 font-bold text-3xl tracking-tight text-white sm:text-4xl md:text-3xl">
+                                <div className="w-[70%]  my-16 ">
+                                    <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
                                         {title}
                                     </h1>
                                     {subtitle && (
@@ -216,7 +220,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                 )}
 
 
-                {children}
+                {children}   
             </div>
         </div >
     )

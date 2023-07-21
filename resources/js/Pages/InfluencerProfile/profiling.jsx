@@ -49,7 +49,7 @@ export default function profiling(){
                     </div>
 
 
-                  <div className="flex flex-wrap justify-between  mt-3">
+                  <div className="flex flex-wrap justify-between mb-10 mt-3">
                        <ProfileData />
                        <ProfileData />
                        <ProfileData />

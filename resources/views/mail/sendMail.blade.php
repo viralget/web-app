@@ -83,37 +83,6 @@ width: 100% !important;
           </ul>
      </div>
 
-<!-- 
-
-<table class="action" align="left" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 10px auto; padding: 0; text-align: left; width: 100%;">
-<tr style="margin-bottom: 15px !important;">
-
-<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-     Full name:  {{ $data['full_name'] }}
-</td>
-</tr>
-<br/>
-<tr style="margin-bottom: 15px !important;">
-<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-     Email:  {{ $data['email'] }}
-</td>
-</tr>
-<br/>
-<tr style="margin-bottom: 15px !important;">
-<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-     Company:    {{ $data['company_name'] }}
-</td>
-</tr>
-<br/>
-<tr style="margin-bottom: 15px !important;">
-<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-    Message:   {{ $data['company_name'] }}
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table> -->
 
 </td>
 </tr>

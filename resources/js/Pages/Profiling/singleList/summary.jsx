@@ -146,8 +146,8 @@ export default function Summary({ list, profiled_influencers}){
                                         </span>
                             </button>
 
-                            <MenuDropDown buttonName=" " className="bg-white text-black flex h-10  items-center" ButtonIcon={<CancelSvg className='w-4 h-4 ' />}>
-                                    <div className='p-3 flex flex-col  justify-start  '>
+                            <MenuDropDown buttonName=" " className="bg-white text-black flex h-10  items-center" buttonIcon={<CancelSvg className='w-4 h-4 ' />}>
+                                    <div className='p-3 flex flex-col w-40  justify-start  '>
                                           <button onClick={ () => handleModal()}  className='flex  items-center space-x-2  mb-3'>
                                               <EditSvg />
                                               <span>Edit</span>

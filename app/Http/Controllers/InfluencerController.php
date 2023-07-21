@@ -8,6 +8,7 @@ use App\Models\Influencer;
 use App\Models\Search;
 use App\Models\TwitterInfluencer;
 use App\Models\ProfiledInfluencer;
+use App\Models\InfluencerList;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -30,8 +31,8 @@ class InfluencerController extends Controller
 
         $user = request()->user();
 
-        $search_history = Search::where('user_id', $user->id)->limit(3)->get();
-        $saved_search = Search::where('user_id', $user->id)->where('is_saved', true)->limit(3)->get();
+        $search_history = Search::where('user_id', $user->id)->limit(3)->orderBy('id', 'Desc')->get();
+        $saved_search = Search::where('user_id', $user->id)->where('is_saved', true)->limit(3)->orderBy('id', 'Desc')->get();
         $top_categories = Category::where('is_featured', true)->limit(8)->get();
         $top_influencers = $this->influencer->limit(8)->get();
         $categories = Category::get();
@@ -43,7 +44,8 @@ class InfluencerController extends Controller
                 'saved_search' => $saved_search,
                 'top_influencers' => InfluencerResource::collection($top_influencers),
                 'top_categories' => $top_categories,
-                'categories' => $categories
+                'categories' => $categories,
+                'total_count' => $this->influencer->count()
             ]
         );
     }
@@ -67,84 +69,85 @@ class InfluencerController extends Controller
     public function search(Request $request)
     {
 
-        $result = TwitterInfluencer::query();
         $categories = Category::get();
 
+        if (count($request->all()) > 0) {
 
-        $request_categories = explode(',', $request->category);
+            $result = TwitterInfluencer::query();
 
-        $influencer_location = $request->influencer_location;
-        $audience_size = $request->audience_size;
-        $category = $request->category;
-        $keywords = $request->keyword;
-        $keywords_position = $request->position;
+            $request_categories = explode(',', $request->category);
 
-        if ($influencer_location) {
-            $influencer_location = explode(',', $influencer_location);
+            $influencer_location = $request->influencer_location;
+            $audience_size = $request->audience_size;
+            $category = $request->category;
+            $keywords = $request->keyword;
+            $keywords_position = $request->position;
 
-            $result = $result->where(function ($query) use ($influencer_location) {
-                foreach ($influencer_location as $location) {
-                    $query->orWhere('location', 'LIKE', "%$location%");
-                }
-            });
-        }
+            if ($influencer_location) {
+                $influencer_location = explode(',', $influencer_location);
 
-        if ($audience_size) {
-            $audience_size = explode(',', $audience_size);
-
-            $result = $result->where(function ($query) use ($audience_size) {
-                foreach ($audience_size as $size) {
-                    $query->orWhere('followers', '>=', "%$size%");
-                }
-            });
-        }
-
-        if ($category) {
-            $category = explode(',', $category);
-
-            $result = $result->where(function ($query) use ($category) {
-                foreach ($category as $cat) {
-                    $query->orWhereHas('category', function ($q) use ($cat) {
-                        $q->where('name', $cat);
-                    });
-                }
-            });
-        }
-
-
-        // if (count($request_categories) > 0) {
-        //     $result = $result->where(function ($query) use ($request_categories) {
-        //         foreach ($request_categories as $category) {
-        //             $query->orWhereHas('categories', function ($q) use ($category) {
-        //                 $q->where('name', 'LIKE', "%$category%");
-        //             });
-        //         }
-        //     });
-        // }
-
-        if ($keywords) {
-
-            if ($keywords_position == 'bio') {
-                $result->where('bio', 'like', "%$request->keywords%");
-            } else {
-
-                // Actually, check tweets
-                $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
+                $result = $result->where(function ($query) use ($influencer_location) {
+                    foreach ($influencer_location as $location) {
+                        $query->orWhere('location', 'LIKE', "%$location%");
+                    }
+                });
             }
-        }
+
+            if ($audience_size) {
+                $audience_size = explode(',', $audience_size);
+
+                $result = $result->where(function ($query) use ($audience_size) {
+                    foreach ($audience_size as $size) {
+                        $query->orWhere('followers', '>=', "%$size%");
+                    }
+                });
+            }
+
+            if ($category) {
+                $category = explode(',', $category);
+
+                $result = $result->where(function ($query) use ($category) {
+                    foreach ($category as $cat) {
+                        $query->orWhereHas('categories', function ($q) use ($cat) {
+                            $q->where('name', $cat);
+                        });
+                    }
+                });
+            }
 
 
-        // Store User search sesion
-        if ($request) {
-            $this->storeSearch($request, $result->count());
+
+
+            if ($keywords) {
+
+                if ($keywords_position == 'bio') {
+                    $result->where('bio', 'like', "%$request->keywords%");
+                } else {
+
+                    // Actually, check tweets
+                    $result = $result->where('bio', 'like', "%$request->keywords%")->orWhere('username', 'like', "%$request->keywords%");
+                }
+            }
+
+
+            // Store User search sesion
+            if ($request) {
+                $this->storeSearch($request, $result->count());
+            }
+
+            $result = $result->latest()->paginate(10)->appends($_GET);
+        } else {
+            $result = null;
         }
+
 
         return Inertia::render(
             'Influencers/search',
             [
-                'list' => InfluencerResource::collection($result->latest()->paginate(10)), //InfluencerResource::collection($result->latest()->paginate(10)),
-                'count' => $result->count(), // $result->count(), //$result->count(),
-                'categories' => $categories
+                'list' => $result ? InfluencerResource::collection($result) : [], //InfluencerResource::collection($result->latest()->paginate(10)),
+                'count' => $result ? $result->count() : 0, // $result->count(), //$result->count(),
+                'categories' => $categories,
+                'total_count' => $this->influencer->count()
             ]
         );
         // return $result->get();
@@ -168,9 +171,23 @@ class InfluencerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, TwitterInfluencer $id)
     {
-        //
+        $list = [];
+        $influencer = $id;
+        $findProfiled = ProfiledInfluencer::find($id);
+        $user_id = $request->user()->id;
+        if ($findProfiled) {
+            $list = InfluencerList::with('influencers')->where('user_id', $user_id)->get();
+        }
+
+        return Inertia::render(
+            'InfluencerProfile/show',
+            [
+                'influencer' => InfluencerResource::make($influencer),
+                'list' => $list
+            ]
+        );
     }
 
     /**
@@ -248,12 +265,14 @@ class InfluencerController extends Controller
             $search->update([
                 'is_saved' => true,
                 'search_filters' => $result,
+                'name' => $request->name,
             ]);
         } else {
             Search::create([
+                'name' => $request->name,
                 'is_saved' => true,
                 'user_id' => $user->id,
-                'keyword' => $request->queryData,
+                'keyword' => $request->queryData ??  'null',
                 'session_id' => $request->session()->getId(),
                 'user_id' => $request->user()->id ?? null,
                 'query' => json_encode($request->query),
@@ -266,6 +285,18 @@ class InfluencerController extends Controller
     }
 
 
+    public function deleteUserSearch(Request $request)
+    {
+
+
+        try {
+            $search = Search::find($request->id);
+            $search->delete();
+            return response(['status' => true, 'message' => 'Search deleted successfully']);
+        } catch (\Throwable $th) {
+            return response(['status' => false, 'message' => 'An error occured. Please try again']);
+        }
+    }
 
 
     public   function  getAllCategoriesPage()
@@ -281,17 +312,15 @@ class InfluencerController extends Controller
         );
     }
 
-
-
-    public function  getInfluencer($id)
+    public function savedSearches()
     {
 
-        $influencer = TwitterInfluencer::find($id);
-
+        $user = request()->user();
+        $saved_search = Search::where('user_id', $user->id)->where('is_saved', true)->orderBy('id', 'Desc')->get();
         return Inertia::render(
-            'InfluencerProfile/index',
+            'Influencers/RecentSearches/savedSearches',
             [
-                'influencer' => $influencer
+                'saved_search' => $saved_search
             ]
         );
     }

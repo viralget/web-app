@@ -4,8 +4,10 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\InfluencerController;
 use App\Http\Controllers\WhatsAppInfluencerController;
+use App\Http\Controllers\UserProfileController;
 use App\Models\WhatsappInfluencer;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfilingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -36,9 +38,9 @@ Route::get('/contact', function () {
     return Inertia::render('Contact/index');
 })->name('contact');
 
-Route::get('/pricing', function () {
+Route::get('/pricing-page', function () {
     return Inertia::render('PricingPage/index');
-})->name('pricing');
+})->name('pricing.page');
 
 
 Route::post('/send-contact', [PageController::class, 'sendContact'])->name('send.contact');
@@ -55,25 +57,27 @@ Route::middleware('auth')->group(
 
         Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
+        Route::post('/search/delete', [InfluencerController::class, 'deleteUserSearch'])->name('influencers.search.delete');
+        
         Route::get('/all-categories', [InfluencerController::class, 'getAllCategoriesPage'])->name('allcategories.page');
-        Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
-        Route::get('/influencer/{id}', [InfluencerController::class, 'getInfluencer'])->name('influencer.page');
+        Route::get('/saved-searches', [InfluencerController::class, 'savedSearches'])->name('savedsearches.page');
+        Route::get('/influencer/{id}', [InfluencerController::class, 'show'])->name('influencer.show');
 
         // profiling.
-        Route::post('/create-profiling', [PageController::class, 'createProfiling'])->name('create.profiling');
-        Route::get('/profiling', [PageController::class, 'profilingPage'])->name('profiling');
-        Route::post('/create-list', [PageController::class, 'createList'])->name('create.list');
-        Route::post('/update-list', [PageController::class, 'updateList'])->name('update.list');
-        Route::post('/influencer-list', [PageController::class, 'AddInfluencerToList'])->name('influencers.list');
-        Route::post('/delete-list', [PageController::class, 'deleteList'])->name('delete.list');
-        
-        Route::get('/list/{id}', [PageController::class, 'getSingleList'])->name('single.list');
-
-
-
-        Route::get('/settings', function () {
-            return Inertia::render('Account/index');
-        })->name('settings');
+        Route::post('/create-profiling', [ProfilingController::class, 'createProfiling'])->name('create.profiling');
+        Route::get('/profiling', [ProfilingController::class, 'profilingPage'])->name('profiling');
+        Route::get('/profiling/all', [ProfilingController::class, 'list'])->name('profiling.list');
+        Route::post('/create-list', [ProfilingController::class, 'createList'])->name('create.list');
+        Route::post('/update-list', [ProfilingController::class, 'updateList'])->name('update.list');
+        Route::post('/influencer-list', [ProfilingController::class, 'AddInfluencerToList'])->name('influencers.list');
+        Route::post('/delete-list', [ProfilingController::class, 'deleteList'])->name('delete.list');
+    
+        Route::get('/list/{id}', [ProfilingController::class, 'getSingleList'])->name('single.list');
+        Route::get('/findprofiled/{id}', [ProfilingController::class, 'findProfiledInfluencer'])->name('influencer.findprofiled');
+        Route::post('/influencer-create-list', [ProfilingController::class, 'influencerCreateList'])->name('influencer.addtolist');
+       
+       Route::get('/settings', [UserProfileController::class, 'createSettings'])->name('settings');
+       Route::post('/update-settings', [UserProfileController::class, 'updateSettings'])->name('update.settings');
 
         Route::resources([
             'campaigns' => CampaignController::class,
@@ -83,24 +87,9 @@ Route::middleware('auth')->group(
         Route::post('/campaign/initiate', [CampaignController::class, 'initiateCampaign'])->name('campaign.initiate');
     }
 );
-// Route::group(function () {
+
 Route::get('whatsapp-amplifier', [WhatsAppInfluencerController::class, 'create'])->name('amplifier');
 Route::resources(['whatsapp-influencers' => WhatsAppInfluencerController::class]);
-// });
+
 
 require __DIR__ . '/admin.php';
-
-
-
-// Route::get('/search', function () {
-//     return Inertia::render('Search/index');
-// });
-
-
-
-// Route::get('/register', function () {
-//     return Inertia::render('Auth/Register');
-// });
-// Route::get('/login', function () {
-//     return Inertia::render('Auth/Register');
-// });

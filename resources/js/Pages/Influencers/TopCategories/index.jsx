@@ -1,94 +1,20 @@
-import TitleText from '@/components/TitleText'
 import EmptyState from '@/components/EmptyState';
+import Typography from '@/components/Typography';
 
-const products = [
-    {
-        id: 1,
-        name: 'Lifestyle',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },
-    {
-        id: 1,
-        name: 'Food & Cooking',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },
-    {
-        id: 1,
-        name: 'Skit Makers',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },
-    {
-        id: 1,
-        name: 'Northern Nigeria',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },
-    {
-        id: 1,
-        name: 'Lifestyle',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },
-    {
-        id: 1,
-        name: 'Food & Cooking',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },
-    {
-        id: 1,
-        name: 'Skit Makers',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },
-    {
-        id: 1,
-        name: 'Northern Nigeria',
-        color: 'White and black',
-        href: '#',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
-        imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
-        price: '$140',
-    },    // More products...
-]
 
 export default function TopCategories({ data }) {
     return (
-        <div>
+        <div className='mt-space-60'>
             <div className="flex  justify-between  w-full">
-               <TitleText text="Top Categories" />
-              <div>
-                   <a href={route('allcategories.page')}   className='text-xs font-bold  text-viralget-red'  >View all</a>
-              </div>
+                   <Typography variant='h2' content="Top Categories" />
+                    <div>
+                        <a href={route('allcategories.page')}   className='text-xs font-bold  text-viralget-red'  >View all</a>
+                    </div>
             </div>
            
             {data?.length > 0 ?
 
-                <div className="mt-5 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                <div className="mt-space-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                     {data.map((item, index) => (
                         <a href="#" key={index}>
                             <div className="relative">
@@ -104,7 +30,8 @@ export default function TopCategories({ data }) {
                                         aria-hidden="true"
                                         className="absolute inset-x-0 bottom-0 top-0 h-full bg-black opacity-50"
                                     />
-                                    <p className="relative text-lg font-semibold text-white capitalize ">{item.name}</p>
+                                 
+                                    <h3 className=" relative text-t-xs font-lexend font-bold text-white capitalize ">{item.name}</h3>
                                 </div>
                             </div>
 

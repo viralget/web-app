@@ -21,6 +21,7 @@ export default function PasswordInput({
     ref,
     placeholder = '',
     show = false,
+    icon
 }) {
     const input = useRef();
 
@@ -37,7 +38,9 @@ export default function PasswordInput({
     }, []);
 
     return (
-        <div className="flex flex-col items-start mb-3 ">
+        <div className="flex flex-col items-start mb-3 relative ">
+
+             
             {label &&
                 <label htmlFor={id ? id : name} className="block text-sm font-medium mb-1 text-gray-700 w-full">
                     {label}
@@ -58,8 +61,7 @@ export default function PasswordInput({
                     required={required}
                     onChange={(e) => onChange(e)}
                     placeholder={placeholder}
-                    onBlur={onBlur}
-                // defaultValue={defaultValue}         
+                    onBlur={onBlur}         
                 />
                 <div className="absolute inset-y-0 right-0 p-3 bg-dark z-50 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ?
@@ -67,6 +69,13 @@ export default function PasswordInput({
                         :
                         <EyeSlashIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
                 </div>
+
+                {icon && (
+                <div className='absolute  bottom-5 left-3 '>
+                    {icon}
+                </div>
+
+            )}
             </div>
         </div>
     );

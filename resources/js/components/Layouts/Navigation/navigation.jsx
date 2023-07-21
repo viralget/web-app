@@ -5,16 +5,16 @@ import { CircleStackIcon } from '@heroicons/react/24/solid';
 import { BookmarkIcon, CursorArrowRippleIcon, HomeIcon, RectangleStackIcon } from '@heroicons/react/24/outline';
 
 
-export const services_routes = [
-    {
-        name: "Get your CV reviewed",
-        href: 'cv-review'
-    },
-    {
-        name: "Contact Us",
-        href: 'contact'
-    },
-]
+// export const services_routes = [
+//     {
+//         name: "Get your CV reviewed",
+//         href: 'cv-review'
+//     },
+//     {
+//         name: "Contact Us",
+//         href: 'contact'
+//     },
+// ]
 
 
 export const auth_routes = [
@@ -23,8 +23,8 @@ export const auth_routes = [
         href: 'explore'
     },
     {
-        name: "Create new Campaign",
-        href: 'campaigns.create'
+        name: "Profile Influencers",
+        href: 'profiling'
     },
     {
         name: "Account Settings",

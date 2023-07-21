@@ -55,5 +55,13 @@ return [
         'redirect' => env('LINKEDIN_CALLBACK_URL'),
     ],
 
+    'paystack' => [
+        'mode' => env('PAYSTACK'),
+        'test_pk' => env('PAYSTACK_TEST_PK'),
+        'test_sk' => env('PAYSTACK_TEST_SK'),
+        'live_pk' => env('PAYSTACK_PK'),
+        'live_sk' => env('PAYSTACK_SK'),
+    ],
+
 
 ];
