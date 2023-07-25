@@ -10,6 +10,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfilingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,10 +80,19 @@ Route::middleware('auth')->group(
         Route::get('/settings', [UserProfileController::class, 'createSettings'])->name('settings');
         Route::post('/update-settings', [UserProfileController::class, 'updateSettings'])->name('update.settings');
 
+
+        
         // Route::resources([
         //     // 'campaigns' => CampaignController::class,
         //     'influencers' => InfluencerController::class,
         // ])->except('show');
+
+        // campiagn brief
+
+        Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign');
+        Route::get('/campaign/create', [CampaignController::class, 'create'])->name('campaign.create');
+
+
 
         Route::resource('influencers', InfluencerController::class)->except('show');
         Route::get('influencers/{influencer}', [InfluencerController::class, 'show'])->name('influencers.show');

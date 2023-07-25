@@ -1,15 +1,16 @@
-import Avatar from "@/Components/Avatar";
-import Card from "@/Components/Card";
-import EmptyState from "@/Components/EmptyState";
+// import Avatar from "@/Components/Avatar";
+// import Card from "@/Components/Card";
+// import EmptyState from "@/Components/EmptyState";
 // import PageHeading from "@/Components/PageHeading";
-import toast from "@/Components/Toast";
+// import toast from "@/Components/Toast";
 import { classNames, formatDate } from "@/Utils/helpers";
-import { Inertia } from "@inertiajs/inertia";
-import { useForm, usePage } from "@inertiajs/inertia-react";
-import { useEffect, useRef, useState } from "react";
+// import { Inertia } from "@inertiajs/inertia";
+// import { useForm, usePage } from "@inertiajs/inertia-react";
+// import { useEffect, useRef, useState } from "react";
 // import Dashboard from "../../Layouts/Dashboard";
+import AuthenticatedLayout from "@/Components/AuthenticatedLayout";
 
-export default function Messages({ threads, selected_thread, messages }) {
+export default function Messages() {
 
     // const { auth } = usePage().props;
 
@@ -65,7 +66,8 @@ export default function Messages({ threads, selected_thread, messages }) {
     // }
 
     return (
-            <Card usePadding={false}>
+        <AuthenticatedLayout smallHeader={true}>
+            <div>
 
                     {/* <div className="min-h-full text-center text-sm">
                         <EmptyState title="All Empty" subtitle="No message in your inbox at the moment" />
@@ -90,8 +92,8 @@ export default function Messages({ threads, selected_thread, messages }) {
                                 <h2 className="text-lg text-gray-600 p-5 border-b border-gray-50">All Messages</h2>
                                    <li  onClick={() => console.log("hello")}>
                                         <a
-                                            className={classNames('flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-200 cursor-pointer hover:bg-gray-100 focus:outline-none', thread?.id == selectedThread?.id && 'bg-light', thread.is_unread && 'bg-amber-100')}>
-                                            <Avatar userName={'Something'} />
+                                            className={classNames('flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-200 cursor-pointer hover:bg-gray-100 focus:outline-none bg-amber-100')}>
+                                            {/* <Avatar userName={'Something'} /> */}
                                              <div className="w-full pb-2">
                                                 <div className="flex justify-between">
                                                     <span className="block ml-2 font-semibold text-gray-600">{'something here'}</span>
@@ -111,7 +113,7 @@ export default function Messages({ threads, selected_thread, messages }) {
                                  */}
                                 <div className="w-full">
                                     <div className="relative flex items-center p-3 border-b border-gray-200">
-                                        <Avatar userName={'something'} />
+                                        {/* <Avatar userName={'something'} /> */}
                                         {/* <img className="object-cover w-10 h-10 rounded-full"
                                             src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg" alt="username" /> */}
                                         <span className="block ml-2 font-bold text-gray-600">somehting here</span>
@@ -128,7 +130,7 @@ export default function Messages({ threads, selected_thread, messages }) {
                                                         </span>
                                                     </div>
                                                 </li>
-                                            {/* )} */}
+                                      
 
                                         </ul>
                                         {/* <span ref={messagesEnd}></span> */}
@@ -160,8 +162,9 @@ export default function Messages({ threads, selected_thread, messages }) {
                         </div>
                     </div>
                 
-            </Card>
-        // </Dashboard >
+            </div>
+            </AuthenticatedLayout>
+
 
     )
 }

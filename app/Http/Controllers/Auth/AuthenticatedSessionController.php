@@ -43,14 +43,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-
-        $request->authenticate();
+       dd($request);
+          $request->authenticate();
 
         $request->session()->regenerate();
 
         $redirect_url = route('home');
 
         $user = $request->user();
+
+        // dd($user);
+
+        Auth::login($user, true);
 
         if (!$user->account) {
             $user->account()->create();
@@ -61,6 +65,7 @@ class AuthenticatedSessionController extends Controller
         if ($request->redirect_url) {
             $redirect_url = $request->redirect_url;
         }
+
 
         return redirect()->intended($redirect_url);
     }

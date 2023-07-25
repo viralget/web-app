@@ -9,7 +9,7 @@ import AuthenticatedLayout from '@/Components/AuthenticatedLayout';
 import { Container } from '@/Components/Container';
 import CampaignCards from './Cards';
 
-export default function NewCampaign({ campaigns }) {
+export default function List({ campaigns }) {
     const [agreed, setAgreed] = useState(false)
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -39,7 +39,7 @@ export default function NewCampaign({ campaigns }) {
     };
 
     return (
-        <AuthenticatedLayout title="My Campaigns" subtitle={<Link href={route('campaigns.create')}>{campaigns.length > 0 ? 'Create a new campaign' : 'Create your first campaign'}</Link>}>
+        <AuthenticatedLayout title="My Campaigns" subtitle={<Link href={route('campaign.create')}>{campaigns.length > 0 ? 'Create a new campaign' : 'Create your first campaign'}</Link>}>
 
             {campaigns.length > 0 ?
                 <div className='mx-10'>

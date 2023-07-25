@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
-
+use App\Models\CampaignBrief;
 class CampaignController extends Controller
 {
     /**
@@ -25,11 +25,11 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::where('user_id', request()->user()->id)->get();
-        $campaigns = CampaignResource::collection($campaigns);
-        // My campaigns
+        $campaigns = CampaignBrief::where('user_id', request()->user()->id)->get();
         return Inertia::render('Campaigns/list', compact('campaigns'));
     }
+
+
 
     public function initiateCampaign(Request $request)
     {
@@ -46,9 +46,8 @@ class CampaignController extends Controller
      */
     public function create(Request $request)
     {
-        $influencers = $request->session()->get('campaign-influencers');
 
-        return Inertia::render('Campaigns/new', compact('influencers'));
+        return Inertia::render('Campaigns/create');
     }
 
     /**

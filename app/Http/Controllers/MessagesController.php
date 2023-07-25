@@ -44,7 +44,7 @@ class MessagesController extends Controller
 
         // $threads = $this->thread->getUserThreads($this->user->id);
 
-        return Inertia::render('/Messages'
+        return Inertia::render('Messages/index'
         // , [
         //     'threads' => ThreadsResource::collection($threads)
         // ]

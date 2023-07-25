@@ -4,7 +4,7 @@ import TrackedList from "./TrackedList";
 
 const TrackCampaigns = ({ searches }) => {
 
-    console.log("searches:", searches)
+    // console.log("searches:", searches)
 
     return(
         <AuthenticatedLayout title="Track campaigns">
