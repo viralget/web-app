@@ -68,6 +68,24 @@ export default function  Create() {
                                                 </div>
                                             </div>
                                     </div>
+
+                                <div className='mt-10'>
+                                    <span className='text-t-lg-x  capitalize font-bold mt-10'>Tracked keywords</span>
+                                    <div className='inputs  mt-5 w-full flex flex-col space-y-4'>
+                                        <div>
+                                                <Input
+                                                    type="text"
+                                                    name="keywords"
+                                                    label="keywords"
+                                                    required
+                                                    placeholder="field(@handle, #hastag, keywords, phrase)"
+                                                    defaultValue={null}
+                                                    className="mt-1 block w-full"
+                                                    onChange={() => console.log("hell")}
+                                                />
+                                            </div>
+                                     </div>
+                                 </div>
                         </div>
 
 
