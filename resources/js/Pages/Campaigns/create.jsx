@@ -3,10 +3,47 @@ import ButtonBack from '@/components/ButtonBack';
 import { useEffect, useState } from 'react'
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
+import { useForm } from '@inertiajs/inertia-react';
 import TextArea from '@/Components/TextArea';
+import MultiSelect from '@/components/MultiSelect';
 
 
 export default function  Create() {
+
+
+
+    const { data, setData, post, processing, errors } = useForm({
+        title: '',
+        social_network: '',
+        campaign_type: '',
+        budget:'',
+        keywords: '',
+        start_date:'',
+        end_date:'',
+        description:'',
+        brand_name:'',
+        location:'',
+        gender:'',
+        age:'',
+        interest:'',
+        reach: '',
+        impression:'',
+        engagement:'',
+        conversion:''
+    });
+
+
+    const onHandleChange = (event) => {
+        setData(event.target.name, getEventValue(event));
+    };
+
+
+
+    function handleUpdateData(key, value){
+        setData(key, value);
+    }
+
+
 
     return(
         <AuthenticatedLayout  title="My Campaigns"  smallHeader={true}>
@@ -35,34 +72,36 @@ export default function  Create() {
                                                     label="Campaign Title"
                                                     required
                                                     placeholder="input campaign title"
-                                                    defaultValue={null}
+                                                    defaultValue={data.title}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
                                             <div>
-                                                <Input
-                                                    type="text"
-                                                    name="title"
-                                                    label="Social networks"
-                                                    required
-                                                    placeholder="input social networks"
-                                                    defaultValue={null}
-                                                    className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
-                                                />
+                                            
+
+                                         <MultiSelect
+                                                options={[
+                                                    { value: 'Instagram' },
+                                                    { value: 'Twitter' }
+                                                ]}
+                                                label='Social Platform'
+                                                name="social_network"
+                                                required
+                                                onChange={(values) => handleUpdateData('social_network', [...values].join(','))}
+                                            />
                                             </div>
 
                                             <div class="max-w-lg">
                                                 <p class="text-sm text-gray-500">Select Campaign Type</p>
                                                 <div class="mt-4 flex space-x-3">
                                                     <div class="flex items-center">
-                                                        <input id="public" name="campaign_type" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="public" onChange={onHandleChange} name="campaign_type" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="public" class="ml-3 block text-sm font-medium text-gray-700">Public</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input id="private" name="campaign_type" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="private" onChange={onHandleChange} name="campaign_type" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="private" class="ml-3 block text-sm font-medium text-gray-700">Private</label>
                                                     </div>
                                                 </div>
@@ -79,9 +118,9 @@ export default function  Create() {
                                                     label="keywords"
                                                     required
                                                     placeholder="field(@handle, #hastag, keywords, phrase)"
-                                                    defaultValue={null}
+                                                    defaultValue={data.keywords}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
                                      </div>
@@ -99,9 +138,9 @@ export default function  Create() {
                                                     label="Budget"
                                                     required
                                                     placeholder="input campaign budget"
-                                                    defaultValue={null}
+                                                    defaultValue={data.budget}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -112,9 +151,9 @@ export default function  Create() {
                                                     label="Start date"
                                                     required
                                                     placeholder="input start date"
-                                                    defaultValue={null}
+                                                    defaultValue={data.start_date}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -125,9 +164,9 @@ export default function  Create() {
                                                     label="End date"
                                                     required
                                                     placeholder="input end date"
-                                                    defaultValue={null}
+                                                    defaultValue={data.end_date}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
                                             <div>
@@ -136,8 +175,8 @@ export default function  Create() {
                                                     name="description"
                                                     label="Description (about campaign)"
                                                     className="mt-1 block w-full h-32"
-                                                    defaultValue={null}
-                                                    onChange={() => console.log("hello")}
+                                                    defaultValue={data.description}
+                                                    onChange={onHandleChange}
                                                     required
                                                 />
                                              </div>
@@ -149,9 +188,9 @@ export default function  Create() {
                                                     label="Company/brand/Product"
                                                     required
                                                     placeholder="input compnay/brand/product"
-                                                    defaultValue={null}
+                                                    defaultValue={data.brand_name}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -172,9 +211,9 @@ export default function  Create() {
                                                     label="Location"
                                                     required
                                                     placeholder="input location"
-                                                    defaultValue={null}
+                                                    defaultValue={data.location}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -182,11 +221,11 @@ export default function  Create() {
                                                 <p class="text-sm text-gray-500">Gender</p>
                                                 <div class="mt-4 flex space-x-3">
                                                     <div class="flex items-center">
-                                                        <input id="male" name="gender" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="male"  onChange={onHandleChange} name="gender" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input id="female" name="gender" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="female" name="gender"  onChange={onHandleChange} type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                                     </div>
                                                 </div>
@@ -199,9 +238,9 @@ export default function  Create() {
                                                     label="Age range"
                                                     required
                                                     placeholder="input age"
-                                                    defaultValue={null}
+                                                    defaultValue={data.age}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -212,9 +251,9 @@ export default function  Create() {
                                                     label="Interest"
                                                     required
                                                     placeholder="input interest"
-                                                    defaultValue={null}
+                                                    defaultValue={data.interest}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
                                      </div>
@@ -231,9 +270,9 @@ export default function  Create() {
                                                     label="Reach"
                                                     required
                                                     placeholder="input reach"
-                                                    defaultValue={null}
+                                                    defaultValue={data.reach}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -245,9 +284,9 @@ export default function  Create() {
                                                     label="Impression/View"
                                                     required
                                                     placeholder="input impression"
-                                                    defaultValue={null}
+                                                    defaultValue={data.impression}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -258,9 +297,9 @@ export default function  Create() {
                                                     label="Engagement"
                                                     required
                                                     placeholder="input engagement"
-                                                    defaultValue={null}
+                                                    defaultValue={data.engagement}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
 
@@ -271,9 +310,9 @@ export default function  Create() {
                                                     label="Conversion"
                                                     required
                                                     placeholder="input conversion"
-                                                    defaultValue={null}
+                                                    defaultValue={data.conversion}
                                                     className="mt-1 block w-full"
-                                                    onChange={() => console.log("hell")}
+                                                    onChange={onHandleChange}
                                                 />
                                             </div>
                                      </div>
@@ -281,6 +320,16 @@ export default function  Create() {
                                     
                 </div>
                     
+
+
+                   <div className="text-center  mt-4 md:max-w-md">
+                                <Button
+                                    type="submit"
+                                    className='block w-full bg-viralget-red  text-white'
+                                    processing={processing}>
+                                    Create Campaign
+                                </Button>
+                 </div>
              </form>
 
            </div>
