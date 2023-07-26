@@ -96,7 +96,7 @@ export default function Register() {
                 <form onSubmit={submit} className="">
 
                 <div className="mt-space-20  mb-space-20">
-                      <UploadImage  displayFile={displayFile} image={image} />
+                      <UploadImage  displayFile={displayFile} image={image} name="avatar"/>
                 </div>
 
                 <div className="flex space-x-space-20  w-full">

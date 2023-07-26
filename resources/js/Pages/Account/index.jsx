@@ -82,7 +82,7 @@ export default function Account({ user }) {
                                     <span className='mt-space-8 text-normal text-viralget-gray-400'>Changing your name below will update your name on your profile.</span>
                                 </div>
                                 <div className='mt-space-28'>
-                                    <UploadImage displayFile={displayFile} image={image} />
+                                    <UploadImage displayFile={displayFile} image={image} name="avatar" />
                                 </div>
                                 <div className='mt-space-24'>
                                     <div className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20 lg:space-y-0  space-y-space-20'>

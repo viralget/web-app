@@ -8,13 +8,19 @@ import TextArea from '@/Components/TextArea';
 import MultiSelect from '@/components/MultiSelect';
 import { classNames } from '@/Utils/helpers';
 import UploadImage from "@/components/UploadImage";
-
+import { getEventValue } from '@/Utils/helpers';
+import { numberWithCommas } from '@/Utils/helpers';
+import Select from '@/components/Select';
 
 export default function  Create() {
 
 
-   const [tab, setTab] = useState('contents')
+   const [tab, setTab] = useState('details')
    const [image, setImageUrl] = useState(null);
+   const [serviceFee, setServiceFee] = useState(0);
+   const [total, setTotal] = useState(0);
+//    let serviceFee = 0;
+//    let total = 0;
     const { data, setData, post, processing, errors } = useForm({
         title: '',
         social_network: '',
@@ -42,6 +48,7 @@ export default function  Create() {
         timeline: '',
         mood_board:'',
         target_audience:'',
+        currency: ''
     });
 
 
@@ -67,8 +74,19 @@ export default function  Create() {
             setTab('contents');
             return;
         }
-
+     
     };
+
+    function  handleBudget(event){
+        setData(event.target.name, getEventValue(event));
+       const budget = event.target.value;
+       const serviceFee = 0.15 * Number(budget);
+      const  total =  Number(budget) + serviceFee;
+
+      console.log("total", total);
+      setTotal(total);
+      setServiceFee(serviceFee);
+    }
 
     return(
         <AuthenticatedLayout  title="My Campaigns"  smallHeader={true}>
@@ -84,7 +102,7 @@ export default function  Create() {
             </div>
 
 
-            <form onSubmit={submit} className='mt-10  bg-white shadow-sm p-5 w-full'>
+            <form onSubmit={submit} className='mt-10  bg-white shadow-sm md:p-5 p-3 w-full'>
           {     tab == 'details' ? (
             <>
                 <div className='flex md:flex-row flex-col md:space-x-5 md:space-y-0  space-y-4 w-full'>
@@ -157,17 +175,34 @@ export default function  Create() {
                             <div className='form-group w-full'>
                                     <span className='text-t-lg-x  capitalize font-bold '>about campaign</span>
                                     <div className='inputs  mt-5 w-full flex flex-col space-y-4'>
-                                            <div>
-                                                <Input
-                                                    type="text"
-                                                    name="budget"
-                                                    label="Budget"
-                                                    required
-                                                    placeholder="input campaign budget (E.g: 3000000)"
-                                                    defaultValue={data.budget}
-                                                    className="mt-1 block w-full"
-                                                    onChange={onHandleChange}
-                                                />
+                                            <div className='flex w-full items-center'>
+                                                <div className=''>
+                                                    <Select options={[
+                                                            { name: 'Naira', value: 'NGN' },
+                                                            { name: 'Dollar', value: 'USD' }
+                                                        ]}
+                                                            name="currency"
+                                                            value={data.currency}
+                                                            onChange={onHandleChange}
+                                                            label="Currency"
+                                                            defaultOptionText="Select Currency"
+                                                            required
+                                                        />
+                                                    </div>
+                                             
+                                                    <div className='w-full'>
+                                                            <Input
+                                                            type="text"
+                                                            name="budget"
+                                                            label="Budget"
+                                                            required
+                                                            placeholder="input campaign budget (E.g: 3000000)"
+                                                            defaultValue={data.budget}
+                                                            className="mt-1 block w-full"
+                                                            onChange={handleBudget}
+                                                        />
+                                                    </div>
+                                               
                                             </div>
 
                                             <div>
@@ -348,126 +383,158 @@ export default function  Create() {
                     
                 </> ) : 
                   (
-                    <div className='max-w-md'>
-                            <div className="mt-space-20  mb-space-20">
-                                <UploadImage  displayFile={displayFile} image={image} />
+                    <div className='w-full'>
+                            <div className="mt-space-20  mb-space-20 md:w-full  max-w-sm">
+                                <UploadImage  displayFile={displayFile} image={image} name="logo" isRequired/>
                             </div>
-                            <div className='mt-5'>
-                                    <TextArea
-                                        type="text"
-                                        name="about_us"
-                                        label="About us"
-                                        placeholder="2-3 sentences  explaining what your company does."
-                                        className="mt-1 block w-full h-32"
-                                        defaultValue={data.about_us}
-                                        onChange={onHandleChange}
-                                        required
-                                    />
-                           </div>
-                           <div className='mt-5'>
-                                    <TextArea
-                                        type="text"
-                                        name="campaign_goal"
-                                        label="Campaign goal"
-                                        placeholder="1-2 sentences  describing the campaign and what you hope to accomplish."
-                                        className="mt-1 block w-full h-32"
-                                        defaultValue={data.campaign_goal}
-                                        onChange={onHandleChange}
-                                        required
-                                    />
-                           </div>
-                           <div className='mt-5'>
-                                    <TextArea
-                                        type="text"
-                                        name="campaign_message"
-                                        label="Campaign message"
-                                        placeholder="Specific information that the influencer should include in post captions"
-                                        className="mt-1 block w-full h-32"
-                                        defaultValue={data.campaign_message}
-                                        onChange={onHandleChange}
-                                        required
-                                    />
-                           </div>
 
-                           <div className='mt-5'>
-                                    <TextArea
-                                        type="text"
-                                        name="key_objectives"
-                                        label="Key objectives"
-                                        placeholder="What are you hoping to accomplish (brand awareness, engagement, etc.)"
-                                        className="mt-1 block w-full h-32"
-                                        defaultValue={data.key_objectives}
-                                        onChange={onHandleChange}
-                                        required
-                                    />
-                           </div>
+                            <div className='flex md:flex-row flex-col md:space-x-5 md:space-y-0  space-y-4 w-full'>
+                                  <div className='w-full'>
+                                        <div className='mt-5'>
+                                                    <TextArea
+                                                        type="text"
+                                                        name="about_us"
+                                                        label="About us"
+                                                        placeholder="2-3 sentences  explaining what your company does."
+                                                        className="mt-1 block w-full h-32"
+                                                        defaultValue={data.about_us}
+                                                        onChange={onHandleChange}
+                                                        required
+                                                    />
+                                        </div>
+                                        <div className='mt-5'>
+                                                    <TextArea
+                                                        type="text"
+                                                        name="campaign_goal"
+                                                        label="Campaign goal"
+                                                        placeholder="1-2 sentences  describing the campaign and what you hope to accomplish."
+                                                        className="mt-1 block w-full h-32"
+                                                        defaultValue={data.campaign_goal}
+                                                        onChange={onHandleChange}
+                                                        required
+                                                    />
+                                        </div>
+                                        <div className='mt-5'>
+                                                    <TextArea
+                                                        type="text"
+                                                        name="campaign_message"
+                                                        label="Campaign message"
+                                                        placeholder="Specific information that the influencer should include in post captions"
+                                                        className="mt-1 block w-full h-32"
+                                                        defaultValue={data.campaign_message}
+                                                        onChange={onHandleChange}
+                                                        required
+                                                    />
+                                        </div>
+                                  </div>
+                                   <div className='w-full flex flex-col  space-y-5'>
+                                                            
+                                          <div className='mt-5'>
+                                                        <TextArea
+                                                            type="text"
+                                                            name="key_objectives"
+                                                            label="Key objectives"
+                                                            placeholder="What are you hoping to accomplish (brand awareness, engagement, etc.)"
+                                                            className="mt-1 block w-full h-32"
+                                                            defaultValue={data.key_objectives}
+                                                            onChange={onHandleChange}
+                                                            required
+                                                        />
+                                            </div>
 
-                           <div>
-                                            <Input
-                                            type="text"
-                                            name="channel"
-                                            label="Channel"
-                                            required
-                                            placeholder="Input channel"
-                                            defaultValue={data.channels}
-                                            className="mt-1 block w-full"
-                                            onChange={onHandleChange}
-                                        />
-                             </div>
-
-
-                           <div>
-                                            <Input
-                                            type="text"
-                                            name="timeline"
-                                            label="Timeline"
-                                            required
-                                            placeholder="Input timeline"
-                                            defaultValue={data.timeline}
-                                            className="mt-1 block w-full"
-                                            onChange={onHandleChange}
-                                        />
-                             </div>
+                                            <div>
+                                                                <Input
+                                                                type="text"
+                                                                name="channel"
+                                                                label="Channel"
+                                                                required
+                                                                placeholder="Input channel"
+                                                                defaultValue={data.channels}
+                                                                className="mt-1 block w-full"
+                                                                onChange={onHandleChange}
+                                                            />
+                                                </div>
 
 
-                             <div>
-                                            <Input
-                                            type="text"
-                                            name="mood_board"
-                                            label="Mood board"
-                                            required
-                                            placeholder="Input mood board"
-                                            defaultValue={data.mood_board}
-                                            className="mt-1 block w-full"
-                                            onChange={onHandleChange}
-                                        />
-                             </div>
+                                            <div>
+                                                                <Input
+                                                                type="text"
+                                                                name="timeline"
+                                                                label="Timeline"
+                                                                required
+                                                                placeholder="Input timeline"
+                                                                defaultValue={data.timeline}
+                                                                className="mt-1 block w-full"
+                                                                onChange={onHandleChange}
+                                                            />
+                                                </div>
 
-                             <div>
-                                            <Input
-                                            type="text"
-                                            name="target_audience"
-                                            label="Target audience"
-                                            required
-                                            placeholder="Input target audience"
-                                            defaultValue={data.target_audience}
-                                            className="mt-1 block w-full"
-                                            onChange={onHandleChange}
-                                        />
-                             </div>
-                            
+
+                                                <div>
+                                                                <Input
+                                                                type="file"
+                                                                name="mood_board"
+                                                                accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" 
+                                                                label="Mood board"
+                                                                required
+                                                                placeholder="Input mood board"
+                                                                defaultValue={data.mood_board}
+                                                                className="mt-1 block w-full"
+                                                                onChange={(event) =>  setData('mood_board', event.target.files[0])}
+                                                            />
+                                                </div>
+
+                                                <div>
+                                                                <Input
+                                                                type="text"
+                                                                name="target_audience"
+                                                                label="Target audience"
+                                                                required
+                                                                placeholder="Input target audience"
+                                                                defaultValue={data.target_audience}
+                                                                className="mt-1 block w-full"
+                                                                onChange={onHandleChange}
+                                                            />
+                                                </div>
+                                  </div>
+                            </div>
                     </div>
                   )
                 
                 }
 
+                  <div className='bg-white shadow-md  md:max-w-md p-5 w-full  flex flex-col space-y-3'>
+                        <div className='flex justify-between'>
+                             <span className='w-[10rem] '>Budget:</span>
+                              <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(data.budget)}</span>
+                        </div>
+                        <div className='flex justify-between'>
+                             <span className='w-[10rem] '>Service fee:</span>
+                              <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(serviceFee)}</span>
+                        </div>
+                        <div className='flex justify-between'>
+                             <span className='w-[10rem] '>Total:</span>
+                              <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(total)}</span>
+                        </div>
+                  </div>
 
-                   <div className="text-center  mt-4 md:max-w-md">
+
+                   <div className="text-center flex space-x-3 mt-4 md:max-w-md">
+                   { tab == 'details' ? 
+                   null : (
+                        <Button type="buton"
+                                    className='block w-full bg-white text-viralget-red'
+                                    onClick={() => setTab('details')}
+                                    >
+                                       
+                                        Back
+                          </Button>
+                   )}
                          <Button
                                     type="submit"
                                     className='block w-full bg-viralget-red  text-white'
                                     processing={processing}>
-                                 { tab == 'details' ? 'Next' : ' Create Campaign'}  
+                                 { tab == 'details' ? 'Next' : 'Pay & Create Campaign'}  
                           </Button>
                  </div>
              </form>
