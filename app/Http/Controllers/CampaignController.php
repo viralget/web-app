@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
 use App\Models\CampaignBrief;
+use App\Helpers\LoggerHelper;
+
+
 class CampaignController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -230,33 +234,41 @@ class CampaignController extends Controller
 
     public function  createBrief(){
          
-        return Inertia::render('CampaignBrief/create');
+
+        $data['user'] = Auth::user();
+        return Inertia::render('CampaignBrief/create', $data);
     }
 
     public function  storeBrief(Request $request){
         $user_id =  $request->user()->id;
 
         try{
+          
 
+            $logoName = null;
+            $moodBoardName = null;
 
         if($request->hasFile('logo')){
             $logoName = time().$user_id.'.'.$request->logo->extension();
-            $request->file->storeAs('public/campaign_brief_logos', $imageName);    
+            $request->logo->storeAs('public/campaign_brief_logos', $logoName);    
+        }
+       
+        if($request->hasFile('mood_board')){
+            $moodBoardName = time().$user_id.'.'.$request->mood_board->extension();
+            $request->mood_board->storeAs('public/campaign_brief_moodBoards', $moodBoardName);    
         }
 
-        if($request->hasFile('logo')){
-            $moodBoardName = time().$user_id.'.'.$request->logo->extension();
-            $request->file->storeAs('public/campaign_brief_moodBoards', $imageName);    
-        }
-
+        // dd($request);
 
         $brief = new CampaignBrief;
-        $brief->title = $request->title;
-        $brief->social_network = $request->social_networks;
+        $brief->user_id = $user_id;
+        $brief->campaign_name = $request->title;
+        $brief->social_network = $request->social_network;
         $brief->campaign_type = $request->campaign_type;
         $brief->budget = $request->budget;
+        $brief->campaign_budget = $request->budget;
         $brief->tracked_keywords = $request->keywords;
-        $brief->campaign_start_date = $request->start_date;
+        $brief->campaign_state_date = $request->start_date;
         $brief->campaign_end_date = $request->end_date;
         $brief->campaign_description= $request->description;
         $brief->brand_name= $request->brand_name;
@@ -266,7 +278,7 @@ class CampaignController extends Controller
         $brief->target_interest= $request->interest;
 
         $brief->reach_goal= $request->reach;
-        $brief->impression_goal= $request->impression;
+        $brief->impressions_goal= $request->impression;
         $brief->engagement_goal= $request->engagement;
         $brief->conversion_goal= $request->conversion;
       
@@ -277,16 +289,20 @@ class CampaignController extends Controller
         $brief->channels= $request->channels;
         $brief->timeline= $request->timeline;
         $brief->target_audience= $request->target_audience; 
-        $brief->logo= $logoName;
+        $brief->logo = $logoName;
+        $brief->status= "pending";
         $brief->mood_board= $moodBoardName;
 
         $brief->save();
 
-        return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
+        return redirect()->route('preorder.success')->withMessage('Campaign created successfully!');
+
+        // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
     } catch (\Exception $e) {
-        // dd($e);
-        $this->log($e);
-        return redirect()->back()->withError('An error occured. Please try again');
+        dd($e);
+        // $this->log($e);
+        return response(['status' => 'error', 'message' => $e, 'data' =>[] ]);
+        // return redirect()->back()->withError('An error occured. Please try again');
     }
 
 

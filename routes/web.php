@@ -119,6 +119,9 @@ Route::middleware('auth')->group(
         Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign');
         Route::get('/campaign/create', [CampaignController::class, 'createBrief'])->name('brief.create');
         Route::post('/campaign/create', [CampaignController::class, 'storeBrief'])->name('brief.store');
+        Route::post('general/payments/verify', [PurchasesController::class, 'generalVerifyPayment'])->name('general.payments.verify');
+
+
 
 
         Route::prefix('billings')->name('billings.')->group(function () {

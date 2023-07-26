@@ -11,15 +11,20 @@ import UploadImage from "@/components/UploadImage";
 import { getEventValue } from '@/Utils/helpers';
 import { numberWithCommas } from '@/Utils/helpers';
 import Select from '@/components/Select';
+import PaystackPop from '@paystack/inline-js';
+import StripePaymentButton from '@/Components/PaymentButton/StripePaymentButton';
+import axios from "axios";
+import toast from '@/Components/Toast'
 
-export default function  Create() {
+export default function  Create({ user }) {
 
 
    const [tab, setTab] = useState('details')
    const [image, setImageUrl] = useState(null);
    const [serviceFee, setServiceFee] = useState(0);
    const [total, setTotal] = useState(0);
-    const { data, setData, post, processing, errors } = useForm({
+   const [stripeProps, setStripeProps] = useState({});
+    const { data, setData, post, processing, errors, reset } = useForm({
         title: '',
         social_network: '',
         campaign_type: '',
@@ -50,8 +55,39 @@ export default function  Create() {
     });
 
 
+
+    useEffect(() => {
+      
+        setStripeProps({
+            email: user.email,
+            amount_usd: total,
+            metadata: { ...data, email: user.email },
+            paymentDataExtras: {
+                // job_listing_id: job.id,
+            },
+            type: 'paid-listing',
+            paymentVerificationRoute: route("general.payments.verify"),
+            successRedirectsTo: route('preorder.success'),
+        })
+
+    }, [ data])
     const onHandleChange = (event) => {
         setData(event.target.name, getEventValue(event));
+
+
+        // setStripeProps({
+        //     email: user.email,
+        //     amount_usd: total,
+        //     metadata: { ...data, email: user.email },
+        //     paymentDataExtras: {
+        //         // job_listing_id: job.id,
+        //     },
+        //     type: 'paid-listing',
+        //     paymentVerificationRoute: route("general.payments.verify"),
+        //     successRedirectsTo: route('preorder.success'),
+        // })
+
+        // console.log("stripeProps::", stripeProps);
     };
 
     const displayFile = (event) => {
@@ -66,17 +102,69 @@ export default function  Create() {
 }
 
 
-    const submit = (e) => {
-        e.preventDefault();
+
+function submit(e){
+    e.preventDefault();
         if(tab === 'details'){
             setTab('contents');
             return;
-        }
+     }
 
+     if(data.currency === 'NGN'){
+        payWithPaystack()
+     }
+}
+
+function payWithPaystack() {
+
+    const paystack = new PaystackPop();
+    paystack.newTransaction({
+        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+        email: user.email,
+        amount: total * 100, //plan.amount * 100,
+        reference: (new Date()).getTime().toString(),
+        metadata: {
+            ...data,
+            platform: data.social_network,
+            email:user.email,
+        },
+     
+        onSuccess: (transaction) => {
+          
+            const payment_data = {
+                reference: transaction.reference,
+                payment_gateway: 'paystack',
+               // metadata: data
+            }
+            verifyPayment(payment_data);
+        },
+        onCancel: () => {
+            // user closed popup
+            console.log("You need this, stay back!")
+            // setErrors({})
+        }
+    });
+
+
+}
+
+async function verifyPayment(payment_data) {
+    // setPaymentText("Verifying payment..")
+    const response = await  axios.post(route("general.payments.verify"), payment_data);
+    if (response?.data.status) {
+        createBrief();
+    } else {
+        toast.error('Something went wrong');
+    }
+
+}
+
+    const createBrief = () => {
+        
         post(route('brief.store'), {
             onSuccess: () => {
-                toast('Campaign created successfully! Our team would reach out to you once the highlighted influencer(s) respond');
-            },
+                reset();
+           },
             onError: () => {
                 toast.error('An error occured');
             }
@@ -146,11 +234,11 @@ export default function  Create() {
                                                 <p class="text-sm text-gray-500">Select Campaign Type</p>
                                                 <div class="mt-4 flex space-x-3">
                                                     <div class="flex items-center">
-                                                        <input id="public" onChange={onHandleChange} name="campaign_type" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="public" onChange={onHandleChange} name="campaign_type" value="public" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="public" class="ml-3 block text-sm font-medium text-gray-700">Public</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input id="private" onChange={onHandleChange} name="campaign_type" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="private" onChange={onHandleChange} name="campaign_type"  value="private"type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="private" class="ml-3 block text-sm font-medium text-gray-700">Private</label>
                                                     </div>
                                                 </div>
@@ -287,11 +375,11 @@ export default function  Create() {
                                                 <p class="text-sm text-gray-500">Gender</p>
                                                 <div class="mt-4 flex space-x-3">
                                                     <div class="flex items-center">
-                                                        <input id="male"  onChange={onHandleChange} name="gender" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="male"  onChange={onHandleChange} name="gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input id="female" name="gender"  onChange={onHandleChange} type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="female" name="gender"  onChange={onHandleChange}  value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                                     </div>
                                                 </div>
@@ -450,7 +538,7 @@ export default function  Create() {
                                             <div>
                                                                 <Input
                                                                 type="text"
-                                                                name="channel"
+                                                                name="channels"
                                                                 label="Channel"
                                                                 required
                                                                 placeholder="Input channel"
@@ -535,12 +623,28 @@ export default function  Create() {
                                         Back
                           </Button>
                    )}
-                         <Button
+                   {
+                    data.currency === 'NGN' ?
+                    (
+                        <Button
                                     type="submit"
                                     className='block w-full bg-viralget-red  text-white'
                                     processing={processing}>
                                  { tab == 'details' ? 'Next' : 'Pay & Create Campaign'}  
                           </Button>
+                    )
+                    :
+                    (
+                        <StripePaymentButton
+                        {...stripeProps}
+                        amount={total} >Pay & Create Campaign</StripePaymentButton> 
+                    )
+                   }
+                         
+                          {/* <StripePaymentButton
+                              {...stripeProps}
+                              amount={total} >Pay & Create Campaign</StripePaymentButton> */}
+                                              
                  </div>
              </form>
 

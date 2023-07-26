@@ -131,7 +131,6 @@ class PurchasesController extends Controller
 
             if ($request->payment_gateway == 'paystack') {
                 $verify = $this->paystackService->verifyTransaction($reference);
-                // $verify = Paystack::verify($reference);
             } else {
                 $verify = $this->stripeService->verifyTransaction($reference);
             }
@@ -172,6 +171,44 @@ class PurchasesController extends Controller
         }
     }
 
+
+
+
+    public function generalVerifyPayment(Request $request)
+    {
+        $request->validate([
+            'reference' => 'required',
+            'payment_gateway' => 'required',
+        ]);
+
+        try {
+            $reference = $request->reference;
+
+            if ($request->payment_gateway == 'paystack') {
+                $verify = $this->paystackService->verifyTransaction($reference);
+                // $verify = Paystack::verify($reference);
+            } else {
+                $verify = $this->stripeService->verifyTransaction($reference);
+            }
+
+            // $data['verify'] = $verify;
+
+            $user = request()->user();
+
+            if ($verify['status']) {
+               
+             return response(['status' => true, 'message' => 'Payment successful', 'data' => $verify ]);
+             
+            } else {
+                return response(['status' => false, 'message' => 'Payment failed. Please contact support']);
+            }
+        } catch (\Exception $e) {
+            $this->log($e);
+
+            // dd($e);
+            return response(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
 
 
 

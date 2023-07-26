@@ -7,6 +7,8 @@ import toast from '../Toast';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
+console.log("stripePromise:", stripePromise)
+
 const StripePaymentButton = (props) => {
 
     return (
@@ -28,6 +30,8 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
 
     // console.log({ metadata })
     // amount = 
+
+    console.log("stripe::,", stripe)
 
     useEffect(() => {
         if (stripe) {
