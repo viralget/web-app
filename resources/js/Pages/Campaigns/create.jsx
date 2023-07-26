@@ -33,7 +33,15 @@ export default function  Create() {
         impression:'',
         engagement:'',
         conversion:'',
-        logo:''
+        logo:'',
+        about_us: '',
+        campaign_goal:'',
+        campaign_message:'',
+        key_objectives: '',
+        channels:'',
+        timeline: '',
+        mood_board:'',
+        target_audience:'',
     });
 
 
@@ -287,7 +295,7 @@ export default function  Create() {
                                                     name="reach"
                                                     label="Reach"
                                                     required
-                                                    placeholder="input reach"
+                                                    placeholder="Input reach"
                                                     defaultValue={data.reach}
                                                     className="mt-1 block w-full"
                                                     onChange={onHandleChange}
@@ -301,7 +309,7 @@ export default function  Create() {
                                                     name="impression"
                                                     label="Impression/View"
                                                     required
-                                                    placeholder="input impression"
+                                                    placeholder="Input impression"
                                                     defaultValue={data.impression}
                                                     className="mt-1 block w-full"
                                                     onChange={onHandleChange}
@@ -314,7 +322,7 @@ export default function  Create() {
                                                     name="engagement"
                                                     label="Engagement"
                                                     required
-                                                    placeholder="input engagement"
+                                                    placeholder="Input engagement"
                                                     defaultValue={data.engagement}
                                                     className="mt-1 block w-full"
                                                     onChange={onHandleChange}
@@ -327,7 +335,7 @@ export default function  Create() {
                                                     name="conversion"
                                                     label="Conversion"
                                                     required
-                                                    placeholder="input conversion"
+                                                    placeholder="Input conversion"
                                                     defaultValue={data.conversion}
                                                     className="mt-1 block w-full"
                                                     onChange={onHandleChange}
@@ -340,10 +348,114 @@ export default function  Create() {
                     
                 </> ) : 
                   (
-                    <div>
+                    <div className='max-w-md'>
                             <div className="mt-space-20  mb-space-20">
                                 <UploadImage  displayFile={displayFile} image={image} />
                             </div>
+                            <div className='mt-5'>
+                                    <TextArea
+                                        type="text"
+                                        name="about_us"
+                                        label="About us"
+                                        placeholder="2-3 sentences  explaining what your company does."
+                                        className="mt-1 block w-full h-32"
+                                        defaultValue={data.about_us}
+                                        onChange={onHandleChange}
+                                        required
+                                    />
+                           </div>
+                           <div className='mt-5'>
+                                    <TextArea
+                                        type="text"
+                                        name="campaign_goal"
+                                        label="Campaign goal"
+                                        placeholder="1-2 sentences  describing the campaign and what you hope to accomplish."
+                                        className="mt-1 block w-full h-32"
+                                        defaultValue={data.campaign_goal}
+                                        onChange={onHandleChange}
+                                        required
+                                    />
+                           </div>
+                           <div className='mt-5'>
+                                    <TextArea
+                                        type="text"
+                                        name="campaign_message"
+                                        label="Campaign message"
+                                        placeholder="Specific information that the influencer should include in post captions"
+                                        className="mt-1 block w-full h-32"
+                                        defaultValue={data.campaign_message}
+                                        onChange={onHandleChange}
+                                        required
+                                    />
+                           </div>
+
+                           <div className='mt-5'>
+                                    <TextArea
+                                        type="text"
+                                        name="key_objectives"
+                                        label="Key objectives"
+                                        placeholder="What are you hoping to accomplish (brand awareness, engagement, etc.)"
+                                        className="mt-1 block w-full h-32"
+                                        defaultValue={data.key_objectives}
+                                        onChange={onHandleChange}
+                                        required
+                                    />
+                           </div>
+
+                           <div>
+                                            <Input
+                                            type="text"
+                                            name="channel"
+                                            label="Channel"
+                                            required
+                                            placeholder="Input channel"
+                                            defaultValue={data.channels}
+                                            className="mt-1 block w-full"
+                                            onChange={onHandleChange}
+                                        />
+                             </div>
+
+
+                           <div>
+                                            <Input
+                                            type="text"
+                                            name="timeline"
+                                            label="Timeline"
+                                            required
+                                            placeholder="Input timeline"
+                                            defaultValue={data.timeline}
+                                            className="mt-1 block w-full"
+                                            onChange={onHandleChange}
+                                        />
+                             </div>
+
+
+                             <div>
+                                            <Input
+                                            type="text"
+                                            name="mood_board"
+                                            label="Mood board"
+                                            required
+                                            placeholder="Input mood board"
+                                            defaultValue={data.mood_board}
+                                            className="mt-1 block w-full"
+                                            onChange={onHandleChange}
+                                        />
+                             </div>
+
+                             <div>
+                                            <Input
+                                            type="text"
+                                            name="target_audience"
+                                            label="Target audience"
+                                            required
+                                            placeholder="Input target audience"
+                                            defaultValue={data.target_audience}
+                                            className="mt-1 block w-full"
+                                            onChange={onHandleChange}
+                                        />
+                             </div>
+                            
                     </div>
                   )
                 
