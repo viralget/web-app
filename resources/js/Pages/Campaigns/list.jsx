@@ -39,7 +39,7 @@ export default function List({ campaigns }) {
     };
 
     return (
-        <AuthenticatedLayout title="My Campaigns" subtitle={<Link href={route('campaign.create')}>{campaigns.length > 0 ? 'Create a new campaign' : 'Create your first campaign'}</Link>}>
+        <AuthenticatedLayout title="My Campaigns" subtitle={<Link href={route('brief.create')}>{campaigns.length > 0 ? 'Create a new campaign' : 'Create your first campaign'}</Link>}>
 
             {campaigns.length > 0 ?
                 <div className='mx-10'>

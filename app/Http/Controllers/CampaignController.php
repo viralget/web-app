@@ -225,4 +225,72 @@ class CampaignController extends Controller
             return false;
         }
     }
+
+
+
+    public function  createBrief(){
+         
+        return Inertia::render('CampaignBrief/create');
+    }
+
+    public function  storeBrief(Request $request){
+        $user_id =  $request->user()->id;
+
+        try{
+
+
+        if($request->hasFile('logo')){
+            $logoName = time().$user_id.'.'.$request->logo->extension();
+            $request->file->storeAs('public/campaign_brief_logos', $imageName);    
+        }
+
+        if($request->hasFile('logo')){
+            $moodBoardName = time().$user_id.'.'.$request->logo->extension();
+            $request->file->storeAs('public/campaign_brief_moodBoards', $imageName);    
+        }
+
+
+        $brief = new CampaignBrief;
+        $brief->title = $request->title;
+        $brief->social_network = $request->social_networks;
+        $brief->campaign_type = $request->campaign_type;
+        $brief->budget = $request->budget;
+        $brief->tracked_keywords = $request->keywords;
+        $brief->campaign_start_date = $request->start_date;
+        $brief->campaign_end_date = $request->end_date;
+        $brief->campaign_description= $request->description;
+        $brief->brand_name= $request->brand_name;
+        $brief->target_location= $request->location;
+        $brief->target_gender= $request->gender;
+        $brief->target_age= $request->age;
+        $brief->target_interest= $request->interest;
+
+        $brief->reach_goal= $request->reach;
+        $brief->impression_goal= $request->impression;
+        $brief->engagement_goal= $request->engagement;
+        $brief->conversion_goal= $request->conversion;
+      
+        $brief->about_us= $request->about_us;
+        $brief->campaign_goal= $request->campaign_goal;
+        $brief->campaign_message= $request->campaign_message;
+        $brief->campaign_key_objectives= $request->key_objectives;
+        $brief->channels= $request->channels;
+        $brief->timeline= $request->timeline;
+        $brief->target_audience= $request->target_audience; 
+        $brief->logo= $logoName;
+        $brief->mood_board= $moodBoardName;
+
+        $brief->save();
+
+        return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
+    } catch (\Exception $e) {
+        // dd($e);
+        $this->log($e);
+        return redirect()->back()->withError('An error occured. Please try again');
+    }
+
+
+        
+
+    }
 }

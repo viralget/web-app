@@ -117,7 +117,8 @@ Route::middleware('auth')->group(
         // campiagn brief
 
         Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign');
-        Route::get('/campaign/create', [CampaignController::class, 'create'])->name('campaign.create');
+        Route::get('/campaign/create', [CampaignController::class, 'createBrief'])->name('brief.create');
+        Route::post('/campaign/create', [CampaignController::class, 'storeBrief'])->name('brief.store');
 
 
         Route::prefix('billings')->name('billings.')->group(function () {

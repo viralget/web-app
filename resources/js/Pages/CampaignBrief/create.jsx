@@ -19,8 +19,6 @@ export default function  Create() {
    const [image, setImageUrl] = useState(null);
    const [serviceFee, setServiceFee] = useState(0);
    const [total, setTotal] = useState(0);
-//    let serviceFee = 0;
-//    let total = 0;
     const { data, setData, post, processing, errors } = useForm({
         title: '',
         social_network: '',
@@ -74,6 +72,15 @@ export default function  Create() {
             setTab('contents');
             return;
         }
+
+        post(route('brief.store'), {
+            onSuccess: () => {
+                toast('Campaign created successfully! Our team would reach out to you once the highlighted influencer(s) respond');
+            },
+            onError: () => {
+                toast.error('An error occured');
+            }
+        });
      
     };
 
@@ -82,8 +89,6 @@ export default function  Create() {
        const budget = event.target.value;
        const serviceFee = 0.15 * Number(budget);
       const  total =  Number(budget) + serviceFee;
-
-      console.log("total", total);
       setTotal(total);
       setServiceFee(serviceFee);
     }

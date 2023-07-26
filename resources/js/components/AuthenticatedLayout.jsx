@@ -23,22 +23,22 @@ import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaign
 
 
 
-const navigation = [
-    { name: 'Find Influencers', href: 'dashboard', icon: FindInfluencer, current: true },
-    { name: 'Billings', href: 'billings.index', icon: CreditCardIcon, current: false },
-    // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-    { name: 'Settings', href: 'settings', icon: Cog6ToothIcon, current: false },
-    { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
-]
-
-
 // const navigation = [
-//     { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
-//     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+//     { name: 'Find Influencers', href: 'dashboard', icon: FindInfluencer, current: true },
+//     { name: 'Billings', href: 'billings.index', icon: CreditCardIcon, current: false },
 //     // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-//     { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
-//     { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
+//     { name: 'Settings', href: 'settings', icon: Cog6ToothIcon, current: false },
+//     { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
 // ]
+
+
+const navigation = [
+    { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
+    { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+    // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
+    { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
+    { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
+]
 
 
 export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = false }) {
