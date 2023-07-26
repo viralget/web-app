@@ -6,12 +6,15 @@ import Input from '@/Components/Input';
 import { useForm } from '@inertiajs/inertia-react';
 import TextArea from '@/Components/TextArea';
 import MultiSelect from '@/components/MultiSelect';
+import { classNames } from '@/Utils/helpers';
+import UploadImage from "@/components/UploadImage";
 
 
 export default function  Create() {
 
 
-
+   const [tab, setTab] = useState('contents')
+   const [image, setImageUrl] = useState(null);
     const { data, setData, post, processing, errors } = useForm({
         title: '',
         social_network: '',
@@ -29,7 +32,8 @@ export default function  Create() {
         reach: '',
         impression:'',
         engagement:'',
-        conversion:''
+        conversion:'',
+        logo:''
     });
 
 
@@ -37,13 +41,26 @@ export default function  Create() {
         setData(event.target.name, getEventValue(event));
     };
 
-
-
-    function handleUpdateData(key, value){
-        setData(key, value);
+    const displayFile = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setData('logo', event.target.files[0]);
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                setImageUrl(e.target.result);
+            };
+            reader.readAsDataURL(event.target.files[0]);
     }
+}
 
 
+    const submit = (e) => {
+        e.preventDefault();
+        if(tab === 'details'){
+            setTab('contents');
+            return;
+        }
+
+    };
 
     return(
         <AuthenticatedLayout  title="My Campaigns"  smallHeader={true}>
@@ -54,13 +71,14 @@ export default function  Create() {
                      <div className='flex space-x-5'>
                           <span className='font-bold  text-viralget-red  capitalize'>campaign  details</span>
                            <span className='text-gray-300'>|</span>
-                          <span className='font-bold text-gray-200 capitalize'>content</span>
+                          <span className={classNames('font-bold  capitalize',  tab == 'contents' ? 'text-viralget-red' : 'text-gray-200' )}>content</span>
                      </div>
             </div>
 
 
-            <form className='mt-10  bg-white shadow-sm p-5 w-full'>
-
+            <form onSubmit={submit} className='mt-10  bg-white shadow-sm p-5 w-full'>
+          {     tab == 'details' ? (
+            <>
                 <div className='flex md:flex-row flex-col md:space-x-5 md:space-y-0  space-y-4 w-full'>
                     <div className='form-group w-full'>
                                     <span className='text-t-lg-x  capitalize font-bold '>main info</span>
@@ -89,7 +107,7 @@ export default function  Create() {
                                                 label='Social Platform'
                                                 name="social_network"
                                                 required
-                                                onChange={(values) => handleUpdateData('social_network', [...values].join(','))}
+                                                onChange={(values) => setData('social_network', [...values].join(','))}
                                             />
                                             </div>
 
@@ -137,7 +155,7 @@ export default function  Create() {
                                                     name="budget"
                                                     label="Budget"
                                                     required
-                                                    placeholder="input campaign budget"
+                                                    placeholder="input campaign budget (E.g: 3000000)"
                                                     defaultValue={data.budget}
                                                     className="mt-1 block w-full"
                                                     onChange={onHandleChange}
@@ -237,7 +255,7 @@ export default function  Create() {
                                                     name="age"
                                                     label="Age range"
                                                     required
-                                                    placeholder="input age"
+                                                    placeholder="input age(E.g: 19-30)"
                                                     defaultValue={data.age}
                                                     className="mt-1 block w-full"
                                                     onChange={onHandleChange}
@@ -320,15 +338,25 @@ export default function  Create() {
                                     
                 </div>
                     
+                </> ) : 
+                  (
+                    <div>
+                            <div className="mt-space-20  mb-space-20">
+                                <UploadImage  displayFile={displayFile} image={image} />
+                            </div>
+                    </div>
+                  )
+                
+                }
 
 
                    <div className="text-center  mt-4 md:max-w-md">
-                                <Button
+                         <Button
                                     type="submit"
                                     className='block w-full bg-viralget-red  text-white'
                                     processing={processing}>
-                                    Create Campaign
-                                </Button>
+                                 { tab == 'details' ? 'Next' : ' Create Campaign'}  
+                          </Button>
                  </div>
              </form>
 
