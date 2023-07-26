@@ -10,7 +10,7 @@ const SelectPricing = (props) => {
     const { auth: { user }, plans } = props;
 
 
-    const [getTab, setTab] = useState('plans');
+    const [getTab, setTab] = useState('paygo'); //'plans'
     const [getPlans, setPlans] = useState(plans?.filter((item) => !item.is_deleted))
 
 
@@ -44,9 +44,9 @@ const SelectPricing = (props) => {
 
                     <div className='flex  items-center justify-center content-center bottom-0  absolute'>
                         <div className='flex'>
-                            <button onClick={() => handleTabs('plans')} className={classNames("rounded-tr-lg rounded-tl-lg  p-3 px-5 text-black w-space-200   text-t-xs font-bold font-lexend", getTab === 'plans' ? 'bg-white ' : 'bg-[#f4f4f4]')} >
+                            {/* <button onClick={() => handleTabs('plans')} className={classNames("rounded-tr-lg rounded-tl-lg  p-3 px-5 text-black w-space-200   text-t-xs font-bold font-lexend", getTab === 'plans' ? 'bg-white ' : 'bg-[#f4f4f4]')} >
                                 Plans
-                            </button>
+                            </button> */}
                             <button onClick={() => handleTabs('paygo')} className={classNames("rounded-tr-lg rounded-tl-lg  p-3 px-5 text-black w-space-200   text-t-xs font-bold font-lexend", getTab === 'paygo' ? 'bg-white ' : 'bg-[#f4f4f4]')}>
                                 Pay as you go
                             </button>

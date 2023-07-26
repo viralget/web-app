@@ -24,7 +24,8 @@ class PageController extends Controller
         $result = TwitterInfluencer::limit(8)->get();
 
         if (Auth::user()) {
-            return redirect(route('explore'));
+            return redirect(route('dashboard'));
+            // return redirect(route('explore'));
         }
 
         return Inertia::render(

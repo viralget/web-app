@@ -1,13 +1,16 @@
 <?php
 
+// use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InfluencerController;
 use App\Http\Controllers\WhatsAppInfluencerController;
 use App\Http\Controllers\UserProfileController;
 use App\Models\WhatsappInfluencer;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfilingController;
+use App\Http\Controllers\PurchasesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MessagesController;
@@ -24,7 +27,16 @@ use App\Http\Controllers\MessagesController;
 */
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-
+Route::get('/find-influencers', function () {
+    return Inertia::render('LandingPage/index');
+})->name('landing-page');
+Route::get('/pre-order', function () {
+    return Inertia::render('LandingPage/Preorder/index');
+})->name('preorder');
+Route::post('/pre-order', [PurchasesController::class, 'preOrder'])->name('preorder');
+Route::get('/pre-order/success', function () {
+    return Inertia::render('LandingPage/Preorder/Success');
+})->name('preorder.success');
 Route::get('/join', function () {
     return Inertia::render('Join/index');
 })->name('join');
@@ -32,6 +44,10 @@ Route::get('/join', function () {
 Route::get('/faqs', function () {
     return Inertia::render('Faqs/index');
 })->name('faqs');
+
+Route::get('/services', function () {
+    return Inertia::render('Services/index');
+})->name('services');
 
 Route::get('/contact', function () {
     return Inertia::render('Contact/index');
@@ -49,9 +65,20 @@ Route::get('/coming-soon', function () {
     return Inertia::render('ComingSoon/index');
 })->name('coming-soon');
 
+Route::post('/payments/verify', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
+Route::prefix('transactions')->name('payments.')->group(
+    function () {
+
+
+        Route::post('/create-customer', [PurchasesController::class, 'stripeCreateCustomer'])->name('stripe.customer.create');
+        Route::post('/stripe-create-intent', [PurchasesController::class, 'stripeCreateIntent'])->name('stripe.intent');
+    }
+);
+
 Route::middleware('auth')->group(
     function () {
         Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
         Route::get('/search', [InfluencerController::class, 'index'])->name('search');
         Route::get('/messages', [MessagesController::class, 'index'])->name('get.messages');
@@ -93,6 +120,20 @@ Route::middleware('auth')->group(
         Route::get('/campaign/create', [CampaignController::class, 'create'])->name('campaign.create');
 
 
+        Route::prefix('billings')->name('billings.')->group(function () {
+            Route::get('/', [PurchasesController::class, 'billings'])->name('index');
+            Route::get('/billings', [PurchasesController::class, 'billings'])->name('billings');
+            Route::get('/plans', [PurchasesController::class, 'plans'])->name('plans');
+            Route::post('/purchase', [PurchasesController::class, 'processPurchase'])->name('purchase');
+
+            Route::get('/invoice/{id}', [PurchasesController::class, 'invoice'])->name('invoice');
+
+
+            // Route::patch('/update-profile', [SettingsController::class, 'updateProfile'])->name('profile.update');
+            // Route::patch('/update-password', [SettingsController::class, 'updatePassword'])->name('password.update');
+        });
+        // Route::post('/payments/verify/{reference}', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
+
 
         Route::resource('influencers', InfluencerController::class)->except('show');
         Route::get('influencers/{influencer}', [InfluencerController::class, 'show'])->name('influencers.show');
@@ -106,6 +147,8 @@ Route::middleware('auth')->group(
 
 Route::get('whatsapp-amplifier', [WhatsAppInfluencerController::class, 'create'])->name('amplifier');
 Route::resources(['whatsapp-influencers' => WhatsAppInfluencerController::class]);
+
+
 
 
 require __DIR__ . '/admin.php';

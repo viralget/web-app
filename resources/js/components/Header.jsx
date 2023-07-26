@@ -136,9 +136,9 @@ export function Header({ useShadow = true }) {
           <nav className="relative flex justify-between">
             <div className="flex items-center md:gap-x-12">
               <div>
-                <Link href="/" aria-label="Home">
-                  <Logo className="h-10 w-auto" />
-                </Link>
+                {/* <Link href="/" aria-label="Home"> */}
+                <Logo className="h-10 w-auto" />
+                {/* </Link> */}
               </div>
             </div>
             <div className="hidden font-bold justify-center items-center md:flex md:gap-x-3">
@@ -151,13 +151,13 @@ export function Header({ useShadow = true }) {
                 <DropdownMenu user={user} />
                 :
                 <>
-                  <div className="hidden md:block">
+                  {/* <div className="hidden md:block">
                     <NavLink href="/login" className="text-viralget-red rounded-md  text-t-xsx font-lexend font-medium px-space-30  py-space-15   border border-viralget-red">Log in</NavLink>
-                  </div>
-                  <div className="hidden md:block">
+                  </div> */}
+                  <div className=" md:block">
                     <a href="/register" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
 
-                      <span className='font-lexend font-medium  text-white text-t-xsx'>Try for free</span>
+                      <span className='font-lexend font-medium  text-white text-t-xsx'>Early Bird Signup</span>
                     </a>
                   </div>
                   {/* <Button href="/join" color="blue">
@@ -167,9 +167,9 @@ export function Header({ useShadow = true }) {
                   </Button> */}
                 </>
               }
-              <div className="-mr-1 md:hidden">
+              {/* <div className="-mr-1 md:hidden">
                 <MobileNavigation />
-              </div>
+              </div> */}
             </div>
           </nav>
         </Container>

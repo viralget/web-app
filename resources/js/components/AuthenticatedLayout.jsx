@@ -10,7 +10,9 @@ import {
     ScaleIcon,
     XMarkIcon,
     BellIcon,
-    UsersIcon
+    UsersIcon,
+    Cog6ToothIcon,
+    CreditCardIcon
 } from '@heroicons/react/24/outline'
 import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
@@ -22,12 +24,21 @@ import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaign
 
 
 const navigation = [
-    { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
-    { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+    { name: 'Find Influencers', href: 'dashboard', icon: FindInfluencer, current: true },
+    { name: 'Billings', href: 'billings.index', icon: CreditCardIcon, current: false },
     // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-    { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
-    { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
+    { name: 'Settings', href: 'settings', icon: Cog6ToothIcon, current: false },
+    { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
 ]
+
+
+// const navigation = [
+//     { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
+//     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+//     // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
+//     { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
+//     { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
+// ]
 
 
 export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = false }) {
@@ -168,7 +179,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             {showSearchForm && (
                                 <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
                                     <div className="hidden md:flex flex-1">
-                                        <div className="w-full max-w-sm  mt-3">
+                                        {/* <div className="w-full max-w-sm  mt-3">
                                             <form action={route('influencers.search')} method="get">
 
                                                 <label htmlFor="search" className="sr-only">
@@ -187,7 +198,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                     />
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="ml-4 flex items-center md:ml-6 space-x-3">
                                         <button

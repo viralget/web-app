@@ -25,11 +25,11 @@ class Paystack
 
     public static function fetchPlan($plan_code)
     {
-       
-       $curl = curl_init();
+
+        $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.paystack.co/plan/".$plan_code,
+            CURLOPT_URL => "https://api.paystack.co/plan/" . $plan_code,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -37,7 +37,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                "Authorization:Bearer ".self::$secret_key,
+                "Authorization:Bearer " . self::$secret_key,
                 "Cache-Control: no-cache",
             ],
         ]);
@@ -51,7 +51,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -61,8 +61,8 @@ class Paystack
 
     public static function fetchPlans()
     {
-       
-       $curl = curl_init();
+
+        $curl = curl_init();
 
         curl_setopt_array($curl, [
             CURLOPT_URL => "https://api.paystack.co/plan",
@@ -73,7 +73,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                "Authorization:Bearer ".self::$secret_key,
+                "Authorization:Bearer " . self::$secret_key,
                 "Cache-Control: no-cache",
             ],
         ]);
@@ -87,7 +87,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -115,7 +115,7 @@ class Paystack
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer '.self::$secret_key,
+            'Authorization: Bearer ' . self::$secret_key,
             'Cache-Control: no-cache',
         ]);
 
@@ -132,7 +132,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -154,7 +154,7 @@ class Paystack
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer '.self::$secret_key,
+            'Authorization: Bearer ' . self::$secret_key,
             'Cache-Control: no-cache',
         ]);
 
@@ -171,7 +171,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -183,7 +183,7 @@ class Paystack
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://api.paystack.co/transfer/'.$transfer_code,
+            CURLOPT_URL => 'https://api.paystack.co/transfer/' . $transfer_code,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -191,7 +191,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.self::$secret_key,
+                'Authorization: Bearer ' . self::$secret_key,
                 'Cache-Control: no-cache',
             ],
         ]);
@@ -205,7 +205,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -217,7 +217,7 @@ class Paystack
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://api.paystack.co/transaction/'.$txn_id,
+            CURLOPT_URL => 'https://api.paystack.co/transaction/' . $txn_id,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -225,7 +225,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.self::$secret_key,
+                'Authorization: Bearer ' . self::$secret_key,
                 'Cache-Control: no-cache',
             ],
         ]);
@@ -239,7 +239,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -249,7 +249,7 @@ class Paystack
     public static function verifyEvent($request)
     {
         Log::info('handling paystack event');
-        if (! $request->isMethod('post') || ! $request->hasHeader('x-paystack-signature')) {
+        if (!$request->isMethod('post') || !$request->hasHeader('x-paystack-signature')) {
             Log::error('paystack event UnAuthorized 1');
             throw new Exception('UnAuthorized 1', 401);
         }
@@ -258,9 +258,9 @@ class Paystack
         // $input = $request->input();
         // $input = json_encode($input);
         $input = $request->getContent();
-        Log::info('input: '.$input);
-        Log::info('signature1: '.$request->header('x-paystack-signature'));
-        Log::info('signature2: '.hash_hmac('sha512', $input, self::$secret_key));
+        Log::info('input: ' . $input);
+        Log::info('signature1: ' . $request->header('x-paystack-signature'));
+        Log::info('signature2: ' . hash_hmac('sha512', $input, self::$secret_key));
         // validate event do all at once to avoid timing attack
         if ($request->header('x-paystack-signature') !== hash_hmac('sha512', $input, self::$secret_key)) {
             Log::error('paystack event UnAuthorized 2');
@@ -315,7 +315,7 @@ class Paystack
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer '.self::$secret_key,
+            'Authorization: Bearer ' . self::$secret_key,
             'Cache-Control: no-cache',
         ]);
 
@@ -332,7 +332,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -358,7 +358,7 @@ class Paystack
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer '.self::$secret_key,
+            'Authorization: Bearer ' . self::$secret_key,
             'Cache-Control: no-cache',
         ]);
 
@@ -375,7 +375,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -388,7 +388,7 @@ class Paystack
     {
         $url = 'https://api.paystack.co/subaccount';
 
-     
+
         $fields = [
             'business_name' => $company_name,
             'bank_code' => $bank_code,
@@ -404,7 +404,7 @@ class Paystack
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer '.self::$secret_key,
+            'Authorization: Bearer ' . self::$secret_key,
             'Cache-Control: no-cache',
         ]);
 
@@ -421,7 +421,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -436,7 +436,7 @@ class Paystack
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.paystack.co/bank/resolve?account_number={$acc_no}&bank_code=".$bank_code,
+            CURLOPT_URL => "https://api.paystack.co/bank/resolve?account_number={$acc_no}&bank_code=" . $bank_code,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -444,7 +444,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.self::$secret_key,
+                'Authorization: Bearer ' . self::$secret_key,
                 'Cache-Control: no-cache',
             ],
         ]);
@@ -454,11 +454,11 @@ class Paystack
         curl_close($curl);
 
         if ($err) {
-            throw new Exception('INCORRECT_ACCOUNT_DETAILS '.$err);
+            throw new Exception('INCORRECT_ACCOUNT_DETAILS ' . $err);
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -471,7 +471,7 @@ class Paystack
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://api.paystack.co/transaction/verify/'.$trans_id,
+            CURLOPT_URL => 'https://api.paystack.co/transaction/verify/' . $trans_id,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -479,7 +479,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.self::$secret_key,
+                'Authorization: Bearer ' . self::$secret_key,
                 'Cache-Control: no-cache',
             ],
         ]);
@@ -493,7 +493,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -513,7 +513,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.self::$secret_key,
+                'Authorization: Bearer ' . self::$secret_key,
                 'Cache-Control: no-cache',
             ],
         ]);
@@ -527,7 +527,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -547,7 +547,7 @@ class Paystack
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer '.self::$secret_key,
+                'Authorization: Bearer ' . self::$secret_key,
                 'Cache-Control: no-cache',
             ],
         ]);
@@ -561,7 +561,7 @@ class Paystack
         }
 
         $response = json_decode($response);
-        if (! $response->status) {
+        if (!$response->status) {
             throw new Exception($response->message);
         }
 
@@ -577,7 +577,7 @@ class Paystack
                 break;
                 // ... handle other event types
             default:
-                echo 'Received unknown event type '.$payload->event;
+                echo 'Received unknown event type ' . $payload->event;
         }
     }
 }

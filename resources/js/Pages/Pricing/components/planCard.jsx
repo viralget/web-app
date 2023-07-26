@@ -42,7 +42,8 @@ export default function PlanCard({ item, isEmpty }) {
               </span>
 
               <a href={route('user.payment.page', { plan_id: plan?.plan_code })} className="text-viralget-red border mt-3  p-1 hover:bg-viralget-red px-space-20 py-space-10  text-center  flex items-center hover:text-white rounded-md border-viralget-red ">
-                <span className="text-t-normal  font-bold">Start free 7-day trial</span>
+                <span className="text-t-normal  font-bold">Get started</span>
+                {/* <span className="text-t-normal  font-bold">Start free 7-day trial</span> */}
               </a>
             </div>
           )

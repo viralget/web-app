@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
 
     public function create()
     {
+        return redirect(route('landing-page'));
         return Inertia::render('Auth/Register');
     }
     /**
