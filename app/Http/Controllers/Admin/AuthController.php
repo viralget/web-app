@@ -53,8 +53,10 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt($request->only('email', 'password'), true)) {
             $request->session()->regenerate();
 
+            // dd('hello');
             return redirect()->intended(route('admin.dashboard'));
         } else {
+            // dd('hellox');
             return redirect()->back()->withErrors('Invalid login credentials');
         }
     }
