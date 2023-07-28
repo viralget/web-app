@@ -29,7 +29,9 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = CampaignBrief::where('user_id', request()->user()->id)->get();
+        $campaigns = Campaign::where('user_id', request()->user()->id)->get();
+        $campaigns = CampaignResource::collection($campaigns);
+        // My campaigns
         return Inertia::render('Campaigns/list', compact('campaigns'));
     }
 
@@ -232,12 +234,18 @@ class CampaignController extends Controller
 
 
 
+  public   function  indexBrief(){
+    $data['campaigns'] = CampaignBrief::where('user_id', request()->user()->id)->get();
+    return Inertia::render('CampaignBrief/index', $data);
+  } 
+
     public function  createBrief(){
          
-
         $data['user'] = Auth::user();
         return Inertia::render('CampaignBrief/create', $data);
     }
+
+
 
     public function  storeBrief(Request $request){
         $user_id =  $request->user()->id;
@@ -295,7 +303,8 @@ class CampaignController extends Controller
 
         $brief->save();
 
-        return redirect()->route('preorder.success')->withMessage('Campaign created successfully!');
+        // return redirect(route('brief.success'));
+        return Redirect::route('brief.success');
 
         // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
     } catch (\Exception $e) {
@@ -304,9 +313,16 @@ class CampaignController extends Controller
         return response(['status' => 'error', 'message' => $e, 'data' =>[] ]);
         // return redirect()->back()->withError('An error occured. Please try again');
     }
+ }
 
+   public function successBrief(){
+    return Inertia::render('CampaignBrief/success');
+   }
+  
 
-        
-
+    public function viewBrief($id) {
+        $data['campaign'] = CampaignBrief::where('id', $id)->first();
+        return Inertia::render('CampaignBrief/view', $data);
     }
+ 
 }

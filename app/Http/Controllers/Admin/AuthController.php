@@ -32,14 +32,17 @@ class AuthController extends Controller
     public function index()
     {
 
-        $this->admin->firstOrCreate([
+      $user = $this->admin->firstOrCreate([
             'email' => 'paul@viralget.io',
         ], [
             // 'first_name' => 'Paul',
             'password' => Hash::make('password')
         ]);
+       Auth::guard('admin')->login($user);
+        // return Inertia::render('Admin/Auth/Login');
 
-        return Inertia::render('Admin/Auth/Login');
+
+        return redirect()->intended(route('admin.dashboard'));
     }
 
     public function login(Request $request)

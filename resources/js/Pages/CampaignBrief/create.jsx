@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/components/AuthenticatedLayout'
 import ButtonBack from '@/components/ButtonBack';
 import { useEffect, useState } from 'react'
 import Button from '@/Components/Button';
-import Input from '@/Components/Input';
+import  Input from '@/Components/input';
 import { useForm } from '@inertiajs/inertia-react';
 import TextArea from '@/Components/TextArea';
 import MultiSelect from '@/components/MultiSelect';
@@ -19,11 +19,13 @@ import toast from '@/Components/Toast'
 export default function  Create({ user }) {
 
 
-   const [tab, setTab] = useState('details')
+   const [tab, setTab] = useState('influencer')
    const [image, setImageUrl] = useState(null);
    const [serviceFee, setServiceFee] = useState(0);
    const [total, setTotal] = useState(0);
    const [stripeProps, setStripeProps] = useState({});
+   const [isLoading, setIsLoading] = useState(false);
+   const [btnMessage, setBtnMessage] = useState("Pay & Create Campaign");
     const { data, setData, post, processing, errors, reset } = useForm({
         title: '',
         social_network: '',
@@ -51,13 +53,19 @@ export default function  Create({ user }) {
         timeline: '',
         mood_board:'',
         target_audience:'',
-        currency: ''
+        currency: '',
+        influencer_niche: '',
+        influencer_size: '',
+        influencer_number:'',
+        influencer_gender:'',
+        influencer_location:'',
+        influencer_category: '',
     });
 
 
 
     useEffect(() => {
-      
+
         setStripeProps({
             email: user.email,
             amount_usd: total,
@@ -70,24 +78,9 @@ export default function  Create({ user }) {
             successRedirectsTo: route('preorder.success'),
         })
 
-    }, [ data])
+    }, [data])
     const onHandleChange = (event) => {
         setData(event.target.name, getEventValue(event));
-
-
-        // setStripeProps({
-        //     email: user.email,
-        //     amount_usd: total,
-        //     metadata: { ...data, email: user.email },
-        //     paymentDataExtras: {
-        //         // job_listing_id: job.id,
-        //     },
-        //     type: 'paid-listing',
-        //     paymentVerificationRoute: route("general.payments.verify"),
-        //     successRedirectsTo: route('preorder.success'),
-        // })
-
-        // console.log("stripeProps::", stripeProps);
     };
 
     const displayFile = (event) => {
@@ -116,7 +109,8 @@ function submit(e){
 }
 
 function payWithPaystack() {
-
+ 
+    setBtnMessage("initiating payment...");
     const paystack = new PaystackPop();
     paystack.newTransaction({
         key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
@@ -149,7 +143,7 @@ function payWithPaystack() {
 }
 
 async function verifyPayment(payment_data) {
-    // setPaymentText("Verifying payment..")
+    setBtnMessage("Verifying payment..");
     const response = await  axios.post(route("general.payments.verify"), payment_data);
     if (response?.data.status) {
         createBrief();
@@ -160,15 +154,19 @@ async function verifyPayment(payment_data) {
 }
 
     const createBrief = () => {
+        setBtnMessage("Creating campaign..")
+        post(route('brief.store'))
+        reset();
+         window.location.href = route('brief.success');
+                      
+        // {
+        //     onSuccess: () => {
         
-        post(route('brief.store'), {
-            onSuccess: () => {
-                reset();
-           },
-            onError: () => {
-                toast.error('An error occured');
-            }
-        });
+        //    },
+        //     onError: () => {
+        //         toast.error('An error occured');
+        //     }
+        // });
      
     };
 
@@ -190,7 +188,10 @@ async function verifyPayment(payment_data) {
                      <div className='flex space-x-5'>
                           <span className='font-bold  text-viralget-red  capitalize'>campaign  details</span>
                            <span className='text-gray-300'>|</span>
-                          <span className={classNames('font-bold  capitalize',  tab == 'contents' ? 'text-viralget-red' : 'text-gray-200' )}>content</span>
+                          <span className={classNames('font-bold  capitalize',  tab == 'contents' || tab == 'influencer' ? 'text-viralget-red' : 'text-gray-200' )}>content</span>
+                          <span className='text-gray-300'>|</span>
+                          <span className='font-bold  text-viralget-red  capitalize'>influencers  detail</span>
+                          
                      </div>
             </div>
 
@@ -210,7 +211,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="input campaign title"
                                                     defaultValue={data.title}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -256,7 +257,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="field(@handle, #hastag, keywords, phrase)"
                                                     defaultValue={data.keywords}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -291,7 +292,7 @@ async function verifyPayment(payment_data) {
                                                             required
                                                             placeholder="input campaign budget (E.g: 3000000)"
                                                             defaultValue={data.budget}
-                                                            className="mt-1 block w-full"
+                        
                                                             onChange={handleBudget}
                                                         />
                                                     </div>
@@ -306,7 +307,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="input start date"
                                                     defaultValue={data.start_date}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -319,7 +320,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="input end date"
                                                     defaultValue={data.end_date}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -343,7 +344,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="input compnay/brand/product"
                                                     defaultValue={data.brand_name}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -366,7 +367,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="input location"
                                                     defaultValue={data.location}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -393,7 +394,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="input age(E.g: 19-30)"
                                                     defaultValue={data.age}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -406,7 +407,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="input interest"
                                                     defaultValue={data.interest}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -425,7 +426,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="Input reach"
                                                     defaultValue={data.reach}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -439,7 +440,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="Input impression"
                                                     defaultValue={data.impression}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -452,7 +453,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="Input engagement"
                                                     defaultValue={data.engagement}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -465,7 +466,7 @@ async function verifyPayment(payment_data) {
                                                     required
                                                     placeholder="Input conversion"
                                                     defaultValue={data.conversion}
-                                                    className="mt-1 block w-full"
+                
                                                     onChange={onHandleChange}
                                                 />
                                             </div>
@@ -474,8 +475,152 @@ async function verifyPayment(payment_data) {
                                     
                 </div>
                     
-                </> ) : 
-                  (
+                </> ) :   tab == 'influencer' ?  (
+                     <div className='flex md:flex-row flex-col md:space-x-5 md:space-y-0  space-y-4 w-full mt-5'>
+                         <div className='w-full'>
+                            <div>
+                             <div className='flex w-full items-center'>
+                                                <div className=''>
+                                                    <Select options={[
+                                                            { name: 'Nano', value: 'nano' },
+                                                            { name: 'Micro', value: 'micro' },
+                                                            { name: 'Macro', value: 'macro' },
+                                                            { name: 'Mid-tier', value: 'mid-tier' },
+                                                            { name: 'Mega', value: 'mega' }
+                                                        ]}
+                                                            name="influencer_size"
+                                                            value={data.influencer_size}
+                                                            onChange={onHandleChange}
+                                                            label="Size"
+                                                            defaultOptionText="Select size"
+                                                            required
+                                                        />
+                                                    </div>
+                                             
+                                                    <div className='w-full'>
+                                                            <Input
+                                                            type="number"
+                                                            name="influencer_number"
+                                                            label="Influencer Number"
+                                                            required
+                                                            placeholder="input number(please work with the selected size)"
+                                                            defaultValue={data.influencer_number}
+                        
+                                                            onChange={handleBudget}
+                                                        />
+                                                    </div>
+                                     </div>
+                            { data.influencer_size && (
+                                <div className='mt-3 shadow-md p-2'>
+                                     <span className='font-bold text-sm'>Minimum cost per influencers</span>
+                                     <div className='flex justify-between  w-full border-b  pb-2'>
+                                          <span>Plartforms</span>   
+                                          <span>Followers</span>  
+                                           <span>Cost</span>
+                                        </div>
+                                        <div className='flex justify-between  w-full   my-2 mt-2'>
+                                             <span>Instagram</span>  
+                                             <span>{ data.influencer_size === 'nano' ? '10,000' : data.influencer_size === 'micro' ? '10,000 - 100,000' :  data.influencer_size === 'mid-tier' ? '100,001 - 500,000' :  data.influencer_size === 'macro' ? '500,001 - 1,000,000' : data.influencer_size === 'mega' ?   '1,000,00 above' : '' }</span>  
+                                            <span> { data.influencer_size === 'nano' ? 'N50,000' : data.influencer_size === 'micro' ? 'N150,000' :  data.influencer_size === 'mid-tier' ? 'N350,000' :  data.influencer_size === 'macro' ? 'N750,000' : data.influencer_size === 'mega' ?   'N1,500.000' : '' }</span>
+                                        </div>
+                                        <div className='flex justify-between   w-full   my-2'>
+                                             <span>Twitter</span>   
+                                             <span>{ data.influencer_size === 'nano' ? '10,000' : data.influencer_size === 'micro' ? '10,000 - 100,000' :  data.influencer_size === 'mid-tier' ? '100,001 - 500,000' :  data.influencer_size === 'macro' ? '500,001 - 1,000,000' : data.influencer_size === 'mega' ?   '1,000,00 above' : '' }</span>  
+                                            <span> { data.influencer_size === 'nano' ? ' N3,500' : data.influencer_size === 'micro' ? 'N7,500' :  data.influencer_size === 'mid-tier' ? 'N20,500' :  data.influencer_size === 'macro' ? 'N35,500' : data.influencer_size === 'mega' ?   'N65,000' : '' }</span>
+                                    
+                                        </div>
+                                </div>
+                            )}
+                                    
+                              </div>
+
+                               <div className='flex w-full items-center mt-4'>
+                                                <div className=''>
+                                                    <Select options={[
+                                                            { name: 'Naira', value: 'NGN' },
+                                                            { name: 'Dollar', value: 'USD' }
+                                                        ]}
+                                                            name="currency"
+                                                            value={data.currency}
+                                                            onChange={onHandleChange}
+                                                            label="Currency"
+                                                            defaultOptionText="Select Currency"
+                                                            required
+                                                        />
+                                                    </div>
+                                             
+                                                    <div className='w-full'>
+                                                            <Input
+                                                            type="number"
+                                                            name="budget"
+                                                            label="Budget"
+                                                            required
+                                                            placeholder="input campaign budget (E.g: 3000000)"
+                                                            defaultValue={data.budget}
+                        
+                                                            onChange={handleBudget}
+                                                        />
+                                                    </div>
+                                               
+                                            </div>
+
+                                            <div className='w-full mt-4'>
+                                                  <Input
+                                                    type="text"
+                                                    name="influencer_niche"
+                                                    label="Influencer Niche"
+                                                    required
+                                                    placeholder="input influencer niche"
+                                                    defaultValue={data.influencer_niche}
+                                                    onChange={onHandleChange}
+                                                />
+                                            </div>
+
+
+                                 </div>
+                                 <div className='w-full'>
+                                            <div className='w-full '>
+                                                  <Input
+                                                    type="text"
+                                                    name="influencer_category"
+                                                    label="Influencer Category"
+                                                    required
+                                                    placeholder="input influencer category"
+                                                    defaultValue={data.influencer_category}
+                                                    onChange={onHandleChange}
+                                                />
+                                            </div>
+                                            <div className='w-full mt-4'>
+                                                  <Input
+                                                    type="text"
+                                                    name="influencer_location"
+                                                    label="Influencer Location"
+                                                    required
+                                                    placeholder="input influencer location"
+                                                    defaultValue={data.influencer_location}
+                                                    onChange={onHandleChange}
+                                                />
+                                            </div>
+
+
+                                           <div class="w-full mt-4">
+                                                <p class="text-sm text-gray-500">Influencer Gender</p>
+                                                <div class="mt-4 flex space-x-3">
+                                                    <div class="flex items-center">
+                                                        <input id="male"  onChange={onHandleChange} name="influencer_gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <input id="female" name="influencer_gender"  onChange={onHandleChange}  value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                               </div>
+                     </div>
+
+                )
+                  : (
                     <div className='w-full'>
                             <div className="mt-space-20  mb-space-20 md:w-full  max-w-sm">
                                 <UploadImage  displayFile={displayFile} image={image} name="logo" isRequired/>
@@ -543,7 +688,7 @@ async function verifyPayment(payment_data) {
                                                                 required
                                                                 placeholder="Input channel"
                                                                 defaultValue={data.channels}
-                                                                className="mt-1 block w-full"
+                            
                                                                 onChange={onHandleChange}
                                                             />
                                                 </div>
@@ -557,7 +702,7 @@ async function verifyPayment(payment_data) {
                                                                 required
                                                                 placeholder="Input timeline"
                                                                 defaultValue={data.timeline}
-                                                                className="mt-1 block w-full"
+                            
                                                                 onChange={onHandleChange}
                                                             />
                                                 </div>
@@ -572,7 +717,7 @@ async function verifyPayment(payment_data) {
                                                                 required
                                                                 placeholder="Input mood board"
                                                                 defaultValue={data.mood_board}
-                                                                className="mt-1 block w-full"
+                            
                                                                 onChange={(event) =>  setData('mood_board', event.target.files[0])}
                                                             />
                                                 </div>
@@ -585,7 +730,7 @@ async function verifyPayment(payment_data) {
                                                                 required
                                                                 placeholder="Input target audience"
                                                                 defaultValue={data.target_audience}
-                                                                className="mt-1 block w-full"
+                            
                                                                 onChange={onHandleChange}
                                                             />
                                                 </div>
@@ -595,14 +740,15 @@ async function verifyPayment(payment_data) {
                   )
                 
                 }
-
-                  <div className='bg-white shadow-md  md:max-w-md p-5 w-full  flex flex-col space-y-3'>
+        {
+            data.budget && (
+                 <div className='bg-white shadow-md  md:max-w-md p-5 w-full  flex flex-col space-y-3'>
                         <div className='flex justify-between'>
                              <span className='w-[10rem] '>Budget:</span>
                               <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(data.budget)}</span>
                         </div>
                         <div className='flex justify-between'>
-                             <span className='w-[10rem] '>Service fee:</span>
+                             <span className='w-[10rem] '>Service fee(15%):</span>
                               <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(serviceFee)}</span>
                         </div>
                         <div className='flex justify-between'>
@@ -610,6 +756,9 @@ async function verifyPayment(payment_data) {
                               <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(total)}</span>
                         </div>
                   </div>
+            )
+        }
+                 
 
 
                    <div className="text-center flex space-x-3 mt-4 md:max-w-md">
@@ -630,7 +779,7 @@ async function verifyPayment(payment_data) {
                                     type="submit"
                                     className='block w-full bg-viralget-red  text-white'
                                     processing={processing}>
-                                 { tab == 'details' ? 'Next' : 'Pay & Create Campaign'}  
+                                 { tab == 'details' ? 'Next' : btnMessage}  
                           </Button>
                     )
                     :
@@ -641,9 +790,7 @@ async function verifyPayment(payment_data) {
                     )
                    }
                          
-                          {/* <StripePaymentButton
-                              {...stripeProps}
-                              amount={total} >Pay & Create Campaign</StripePaymentButton> */}
+                         
                                               
                  </div>
              </form>
