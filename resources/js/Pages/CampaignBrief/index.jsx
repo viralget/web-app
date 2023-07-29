@@ -69,7 +69,10 @@ export default function List({ campaigns }) {
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.campaign_state_date}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.campaign_end_date}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                <div className='flex flex-col space-y-3'>
                                                  <a href={route('brief.view', {id: item.id})}  className='text-blue-400'> View brief</a>
+                                                 <a href={route('brief.edit', {id: item.id})}  className='text-blue-400'> Edit brief</a>
+                                                </div>
                                              </td>
                                             
                                             </tr>

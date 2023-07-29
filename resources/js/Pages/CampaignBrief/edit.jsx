@@ -16,56 +16,56 @@ import StripePaymentButton from '@/Components/PaymentButton/StripePaymentButton'
 import axios from "axios";
 import toast from '@/Components/Toast'
 
-export default function  Create({ user }) {
+export default function  Edit({ user, campaign }) {
 
 
    const [tab, setTab] = useState('details')
-   const [image, setImageUrl] = useState(null);
+   const [image, setImageUrl] = useState(campaign.logo_url);
    const [serviceFee, setServiceFee] = useState(0);
    const [total, setTotal] = useState(0);
    const [stripeProps, setStripeProps] = useState({});
    const [isLoading, setIsLoading] = useState(false);
    const [btnMessage, setBtnMessage] = useState("Pay & Create Campaign");
     const { data, setData, post, processing, errors, reset } = useForm({
-        title: '',
-        social_network: '',
-        campaign_type: '',
-        budget:'',
-        keywords: '',
-        start_date:'',
-        end_date:'',
-        description:'',
-        brand_name:'',
-        location:'',
-        gender:'',
-        age:'',
-        interest:'',
-        reach: '',
-        impression:'',
-        engagement:'',
-        conversion:'',
+        title: campaign.campaign_name,
+        social_network:  campaign.social_network,
+        campaign_type: campaign.campaign_type,
+        budget: campaign.budget,
+        keywords: campaign.tracked_keywords,
+        start_date:campaign.state_date,
+        end_date:campaign.end_date,
+        description: campaign.campaign_description,
+        brand_name:campaign.brand_name,
+        location:campaign.target_location,
+        gender: campaign.target_gender,
+        age:campaign.target_age,
+        interest:campaign.target_interest,
+        reach: campaign.reach_goal,
+        impression: campaign.impressions_goal,
+        engagement: campaign.engagement_goal,
+        conversion:campaign.conversion_goal,
         logo:'',
-        about_us: '',
-        campaign_goal:'',
-        campaign_message:'',
-        key_objectives: '',
-        channels:'',
-        timeline: '',
+        about_us: campaign.about_us,
+        campaign_goal:campaign.campaign_goal,
+        campaign_message: campaign.campaign_message,
+        key_objectives: campaign.campaign_key_objectives,
+        channels: campaign.channels,
+        timeline: campaign.timeline,
         mood_board:'',
-        target_audience:'',
-        currency: 'NGN',
-        influencer_niche: '',
-        influencer_size: '',
-        influencer_number:'',
-        influencer_gender:'',
-        influencer_location:'',
-        influencer_category: '',
+        target_audience:campaign.target_audience,
+        currency: campaign.currency,
+        influencer_niche: campaign.influencer_niche,
+        influencer_size: campaign.influencer_size,
+        influencer_number:campaign.influencer_number,
+        influencer_gender:campaign.influencer_gender,
+        influencer_location:campaign.influencer_location,
+        influencer_category: campaign.influencer_category,
     });
 
 
 
     useEffect(() => {
-
+        handleBudget();
         setStripeProps({
             email: user.email,
             amount_usd: total,
@@ -108,61 +108,63 @@ function submit(e){
             return;
         }
 
-     if(data.currency === 'NGN'){
-        payWithPaystack()
-     }
-}
-
-function payWithPaystack() {
- 
-    setBtnMessage("initiating payment...");
-    const paystack = new PaystackPop();
-    paystack.newTransaction({
-        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
-        email: user.email,
-        amount: total * 100, //plan.amount * 100,
-        reference: (new Date()).getTime().toString(),
-        metadata: {
-            ...data,
-            platform: data.social_network,
-            email:user.email,
-        },
-     
-        onSuccess: (transaction) => {
-          
-            const payment_data = {
-                reference: transaction.reference,
-                payment_gateway: 'paystack',
-               // metadata: data
-            }
-            verifyPayment(payment_data);
-        },
-        onCancel: () => {
-            // user closed popup
-            console.log("You need this, stay back!")
-            // setErrors({})
-        }
-    });
-
-
-}
-
-async function verifyPayment(payment_data) {
-    setBtnMessage("Verifying payment..");
-    const response = await  axios.post(route("general.payments.verify"), payment_data);
-    if (response?.data.status) {
         createBrief();
-    } else {
-        toast.error('Something went wrong');
-    }
 
+    //  if(data.currency === 'NGN'){
+    //     payWithPaystack()
+    //  }
 }
+
+// function payWithPaystack() {
+ 
+//     setBtnMessage("initiating payment...");
+//     const paystack = new PaystackPop();
+//     paystack.newTransaction({
+//         key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+//         email: user.email,
+//         amount: total * 100, //plan.amount * 100,
+//         reference: (new Date()).getTime().toString(),
+//         metadata: {
+//             ...data,
+//             platform: data.social_network,
+//             email:user.email,
+//         },
+     
+//         onSuccess: (transaction) => {
+          
+//             const payment_data = {
+//                 reference: transaction.reference,
+//                 payment_gateway: 'paystack',
+//                // metadata: data
+//             }
+//             verifyPayment(payment_data);
+//         },
+//         onCancel: () => {
+//             // user closed popup
+//             console.log("You need this, stay back!")
+//             // setErrors({})
+//         }
+//     });
+
+
+// }
+
+// async function verifyPayment(payment_data) {
+//     setBtnMessage("Verifying payment..");
+//     const response = await  axios.post(route("general.payments.verify"), payment_data);
+//     if (response?.data.status) {
+//         createBrief();
+//     } else {
+//         toast.error('Something went wrong');
+//     }
+
+// }
 
     const createBrief = async () => {
-        setBtnMessage("Creating campaign..")
-        post(route('brief.store'));
+        setBtnMessage("Updating campaign..")
+        post(route('brief.update', {id : campaign.id}));
         reset();
-        window.location.href = route('brief.success');       
+        window.location.href = route('brief');       
  
         
         // , {
@@ -178,9 +180,8 @@ async function verifyPayment(payment_data) {
      
     };
 
-    function  handleBudget(event){
-        setData(event.target.name, getEventValue(event));
-       const budget = event.target.value;
+    function  handleBudget(){
+       const budget = campaign.budget;
        const serviceFee = 0.15 * Number(budget);
       const  total =  Number(budget) + serviceFee;
       setTotal(total);
@@ -235,6 +236,7 @@ async function verifyPayment(payment_data) {
                                                 label='Social Platform'
                                                 name="social_network"
                                                 required
+                                                defaultValue={campaign.social_network?.split(',')}
                                                 onChange={(values) => setData('social_network', [...values].join(','))}
                                             />
                                             </div>
@@ -243,11 +245,11 @@ async function verifyPayment(payment_data) {
                                                 <p class="text-sm text-gray-500">Select Campaign Type</p>
                                                 <div class="mt-4 flex space-x-3">
                                                     <div class="flex items-center">
-                                                        <input id="public" onChange={onHandleChange} name="campaign_type" value="public" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="public" onChange={onHandleChange} name="campaign_type" checked={campaign.campaign_type == 'public'} value="public" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="public" class="ml-3 block text-sm font-medium text-gray-700">Public</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input id="private" onChange={onHandleChange} name="campaign_type"  value="private"type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="private" onChange={onHandleChange} name="campaign_type" checked={campaign.campaign_type == 'private'}  value="private"type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="private" class="ml-3 block text-sm font-medium text-gray-700">Private</label>
                                                     </div>
                                                 </div>
@@ -384,11 +386,11 @@ async function verifyPayment(payment_data) {
                                                 <p class="text-sm text-gray-500">Gender</p>
                                                 <div class="mt-4 flex space-x-3">
                                                     <div class="flex items-center">
-                                                        <input id="male"  onChange={onHandleChange} name="gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="male"  onChange={onHandleChange} checked={campaign.target_gender == 'male'} name="gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input id="female" name="gender"  onChange={onHandleChange}  value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="female" name="gender" checked={campaign.target_gender == 'female'}  onChange={onHandleChange}  value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                                     </div>
                                                 </div>
@@ -489,7 +491,7 @@ async function verifyPayment(payment_data) {
                             <div>
                              <div className='flex w-full items-center'>
                                                 <div className=''>
-                                                    <Select options={[
+                                                    <Select disabled options={[
                                                             { name: 'Nano', value: 'nano' },
                                                             { name: 'Micro', value: 'micro' },
                                                             { name: 'Macro', value: 'macro' },
@@ -502,11 +504,13 @@ async function verifyPayment(payment_data) {
                                                             label="Size"
                                                             defaultOptionText="Select size"
                                                             required
+                                                            defaultValue={campaign.influencer_size?.split(',')}
                                                         />
                                                     </div>
                                              
                                                     <div className='w-full'>
                                                             <Input
+                                                            disabled
                                                             type="number"
                                                             name="influencer_number"
                                                             label="Influencer Number"
@@ -554,6 +558,8 @@ async function verifyPayment(payment_data) {
                                                             label="Currency"
                                                             defaultOptionText="Select Currency"
                                                             required
+                                                            disabled
+                                                            defaultValue={campaign.currency?.split(',')}
                                                         />
                                                     </div>
                                              
@@ -615,11 +621,11 @@ async function verifyPayment(payment_data) {
                                                 <p class="text-sm text-gray-500">Influencer Gender</p>
                                                 <div class="mt-4 flex space-x-3">
                                                     <div class="flex items-center">
-                                                        <input id="male"  onChange={onHandleChange} name="influencer_gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="male"  onChange={onHandleChange} checked={campaign.influencer_gender == 'male'} name="influencer_gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input id="female" name="influencer_gender"  onChange={onHandleChange}  value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                                        <input id="female" name="influencer_gender" checked={campaign.influencer_gender == 'female'}   onChange={onHandleChange}  value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                                         <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                                     </div>
                                                 </div>
@@ -631,7 +637,7 @@ async function verifyPayment(payment_data) {
                   : (
                     <div className='w-full'>
                             <div className="mt-space-20  mb-space-20 md:w-full  max-w-sm">
-                                <UploadImage  displayFile={displayFile} image={image} name="logo" isRequired/>
+                                <UploadImage  displayFile={displayFile} image={image} name="logo" />
                             </div>
 
                             <div className='flex md:flex-row flex-col md:space-x-5 md:space-y-0  space-y-4 w-full'>
@@ -717,18 +723,24 @@ async function verifyPayment(payment_data) {
                                                 </div>
 
 
-                                                <div>
+                                                <div className='flex flex-col space-y-3'>
                                                                 <Input
                                                                 type="file"
                                                                 name="mood_board"
                                                                 accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" 
                                                                 label="Mood board"
-                                                                required
+                                                               
                                                                 placeholder="Input mood board"
                                                                 defaultValue={data.mood_board}
                             
                                                                 onChange={(event) =>  setData('mood_board', event.target.files[0])}
                                                             />
+                                                   <div>
+                                                       Selected:  <a href={campaign.mood_board_url}  target='_blank' className='text-blue-400'>
+                                                          {campaign.mood_board}
+                                                        </a>
+                                  
+                                                   </div>
                                                 </div>
 
                                                 <div>
@@ -767,7 +779,7 @@ async function verifyPayment(payment_data) {
                         </div>
                         <div className='flex justify-between'>
                              <span className='w-full'>Total:</span>
-                              <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(total)}</span>
+                              <span className='text-left w-full '>{ data.currency } { numberWithCommas(total)}</span>
                         </div>
                   </div>
             )
@@ -787,21 +799,14 @@ async function verifyPayment(payment_data) {
                           </Button>
                    )}
                    {
-                    data.currency == 'NGN' ?
-                    (
+                  
                         <Button
                                     type="submit"
                                     className='block w-full bg-viralget-red  text-white'
                                     processing={processing}>
                                  { tab == 'details' || tab == 'contents' ? 'Next' : btnMessage}  
                           </Button>
-                    )
-                    :
-                    (
-                        <StripePaymentButton
-                        {...stripeProps}
-                        amount={total} >Pay & Create Campaign</StripePaymentButton> 
-                    )
+                  
                    }
                          
                          
