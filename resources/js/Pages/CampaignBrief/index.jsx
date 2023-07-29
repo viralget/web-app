@@ -55,7 +55,7 @@ export default function List({ campaigns }) {
                                     <tbody className="divide-y divide-gray-100 bg-white">
                                     {campaigns.map((item, index) => (
                                             <tr key={index} >
-                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.id}</td>
+                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{index + 1}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.campaign_name}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{numberWithCommas(item.budget)}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

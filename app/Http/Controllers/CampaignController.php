@@ -235,7 +235,7 @@ class CampaignController extends Controller
 
 
   public   function  indexBrief(){
-    $data['campaigns'] = CampaignBrief::where('user_id', request()->user()->id)->get();
+    $data['campaigns'] = CampaignBrief::where('user_id', request()->user()->id)->orderBy('id', "Desc")->get();
     return Inertia::render('CampaignBrief/index', $data);
   } 
 
@@ -300,6 +300,14 @@ class CampaignController extends Controller
         $brief->logo = $logoName;
         $brief->status= "pending";
         $brief->mood_board= $moodBoardName;
+
+        $brief->currency = $request->currency;
+        $brief->influencer_niche = $request->influencer_niche;
+        $brief->influencer_location = $request->influencer_location;
+        $brief->influencer_gender = $request->influencer_gender;
+        $brief->influencer_number = $request->influencer_number;
+        $brief->influencer_size = $request->influencer_size;
+        $brief->influencer_category = $request->influencer_category;
 
         $brief->save();
 

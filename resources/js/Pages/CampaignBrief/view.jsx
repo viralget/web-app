@@ -66,7 +66,7 @@ const View = ({ campaign }) => {
                        </div>
                        <div className='flex space-x-10 '>
                           <span className='capitalize font-bold'>campaign budget:</span>
-                          <span>{numberWithCommas(campaign.budget)}</span>
+                          <span>{campaign.currency} {numberWithCommas(campaign.budget)}</span>
                        </div>
                        <div className='flex space-x-10 '>
                           <span className='capitalize font-bold'>campaign description:</span>
@@ -181,6 +181,42 @@ const View = ({ campaign }) => {
                             {campaign.mood_board}
                             </a>
                        </div>
+
+
+                       <div className='mt-5'>
+                            <h3 className='font-bold text-3xl capitalize'>Influencer Details</h3>
+                        </div>
+
+                     <div className='flex space-x-10 mt-2'>
+                          <span className='capitalize font-bold'>Size:</span>
+                          <span>{campaign.influencer_size}</span>
+                       </div>
+
+                       <div className='flex space-x-10 mt-2'>
+                          <span className='capitalize font-bold'>Category:</span>
+                          <span>{campaign.influencer_category}</span>
+                       </div>
+
+                       <div className='flex space-x-10 mt-2'>
+                          <span className='capitalize font-bold'>Niche:</span>
+                          <span>{campaign.influencer_niche}</span>
+                       </div>
+
+                       <div className='flex space-x-10 mt-2'>
+                          <span className='capitalize font-bold'>Gender:</span>
+                          <span>{campaign.influencer_gender}</span>
+                       </div>
+                       <div className='flex space-x-10 mt-2'>
+                          <span className='capitalize font-bold'>Number:</span>
+                          <span>{campaign.influencer_number}</span>
+                       </div>
+
+                       <div className='flex space-x-10 mt-2'>
+                          <span className='capitalize font-bold'>Location:</span>
+                          <span>{campaign.influencer_location}</span>
+                       </div>
+
+
 
 
 

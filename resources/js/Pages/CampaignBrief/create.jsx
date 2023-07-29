@@ -19,7 +19,7 @@ import toast from '@/Components/Toast'
 export default function  Create({ user }) {
 
 
-   const [tab, setTab] = useState('influencer')
+   const [tab, setTab] = useState('details')
    const [image, setImageUrl] = useState(null);
    const [serviceFee, setServiceFee] = useState(0);
    const [total, setTotal] = useState(0);
@@ -53,7 +53,7 @@ export default function  Create({ user }) {
         timeline: '',
         mood_board:'',
         target_audience:'',
-        currency: '',
+        currency: 'NGN',
         influencer_niche: '',
         influencer_size: '',
         influencer_number:'',
@@ -101,7 +101,12 @@ function submit(e){
         if(tab === 'details'){
             setTab('contents');
             return;
-     }
+        }
+
+        if(tab === 'contents'){
+            setTab('influencer');
+            return;
+        }
 
      if(data.currency === 'NGN'){
         payWithPaystack()
@@ -190,7 +195,7 @@ async function verifyPayment(payment_data) {
                            <span className='text-gray-300'>|</span>
                           <span className={classNames('font-bold  capitalize',  tab == 'contents' || tab == 'influencer' ? 'text-viralget-red' : 'text-gray-200' )}>content</span>
                           <span className='text-gray-300'>|</span>
-                          <span className='font-bold  text-viralget-red  capitalize'>influencers  detail</span>
+                          <span className={classNames('font-bold  capitalize', tab == 'influencer' ? 'text-viralget-red' : 'text-gray-200' )}>influencers  detail</span>
                           
                      </div>
             </div>
@@ -269,7 +274,7 @@ async function verifyPayment(payment_data) {
                             <div className='form-group w-full'>
                                     <span className='text-t-lg-x  capitalize font-bold '>about campaign</span>
                                     <div className='inputs  mt-5 w-full flex flex-col space-y-4'>
-                                            <div className='flex w-full items-center'>
+                                            {/* <div className='flex w-full items-center'>
                                                 <div className=''>
                                                     <Select options={[
                                                             { name: 'Naira', value: 'NGN' },
@@ -297,7 +302,7 @@ async function verifyPayment(payment_data) {
                                                         />
                                                     </div>
                                                
-                                            </div>
+                                            </div> */}
 
                                             <div>
                                                 <Input
@@ -682,13 +687,14 @@ async function verifyPayment(payment_data) {
 
                                             <div>
                                                                 <Input
+                                                                
                                                                 type="text"
                                                                 name="channels"
                                                                 label="Channel"
                                                                 required
                                                                 placeholder="Input channel"
-                                                                defaultValue={data.channels}
-                            
+                                                                defaultValue={data.social_network}
+                                                                className="hidden"
                                                                 onChange={onHandleChange}
                                                             />
                                                 </div>
@@ -741,18 +747,23 @@ async function verifyPayment(payment_data) {
                 
                 }
         {
-            data.budget && (
-                 <div className='bg-white shadow-md  md:max-w-md p-5 w-full  flex flex-col space-y-3'>
+            data.budget && data.influencer_number && (
+                 <div className='bg-white shadow-md  md:max-w-md p-5 w-full mt-3 flex flex-col space-y-3'>
+                        
                         <div className='flex justify-between'>
-                             <span className='w-[10rem] '>Budget:</span>
-                              <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(data.budget)}</span>
+                             <span className='w-full'>Budget:</span>
+                              <span className='text-left w-full'>{ data.currency } { numberWithCommas(data.budget)}</span>
                         </div>
                         <div className='flex justify-between'>
-                             <span className='w-[10rem] '>Service fee(15%):</span>
-                              <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(serviceFee)}</span>
+                             <span className='w-full'>Budget Per Influencer :</span>
+                              <span className='text-left w-full'>{ data.currency } { numberWithCommas(Number(data.budget) / Number(data.influencer_number))}</span>
                         </div>
                         <div className='flex justify-between'>
-                             <span className='w-[10rem] '>Total:</span>
+                             <span className='w-full'>Service fee(15%):</span>
+                              <span className='text-left w-full'>{ data.currency } { numberWithCommas(serviceFee)}</span>
+                        </div>
+                        <div className='flex justify-between'>
+                             <span className='w-full'>Total:</span>
                               <span className='text-left w-[10rem] '>{ data.currency } { numberWithCommas(total)}</span>
                         </div>
                   </div>
@@ -762,24 +773,24 @@ async function verifyPayment(payment_data) {
 
 
                    <div className="text-center flex space-x-3 mt-4 md:max-w-md">
-                   { tab == 'details' ? 
+                   { tab == 'details'  ? 
                    null : (
                         <Button type="buton"
                                     className='block w-full bg-white text-viralget-red'
-                                    onClick={() => setTab('details')}
+                                    onClick={() => setTab(tab == 'influencer' ? 'contents' : 'details' )}
                                     >
                                        
                                         Back
                           </Button>
                    )}
                    {
-                    data.currency === 'NGN' ?
+                    data.currency == 'NGN' ?
                     (
                         <Button
                                     type="submit"
                                     className='block w-full bg-viralget-red  text-white'
                                     processing={processing}>
-                                 { tab == 'details' ? 'Next' : btnMessage}  
+                                 { tab == 'details' || tab == 'contents' ? 'Next' : btnMessage}  
                           </Button>
                     )
                     :
