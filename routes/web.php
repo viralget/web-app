@@ -78,7 +78,8 @@ Route::prefix('transactions')->name('payments.')->group(
 Route::middleware('auth')->group(
     function () {
         Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
-        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::get('/dashboard', [InfluencerController::class, 'index'])->name('explore');
+        //    Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
         Route::get('/search', [InfluencerController::class, 'index'])->name('search');
         Route::get('/messages', [MessagesController::class, 'index'])->name('get.messages');
@@ -108,7 +109,7 @@ Route::middleware('auth')->group(
         Route::post('/update-settings', [UserProfileController::class, 'updateSettings'])->name('update.settings');
 
 
-        
+
         // Route::resources([
         //     // 'campaigns' => CampaignController::class,
         //     'influencers' => InfluencerController::class,
@@ -124,7 +125,7 @@ Route::middleware('auth')->group(
         Route::get('/campaign/brief/view/{id}', [CampaignController::class, 'viewBrief'])->name('brief.view');
         Route::get('/campaign/brief/edit/{id}', [CampaignController::class, 'editBrief'])->name('brief.edit');
         Route::post('/campaign/brief/edit/{id}', [CampaignController::class, 'updateBrief'])->name('brief.update');
-       
+
 
 
         Route::prefix('billings')->name('billings.')->group(function () {
