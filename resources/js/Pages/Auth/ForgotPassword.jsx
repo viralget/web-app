@@ -67,23 +67,24 @@ export default function ForgotPassword({ status }) {
                 <form onSubmit={submit} >
 
                     {getEmail ? null :
-                        <>
+                        <div className='mt-5'>
                             <Label value="Enter email address" />
                             <Input
                                 type="text"
                                 name="email"
                                 value={data.email}
-                                className="mt-1 block w-full  pl-10"
+                                // className="mt-3"
+                                // className="mt-1 block w-full  pl-10"
                                 isFocused={true}
                                 onChange={onHandleChange}
                                 icon={<EmailSvg />}
                             />
-                        </>
+                        </div>
                     }
 
 
                     <div className={classNames("flex items-center justify-end ", getEmail ? 'mt-space-20' : 'mt-space-32')}>
-                        <Button className="block w-full bg-viralget-red rounded-[8px]" processing={processing} onClick={submit}>
+                        <Button usePrimary block processing={processing} onClick={submit}>
                             {getEmail ? 'Send me another email, please' : 'Send instructions'}
                         </Button>
                     </div>

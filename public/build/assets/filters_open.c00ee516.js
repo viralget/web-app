@@ -1,1 +1,1 @@
-const e="https://viralget.io/build/assets/filters_open.fd3060e4.png";export{e as F};
+const t="https://viralget.test/build/assets/filters_open.fd3060e4.png";export{t as F};
