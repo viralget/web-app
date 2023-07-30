@@ -43,7 +43,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -51,6 +50,10 @@ class AuthenticatedSessionController extends Controller
         $redirect_url = route('home');
 
         $user = $request->user();
+
+        // dd($user);
+
+        Auth::login($user, true);
 
         if (!$user->account) {
             $user->account()->create();
@@ -61,6 +64,8 @@ class AuthenticatedSessionController extends Controller
         if ($request->redirect_url) {
             $redirect_url = $request->redirect_url;
         }
+
+
         return redirect()->intended($redirect_url);
     }
 
@@ -82,7 +87,7 @@ class AuthenticatedSessionController extends Controller
         try {
             return Socialite::driver($request->platform)->redirect();
         } catch (\Exception $e) {
-            return redirect()->back()->withError('Invalid platform specified');
+            return redirect()->back()->withErrors('Invalid platform specified');
         }
     }
 
@@ -100,10 +105,10 @@ class AuthenticatedSessionController extends Controller
 
             return $this->postSocialLogin($request, $user, 'google');
         } catch (\Exception $e) {
-            dd($e);
+            // dd($e);
             $this->log($e);
 
-            return redirect()->route('login')->withError('Sorry, Google sign-in service not available at the moment');
+            return redirect()->route('login')->withErrors('Sorry, Google sign-in service not available at the moment');
         }
     }
 
@@ -130,7 +135,7 @@ class AuthenticatedSessionController extends Controller
             // dd($e);
             $this->log($e);
 
-            return redirect()->route('login')->withError('Sorry, Twitter sign-in service not available at the moment');
+            return redirect()->route('login')->withErrors('Sorry, Twitter sign-in service not available at the moment');
         }
     }
 
@@ -171,28 +176,32 @@ class AuthenticatedSessionController extends Controller
 
                 $user->account()->create();
 
-                Mail::to($user->email)->queue(new UserRegistered($user));
+                // Mail::to($user->email)->queue(new UserRegistered($user));
             }
 
-
-            if ($request->session()->has('user_auth_redirect_url')) {
-                $redirect_url = $request->session()->get('user_auth_redirect_url');
-                // unset the session data
-                $request->session()->forget('user_auth_redirect_url');
-            }
-
-            $request->session()->regenerate();
 
             // Log user in 
             Auth::login($user);
+
+            // if ($request->session()->has('user_auth_redirect_url')) {
+            //     $redirect_url = $request->session()->get('user_auth_redirect_url');
+            //     // unset the session data
+            //     $request->session()->forget('user_auth_redirect_url');
+            // }
+
+            // $request->session()->regenerate();
+
+            if (!$user->details) {
+                $redirect_url = route('account.setup');
+            }
 
 
             return redirect()->intended($redirect_url);
         } catch (\Exception $e) {
             $this->log($e);
-            dd($e);
+            // dd($e);
 
-            return redirect()->route('login')->withError('An error occurred while logging you in');
+            return redirect()->route('login')->withErrors('An error occurred while logging you in');
         }
     }
     /** 

@@ -22,7 +22,6 @@ export default function Search({ categories }) {
       <main>
         <SectionHeader />
         <SearchBox categories={categories} />
-
         <Categories />
       </main>
       <Footer />

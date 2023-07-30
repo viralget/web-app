@@ -12,13 +12,12 @@ import InfluencerProfile from '../InfluencerProfile';
 import MenuDropDown from '@/components/MenuDropDown';
 import Modal from '@/components/Modal';
 import ExportIcon from "../../../assets/images/ExportIcon.svg"
-import { getEventValue, nFormatter } from '@/Utils/helpers';
+import { getEventValue, getQASColor, getQASValue, nFormatter } from '@/Utils/helpers';
 import Card from '@/Components/Card';
 import { CheckBadgeIcon, CheckIcon } from '@heroicons/react/20/solid';
 import Avatar from '@/components/Skeleton/Avatar';
 import Pagination from '@/Components/Pagination';
 import SimplePagination from '@/Components/SimplePagination';
-import { usePage } from '@inertiajs/inertia-react';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -26,12 +25,9 @@ function classNames(...classes) {
 
 export default function List(props) {
 
-
-    const { auth } = usePage().props;
-    const { user } = auth;
-
     const { count, data, paginationData } = props;
 
+    // console.log({ paginationData })
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -149,6 +145,8 @@ export default function List(props) {
 
     }
 
+    console.log({ data })
+
     return (
         <div className="flex flex-col">
             {
@@ -168,7 +166,7 @@ export default function List(props) {
                                             <div className='flex space-x-4 px- py-2 justify-between border-b w-full '>
                                                 <div className='flex flex-col border-r pr-5 '>
                                                     <span className='text-xs font-bold'>Available to profile </span>
-                                                    <span className='text-viralget-red text-xs font-bold'>{user.available_profiling_count} influencers</span>
+                                                    <span className='text-viralget-red text-xs font-bold'>20 influencers</span>
                                                 </div>
 
                                                 <div className='flex flex-col'>
@@ -323,7 +321,7 @@ export default function List(props) {
                             </div >
                         </div >
                         {
-                            data.length > 0 ?
+                            data?.length > 0 ?
                                 <table className="min-w-full table-fixed divide-y divide-gray-300">
                                     <thead className="bg-gray-100 border-t border-b">
                                         <tr>
@@ -343,10 +341,10 @@ export default function List(props) {
                                                 Followers
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Quality audience
+                                                Reach
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                ER
+                                                ER (%)
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 QAS
@@ -364,8 +362,8 @@ export default function List(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100 bg-white">
-                                        {data.map((item) => (
-                                            <tr key={item.email} className={selected.includes(item) ? 'bg-gray-50' : undefined}>
+                                        {data.map((item, index) => (
+                                            <tr key={index} className={selected.includes(item) ? 'bg-gray-50' : undefined}>
                                                 <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                                                     {selected.includes(item) && (
                                                         <div className="absolute inset-y-0 left-0 w-0.5 bg-gray-900" />
@@ -397,9 +395,9 @@ export default function List(props) {
                                                 </td>
                                                 {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text="Good" /></td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.reach)}</td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">
                                                     <a href={'https://twitter.com/' + item.username} target="_blank">
                                                         <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">

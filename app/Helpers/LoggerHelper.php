@@ -9,6 +9,6 @@ trait LoggerHelper
 
     public static function log($e)
     {
-        // SentryExceptionHelper::report($e);
+        SentryExceptionHelper::report($e);
     }
 }

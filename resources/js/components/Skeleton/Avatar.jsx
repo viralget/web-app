@@ -17,20 +17,21 @@ export default function Avatar({ user, userName, url, size, className, isEditabl
             break;
     }
 
-    const username = userName ?? user?.first_name ?? user?.email;
-    const avatarUrl = url ?? user?.avatar ?? user?.logo_url;
+    const username = userName ?? user?.name ?? user?.email;
+    const avatarUrl = url ?? user?.image_url ?? user?.logo_url;
+
 
     return (
         <>
             <div className={`relative inline-block ${isEditable && 'cursor-pointer'}`}>
                 {avatarUrl ?
                     <img
-                        className={`inline-block rounded-full ${sizeClass} ${className}`}
+                        className={`inline-block rounded-md ${sizeClass} ${className}`}
                         src={avatarUrl}
                         alt=""
                     />
                     :
-                    <span className={classNames(`inline-flex items-center justify-center rounded-full`, isDark ? 'bg-secondary' : 'bg-gray-800', className, sizeClass)} >
+                    <span className={classNames(`inline-flex items-center justify-center rounded-md`, isDark ? 'bg-secondary' : 'bg-gray-800', className, sizeClass)} >
                         <span className="text-sm font-medium leading-none text-white">{username?.toUpperCase()?.charAt(0)}</span>
                     </span >
                 }

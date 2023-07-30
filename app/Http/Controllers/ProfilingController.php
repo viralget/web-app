@@ -18,7 +18,7 @@ class ProfilingController extends Controller
 
     public  function createProfiling(Request $request)
     {
-     
+
         $data = $request->data;
         $user_id = $request->user()->id;
 
@@ -26,10 +26,11 @@ class ProfilingController extends Controller
             $find = ProfiledInfluencer::where('influencer_id', $val['id'])->first();
 
             if (!$find) {
-                $profilefInfluencer = new ProfiledInfluencer;
-                $profilefInfluencer->influencer_id = $val['id'];
-                $profilefInfluencer->user_id = $user_id;
-                $profilefInfluencer->save();
+                ProfiledInfluencer::create([
+                    'influencer_id' => $val['id'],
+                    'user_id' => $user_id
+                ]);
+                // $profilefInfluencer->save();
             }
         }
 
@@ -60,11 +61,13 @@ class ProfilingController extends Controller
         $user_id = $request->user()->id;
         $profiles = ProfiledInfluencer::with(['user', 'influencer'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
         $influencerList = InfluencerList::with('influencers')->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+
         return Inertia::render(
             'Profiling/index',
             [
                 'profiles' => $profiles,
-                'influencerList' => $influencerList
+                'influencerList' => $influencerList,
+                'isFull' => true
             ]
         );
     }
@@ -91,7 +94,7 @@ class ProfilingController extends Controller
     public function updateList(Request $request)
     {
 
-      $request->validate([
+        $request->validate([
             'name' => 'required|string|max:50'
         ]);
 
@@ -162,39 +165,40 @@ class ProfilingController extends Controller
         );
     }
 
-    public function findProfiledInfluencer(Request $request){
+    public function findProfiledInfluencer(Request $request)
+    {
         $id = $request->id;
         $user_id = $request->user()->id;
         $profile = ProfiledInfluencer::where('user_id', $user_id)->where('influencer_id', $id)->first();
 
-        return response(['status' => true, 'data' =>  $profile ]);
-
+        return response(['status' => true, 'data' =>  $profile]);
     }
 
-    public function influencerCreateList(Request $request){
+    public function influencerCreateList(Request $request)
+    {
 
-         $newList = $request->newList;
-         $user_id = $request->user()->id;
-         $list_to_add = $request->list;  //add influencer to these list
-         $influencer_id = $request->influencer_id;
-        
-         if($newList != null){
+        $newList = $request->newList;
+        $user_id = $request->user()->id;
+        $list_to_add = $request->list;  //add influencer to these list
+        $influencer_id = $request->influencer_id;
+
+        if ($newList != null) {
             $find =  InfluencerList::where('name', $newList)->where('user_id', $user_id)->first();
 
-            if(!$find){
-                   $list = new InfluencerList;
-                   $list->name = $newList;
-                   $list->user_id = $user_id;
-                   $list->save();
-   
-                array_push($list_to_add,  $list->id);
-           }else{
-            return response(['status' => false, 'message' => 'List with this name already exist']);
-           }
-         }
+            if (!$find) {
+                $list = new InfluencerList;
+                $list->name = $newList;
+                $list->user_id = $user_id;
+                $list->save();
 
-    //    dd($list_to_add);
-         foreach ($list_to_add as $key => $val) {
+                array_push($list_to_add,  $list->id);
+            } else {
+                return response(['status' => false, 'message' => 'List with this name already exist']);
+            }
+        }
+
+        //    dd($list_to_add);
+        foreach ($list_to_add as $key => $val) {
             // $find = InfluencerListsTwitterInfluencer::where('twitter_influencer_id', $val['id'])->where('influencer_list_id', $list_id)->first();
 
             if (!$find) {
@@ -206,8 +210,5 @@ class ProfilingController extends Controller
         }
 
         return response(['status' => true, 'message' => 'List created & added successfully']);
-
-
-
     }
 }

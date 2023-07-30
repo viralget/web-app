@@ -10,26 +10,38 @@ import {
     ScaleIcon,
     XMarkIcon,
     BellIcon,
-    UsersIcon
+    UsersIcon,
+    Cog6ToothIcon,
+    CreditCardIcon
 } from '@heroicons/react/24/outline'
 import { Container } from './Container'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, usePage } from '@inertiajs/inertia-react'
-import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns} from '@/Utils/icons';
+import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns } from '@/Utils/icons';
 
+
+
+
+// const navigation = [
+//     { name: 'Find Influencers', href: 'dashboard', icon: FindInfluencer, current: true },
+//     { name: 'Billings', href: 'billings.index', icon: CreditCardIcon, current: false },
+//     // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
+//     { name: 'Settings', href: 'settings', icon: Cog6ToothIcon, current: false },
+//     { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
+// ]
 
 
 const navigation = [
     { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
-    { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-    { name: 'Track Campaigns', href: 'coming-soon', icon: TrackCampaigns  , current: false },
+    { name: 'My Campaigns', href: 'brief', icon: MyCampaign, current: false },
+    { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
     { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
 ]
 
 
-export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, smallHeader = false }) {
+export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = false }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
@@ -134,14 +146,14 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                     key={item.name}
                                     href={route(item.href)}
                                     className={classNames(
-                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' : 
-                                        'text-[#748094]  hover:text-[#A5ABB5]',
+                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' :
+                                            'text-[#748094]  hover:text-[#A5ABB5]',
                                         'group flex  space-x-3 items-center font-satoshi  px-2 py-2 text-sm leading-6 rounded-lg'
                                     )}
                                     aria-current={item.href == route().current() ? 'page' : undefined}
                                 >
-                                    <item.icon   className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
-                                   <span className={ item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>  
+                                    <item.icon className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
+                                    <span className={item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>
                                 </a>
                             ))}
                         </div>
@@ -164,55 +176,58 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                 <Bars3CenterLeftIcon className={smallHeader ? "h-6 w-6 text-black" : "h-6 w-6 text-white"} aria-hidden="true" />
                             </button>
                             {/* Search bar */}
-                            <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
-                                <div className="hidden md:flex flex-1">
-                                    <div className="w-full max-w-sm  mt-3">
-                                        <form action={route('influencers.search')} method="get">
+                            {showSearchForm && (
+                                <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
+                                    <div className="hidden md:flex flex-1">
+                                        {/* <div className="w-full max-w-sm  mt-3">
+                                            <form action={route('influencers.search')} method="get">
 
-                                            <label htmlFor="search" className="sr-only">
-                                                Search
-                                            </label>
-                                            <div className="relative">
-                                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-50" aria-hidden="true" />
+                                                <label htmlFor="search" className="sr-only">
+                                                    Search
+                                                </label>
+                                                <div className="relative">
+                                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                                        <MagnifyingGlassIcon className="h-5 w-5 text-gray-50" aria-hidden="true" />
+                                                    </div>
+                                                    <input
+                                                        id="keywords"
+                                                        name="keywords"
+                                                        className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
+                                                        placeholder="Enter keywords"
+                                                        type="search"
+                                                    />
                                                 </div>
-                                                <input
-                                                    id="keywords"
-                                                    name="keywords"
-                                                    className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
-                                                    placeholder="Enter keywords"
-                                                    type="search"
-                                                />
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div> */}
                                     </div>
-                                </div>
-                                <div className="ml-4 flex items-center md:ml-6 space-x-3">
-                                    <button
-                                        type="button"
-                                        className={smallHeader ? "text-black rounded-lg border border-black-50/40 bg-black-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}  >
-                                        <span className="sr-only">View notifications</span>
-                                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                    </button>
+                                    <div className="ml-4 flex items-center md:ml-6 space-x-3">
+                                        <button
+                                            type="button"
+                                            className={smallHeader ? "text-black rounded-lg border border-black-50/40 bg-black-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "text-white rounded-lg border border-stone-50/40 bg-stone-50/30 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}  >
+                                            <span className="sr-only">View notifications</span>
+                                            <BellIcon className="h-6 w-6" aria-hidden="true" />
+                                        </button>
 
-                                    {/* Profile dropdown */}
-                                    <div className={smallHeader ? "w-full rounded-lg border border-black-50/40 bg-black-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : " w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}>
-                                        <DropdownMenu user={user} light={!smallHeader} />
+                                        {/* Profile dropdown */}
+                                        <div className={smallHeader ? "w-full rounded-lg border border-black-50/40 bg-black-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : " w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}>
+                                            <DropdownMenu user={user} light={!smallHeader} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                         {!smallHeader && (
-                            <Container className="relative">
-                                <div className="w-[70%]  my-16 ">
-                                    <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
-                                        {title}
-                                    </h1>
-                                    {subtitle && (
-                                        <p className='text-sm text-gray-50'>{subtitle}</p>
-                                    )}
-                                </div>
-                            </Container>
+                            // <Container className="relative">
+                            <div className=" px-5 sm:px-6 lg:px-8  my-16 ">
+                                {/* <div className="w-[70%]  my-16 "> */}
+                                <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
+                                    {title}
+                                </h1>
+                                {subtitle && (
+                                    <p className='text-sm text-gray-50'>{subtitle}</p>
+                                )}
+                            </div>
+                            // </Container>
                         )}
 
                     </div>
@@ -220,7 +235,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                 )}
 
 
-                {children}   
+                {children}
             </div>
         </div >
     )

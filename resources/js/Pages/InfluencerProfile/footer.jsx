@@ -11,6 +11,8 @@ export default function Footer({ influencer }) {
        const [isProfiled, setIsProfiled] = useState(false);
        //   cons
 
+       const canProfile = isProfiled || user.available_profiling_count <= 0;
+
        useEffect(() => {
               checkIfProfiled();
        }, [])
@@ -25,7 +27,9 @@ export default function Footer({ influencer }) {
        }
 
 
-       async function handleProfileInfluencer() {
+       async function handleProfileInfluencer(e) {
+              e.preventDefault();
+
               const data = {
                      data: [
                             { id: influencer.id }
@@ -42,9 +46,9 @@ export default function Footer({ influencer }) {
        }
 
        return (
-              <div className="absolute bottom-0 bg-white p-4  w-full border">
+              <div className="absolute bottom-0 z-10 bg-white p-4  w-full border">
                      <div className="flex md:flex-row flex-col  justify-between">
-                            <button disabled={isProfiled || user.available_profiling_count <= 0} onClick={() => handleProfileInfluencer()} className={isProfiled ? " bg-viralget-red rounded-md px-5 py-2 text-white opacity-5" : "bg-viralget-red rounded-md px-5 py-2 text-white"}>{isProfiled ? 'Influencer Profiled' : 'Profile influencer'}</button>
+                            <button disabled={canProfile} onClick={(e) => handleProfileInfluencer(e)} className={canProfile ? " bg-viralget-red rounded-md px-5 py-2 text-white opacity-75" : "bg-viralget-red rounded-md px-5 py-2 text-white cursor-pointer"}>{isProfiled ? 'Influencer Profiled' : 'Profile influencer'}</button>
 
                             <div className="flex space-x-1 md:mt-2  mt-2">
                                    <span className="text-viralget-grey ">Available to profile</span>

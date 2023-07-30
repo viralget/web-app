@@ -18,7 +18,7 @@ use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\UserPlan;
 use App\Models\Transaction;
-
+use Carbon\Carbon;
 
 class RegisteredUserController extends Controller
 {
@@ -28,10 +28,11 @@ class RegisteredUserController extends Controller
      * Display the registration view.
      *
      * @return \Inertia\Response
-    */
+     */
 
     public function create()
     {
+        // return redirect(route('landing-page'));
         return Inertia::render('Auth/Register');
     }
     /**
@@ -58,13 +59,14 @@ class RegisteredUserController extends Controller
                 'first_name' => $request->first_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'token' => $token,
             ]);
 
             $imageName = null;
 
-            if($request->hasFile('file')){
-                $imageName = time().$user->id.'.'.$request->file->extension();
-                $request->file->storeAs('public/user_images', $imageName);    
+            if ($request->hasFile('file')) {
+                $imageName = time() . $user->id . '.' . $request->file->extension();
+                $request->file->storeAs('public/user_images', $imageName);
             }
 
             $userdetails = new UserDetail;
@@ -73,54 +75,63 @@ class RegisteredUserController extends Controller
             $userdetails->last_name = $request->last_name;
             $userdetails->image = $imageName;
             $userdetails->save();
-           
 
-            if($userdetails){
+
+            if ($userdetails) {
 
                 event(new Registered($user));
                 Mail::to($user->email)->queue(new UserVerifyEmail($user, $token));
+
                 Auth::login($user);
-               
+
                 // Redirect to update areas of interest, and update profile.
                 return redirect(route('confirmation.page'));
             }
-          
         } catch (\Exception $e) {
-            dd($e);
+            // dd($e);
             $this->log($e);
             return redirect()->back()->withError('An error occured. Please try again');
         }
     }
 
 
-    public  function confirmation(Request $request){
+    public  function confirmation(Request $request)
+    {
         $user = $request->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
         return Inertia::render('Auth/Confirmation');
     }
 
-    public function resendMail(Request $request){
+    public function resendMail(Request $request)
+    {
         $token = Str::random(20);
         $user = $request->user();
-         Mail::to($user->email)->send(new UserVerifyEmail($user, $token));            
-        return redirect()->back()->with(['flash' =>'Email resend successfully!!']);
+        $user->token = $token;
+        $user->update();
+
+        Mail::to($user->email)->send(new UserVerifyEmail($user, $token));
+        return redirect(route('confirmation.page'));
     }
 
-    public function accountSetup(Request $request){
+    public function accountSetup(Request $request)
+    {
         $user = $request->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
         $data = User::where('id', $user->id)->with('info')->first();
-        $userimage = storage_path('app/user_images/' . $data->info->image);
+        $userimage = $data->info ? storage_path('app/user_images/' . $data->info->image) : null;
 
-        return Inertia::render('Auth/AccountSetup/index', 
-        [ 'user' =>  $data, "image_url" => $userimage]);
+        return Inertia::render(
+            'Auth/AccountSetup/index',
+            ['user' =>  $data, "image_url" => $userimage]
+        );
     }
 
-    public  function  storeDetail(Request $request){
+    public  function  storeDetail(Request $request)
+    {
         $request->validate([
             'company_name' => 'required|string|max:255',
             'job_title' => 'required|string|max:50',
@@ -129,7 +140,9 @@ class RegisteredUserController extends Controller
             'company_bio' => 'required|string|max:255',
         ]);
         $user = $request->user();
-        $userdetail = UserDetail::where('user_id', $user->id)->first();
+        $userdetail = UserDetail::firstOrCreate([
+            'user_id' => $user->id
+        ]);
         $userdetail->company_name = $request->company_name;
         $userdetail->company_type = $request->company_type;
         $userdetail->company_website = $request->company_website;
@@ -138,42 +151,57 @@ class RegisteredUserController extends Controller
         $userdetail->save();
 
 
-        if($userdetail){
+        if ($userdetail) {
             return redirect(route('pricing'));
         }
     }
 
-    public  function  selectPricing() {
+    public  function  selectPricing()
+    {
+
+        $plans = Paystack::fetchPlans();
+        $data['plans']  = $plans?->data ? $plans?->data : [];
 
         $user = request()->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return Inertia::render('Pricing/Guest/index', $data);
+            // return redirect(route('login'));
         }
-       $plans = Paystack::fetchPlans();
-       $data['plans']  = $plans?->data ? $plans?->data : [];
-        return Inertia::render('Auth/SelectPricing', $data);
+
+        return Inertia::render('Pricing/index', $data);
     }
 
 
-    public function verifyEmail($id, $hash){
+    public function verifyEmail($id, $hash)
+    {
 
-        
-       
+        $user = request()->user();
+        if (!$user) {
+            return redirect(route('login'));
+        }
+
         $user = User::find($id);
+        $oldDate = Carbon::parse($user->updated_at);
+        $currentDate = Carbon::now();
+        $totalDuration = $currentDate->diffInSeconds($oldDate) / 60;
+
+        if ($totalDuration  > 10) {
+            return redirect(route('confirmation.page') . '?token=expired');
+        }
+
         $user->email_verified_at = Now();
-        $user->refresh_token = $hash;
         $user->update();
 
-        if($user){
+        if ($user) {
             return redirect(route('account.setup'));
         }
-
     }
 
-    public function selectPayment($plan_id){
+    public function selectPayment($plan_id)
+    {
         $user = request()->user();
-        if(!$user || !$plan_id){
-           return redirect(route('login'));
+        if (!$user || !$plan_id) {
+            return redirect(route('register'));
         }
         if (config('services.paystack.mode') == 'live') {
             $public_key = config('services.paystack.live_pk');
@@ -186,16 +214,17 @@ class RegisteredUserController extends Controller
         $data['plan'] = $plan?->data ?? null;
 
         return Inertia::render('UserPayment/index', $data);
-
     }
 
-    public function verifyPayment($reference, $plan_id){
+    public function verifyPayment($reference, $plan_id)
+    {
+
         $verify = Paystack::verify($reference);
         $data['verify'] = $verify;
         $plan = Paystack::fetchPlan($plan_id);
         $user = request()->user();
         $user_id =  $user->id;
-        if($verify->status){
+        if ($verify->status) {
             $userPlan =  new userPlan;
             $userPlan->plan_name = $plan->data->name;
             $userPlan->plan_code = $plan->data->plan_code;
@@ -203,18 +232,19 @@ class RegisteredUserController extends Controller
             $userPlan->user_id = $user_id;
             $userPlan->save();
 
-            if($userPlan){
+            if ($userPlan) {
                 return response(['status' => true, 'message' => $verify->message]);
             }
-        }else{
+        } else {
             return response(['status' => false, 'message' => $verify->message]);
         }
     }
 
-    function selectSocial(){
+    function selectSocial()
+    {
         $user = request()->user();
-        if(!$user){
-           return redirect(route('login'));
+        if (!$user) {
+            return redirect(route('login'));
         }
         return Inertia::render('Auth/SelectSocial');
     }

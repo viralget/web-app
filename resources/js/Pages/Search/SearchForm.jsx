@@ -28,124 +28,137 @@ export default function SearchForm({
     }, []);
 
     const [getSearch, setSearches] = useState(getSearches ?? []);
- 
+
 
     const influencer_location = new URLSearchParams(window.location.search).get('influencer_location');
     const size = new URLSearchParams(window.location.search).get('size');
     const audience_location = new URLSearchParams(window.location.search).get('audience_location');
+    const influencer_reach = new URLSearchParams(window.location.search).get('influencer_reach');
     const influencer_qas = new URLSearchParams(window.location.search).get('influencer_qas');
     const selectedCategory = new URLSearchParams(window.location.search).get('category');
-    const position =  new URLSearchParams(window.location.search).get('position');
-    const Selectedkeywords =  new URLSearchParams(window.location.search).get('keywords');
+    const position = new URLSearchParams(window.location.search).get('position');
+    const Selectedkeywords = new URLSearchParams(window.location.search).get('keywords');
 
     const searchQuery = () => {
-        
-        let  searchData = [];
 
-        if(influencer_location){
-             searchData.push({ query: 'influencer_location', name: 'Influencer Location', value: influencer_location?.split(',')});
-        }
-       if(size){
-            searchData.push({ query: 'size', name: 'Influencer Size', value: size.split(',')});      
-        }
-        if(audience_location){
-            searchData.push({ query: 'audience_location', name: 'Audience Location', value: audience_location?.split(',')});
-        }
+        let searchData = [];
 
-       if(influencer_qas){
-            searchData.push({ query: 'influencer_qas', name: 'Influencer Qas', value: influencer_qas?.split(',')});
+        if (influencer_location) {
+            searchData.push({ query: 'influencer_location', name: 'Influencer Location', value: influencer_location?.split(',') });
+        }
+        if (size) {
+            searchData.push({ query: 'size', name: 'Influencer Size', value: size.split(',') });
+        }
+        if (audience_location) {
+            searchData.push({ query: 'audience_location', name: 'Audience Location', value: audience_location?.split(',') });
         }
 
-        if(selectedCategory){
-            searchData.push({ query: 'category', name: 'Category', value: selectedCategory?.split(',')});
+        if (influencer_qas) {
+            searchData.push({ query: 'influencer_qas', name: 'Influencer Qas', value: influencer_qas?.split(',') });
         }
 
-        if(position){
-            searchData.push({ query: 'position', name: 'Position', value: position?.split(',')});
+        if (influencer_qas) {
+            searchData.push({ query: 'influencer_reach', name: 'Influencer Reach', value: influencer_reach?.split(',') });
         }
 
-        if(Selectedkeywords){
-            searchData.push({ query: 'keywords', name: 'Keywords', value: Selectedkeywords});
+        if (selectedCategory) {
+            searchData.push({ query: 'category', name: 'Category', value: selectedCategory?.split(',') });
         }
-       
-       
+
+        if (position) {
+            searchData.push({ query: 'position', name: 'Position', value: position?.split(',') });
+        }
+
+        if (Selectedkeywords) {
+            searchData.push({ query: 'keywords', name: 'Keywords', value: Selectedkeywords });
+        }
 
         setSearches(searchData);
-       
 
     }
- 
+
 
 
 
     return (
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
-                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-5 p-4 rounded-md">
+                <div className="hidden md:grid grid-cols-4 gap-4 bg-white shadow px-5 p-4 rounded-md">
                     <div className="md:pr-6 md:border-r border-gray-100">
-                
+
                         <MultiDropdown options={[
-                            { name: 'Any', value: '' },
-                            { name: 'Nigeria', value: 'Nigeria' },
-                            { name: 'Ghana', value: 'Ghana' },
+                            { name: 'Any' },
+                            { name: 'Nigeria', },
+                            { name: 'Ghana', },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer Location', 'influencer_location')}
                             label="Influencer Location"
-                            defaultOptionText={influencer_location}
+                            defaultOptionText={influencer_location?.split(',')[0]}
                             useSelectedOptions={influencer_location?.split(',')}
                         />
                     </div>
                     <div className="md:pr-6 md:border-r border-gray-100">
-                    
+
                         <MultiDropdown options={[
-                            { name: 'Any', value: '' },
-                            { name: 'Nano (1000 - 10,000)', value: '10000' },
-                            { name: 'Micro (10,000 - 50,000)', value: '50000' },
-                            { name: 'Mid Tier (50,000 - 500k)', value: '500000' },
-                            { name: 'Macro (500k - 1m)', value: '1000000' },
+                            { name: 'Any' },
+                            { name: 'Nano (1000 - 10,000)', value: 'Nano' },
+                            { name: 'Micro (10,000 - 50,000)', value: 'Micro' },
+                            { name: 'Mid Tier (50,000 - 500k)', value: 'Mid-Tier' },
+                            { name: 'Macro (500k - 1m)', value: 'Macro' },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
                             label="Influencer Size"
-                            defaultOptionText={size}
+                            defaultOptionText={size?.split(',')[0]}
                             useSelectedOptions={size?.split(',')}
 
                         />
                     </div>
 
-                    <div className="md:pr-6 md:border-r">
-                     
+                    {/* <div className="md:pr-6 md:border-r">
+
 
                         <MultiDropdown options={[
-                            { name: 'Any', value: '' },
+                            { name: 'Any' },
                             { name: 'Nigeria', value: 'Nigeria' },
                             { name: 'Ghana', value: 'Ghana' },
                         ]}
 
                             onChange={(e) => handleChange(e, 'Audience Location', 'audience_location')}
                             label="Audience Location"
-                            defaultOptionText={audience_location}
+                            defaultOptionText={audience_location?.split(',')[0]}
                             useSelectedOptions={audience_location?.split(',')}
 
                         />
-                    </div>
+                    </div> */}
                     <div className="md:pr-6 md:border-r border-gray-100">
 
 
-
                         <MultiDropdown options={[
-                            { name: 'Any', value: '' },
-                            { name: 'Excellent >90', value: 'excellent' },
-                            { name: 'Very Good >80', value: 'very good' },
-                            { name: 'Good >60', value: 'good' },
-                            { name: 'Average >40', value: 'average' },
-                            { name: 'Poor >25', value: 'poor' },
+                            { name: 'Any' },
+                            { name: 'Nano (1000 - 10,000)', value: 'Nano' },
+                            { name: 'Micro (10,000 - 50,000)', value: 'Micro' },
+                            { name: 'Mid Tier (50,000 - 500k)', value: 'Mid-Tier' },
+                            { name: 'Macro (500k - 1m)', value: 'Macro' },
+                        ]}
+                            onChange={(e) => handleChange(e, 'Influencer Reach', 'influencer_reach')}
+                            label="Influencer Reach"
+                            defaultOptionText={influencer_reach?.split(',')[0]}
+                            useSelectedOptions={influencer_reach?.split(',')}
+                        />
+
+                        {/* <MultiDropdown options={[
+                            { name: 'Any' },
+                            { name: 'Excellent >90' },
+                            { name: 'Very Good >80' },
+                            { name: 'Good >60' },
+                            { name: 'Average >40' },
+                            { name: 'Poor >25' },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer QAS', 'influencer_qas')}
                             label="Influencer QAS"
-                            defaultOptionText={influencer_qas}
+                            defaultOptionText={influencer_qas?.split(',')[0]}
                             useSelectedOptions={influencer_qas?.split(',')}
-
-                        />
+                        /> */}
                     </div>
 
 
@@ -165,9 +178,9 @@ export default function SearchForm({
                         <MultiDropdown options={categories}
                             name="category"
                             onChange={(e) => handleChange(e, 'Category', 'category')}
-                            defaultOptionText={ selectedCategory ? selectedCategory : "Category"}
+                            defaultOptionText={selectedCategory ? selectedCategory : "Category"}
                             useSelectedOptions={selectedCategory?.split(',')}
-                            
+
                         />
                     </div>
 
@@ -183,11 +196,11 @@ export default function SearchForm({
                                 className="text-xs"
                                 useBorder={false}
                                 useSelectedOptions={position?.split(',')}
-                                defaultOptionText={ position ? position :"Anywhere"}
-                                
+                                defaultOptionText={position ? position : "Anywhere"}
+
                             />
                         </div>
-                       
+
                         <input
                             id="keywords"
                             name="keywords"
@@ -196,7 +209,7 @@ export default function SearchForm({
                             onChange={(e) => handleChange(e, 'Keywords', 'keywords')}
                             placeholder={"Find influencers by keywords or hashtag"}
                             className="block w-full px-3  flex-grow  text-sm rounded-none rounded-r-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
-                       />
+                        />
                     </div>
 
                 </div>
@@ -212,10 +225,10 @@ export default function SearchForm({
                                 <span className="font-normal">{item.name}: </span>
                                 {
                                     Array.isArray(item?.value) ? item.value.map((val, ind) => (
-                                        <span className="ml-2 text-viralget-grey">  {val} {(ind + 1) === item.value.length ? '' : ','} </span>
+                                        <span className="ml-2 text-viralget-grey">{val} {(ind + 1) === item.value.length ? '' : ','} </span>
                                     ))
                                         :
-                                        <span className="ml-2 text-viralget-grey">  {item.value} </span>
+                                        <span className="ml-2 text-viralget-grey">{item.value}</span>
                                 }
 
                                 <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >

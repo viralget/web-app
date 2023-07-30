@@ -19,29 +19,29 @@ export default function index({ saved_search, search_history, top_categories, to
 
     return (
 
-        <AuthenticatedLayout title={`Search through our database of ${nFormatter(total_count)}+ influencers`}>
+        <AuthenticatedLayout title={`Search through our database of influencers`}>
             {/* </div> */}
 
-            <main className="flex-1 pb-8">
-                <Container>
-                    <SearchBox categories={categories} searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} handleResult={(result) => setList(result)} />
+            <main className="flex-1 pb-8 px-10">
+                {/* <Container> */}
+                <SearchBox categories={categories} searchActive={() => setSearchActive(true)} loading={() => setLoading(true)} handleResult={(result) => setList(result)} />
 
-                    <div>
-                        <div className="">
+                <div>
+                    <div className="">
 
-                            {saved_search?.length > 0 && (
-                                <RecentSearches title="Saved Searches" data={saved_search} isSaved />
-                            )}
-                            {search_history?.length > 0 && (
-                                <RecentSearches data={search_history} />
-                            )}
-                            <Feature />
-                            <TopCategories data={top_categories} />
-                            <TopInfluencers data={top_influencers} />
+                        {saved_search?.length > 0 && (
+                            <RecentSearches title="Saved Searches" data={saved_search} isSaved />
+                        )}
+                        {search_history?.length > 0 && (
+                            <RecentSearches data={search_history} />
+                        )}
+                        <Feature />
+                        <TopCategories data={top_categories} />
+                        <TopInfluencers data={top_influencers} />
 
-                        </div>
                     </div>
-                </Container>
+                </div>
+                {/* </Container> */}
             </main>
 
 

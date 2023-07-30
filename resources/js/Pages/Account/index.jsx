@@ -13,20 +13,20 @@ import toast from '@/components/Toast';
 export default function Account({ user }) {
     const [agreed, setAgreed] = useState(false)
     const [image, setImageUrl] = useState(user?.info?.image_url);
-   
-   
+
+
     const { data, setData, post, processing, errors, reset } = useForm({
-        company_name: user?.info.company_name,
-        first_name: user.info.first_name,
-        last_name: user.info.last_name,
-        email: user.info.email,
+        company_name: user?.info?.company_name,
+        first_name: user.info?.first_name,
+        last_name: user.info?.last_name,
+        email: user.info?.email,
         current_password: '',
         new_password: '',
         file: '',
-        company_type:user.info.company_type,
-        job_title: user.info.job_title,
-        company_website:user.info.company_website,
-        company_bio: user.info.company_bio,
+        company_type: user.info?.company_type,
+        job_title: user.info?.job_title,
+        company_website: user.info?.company_website,
+        company_bio: user.info?.company_bio,
     });
 
     const displayFile = (event) => {
@@ -37,8 +37,8 @@ export default function Account({ user }) {
                 setImageUrl(e.target.result);
             };
             reader.readAsDataURL(event.target.files[0]);
+        }
     }
-}
 
     useEffect(() => {
         return () => {
@@ -55,8 +55,8 @@ export default function Account({ user }) {
 
         post('/update-settings', {
             onSuccess: (result) => {
-               toast.success('Profile updated successfully');
-               reset('new_password', 'current_password');
+                toast.success('Profile updated successfully');
+                reset('new_password', 'current_password');
             },
             onError: (errors) => {
                 toast.error(errors.error);
@@ -66,134 +66,135 @@ export default function Account({ user }) {
     };
 
     return (
-        <AuthenticatedLayout   smallHeader={true} >
+        <AuthenticatedLayout smallHeader={true} >
 
             <div className="overflow-hidden bg-white py-12 lg:px-10  px-5 ">
                 <div className="relative mx-auto ">
                     <div className="w-full">
                         <div className='border-b  border-viralget-gray-300 pb-space-32'>
-                          <span className='font-lexend font-bold text-t-xlg text-viralget-grey '>Settings</span>   
+                            <span className='font-lexend font-bold text-t-xlg text-viralget-grey '>Settings</span>
                         </div>
                         <form onSubmit={submit} >
 
                             <div className='mt-space-32  border-b  border-viralget-gray-300 pb-space-32'>
                                 <div className='flex flex-col'>
-                                       <span className='text-t-xs font-lexend font-bold'>Name and avatar</span>
-                                       <span className='mt-space-8 text-normal text-viralget-gray-400'>Changing your name below will update your name on your profile.</span>
-                               </div>
-                               <div className='mt-space-28'>
-                                   <UploadImage  displayFile={displayFile} image={image} />
-                               </div>
-                               <div className='mt-space-24'>
-                                       <div className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20 lg:space-y-0  space-y-space-20'>
-                                                <Input
-                                                    type="text"
-                                                    name="first_name"
-                                                    label="First Name"
-                                                    value={data.first_name}
-                                                    className="mt-1 block   lg:w-space-245   w-full  "
-                                                    placeholder="Enter your first name"
-                                                    autoComplete="first_name"
-                                                    onChange={onHandleChange}
-                                                    
-                                                />
-                                                  <Input
-                                                        type="text"
-                                                        name="last_name"
-                                                        label="Last Name"
-                                                        value={data.last_name}
-                                                        className="mt-1 block w-full  lg:w-space-245 "
-                                                        autoComplete="family_name"
-                                                        placeholder="Enter your last name"
-                                                        onChange={onHandleChange}
-                                                        
-                                                    />
-                                        </div>
-                                        <div className='mt-space-32 flex space-x-space-16'>
-                                             <button className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
-                                             Save
-                                             </button>
+                                    <span className='text-t-xs font-lexend font-bold'>Name and avatar</span>
+                                    <span className='mt-space-8 text-normal text-viralget-gray-400'>Changing your name below will update your name on your profile.</span>
+                                </div>
+                                <div className='mt-space-28'>
+                                    <UploadImage displayFile={displayFile} image={image} name="avatar" />
+                                </div>
+                                <div className='mt-space-24'>
+                                    <div className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20 lg:space-y-0  space-y-space-20'>
+                                        <Input
+                                            type="text"
+                                            name="first_name"
+                                            label="First Name"
+                                            value={data.first_name}
+                                            className="mt-1 block   lg:w-space-245   w-full  "
+                                            placeholder="Enter your first name"
+                                            autoComplete="first_name"
+                                            onChange={onHandleChange}
 
-                                             {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
+                                        />
+                                        <Input
+                                            type="text"
+                                            name="last_name"
+                                            label="Last Name"
+                                            value={data.last_name}
+                                            className="mt-1 block w-full  lg:w-space-245 "
+                                            autoComplete="family_name"
+                                            placeholder="Enter your last name"
+                                            onChange={onHandleChange}
+
+                                        />
+                                    </div>
+                                    <div className='mt-space-32 flex space-x-space-16'>
+                                        <button className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
+                                            Save
+                                        </button>
+
+                                        {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
                                              Cancel
                                              </button> */}
-                                        </div>
-                               </div>
+                                    </div>
+                                </div>
                             </div>
-                           
+
 
 
 
                             <div className='mt-space-32  border-b  border-viralget-gray-300 pb-space-32'>
                                 <div className='flex flex-col'>
-                                       <span className='text-t-xs font-lexend font-bold'>Company info</span>
-                                       <span className='mt-space-8 text-normal text-viralget-gray-400'>Update your company information here</span>
-                               </div>
-                              
-                               <div className='mt-space-24'>
-                               
-                                 <div  className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20  lg:space-y-0 space-y-space-20'>
-                                       <Select options={[
-                                                    { name: 'Brand', value: 'brand' },
-                                                    { name: 'Agency', value: 'agency' }
-                                                ]}
-                                                    name="company_type"
-                                                    value={data.company_type}
-                                                    onChange={onHandleChange}
-                                                    label="Company type"
-                                                    defaultOptionText="Select company type"  
-                                                    className="lg:w-space-245 "
-                                                    defaultValue={data.company_type}
-                                                />
-                                           <Input
-                                                    type="text"
-                                                    name="company_name"
-                                                    label="Company name"
-                                                    value={data.company_name}
-                                                    className="mt-1 h-11 block w-full  lg:w-space-245 "
-                                                    autoComplete="company_name"
-                                                    placeholder="Enter company name"
-                                                    onChange={onHandleChange}
-                                                    
-                                                />
-                                    
+                                    <span className='text-t-xs font-lexend font-bold'>Company info</span>
+                                    <span className='mt-space-8 text-normal text-viralget-gray-400'>Update your company information here</span>
                                 </div>
 
-                                 <div className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20 lg:space-y-0 space-y-space-20 mt-space-20'>
-                                               <Select options={[
-                                                        { name: 'C-level / VP', value: 'c-level/vp' },
-                                                        { name: 'Director', value: 'director' },
-                                                        { name: 'Manager/Team Lead', value: 'manager/team-lead' },
-                                                        { name: 'Team member', value: 'team-member' },
-                                                        { name: 'Executive', value: 'executive' },
-                                                        { name: 'Assistant', value: 'assistant' },
-                                                        { name: 'Independent professional', value: 'independent-professional' },
-                                                    ]}
-                                                        name="job_title"
-                                                        value={data.job_title}
-                                                        onChange={onHandleChange}
-                                                        label="Job title"
-                                                        defaultOptionText="Select job title"
-                                                        defaultValue={data.job_title}
-                                                        className="lg:w-space-245  w-full"
-                                                    />
+                                <div className='mt-space-24'>
 
-                                            <Input
-                                                        type="text"
-                                                        name="company_website"
-                                                        label="Company Website"
-                                                        value={data.company_website}
-                                                        className="mt-1 h-11 block w-full  lg:w-space-245 "
-                                                        autoComplete="company_website"
-                                                        placeholder="Enter company website"
-                                                        onChange={onHandleChange}
-                                                        
-                                                    />
-                                       
+                                    <div className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20  lg:space-y-0 space-y-space-20'>
+                                        <Select options={[
+                                            { name: 'Brand', value: 'brand' },
+                                            { name: 'Agency', value: 'agency' }
+                                        ]}
+                                            name="company_type"
+                                            value={data.company_type}
+                                            onChange={onHandleChange}
+                                            label="Company type"
+                                            defaultOptionText="Select company type"
+                                            className="lg:w-space-245 "
+                                            defaultValue={data.company_type}
+                                        />
+                                        <Input
+                                            type="text"
+                                            name="company_name"
+                                            label="Company name"
+                                            value={data?.company_name}
+                                            className="mt-1 h-11 block w-full  lg:w-space-245 "
+                                            autoComplete="company_name"
+                                            placeholder="Enter company name"
+                                            onChange={onHandleChange}
+
+                                        />
+
+                                    </div>
+
+
+                                    <div className='flex  lg:flex-row flex-col  lg:w-auto  w-full lg:space-x-space-20 lg:space-y-0 space-y-space-20 mt-space-20'>
+                                        <Select options={[
+                                            { name: 'C-level / VP', value: 'c-level/vp' },
+                                            { name: 'Director', value: 'director' },
+                                            { name: 'Manager/Team Lead', value: 'manager/team-lead' },
+                                            { name: 'Team member', value: 'team-member' },
+                                            { name: 'Executive', value: 'executive' },
+                                            { name: 'Assistant', value: 'assistant' },
+                                            { name: 'Independent professional', value: 'independent-professional' },
+                                        ]}
+                                            name="job_title"
+                                            value={data.job_title}
+                                            onChange={onHandleChange}
+                                            label="Job title"
+                                            defaultOptionText="Select job title"
+                                            defaultValue={data.job_title}
+                                            className="lg:w-space-245  w-full"
+                                        />
+
+                                        <Input
+                                            type="text"
+                                            name="company_website"
+                                            label="Company Website"
+                                            value={data.company_website}
+                                            className="mt-1 h-11 block w-full  lg:w-space-245 "
+                                            autoComplete="company_website"
+                                            placeholder="Enter company website"
+                                            onChange={onHandleChange}
+
+                                        />
+
                                     </div>
 
                                     <div className='w-auto mt-space-20'>
-                                            <TextArea
+                                        <TextArea
                                             name="company_bio"
                                             label="Company bio"
                                             value={data.company_bio}
@@ -201,20 +202,20 @@ export default function Account({ user }) {
                                             autoComplete="company_bio"
                                             placeholder="Enter company bio"
                                             onChange={onHandleChange}
-                                            
+
                                         />
                                     </div>
 
-                                        <div className='mt-space-32 flex space-x-space-16'>
-                                             <button className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
-                                             Save
-                                             </button>
+                                    <div className='mt-space-32 flex space-x-space-16'>
+                                        <button className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
+                                            Save
+                                        </button>
 
-                                             {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
+                                        {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
                                              Cancel
                                              </button> */}
-                                        </div>
-                               </div>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -224,77 +225,77 @@ export default function Account({ user }) {
 
                             <div className='mt-space-32  lg:w-space-510'>
                                 <div className='flex flex-col'>
-                                       <span className='text-t-xs font-lexend font-bold'>Security settings</span>
-                                       <span className='mt-space-8 text-normal text-viralget-gray-400'>Note that if you signed in with a connected account, you are using that account’s login information and we cannot change or reset those passwords here.</span>
-                               </div>
-                              
-                               <div className='mt-space-24'>
+                                    <span className='text-t-xs font-lexend font-bold'>Security settings</span>
+                                    <span className='mt-space-8 text-normal text-viralget-gray-400'>Note that if you signed in with a connected account, you are using that account’s login information and we cannot change or reset those passwords here.</span>
+                                </div>
 
-                                        <div className='w-auto mt-space-20'>
-                                                 <PasswordInput
-                                                        type="password"
-                                                        label="Enter current password"
-                                                        name="current_password"
-                                                        value={data.current_password}
-                                                        className="mt-1 block w-full pl-10"
-                                                        autoComplete="new-password"
-                                                        onChange={onHandleChange}
-                                                        placeholder="Enter current password"
-                                                        
-                                                        icon={<PasswordSvg />}
-                                                    />
-                                        </div>
+                                <div className='mt-space-24'>
 
-                                        <div className='w-auto mt-space-20'>
-                                                 <PasswordInput
-                                                        type="password"
-                                                        label="Enter new password"
-                                                        name="new_password"
-                                                        value={data.new_password}
-                                                        className="mt-1 block w-full pl-10 "
-                                                        autoComplete="new-password"
-                                                        onChange={onHandleChange}
-                                                        placeholder="Enter new password"
-                                                        icon={<PasswordSvg />}
-                                                    />
-                                        </div>
+                                    <div className='w-auto mt-space-20'>
+                                        <PasswordInput
+                                            type="password"
+                                            label="Enter current password"
+                                            name="current_password"
+                                            value={data.current_password}
+                                            className="mt-1 block w-full pl-10"
+                                            autoComplete="new-password"
+                                            onChange={onHandleChange}
+                                            placeholder="Enter current password"
 
-
-                                    <div  className='mt-space-20'>
-                                       <div className='flex flex-col '>
-                                           <span className='text-t-xs font-lexend font-bold'>Reset Password</span>
-                                           <span className='mt-space-8 text-normal text-viralget-gray-400'>If you just forgot your password, don’t worry – we got you!</span>
-                                        </div>  
-                                        <div className='mt-space-20'>
-                                            <a href={route('create.forgot.password')}  className='flex rounded-[8px]  py-space-12  items-center justify-center  space-x-3 text-viralget-red border border-viralget-red w-space-176'>
-                                                <PasswordSvgRed className="text-viralget-red"  stroke="red" /> 
-                                                <span> Reset password</span>
-                                            </a> 
-                                        </div>
-
-                                         
+                                            icon={<PasswordSvg />}
+                                        />
                                     </div>
-                                    
 
-                                        <div className='mt-space-32 flex space-x-space-16'>
-                                             <button  className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
-                                             Save
-                                             </button>
+                                    <div className='w-auto mt-space-20'>
+                                        <PasswordInput
+                                            type="password"
+                                            label="Enter new password"
+                                            name="new_password"
+                                            value={data.new_password}
+                                            className="mt-1 block w-full pl-10 "
+                                            autoComplete="new-password"
+                                            onChange={onHandleChange}
+                                            placeholder="Enter new password"
+                                            icon={<PasswordSvg />}
+                                        />
+                                    </div>
 
-                                             {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
+
+                                    <div className='mt-space-20'>
+                                        <div className='flex flex-col '>
+                                            <span className='text-t-xs font-lexend font-bold'>Reset Password</span>
+                                            <span className='mt-space-8 text-normal text-viralget-gray-400'>If you just forgot your password, don’t worry – we got you!</span>
+                                        </div>
+                                        <div className='mt-space-20'>
+                                            <a href={route('create.forgot.password')} className='flex rounded-[8px]  py-space-12  items-center justify-center  space-x-3 text-viralget-red border border-viralget-red w-space-176'>
+                                                <PasswordSvgRed className="text-viralget-red" stroke="red" />
+                                                <span> Reset password</span>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div className='mt-space-32 flex space-x-space-16'>
+                                        <button className='px-space-28 py-space-8 bg-viralget-gray-300 rounded-md'>
+                                            Save
+                                        </button>
+
+                                        {/* <button type='reset' className='px-space-28 py-space-8 rounded-md  bg-white  border  border-gray-400'>
                                              Cancel
                                              </button> */}
-                                        </div>
-                               </div>
+                                    </div>
+                                </div>
                             </div>
 
 
 
 
-                           
-                           
-                           
-                     
+
+
+
+
                         </form>
                     </div>
                 </div>

@@ -1,20 +1,26 @@
 import Typography from '@/components/Typography';
+import { usePage } from '@inertiajs/inertia-react';
 import SummaryCard from './summaryCard';
 
 export default function Summary({ profiles_count = 0, instagram_count = 0, twitter_count = 0 }) {
+
+    const { auth } = usePage().props;
+    const { user } = auth;
 
     const total = 50;
 
     const list = [
         {
             title: 'Monthly profilings',
-            left: total - profiles_count,
+            left: user.available_profiling_count, // total - profiles_count,
+            used: total - user.available_profiling_count, // total - profiles_count,
             level: profiles_count,
             total: total,
             bottomLine: 'Profiled influencers'
         },
         {
             title: 'Influencer storage',
+            used: 0, // total - profiles_count,
             left: total,
             level: 0,
             total: total,
@@ -25,7 +31,7 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
 
 
     return (
-        <div className='mt-16'>
+        <div className=''>
 
             <div className="flex mb-4 justify-between  w-full">
                 <Typography variant={'h2'} content="Profiling summary" />
@@ -37,7 +43,6 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
                             <SummaryCard item={item} />
                         ))
                     }
-
                 </div>
                 <div className='flex flex-col w-full space-y-5'>
 
@@ -50,11 +55,11 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
 
 
                             {/* <span className='text-xs'>Twitter accounts</span> */}
-                            <Typography variant="b2" content='Twitter accounts'  />
-                            
+                            <Typography variant="b2" content='Twitter accounts' />
+
                         </div>
                         <div className='mt-5'>
-                        <Typography variant="h2" content={twitter_count +' accounts'}  />
+                            <Typography variant="h2" content={twitter_count + ' accounts'} />
                         </div>
                     </div>
 
@@ -68,10 +73,10 @@ export default function Summary({ profiles_count = 0, instagram_count = 0, twitt
                             </svg>
 
                             {/* <span className='text-xs'>Instagram accounts</span> */}
-                            <Typography variant="b2" content='Instagram accounts'  />
+                            <Typography variant="b2" content='Instagram accounts' />
                         </div>
                         <div className='mt-5'>
-                            <Typography variant="h2" content={instagram_count +' accounts'}  />
+                            <Typography variant="h2" content={instagram_count + ' accounts'} />
                         </div>
                     </div>
 

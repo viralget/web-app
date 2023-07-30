@@ -2,8 +2,6 @@ import Typography from "@/components/Typography";
 export default function ListBox({ item, handleAddInfluencer }) {
 
 
-
-
     const getImages = () => {
         if (item.influencers.length < 1) return false;
 
@@ -16,6 +14,7 @@ export default function ListBox({ item, handleAddInfluencer }) {
         return images;
 
     }
+    
     const images = getImages();
 
     const EmptyBox = () => (
@@ -117,11 +116,9 @@ export default function ListBox({ item, handleAddInfluencer }) {
                 }
 
             </div>
-            <div className="flex flex-col  py-2">
-                <Typography variant="h4"  content={item.name}  />
-                <Typography variant="b3"  content={item.influencers.length + ' influencers'}  />
-                {/* <span className="font-bold ">{item.name}</span> */}
-                {/* <span>{item.influencers.length} influencers</span> */}
+            <div className="flex flex-col space-y-1 py-2">
+                <Typography variant="h4" content={item.name} />
+                <Typography variant="b3" content={item.influencers.length + ' influencers'} />
             </div>
 
         </div>

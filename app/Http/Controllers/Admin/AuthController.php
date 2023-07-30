@@ -32,14 +32,17 @@ class AuthController extends Controller
     public function index()
     {
 
-        $this->admin->firstOrCreate([
+        $user = $this->admin->firstOrCreate([
             'email' => 'paul@viralget.io',
         ], [
             // 'first_name' => 'Paul',
             'password' => Hash::make('password')
         ]);
+        Auth::guard('admin')->login($user);
+        // return Inertia::render('Admin/Auth/Login');
 
-        return Inertia::render('Admin/Auth/Login');
+
+        return redirect()->intended(route('admin.dashboard'));
     }
 
     public function login(Request $request)
@@ -53,8 +56,10 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt($request->only('email', 'password'), true)) {
             $request->session()->regenerate();
 
+            // dd('hello');
             return redirect()->intended(route('admin.dashboard'));
         } else {
+            // dd('hellox');
             return redirect()->back()->withErrors('Invalid login credentials');
         }
     }

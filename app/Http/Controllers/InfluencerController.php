@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\InfluencerResource;
 use App\Models\Category;
 use App\Models\Influencer;
+use App\Models\InfluencerCountry;
 use App\Models\Search;
 use App\Models\TwitterInfluencer;
 use App\Models\ProfiledInfluencer;
@@ -37,6 +38,8 @@ class InfluencerController extends Controller
         $top_influencers = $this->influencer->limit(8)->get();
         $categories = Category::get();
 
+        $countries = InfluencerCountry::get();
+
         return Inertia::render(
             'Influencers/index',
             [
@@ -45,6 +48,7 @@ class InfluencerController extends Controller
                 'top_influencers' => InfluencerResource::collection($top_influencers),
                 'top_categories' => $top_categories,
                 'categories' => $categories,
+                // 'countries' => $countries,
                 'total_count' => $this->influencer->count()
             ]
         );
@@ -73,6 +77,7 @@ class InfluencerController extends Controller
 
         if (count($request->all()) > 0) {
 
+            $has_query = true;
             $result = TwitterInfluencer::query();
 
             $request_categories = explode(',', $request->category);
@@ -82,28 +87,54 @@ class InfluencerController extends Controller
             $category = $request->category;
             $keywords = $request->keyword;
             $keywords_position = $request->position;
+            $qas = $request->influencer_qas;
+            $size = $request->size;
+            $reach = $request->influener_reach;
+            $any = 'Any';
 
-            if ($influencer_location) {
-                $influencer_location = explode(',', $influencer_location);
+            // $countries = InfluencerCountry::get();
 
-                $result = $result->where(function ($query) use ($influencer_location) {
-                    foreach ($influencer_location as $location) {
-                        $query->orWhere('location', 'LIKE', "%$location%");
+            if ($size && $size != $any) {
+
+                $size = explode(',', $size);
+
+
+                $result = $result->where(function ($query) use ($size) {
+                    foreach ($size as $_size) {
+                        if ($_size == 'any') continue;
+                        $_size = $this->getsizeRange($_size);
+                        $query->orWhereBetween('followers_count', $_size);
                     }
                 });
             }
 
-            if ($audience_size) {
+
+            if ($influencer_location && $influencer_location != $any) {
+
+                $influencer_location = explode(',', $influencer_location);
+
+                $result = $result->where(function ($query) use ($influencer_location) {
+                    foreach ($influencer_location as $location) {
+                        if ($location == 'any') continue;
+                        $query->orWhereHas('geo_location', function ($q) use ($location) {
+                            $q->where('name', $location);
+                        });
+                    }
+                });
+            }
+
+            if ($audience_size && $audience_size != $any) {
                 $audience_size = explode(',', $audience_size);
 
                 $result = $result->where(function ($query) use ($audience_size) {
                     foreach ($audience_size as $size) {
+                        if ($size == 'any') continue;
                         $query->orWhere('followers', '>=', "%$size%");
                     }
                 });
             }
 
-            if ($category) {
+            if ($category && $category != $any) {
                 $category = explode(',', $category);
 
                 $result = $result->where(function ($query) use ($category) {
@@ -117,8 +148,40 @@ class InfluencerController extends Controller
 
 
 
+            if ($reach && $reach != $any) {
+                $reach = explode(',', $reach);
 
-            if ($keywords) {
+                $result = $result->where(function ($query) use ($reach) {
+                    foreach ($reach as $_reach) {
+                        $query->orWhereHas('metrics', function ($q) use ($_reach) {
+                            $reach_value = $this->getReachRange($_reach);
+
+                            $q->whereBetween('reach', [$reach_value[0], $reach_value[1]]);
+                        });
+                    }
+                });
+            }
+
+
+            if ($qas && $qas != $any) {
+                $qas = explode(',', $qas);
+
+                $result = $result->where(function ($query) use ($qas) {
+                    foreach ($qas as $score) {
+                        $score = $this->getQASValue($score);
+                        if (!$score) continue;
+                        $query->orWhereHas('metrics', function ($q) use ($score) {
+                            $q->where('quality_audience', '>=', $score);
+                        });
+                    }
+                });
+            }
+
+
+
+
+
+            if ($keywords && $keywords != $any) {
 
                 if ($keywords_position == 'bio') {
                     $result->where('bio', 'like', "%$request->keywords%");
@@ -138,6 +201,7 @@ class InfluencerController extends Controller
             $result = $result->latest()->paginate(10)->appends($_GET);
         } else {
             $result = null;
+            $has_query = false;
         }
 
 
@@ -147,7 +211,9 @@ class InfluencerController extends Controller
                 'list' => $result ? InfluencerResource::collection($result) : [], //InfluencerResource::collection($result->latest()->paginate(10)),
                 'count' => $result ? $result->count() : 0, // $result->count(), //$result->count(),
                 'categories' => $categories,
-                'total_count' => $this->influencer->count()
+                // 'countries' => $countries,
+                'total_count' => $this->influencer->count(),
+                'has_query' => $has_query
             ]
         );
         // return $result->get();
@@ -171,19 +237,22 @@ class InfluencerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, TwitterInfluencer $id)
+    public function show(Request $request, TwitterInfluencer $influencer)
+    // public function show(Request $request, $influencer)
     {
-        $list = [];
-        $influencer = $id;
-        $findProfiled = ProfiledInfluencer::find($id);
-        $user_id = $request->user()->id;
-        if ($findProfiled) {
-            $list = InfluencerList::with('influencers')->where('user_id', $user_id)->get();
-        }
+        // $list = [];
+
+        // $influencer = $id;
+        // $findProfiled = ProfiledInfluencer::where('')->first(); // ProfiledInfluencer::find($id);
+        // $user_id = $request->user()->id;
+        // if ($findProfiled) {
+        $list = InfluencerList::with('influencers')->where('user_id', $influencer->id)->get();
+        // }
 
         return Inertia::render(
-            'InfluencerProfile/show',
+            'InfluencerProfile/Show/index',
             [
+                // 'username' => $influencer,
                 'influencer' => InfluencerResource::make($influencer),
                 'list' => $list
             ]
@@ -323,5 +392,65 @@ class InfluencerController extends Controller
                 'saved_search' => $saved_search
             ]
         );
+    }
+
+    private function getSizeRange($size)
+    {
+
+        switch ($size) {
+            case 'Nano':
+                return [100, 10000];
+            case 'Micro':
+                return [10000, 50000];
+            case 'Mid-Tier':
+                return [50000, 500000];
+            case 'Macro':
+                return [5000000, 1000000];
+
+            default:
+                # code...
+                break;
+        }
+    }
+
+    private function getReachRange($size)
+    {
+        switch ($size) {
+            case 'Nano':
+                return [100, 10000];
+            case 'Micro':
+                return [10000, 50000];
+            case 'Mid-Tier':
+                return [50000, 500000];
+            case 'Macro':
+                return [5000000, 1000000];
+
+            default:
+                # code...
+                break;
+        }
+    }
+
+    private function getQASValue($value)
+    {
+
+        switch ($value) {
+            case 'Any':
+                return '';
+            case 'Excellent >90':
+                return 90;
+            case 'Very Good >80':
+                return '80';
+            case 'Good >60':
+                return 60;
+            case 'Average >40':
+                return 40;
+            case 'Poor >25':
+                return 25;
+
+            default:
+                # code...
+                break;
+        }
     }
 }

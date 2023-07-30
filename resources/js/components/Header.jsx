@@ -10,29 +10,31 @@ import { NavLink } from '@/components/NavLink'
 import { Head } from '@inertiajs/inertia-react'
 import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import Badge from './Badge'
+import { header_routes } from '@/Utils/constants'
 
-const header_routes = [
-  {
-    name: "Pricing",
-    href: route('pricing')
-  },
-  {
-    name: "Contact Us",
-    href: route('contact')
-  },
-  {
-    name: "FAQs",
-    href: route('faqs')
-  },
-  // {
-  //   name: <> Track Campaign<Badge text="Coming soon" /> </>,
-  //   href: "/#"
-  // },
-  // {
-  //   name: "FAQs",
-  //   href: route('faqs')
-  // },
-]
+
+// const header_routes = [
+//   {
+//     name: "Pricing",
+//     href: route('pricing')
+//   },
+//   {
+//     name: "Contact Us",
+//     href: route('contact')
+//   },
+//   {
+//     name: "FAQs",
+//     href: route('faqs')
+//   },
+//   // {
+//   //   name: <> Track Campaign<Badge text="Coming soon" /> </>,
+//   //   href: "/#"
+//   // },
+//   // {
+//   //   name: "FAQs",
+//   //   href: route('faqs')
+//   // },
+// ]
 
 function MobileNavLink({ href, children }) {
   return (
@@ -119,6 +121,8 @@ function MobileNavigation() {
 export function Header({ useShadow = true }) {
   const { auth: { user } } = usePage().props;
 
+
+
   return (
     <>
       <Head>
@@ -132,14 +136,14 @@ export function Header({ useShadow = true }) {
           <nav className="relative flex justify-between">
             <div className="flex items-center md:gap-x-12">
               <div>
-                <Link href="/" aria-label="Home">
-                  <Logo className="h-10 w-auto" />
-                </Link>
+                {/* <Link href="/" aria-label="Home"> */}
+                <Logo className="h-10 w-auto" />
+                {/* </Link> */}
               </div>
             </div>
             <div className="hidden font-bold justify-center items-center md:flex md:gap-x-3">
               {header_routes.map((route, index) => (
-                <NavLink key={index} href={route.href}>{route.name}</NavLink>
+                <NavLink key={index} href={route.href} className="text-t-xsx font-lexend font-medium ">{route.name}</NavLink>
               ))}
             </div>
             <div className="flex items-center gap-x-5 md:gap-x-8">
@@ -147,26 +151,25 @@ export function Header({ useShadow = true }) {
                 <DropdownMenu user={user} />
                 :
                 <>
-                  {/* <div className="hidden md:block">
-                    <NavLink href="/login">Log in</NavLink>
-                  </div>
                   <div className="hidden md:block">
-                    <Button href="/register" color="blue">
-                      <span>
-                        Create an account
-                      </span>
-                    </Button>
-                  </div> */}
-                  <Button href="/join" color="blue">
+                    <NavLink href="/login" className="text-viralget-red rounded-md  text-t-xsx font-lexend font-medium px-space-30  py-space-15   border border-viralget-red">Log in</NavLink>
+                  </div>
+                  <div className=" md:block">
+                    <a href="/register" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
+
+                      <span className='font-lexend font-medium  text-white text-t-xsx'>Register</span>
+                    </a>
+                  </div>
+                  {/* <Button href="/join" color="blue">
                     <span>
                       Join the waitlist
                     </span>
-                  </Button>
+                  </Button> */}
                 </>
               }
-              <div className="-mr-1 md:hidden">
+              {/* <div className="-mr-1 md:hidden">
                 <MobileNavigation />
-              </div>
+              </div> */}
             </div>
           </nav>
         </Container>

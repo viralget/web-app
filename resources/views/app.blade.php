@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
     <!-- Facebook Pixel Code -->
 <script>
@@ -37,6 +38,10 @@ fbq('track', 'PageView');
   <body>
     @inertia
   </body>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- <script src="https://js.paystack.co/v2/inline.js"> -->
 </html>

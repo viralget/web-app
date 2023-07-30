@@ -1,49 +1,45 @@
-import { Link } from '@inertiajs/inertia-react';
-import { classNames } from '@/Utils/helpers'
+import { classNames } from "@/Utils/helpers";
 
-const baseStyles = {
-  solid:
-    'group inline-flex items-center justify-center rounded-full py-3 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
-  outline:
-    'group inline-flex ring-1 items-center justify-center rounded-full py-3 px-4 text-sm focus:outline-none',
+export default function Button({ type = 'submit', size = 'large', isDark = false, isLight, icon, rounded = true, transparent, block = false, usePrimary, bgColor = "bg-white", textColor = 'text-gray-900', borderColor, className = '', processing, children, href, onClick, disabled, target }) {
+
+
+
+  const isBlock = block ? 'w-full' : '';
+  // const buttonTextColor = transparent ? textColor ? textColor : 'text-white' : 'text-black';
+  const buttonBorderColor = borderColor ? borderColor : transparent ? `border-gray-900` : ' border';
+  const buttonBgColor = transparent ? ` bg-transparent hover:bg-gray-100` : isDark ? 'bg-gray-900 hover:bg-gray-600 ' : isLight ? 'bg-white' : usePrimary ? 'bg-primary' : bgColor;
+  const buttonTextColor = transparent || isLight ? 'text-gray-900' : isDark ? `text-white` : usePrimary ? 'text-white' : textColor;
+  const roundedStyle = rounded ? 'rounded-xl' : null;
+
+  const _className = `inline-flex items-center justify-center text-sm border shadow-sm font-semibold  leading-7 gap-x-1.5 ${isBlock} ${buttonTextColor} transition-all duration-200 ${buttonBgColor} border ${buttonBorderColor} rounded-md 
+                        ${processing && 'opacity-25'}
+    ${size == 'small' ? 'px-4 py-2' : '  px-3 py-2 '}
+                        ` + className;
+
+  return (
+    href ?
+      <a
+        href={href}
+        className={_className}
+        onClick={onClick}
+        disabled={disabled}
+        target={target ?? '_self'}
+      >
+        <div className="flex w-full text-center justify-center focus:ring-offset-0">
+          {children}
+        </div>
+      </a>
+      :
+      <button
+        type={type}
+        className={_className}
+        disabled={processing || disabled}
+        onClick={onClick}
+      >
+        <div className={classNames(" w-full text-center justify-center items-center inline-flex", disabled && 'opacity-20')}>
+          {icon}
+          {processing && 'Please wait...'} {children}
+        </div>
+      </button>
+  );
 }
-
-const variantStyles = {
-  solid: {
-    slate:
-      'bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900',
-    blue: 'bg-orange-600 text-white hover:text-slate-100 hover:bg-orange-500 active:bg-blue-800 active:text-orange-100 focus-visible:outline-orange-600',
-    // blue: 'bg-orange-600 text-white hover:text-slate-100 hover:bg-blue-500 active:bg-blue-800 active:text-blue-100 focus-visible:outline-orange-600',
-    white:
-      'bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white',
-  },
-  outline: {
-    slate:
-      'ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-orange-600 focus-visible:ring-slate-300',
-    white:
-      'ring-slate-700 text-white hover:ring-slate-500 active:ring-slate-700 active:text-slate-400 focus-visible:outline-white',
-  },
-}
-
-function Button({
-  variant = 'solid',
-  color = 'slate',
-  className,
-  processing,
-  href,
-  ...props
-}) {
-  className = classNames(
-    baseStyles[variant],
-    variantStyles[variant][color],
-    className
-  )
-
-  return href ? (
-    <Link href={href} className={className} {...props} />
-  ) : (
-    <button  className={className} {...props} />
-  )
-}
-
-export default Button;

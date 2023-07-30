@@ -8,8 +8,9 @@ import PaystackPop from '@paystack/inline-js';
 import { get } from "@/Utils/api";
 import toast from '@/Components/Toast';
 
-const UserPayment = (props) => {
+export const PaymentProccess = (props) => {
     const { auth: { user }, plan_id, plan, public_key } = props;
+
     const [getPaymentMethod, setPaymentMethod] = useState("");
     const [buttText, setPaymentText] = useState("Continue");
     const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +41,7 @@ const UserPayment = (props) => {
         paystack.newTransaction({
             key: public_key,
             email: user.email,
-            amount: plan.amount * 100,
+            amount: 1, //plan.amount * 100,
             reference: (new Date()).getTime().toString(),
             plan: plan.plan_code,
 
@@ -60,7 +61,7 @@ const UserPayment = (props) => {
     }
 
     function verifyPayment(reference) {
-        setPaymentText("verifying payment..")
+        setPaymentText("Verifying payment..")
         get(route("user.verify.payment", { reference, plan_id }))
             .then((item) => {
                 if (item.data.status) {
@@ -99,6 +100,7 @@ const UserPayment = (props) => {
                         id={value}
                         name={value}
                         value={value}
+                        checked={getPaymentMethod == 'paystack'}
                         onChange={onHandleChange}
                         type="checkbox"
                         className="h-4 w-4 rounded  accent-viralget-red  text-white bg-white"
@@ -126,7 +128,6 @@ const UserPayment = (props) => {
     return (
         <div>
 
-            <Header user={user} levels={Levels} />
 
             <div className="w-full flex items-center mt-space-80 px-space-10  justify-center">
                 <div className="flex flex-col ">
@@ -154,6 +155,17 @@ const UserPayment = (props) => {
                 </div>
             </div>
         </div>
+    )
+}
+
+
+const UserPayment = (props) => {
+    return (
+        <>
+            <Header user={user} levels={Levels} />
+
+            <PaymentProccess {...props} />
+        </>
     )
 }
 

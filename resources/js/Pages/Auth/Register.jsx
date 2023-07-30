@@ -15,7 +15,7 @@ import toast from "@/components/Toast";
 export default function Register() {
 
     const [image, setImageUrl] = useState(null);
-   
+
     const { data, setData, post, processing, errors, reset } = useForm({
         company_name: '',
         first_name: '',
@@ -29,7 +29,7 @@ export default function Register() {
 
 
 
-   
+
     const displayFile = (event) => {
         if (event.target.files && event.target.files[0]) {
             setData('file', event.target.files[0]);
@@ -38,16 +38,14 @@ export default function Register() {
                 setImageUrl(e.target.result);
             };
             reader.readAsDataURL(event.target.files[0]);
+        }
     }
-}
 
 
 
 
 
     useEffect(() => {
-        // post(route('register'));
-
         return () => {
             reset('password', 'password_confirmation');
         };
@@ -59,8 +57,8 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-
-        if(!data.termCondition){
+        console.log("Error:::", errors)
+        if (!data.termCondition) {
             toast.error("Please select the term and condition.");
             return;
         }
@@ -71,17 +69,17 @@ export default function Register() {
         <Auth>
 
             <div>
-                     <h2 className="mt-6 text-t-lg-x font-lexend font-bold  text-viralget-grey">Create a ViralGet account</h2>
-                        <p className="mt-2 text-t-normal font-normal  text-gray-600">
-                        Already have an account?{' '}
-                            <a href={route('login')} className="font-bold text-t-normal text-viralget-red">
-                                Log in
-                            </a>
-                        </p>
+                <h2 className="mt-6 text-t-lg-x font-lexend font-bold  text-viralget-grey">Create a ViralGet account</h2>
+                <p className="mt-2 text-t-normal font-normal  text-gray-600">
+                    Already have an account?{' '}
+                    <a href={route('login')} className="font-bold text-t-normal text-viralget-red">
+                        Log in
+                    </a>
+                </p>
             </div>
             <div className="mt-space-20">
                 <div>
-                    <SocialsLogin  type="google" redirect_url={route('auth.social.googleCallBack')} />
+                    <SocialsLogin type="google" redirect_url={route('auth.social.googleCallBack')} />
 
                     <div className="relative mt-space-20">
                         <div className="absolute inset-0 flex items-center" aria-hidden="true">
@@ -97,57 +95,57 @@ export default function Register() {
 
                 <form onSubmit={submit} className="">
 
-                <div className="mt-space-20  mb-space-20">
-                      <UploadImage  displayFile={displayFile} image={image} />
-                </div>
+                    <div className="mt-space-20  mb-space-20">
+                        <UploadImage displayFile={displayFile} image={image} name="avatar" />
+                    </div>
 
-                <div className="flex space-x-space-20  w-full">
-                    <div className="w-full">
+                    <div className="flex space-x-space-20  w-full">
+                        <div className="w-full">
+                            <Input
+                                type="text"
+                                name="first_name"
+                                label="First Name"
+                                value={data.first_name}
+                                className="mt-1 block "
+                                placeholder="Enter your first name"
+                                autoComplete="first_name"
+                                onChange={onHandleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="w-full">
+                            <Input
+                                type="text"
+                                name="last_name"
+                                label="Last Name"
+                                value={data.last_name}
+                                className="mt-1 block w-full"
+                                autoComplete="family_name"
+                                placeholder="Enter your last name"
+                                onChange={onHandleChange}
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mt-space-20  w-full">
+
                         <Input
-                            type="text"
-                            name="first_name"
-                            label="First Name"
-                            value={data.first_name}
-                            className="mt-1 block "
-                            placeholder="Enter your first name"
-                            autoComplete="first_name"
+                            type="email"
+                            name="email"
+                            label="Email Address"
+                            value={data.email}
+                            className="mt-1 block w-full pl-10"
+                            autoComplete="email"
                             onChange={onHandleChange}
+                            placeholder="Enter corporate email address"
                             required
+                            icon={<EmailSvg />}
                         />
                     </div>
 
-                    <div className="w-full">
-                        <Input
-                            type="text"
-                            name="last_name"
-                            label="Last Name"
-                            value={data.last_name}
-                            className="mt-1 block w-full"
-                            autoComplete="family_name"
-                            placeholder="Enter your last name"
-                            onChange={onHandleChange}
-                            required
-                        />
-                    </div>
-                </div>
-
-                <div className="mt-space-20  w-full">
-
-                    <Input
-                        type="email"
-                        name="email"
-                        label="Email Address"
-                        value={data.email}
-                        className="mt-1 block w-full pl-10"
-                        autoComplete="email"
-                        onChange={onHandleChange}
-                        placeholder="Enter corporate email address"
-                        required
-                        icon={<EmailSvg />}
-                    />
-                </div>
-
-                <div className="mt-space-20">
+                    <div className="mt-space-20">
                         <PasswordInput
                             type="password"
                             label="Password"
@@ -160,34 +158,34 @@ export default function Register() {
                             required
                             icon={<PasswordSvg />}
                         />
-                </div> 
-
-                <div className="flex items-center  mt-space-20">
-                                <input
-                                    id="term-condition"
-                                    name="termCondition"
-                                    value={data.termCondition}
-                                    onChange={onHandleChange}
-                                    type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-indigo-500"
-                                />
-                                <label htmlFor="term-condition" className="ml-2 block text-t-normal font-normal text-gray-900">
-                                    I agree to all { ' '}
-                                     <span className="text-viralget-red  font-bold text-t-normal">Terms & Conditions, Privacy Policy</span>  
-                                </label>
                     </div>
-                    
+
+                    <div className="flex items-center  mt-space-20">
+                        <input
+                            id="term-condition"
+                            name="termCondition"
+                            value={data.termCondition}
+                            onChange={onHandleChange}
+                            type="checkbox"
+                            className="h-4 w-4 rounded border-gray-300 text-fuchsia-600 focus:ring-indigo-500"
+                        />
+                        <label htmlFor="term-condition" className="ml-2 block text-t-normal font-normal text-gray-900">
+                            I agree to all {' '}
+                            <span className="text-viralget-red  font-bold text-t-normal">Terms & Conditions, Privacy Policy</span>
+                        </label>
+                    </div>
+
 
                     <div className="text-center  mt-space-20">
                         <Button
-                            className='block w-full bg-viralget-red rounded-[8px]'
-                            processing={processing}
-                            >
+                            usePrimary
+                            block
+                            processing={processing}>
                             Create account
                         </Button>
                     </div>
                 </form>
-          
+
             </div>
 
         </Auth>

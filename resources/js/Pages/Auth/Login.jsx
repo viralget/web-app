@@ -15,14 +15,14 @@ export default function Login() {
 
     const getEmail = new URLSearchParams(window.location.search).get('email');
 
-  
+
     const { data, setData, post, processing, errors, reset } = useForm({
-        email:  getEmail ?? '',
+        email: getEmail ?? '',
         password: '',
     });
 
     useEffect(() => {
-      
+
         return () => {
             reset('password');
         };
@@ -40,16 +40,16 @@ export default function Login() {
 
     return (
         <Auth>
-            
+
 
             <div className="w-full">
                 <h2 className="text-t-lg-x font-lexend  font-bold ">Welcome back!</h2>
                 <p className="mt-2 text-t-normal font-normal  text-gray-600">
-                Not registered yet? {' '}
-                            <a href={route('register')} className="font-bold text-t-normal text-viralget-red">
-                            Create an account
-                            </a>
-                        </p>
+                    Not registered yet? {' '}
+                    <a href={route('register')} className="font-bold text-t-normal text-viralget-red">
+                        Create an account
+                    </a>
+                </p>
             </div>
             <div className="mt-8">
                 <div>
@@ -76,7 +76,7 @@ export default function Login() {
                             name="email"
                             label="Email Address"
                             value={data.email}
-                            className="mt-1 block w-full  pl-10"
+                            // className="mt-1 block w-full  pl-10"
                             autoComplete="email"
                             onChange={onHandleChange}
                             required
@@ -99,28 +99,29 @@ export default function Login() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input
-                                    id="remember-me"
-                                    name="remember-me"
-                                    type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-viralget-red accent-viralget-red focus:ring-indigo-500"
-                                />
-                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                    Remember me
-                                </label>
-                            </div>
-
-                            <div className="text-sm">
-                                <a href={route('create.forgot.password')} className="font-bold text-viralget-red hover:text-viralget-red">
-                                    Forgot your password?
-                                </a>
-                            </div>
+                        <div className="flex items-center">
+                            <input
+                                id="remember-me"
+                                name="remember-me"
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-gray-300 text-viralget-red accent-viralget-red focus:ring-indigo-500"
+                            />
+                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                                Remember me
+                            </label>
                         </div>
+
+                        <div className="text-sm">
+                            <a href={route('create.forgot.password')} className="font-bold text-viralget-red hover:text-viralget-red">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
 
                     <div className="text-center  mt-space-32">
                         <Button
-                            className='block w-full bg-viralget-red rounded-[8px]'
+                            usePrimary
+                            block
                             processing={processing}>
                             Login
                         </Button>

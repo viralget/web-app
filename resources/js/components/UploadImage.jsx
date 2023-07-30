@@ -1,7 +1,7 @@
 import { useState} from "react"
 
 
-const UploadImage = ({ image,  displayFile }) => {
+const UploadImage = ({ image,  displayFile, name , isRequired}) => {
 
 
     return (
@@ -25,16 +25,17 @@ const UploadImage = ({ image,  displayFile }) => {
                     select-none
                     cursor-pointer" 
                     onChange={displayFile}
+                    required={isRequired}
                     />
              </div>
 
              <div className="flex flex-col  space-y-1 justify-center ">
-                  <span className="text-t-normal font-bold text-viralget-grey">Upload an avatar (optional)</span>
+                  <span className="text-t-normal font-bold text-viralget-grey capitalize">Upload  {name} { isRequired ? '': '(optional)'} </span>
                   <span className="text-t-normal w-[271px] font-normal text-viralget-gray-400">Upload PNG or JPEG file. File size limit is up to 4MB</span>
                  {
                   image ?
                   (
-                    <span className="text-t-normal  font-bold text-viralget-red">Change avatar</span>
+                    <span className="text-t-normal  font-bold text-viralget-red">Change {name}</span>
                
                   )
                   : null

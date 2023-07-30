@@ -11,7 +11,7 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useS
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [currentSelectedItem, setCurrentSelectedItem] = useState(defaultOptionText ?? defaultText);
-    const [selectedOptions, setSelectedOptions] = useState( useSelectedOptions ?? []);
+    const [selectedOptions, setSelectedOptions] = useState(useSelectedOptions ?? []);
 
     const wrapperRef = useRef(null);
 
@@ -25,7 +25,7 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useS
         let _selectedOptions = selectedOptions;
 
         if (_selectedOptions.includes(value)) {
-            _selectedOptions.pop(value);
+            _selectedOptions.splice(_selectedOptions.indexOf(value), 1);
         } else {
             _selectedOptions.push(value);
         }

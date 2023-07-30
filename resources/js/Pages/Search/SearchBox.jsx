@@ -3,6 +3,7 @@ import { useForm } from "@inertiajs/inertia-react";
 import { useState } from "react";
 import SearchForm from "./SearchForm";
 import { get } from "@/Utils/api"
+import ButtonBack from "@/Components/ButtonBack";
 
 export default function SearchBox(props) {
 
@@ -41,11 +42,13 @@ export default function SearchBox(props) {
     }
 
     return (
-        <div className="mx-auto -mt-12 relative z-1 rounded-lg">
+        <div className="mx-auto -mt-12 relative z-1 rounded-lg space-y-5">
+            <ButtonBack isWhite />
             <SearchForm
                 getSearches={getSearches}
                 handleFiltering={handleFiltering}
                 categories={props?.categories ?? []}
+                countries={props?.countries ?? []}
                 handleChange={handleChange}
                 handleSubmit={handleSearch} {...props} />
         </div>

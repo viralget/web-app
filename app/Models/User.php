@@ -44,6 +44,11 @@ class User extends Authenticatable
         return  $this->hasMany(ProfiledInfluencer::class);
     }
 
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
     public function account()
     {
         return $this->hasOne(UserAccount::class);
@@ -53,6 +58,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserDetail::class);
     }
+
+    public function details()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
 
     public function userProfilingCountLeft()
     {

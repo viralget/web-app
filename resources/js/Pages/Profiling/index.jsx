@@ -3,12 +3,14 @@ import InfluencerList from './influencerList'
 import Summary from './Summary'
 import List from './list'
 
-export default function Profiling({ profiles, influencerList }) {
+export default function Profiling({ profiles, influencerList, isFull = false }) {
     return (
         <AuthenticatedLayout smallHeader={true}>
-            <Summary />
-            <InfluencerList list={profiles} />
-            <List influencerList={influencerList} profiles={profiles} />
+            <div className="m-5">
+                <Summary />
+                <InfluencerList list={profiles} showMore={!isFull} isFull={isFull} />
+                <List influencerList={influencerList} profiles={profiles} />
+            </div>
         </AuthenticatedLayout>
     )
 }

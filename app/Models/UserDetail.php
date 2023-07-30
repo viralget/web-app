@@ -9,6 +9,8 @@ class UserDetail extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public $appends = ['image_url'];
 
     public function getImageUrlAttribute()
@@ -17,6 +19,6 @@ class UserDetail extends Model
             return;
         }
 
-        return url('storage/user_images/'.$this->image);
+        return url('storage/user_images/' . $this->image);
     }
 }

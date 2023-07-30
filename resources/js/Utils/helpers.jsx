@@ -65,3 +65,142 @@ export function formatMailTo(job) {
 }
 
 export const nairaSymbol = "₦";
+
+
+export function getQASValue(score) {
+    let value;
+
+    console.log({ score })
+
+    switch (true) {
+        case (score < 25):
+            value = 'Poor'
+            break;
+        case (score <= 40 && score >= 25):
+            value = 'Average'
+            break;
+        case (score <= 60 && score >= 40):
+            value = 'Good'
+            break;
+        case (score <= 80 && score >= 60):
+            value = 'Very Good'
+            break;
+        case (score >= 80):
+            value = 'Excellent'
+            break;
+
+            // default:
+            //     value = 'N/A'
+
+            break;
+    }
+
+    return value
+}
+
+export function getQASColor(score) {
+    let value;
+
+    switch (true) {
+        case (score < 25):
+            value = 'bg-red-50 text-red-500'
+            break;
+        case (score <= 40 && score >= 25):
+            value = 'bg-blue-50 text-blue-500'
+            break;
+        case (score <= 60 && score > 40):
+            value = 'bg-yellow-50 text-yellow-500'
+            break;
+        case (score <= 80 && score > 60):
+            value = 'bg-green-50 text-green-500'
+            break;
+        case (score >= 90):
+            value = 'bg-green-100 text-green-900'
+            break;
+
+
+
+        default:
+            value = 'bg-gray-100 text-gray-900'
+            break;
+    }
+    // console.log({ value, score })
+    return value
+}
+
+
+export function safetyLevelColor(score) {
+    let value;
+
+    switch (true) {
+        case (score < 25):
+            value = 'bg-red-50 text-red-500'
+            break;
+        case (score <= 40 && score >= 25):
+            value = 'bg-blue-50 text-blue-500'
+            break;
+        case (score <= 60 && score > 40):
+            value = 'bg-yellow-50 text-yellow-500'
+            break;
+        case (score <= 80 && score > 60):
+            value = 'bg-green-50 text-green-500'
+            break;
+        case (score >= 90):
+            value = 'bg-green-100 text-green-900'
+            break;
+
+
+
+        default:
+            value = 'bg-gray-100 text-gray-900'
+            break;
+    }
+    // console.log({ value, score })
+    return value
+}
+
+
+
+export function safetyLevel(score) {
+    let value;
+
+    switch (true) {
+        case (score <= 40):
+            value = 'Not Safe'
+            break;
+        case (score <= 60 && score >= 40):
+            value = 'Quite Safe'
+            break;
+        case (score <= 80 && score >= 60):
+            value = 'Safe'
+            break;
+        case (score >= 80):
+            value = 'Very Safe'
+            break;
+
+            // default:
+            //     value = 'N/A'
+
+            break;
+    }
+
+    return value
+}
+
+
+export function onlyUnique(value, index, array) {
+    return array.indexOf(value) === index;
+}
+
+ export function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+ export function Formatter(n) {
+    // if (n < 1e3) return this.numberWithCommas(n);
+    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
+    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+    if (n >= 1e9 && n < 1e12)
+        return +(n / 1e9).toFixed(1) + "B";
+    if (n >= 1e12) return +(n / 1e12).toFixed(1) + "T";
+}

@@ -11,6 +11,7 @@ function classNames(...classes) {
 }
 
 export default function DropdownMenu({ user, light = false }) {
+
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
@@ -20,7 +21,7 @@ export default function DropdownMenu({ user, light = false }) {
                         <>
                             <span className="sr-only">Open user menu</span>
                             <>
-                                <Avatar userName={user.name} />
+                                <Avatar user={user} />
                                 <div className={`ml-2 text-sm  inline-flex items-center ${light ? 'text-white' : 'text-gray-800'}`}>{user.name} <ChevronDownIcon className="w-4 h-4 ml-1" /> </div>
                             </>
                             {/* <Button size='small' href={route('recruiter.index')}>Recruiter Dashboard</Button> */}

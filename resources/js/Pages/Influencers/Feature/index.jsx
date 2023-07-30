@@ -1,5 +1,4 @@
-import TitleText from '@/components/TitleText'
-// import EmptyState from '@/components/EmptyState';
+
 import FeatureCard from './featureCard'
 import Most_Image_1 from "../../../../assets/images/feature_images/yemi_alade.png"
 import Most_Image_2 from "../../../../assets/images/feature_images/wizkid.png"
@@ -27,52 +26,55 @@ export default function FeatureSelections({ data }) {
 
             <Typography variant='h2' content='Feature Selection' />
             <div className="mt-space-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
-                        <FeatureCard 
-                         TopologySvg={<TopologySvg  />}
-                        images={
-                            [
-                                Most_Image_1, 
-                                Most_Image_2, 
-                                Most_Image_3, 
-                                Most_Image_4, 
-                                Most_Image_5
-                            ]
-                        }
-                         className="from-[#37CFFF]  via-[#0D57C6] to-[#0F5ED6]" 
-                         colors={['#4568DC', '#B06AB3']}  
-                          title="Most followed influencers with good quality of audience"  reach='+1K' 
-                          />
-                        <FeatureCard  
-                          TopologySvg={<TopologySvg  />}
-                         images={
-                            [
-                                Top_Image_1, 
-                                Top_Image_2, 
-                                Top_Image_3, 
-                                Top_Image_4, 
-                                Top_Image_5
-                            ]
-                        }
-                         className="from-[#FF7676]   to-[#9C1EBC]"  
-                         colors={['#43CEA2', '#185A9D']} 
-                         title="Top-performing influencers this week"  reach="+3K" />
-                      
-                        <FeatureCard  
-                          TopologySvg={<StarTopologySvg  />}
-                         images={
-                                [
-                                    Fastest_Image_1, 
-                                    Fastest_Image_2, 
-                                    Fastest_Image_3, 
-                                    Fastest_Image_4, 
-                                    Fastest_Image_5
-                                ]
-                            }
-                         className="from-[#CB5DFF]   to-[#1D41BE]" 
-                         colors={['#D66768', '#EFC655']}
-                         title="Fastest growing influencers under 100k followers"  reach="+1.5K"
-                         />
-                </div>
+                <FeatureCard
+                    TopologySvg={<TopologySvg />}
+                    href={`${route('influencers.search')}/?influencer_qas=good&page=1`}
+                    images={
+                        [
+                            Most_Image_1,
+                            Most_Image_2,
+                            Most_Image_3,
+                            Most_Image_4,
+                            Most_Image_5
+                        ]
+                    }
+                    className="from-[#37CFFF]  via-[#0D57C6] to-[#0F5ED6]"
+                    colors={['#4568DC', '#B06AB3']}
+                    title="Most followed influencers with good quality of audience" reach='+1K'
+                />
+                <FeatureCard
+                    TopologySvg={<TopologySvg />}
+                    href={`${route('influencers.search')}?influencer_qas=very+good`}
+                    images={
+                        [
+                            Top_Image_1,
+                            Top_Image_2,
+                            Top_Image_3,
+                            Top_Image_4,
+                            Top_Image_5
+                        ]
+                    }
+                    className="from-[#FF7676]   to-[#9C1EBC]"
+                    colors={['#43CEA2', '#185A9D']}
+                    title="Top-performing influencers this week" reach="+3K" />
+
+                <FeatureCard
+                    TopologySvg={<StarTopologySvg />}
+                    href={`${route('influencers.search')}/?size=100000&page=1`}
+                    images={
+                        [
+                            Fastest_Image_1,
+                            Fastest_Image_2,
+                            Fastest_Image_3,
+                            Fastest_Image_4,
+                            Fastest_Image_5
+                        ]
+                    }
+                    className="from-[#CB5DFF]   to-[#1D41BE]"
+                    colors={['#D66768', '#EFC655']}
+                    title="Fastest growing influencers under 100k followers" reach="+1.5K"
+                />
+            </div>
 
         </div>
     )

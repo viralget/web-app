@@ -11,6 +11,11 @@ class TwitterInfluencer extends Model
 
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
 
     public function categories()
     {
@@ -23,6 +28,10 @@ class TwitterInfluencer extends Model
         return $this->hasMany(TwitterPost::class, 'user_id', 'twitter_id');
     }
 
+    public function country()
+    {
+        return $this->hasOne(InfluencerCountry::class, 'geocode', 'geocode');
+    }
 
     public function engagementRate()
     {
@@ -40,8 +49,18 @@ class TwitterInfluencer extends Model
         return $engagementRate;
     }
 
-    public function interactions()
+    // public function interactions()
+    // {
+    //     return $this->tweets()->sum('favorite_count') * 5;
+    // }
+
+    public function geo_location()
     {
-        return $likes = $this->tweets()->sum('favorite_count') * 5;
+        return $this->hasOne(InfluencerCountry::class, 'geocode', 'geocode');
+    }
+
+    public function metrics()
+    {
+        return $this->hasOne(InfluencerMetrics::class, 'influencer_id');
     }
 }

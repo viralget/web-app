@@ -13,22 +13,24 @@ import Pagination from '@/Components/Pagination'
 import EmptyState from '@/Components/EmptyState'
 import { nFormatter, numberFormat } from '@/Utils/helpers'
 
-export default function Search({ list, categories, total_count }) {
+export default function Search({ list, categories, total_count, has_query }) {
     const [loading, setLoading] = useState(false);
 
 
+    console.log({ has_query })
     return (
 
-        <AuthenticatedLayout title={`Search through our database of ${nFormatter(total_count)}+ influencers`}>
+        <AuthenticatedLayout title={`Search through our database of influencers`}>
 
-            <main className="flex-1 pb-8">
-                <Container>
-                    <SearchBox categories={categories} searchActive={() => setLoading(true)} onLoading={() => setLoading(true)} />
+            <main className="flex-1 pb-8 px-10">
+                {/* <Container> */}
+                <SearchBox categories={categories} searchActive={() => setLoading(true)} onLoading={() => setLoading(true)} />
 
-                    <div>
-                        <div className="space-y-10 my-6">
-                            {loading ? <TableSkeleton /> :
+                <div>
+                    <div className="space-y-10 my-6">
+                        {loading ? <TableSkeleton /> :
 
+                            has_query ?
                                 Object.keys(list)?.length > 0 ?
                                     <>
                                         <List data={list?.data} count={list?.meta?.total ?? 0} paginationData={list} />
@@ -36,10 +38,11 @@ export default function Search({ list, categories, total_count }) {
 
                                     :
                                     <EmptyState title="No result found" />
-                            }
-                        </div>
+                                : <EmptyState title="Please use the search filter to set your search preferences" />
+                        }
                     </div>
-                </Container>
+                </div>
+                {/* </Container> */}
             </main>
 
             {/*  */}

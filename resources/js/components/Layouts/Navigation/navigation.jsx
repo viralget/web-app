@@ -18,14 +18,14 @@ import { BookmarkIcon, CursorArrowRippleIcon, HomeIcon, RectangleStackIcon } fro
 
 
 export const auth_routes = [
-    {
-        name: "Explore Influencers",
-        href: 'explore'
-    },
-    {
-        name: "Profile Influencers",
-        href: 'profiling'
-    },
+    // {
+    //     name: "Explore Influencers",
+    //     href: 'explore'
+    // },
+    // {
+    //     name: "Profile Influencers",
+    //     href: 'profiling'
+    // },
     {
         name: "Account Settings",
         href: 'settings'
