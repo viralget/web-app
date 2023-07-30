@@ -25,8 +25,8 @@ class UserResource extends JsonResource
             'location' => $this->details ? $this->details->location : null,
             'linkedin_url' => $this->details ? $this->details->linkedin_url : null,
             'bio' => $this->details ? $this->details->bio : null,
-            'available_profiling_count' => 0,
             // $this->userProfilingCountLeft(),
+            'available_profiling_count' => 0, // $this->userProfilingCountLeft(),
             'image_url' => $this->info?->image_url
         ];
     }

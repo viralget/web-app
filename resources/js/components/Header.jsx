@@ -151,13 +151,13 @@ export function Header({ useShadow = true }) {
                 <DropdownMenu user={user} />
                 :
                 <>
-                  {/* <div className="hidden md:block">
+                  <div className="hidden md:block">
                     <NavLink href="/login" className="text-viralget-red rounded-md  text-t-xsx font-lexend font-medium px-space-30  py-space-15   border border-viralget-red">Log in</NavLink>
-                  </div> */}
+                  </div>
                   <div className=" md:block">
                     <a href="/register" className="rounded-md  px-space-30  py-space-15  bg-viralget-red  ">
 
-                      <span className='font-lexend font-medium  text-white text-t-xsx'>Early Bird Signup</span>
+                      <span className='font-lexend font-medium  text-white text-t-xsx'>Register</span>
                     </a>
                   </div>
                   {/* <Button href="/join" color="blue">
