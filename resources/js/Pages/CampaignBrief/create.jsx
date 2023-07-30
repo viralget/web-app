@@ -198,13 +198,13 @@ export default function Create({ user }) {
 
                 {/* <Steps activeTab={tab} onChangeTab={setTab} /> */}
 
-                <div className='flex  justify-center mx-auto p-5'>
+                <div className='flex  justify-center mx-auto p-5 text-sm bg-gray-50 my-5'>
                     <div className='flex space-x-5'>
                         <span className='font-bold  text-viralget-red  capitalize'>campaign  details</span>
                         <span className='text-gray-300'>|</span>
-                        <span className={classNames('font-bold  capitalize', tab == 'contents' || tab == 'influencer' ? 'text-viralget-red' : 'text-gray-200')}>content</span>
+                        <span className={classNames('font-bold  capitalize', tab == 'contents' || tab == 'influencer' ? 'text-viralget-red' : 'text-gray-300')}>content</span>
                         <span className='text-gray-300'>|</span>
-                        <span className={classNames('font-bold  capitalize', tab == 'influencer' ? 'text-viralget-red' : 'text-gray-200')}>influencers  detail</span>
+                        <span className={classNames('font-bold  capitalize', tab == 'influencer' ? 'text-viralget-red' : 'text-gray-300')}>influencers  detail</span>
 
                     </div>
                 </div>

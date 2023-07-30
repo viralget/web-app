@@ -127,6 +127,8 @@ Route::middleware('auth')->group(
         Route::post('/campaign/brief/edit/{id}', [CampaignController::class, 'updateBrief'])->name('brief.update');
 
 
+        Route::post('/send-message', [MessagesController::class, 'send'])->name('message.post');
+
 
         Route::prefix('billings')->name('billings.')->group(function () {
             Route::get('/', [PurchasesController::class, 'billings'])->name('index');

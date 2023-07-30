@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ThreadsResource;
+use App\Mail\InfluencerMessage;
 use Carbon\Carbon;
 use App\Models\Messenger\Message;
 use App\Models\Messenger\Participant;
 use App\Models\Messenger\Thread;
+use App\Models\TwitterInfluencer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class MessagesController extends Controller
@@ -44,11 +47,12 @@ class MessagesController extends Controller
 
         // $threads = $this->thread->getUserThreads($this->user->id);
 
-        return Inertia::render('Messages/index'
-        // , [
-        //     'threads' => ThreadsResource::collection($threads)
-        // ]
-      );
+        return Inertia::render(
+            'Messages/index'
+            // , [
+            //     'threads' => ThreadsResource::collection($threads)
+            // ]
+        );
     }
 
     /**
@@ -163,4 +167,20 @@ class MessagesController extends Controller
     //     return redirect()->route('messages');
     // }
 
+
+    public function send(Request $request)
+    {
+
+        $request->validate([
+            'message' => 'required',
+            'influencer' => 'required',
+        ]);
+
+
+        $influencer = TwitterInfluencer::find($request->influencer);
+
+        @Mail::to('paul.adewumi@viralget.com.ng')->send(new InfluencerMessage($influencer, $request->message));
+
+        return true;
+    }
 }
