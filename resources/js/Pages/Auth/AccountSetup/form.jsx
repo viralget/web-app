@@ -6,6 +6,7 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import TextArea from '@/components/TextArea';
 import { countries } from '@/Utils/defaults';
+
 const AccountSetupForm = () => {
     const { data, setData, post, processing, errors, reset } = useForm({
         company_type: '',
@@ -58,7 +59,7 @@ const AccountSetupForm = () => {
                             name="company_name"
                             label="Company name"
                             value={data.company_name}
-                            className="mt-1 h-11 block w-full"
+                            // className="mt-1 h-11 block w-full"
                             autoComplete="company_name"
                             placeholder="Enter company name"
                             onChange={handleChange}
@@ -93,7 +94,7 @@ const AccountSetupForm = () => {
                             name="company_website"
                             label="Company Website"
                             value={data.company_website}
-                            className="mt-1 h-11 block w-full"
+                            // className="mt-1 h-11 block w-full"
                             autoComplete="company_website"
                             placeholder="Enter company website"
                             onChange={handleChange}
@@ -120,7 +121,7 @@ const AccountSetupForm = () => {
                             name="phone"
                             label="Phone Number"
                             value={data.phone}
-                            className="mt-1 h-11 block w-full"
+                            // className="mt-1 h-11 block w-full"
                             autoComplete="phone"
                             placeholder="Enter phone number"
                             onChange={handleChange}

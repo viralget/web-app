@@ -141,7 +141,9 @@ class RegisteredUserController extends Controller
         ]);
         $user = $request->user();
         $userdetail = UserDetail::firstOrCreate([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'first_name' => $user->first_name ?? ' ', // delete this later
+            'last_name' => $user->last_name ?? ' ', // delete this later
         ]);
         $userdetail->company_name = $request->company_name;
         $userdetail->company_type = $request->company_type;

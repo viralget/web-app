@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import Label from './Label';
+import { classNames } from '@/Utils/helpers';
 
 // export const inputStyle = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm sm:text-sm"
 
-export const inputStyle = "block text-md text-gray-500 w-full appearance-none rounded-md border border-gray-200/90 p-3 py-3 placeholder-gray-400 focus:border-black focus:ring-black";
+export const inputStyle = "block text-md text-gray-500 w-full appearance-none rounded-md border border-gray-200/90 p-3 py-6 placeholder-gray-400 focus:border-black focus:ring-black";
 
 
 export default function Input(props) {
@@ -35,7 +36,7 @@ export default function Input(props) {
         <div className="relative">
 
             {icon && (
-                <div className='absolute  bottom-4 left-3 capitalize'>
+                <div className='absolute  bottom-4 left-3 capitalize text-black'>
                     {icon}
                 </div>
 
@@ -56,13 +57,13 @@ export default function Input(props) {
                     value={value}
                     placeholder={placeholder}
                     defaultValue={defaultValue}
-                    className={inputStyle}
-                    // className={inputStyle + ' ' + className}
+                    // className={inputStyle}
                     // ref={input}
                     autoComplete={autoComplete}
                     required={required}
                     onChange={(e) => onChange(e)}
                     {...props}
+                    className={classNames(inputStyle, className)}
                 />
             </div>
         </div>

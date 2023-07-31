@@ -7,12 +7,12 @@ import TwitterLogo from "../../../../assets/images/twitter-logo.png";
 export default function SideContact() {
 
         return (
-                <div className=" overflow-hidden h-screen p-5 relative  pt-10 flex-1 bg-gradient-to-b from-[#FF9857] to-[#751EFB]">
+                <div className=" overflow-hidden min-h-screen p-5 relative  pt-10 flex-1 bg-gradient-to-b from-[#FF9857] to-[#751EFB]">
 
                         <div className="mt-12 md:px-24 ">
                                 <div className>
-                                        <h2 className="text-white font-bold text-3xl">We’d love to hear from you</h2>
-                                        <p className='text-xs text-white mt-4 text-medium'>Have an inquiry or some feedback for us?<br /><br />
+                                        <h2 className="text-white font-bold text-3xl font-lexend">We’d love to hear from you</h2>
+                                        <p className=' text-white mt-4 text-medium'>Have an inquiry or some feedback for us?<br /><br />
                                                 Please feel free to contact us and we will get back to you as soon as we can.</p>
                                 </div>
 
@@ -34,7 +34,7 @@ export default function SideContact() {
                                                         </svg>
                                                 </div>
                                                 <span className='font-bold text-white'>Email address</span>
-                                                <span className='text-white text-xs'>info@viralget.com</span>
+                                                <span className='text-white '>info@viralget.com</span>
                                         </div>
 
                                         <div className='flex flex-col md:border-r border-r-[#FFFFFF38]  space-y-3 px-5'>
@@ -52,7 +52,7 @@ export default function SideContact() {
                                                 </div>
                                                 <span className='font-bold  text-white'>Phone number</span>
 
-                                                <span className='text-white  text-xs'>+234 8106115322</span>
+                                                <span className='text-white '>+234 8106115322</span>
                                         </div>
 
                                         <div className='flex flex-col  md:mt-0  space-y-3  mt-5 px-5'>
@@ -73,7 +73,7 @@ export default function SideContact() {
 
                                                 <span className='font-bold  text-white'>Location</span>
 
-                                                <span className='text-xs text-white w-32'>350, Workstation, 360 Ikorodu-Ososun Rd, Maryland, Lagos
+                                                <span className=' text-white w-32'>350, Workstation, 360 Ikorodu-Ososun Rd, Maryland, Lagos
                                                 </span>
                                         </div>
                                 </div>

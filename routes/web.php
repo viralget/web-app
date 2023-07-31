@@ -78,7 +78,7 @@ Route::prefix('transactions')->name('payments.')->group(
 Route::middleware('auth')->group(
     function () {
         Route::get('/welcome', [AuthenticatedSessionController::class, 'welcome'])->name('auth.welcome');
-        Route::get('/dashboard', [InfluencerController::class, 'index'])->name('explore');
+        Route::get('/dashboard', [InfluencerController::class, 'index'])->name('dashboard');
         //    Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
         Route::get('/search', [InfluencerController::class, 'index'])->name('search');
