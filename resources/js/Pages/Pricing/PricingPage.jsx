@@ -10,16 +10,16 @@ import PAYG from './PAYG';
 
 export default function PricingPage({ plans }) {
 
-    const [getTab, setTab] = useState('paygo'); //'plans'
+    const [getTab, setTab] = useState('plans'); //'paygo'
 
     const handleTabs = (tab) => {
         setTab(tab);
     }
 
     return (
-        <div className='bg-viralget-red'>
+        <div className=''>
 
-            <div className='relative flex flex-col items-center justify-center'>
+            <div className='relative flex flex-col items-center justify-center bg-viralget-red'>
                 <Hero />
 
                 <div className='flex  items-center justify-center content-center bottom-0  absolute'>
@@ -34,25 +34,27 @@ export default function PricingPage({ plans }) {
                 </div>
             </div>
 
-            {
-                getTab === 'plans' ? (
-                    <div className='mb-10'>
-                        <Plans plans={plans} />
-                    </div>
-                )
-                    :
-                    (
-                        <div className='flex items-center justify-center  w-full   bg-white h-full rounded-tr-lg rounded-tl-lg  -top-10 '>
-                            <div className='mt-10'>
-                                <PAYG plan={plans[0]} />
-                                {/* <EmptyState title="Coming soon" /> */}
-                                {/* <span className='font-bold text-t-lg font-lexend'>Coming soon.</span> */}
-                            </div>
+            <div className='pb-20'>
 
+                {
+                    getTab === 'plans' ? (
+                        <div className='mb-10'>
+                            <Plans plans={plans} />
                         </div>
                     )
-            }
+                        :
+                        (
+                            <div className='flex items-center justify-center  w-full   bg-white h-full rounded-tr-lg rounded-tl-lg  -top-10 '>
+                                <div className='mt-10'>
+                                    {/* <PAYG plan={plans[0]} /> */}
+                                    <EmptyState title="Coming soon" />
+                                    <span className='font-bold text-t-lg font-lexend'>Coming soon.</span>
+                                </div>
 
+                            </div>
+                        )
+                }
+            </div>
         </div>
     )
 }

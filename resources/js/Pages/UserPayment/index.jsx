@@ -7,9 +7,13 @@ import TextAlert from "@/components/TextAlert";
 import PaystackPop from '@paystack/inline-js';
 import { get } from "@/Utils/api";
 import toast from '@/Components/Toast';
+import { usePage } from "@inertiajs/inertia-react";
 
 export const PaymentProccess = (props) => {
-    const { auth: { user }, plan_id, plan, public_key } = props;
+    const { auth } = usePage().props;
+    const { user } = auth;
+
+    const { plan_id, plan, public_key } = props;
 
     const [getPaymentMethod, setPaymentMethod] = useState("");
     const [buttText, setPaymentText] = useState("Continue");
@@ -160,9 +164,13 @@ export const PaymentProccess = (props) => {
 
 
 const UserPayment = (props) => {
+    const { auth } = usePage().props;
+    const { user } = auth;
+
     return (
         <>
-            <Header user={user} levels={Levels} />
+            <Header user={user} />
+            {/* <Header user={user} levels={Levels} /> */}
 
             <PaymentProccess {...props} />
         </>

@@ -6,6 +6,7 @@ import { useForm } from '@inertiajs/inertia-react';
 import { getEventValue } from '@/Utils/helpers';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { EmailSvg, CompanySvg, UserSvg } from '@/Utils/icons';
+import { UserIcon } from '@heroicons/react/24/outline';
 
 export default function ContactForm() {
 
@@ -59,7 +60,7 @@ export default function ContactForm() {
     //     )
     // }
 
-  
+
 
 
 
@@ -68,7 +69,7 @@ export default function ContactForm() {
     return (
         <div className='md:p-20 p-5 md:pt-10  md:mt-0 md:w-[50%] mt-5 md:h-screen'>
             <div className="relative flex  text-sm  mb-3">
-                <span className=" text-black  text-2xl font-bold">Contact Us</span>
+                <span className=" text-black font-lexend text-2xl font-bold">Contact Us</span>
             </div>
 
             <div>
@@ -87,7 +88,7 @@ export default function ContactForm() {
                     autoComplete="full_name"
                     placeholder="Enter your full name"
                     onChange={onHandleChange}
-                    icon={<UserSvg />}
+                    icon={<UserIcon className='w-4 h-4' />}
                 />
 
                 <Input
@@ -138,7 +139,9 @@ export default function ContactForm() {
 
                 <div className="text-center space-y-2 mt-4">
                     <Button
-                        className='block rounded-sm bg-viralget-red w-full'
+                        usePrimary
+                        block
+                        // className='block rounded-sm bg-viralget-red w-full'
                         processing={processing}
                     >
                         Send
