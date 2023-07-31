@@ -20,7 +20,7 @@ export default function TopCategories({ data }) {
                             <div className="relative">
                                 <div className="relative h-48 w-full overflow-hidden rounded-lg bg-gradient-to-r from-yellow-600 to-fuchsia-600 ">
                                     <img
-                                        src={item.image_url ?? '/images/categories/' + item.name + '.png'}
+                                        src={item.image_url ?? '/images/categories/' + item.name?.toLowerCase() + '.png'}
                                         alt={item.imageAlt}
                                         className="h-full w-full object-cover object-center"
                                     />
