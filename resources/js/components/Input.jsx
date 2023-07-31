@@ -56,7 +56,8 @@ export default function Input(props) {
                     value={value}
                     placeholder={placeholder}
                     defaultValue={defaultValue}
-                    className={inputStyle + ' ' + className}
+                    className={inputStyle}
+                    // className={inputStyle + ' ' + className}
                     // ref={input}
                     autoComplete={autoComplete}
                     required={required}
