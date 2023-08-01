@@ -36,5 +36,10 @@ class CampaignBrief extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function reports()
+    {
+        return $this->hasMany(CampaignReport::class, 'campaign_briefs_id');
+    }
+
 
 }
