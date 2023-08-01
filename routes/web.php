@@ -123,7 +123,7 @@ Route::middleware('auth')->group(
         Route::get('/campaign/brief/success', [CampaignController::class, 'successBrief'])->name('brief.success');
         Route::get('/campaign/brief/view/{id}', [CampaignController::class, 'viewBrief'])->name('brief.view');
         Route::get('/campaign/brief/edit/{id}', [CampaignController::class, 'editBrief'])->name('brief.edit');
-        Route::post('/campaign/brief/edit/{id}', [CampaignController::class, 'updateBrief'])->name('brief.update');
+        Route::post('/campaign/brief/update/{id}', [CampaignController::class, 'updateBrief'])->name('brief.update');
        
 
 
