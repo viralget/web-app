@@ -89,7 +89,14 @@ class InfluencerController extends Controller
             $keywords_position = $request->position;
             $qas = $request->influencer_qas;
             $size = $request->size;
-            $reach = $request->influener_reach;
+            $reach = $request->influencer_reach;
+
+            $verification_status = $request->verification_status;
+            $gender = $request->gender;
+            $avg_likes = $request->likes;
+            $er = $request->engagement_rate;
+
+
             $any = 'Any';
 
             // $countries = InfluencerCountry::get();
