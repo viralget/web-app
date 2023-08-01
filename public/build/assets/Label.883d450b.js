@@ -1,0 +1,1 @@
+import{R as m}from"./app.4d6c910b.js";function c({forInput:e,value:t,className:a="",children:l}){return m.createElement("label",{htmlFor:e,className:"block text-sm text-[#748094] mb-1 capitalize"+a},t||l)}export{c as L};
