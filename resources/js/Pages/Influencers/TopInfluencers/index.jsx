@@ -24,7 +24,7 @@ export default function TopInfluencers({ data }) {
                 isOpen ? <InfluencerProfile influencer={getInfluencer} /> : null
             }
 
-            <Typography variant='h2' content="Top Influencers" />
+            {/* <Typography variant='h2' content="Top Influencers" />
 
             {data?.length > 0 ?
 
@@ -35,7 +35,7 @@ export default function TopInfluencers({ data }) {
                 </div >
                 :
                 <EmptyState />
-            }
+            } */}
         </div>
     )
 }

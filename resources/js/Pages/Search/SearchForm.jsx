@@ -33,10 +33,12 @@ export default function SearchForm({
     const influencer_location = new URLSearchParams(window.location.search).get('influencer_location');
     const size = new URLSearchParams(window.location.search).get('size');
     const audience_location = new URLSearchParams(window.location.search).get('audience_location');
-    const influencer_reach = new URLSearchParams(window.location.search).get('influencer_reach');
+    const verification_status = new URLSearchParams(window.location.search).get('verification_status');
     const influencer_qas = new URLSearchParams(window.location.search).get('influencer_qas');
     const selectedCategory = new URLSearchParams(window.location.search).get('category');
     const position = new URLSearchParams(window.location.search).get('position');
+    const gender = new URLSearchParams(window.location.search).get('gender');
+    const average_likes = new URLSearchParams(window.location.search).get('average_likes');
     const Selectedkeywords = new URLSearchParams(window.location.search).get('keywords');
 
     const searchQuery = () => {
@@ -58,7 +60,7 @@ export default function SearchForm({
         }
 
         if (influencer_qas) {
-            searchData.push({ query: 'influencer_reach', name: 'Influencer Reach', value: influencer_reach?.split(',') });
+            searchData.push({ query: 'verification_status', name: 'Influencer Reach', value: verification_status?.split(',') });
         }
 
         if (selectedCategory) {
@@ -83,7 +85,7 @@ export default function SearchForm({
     return (
         <div className={className}>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
-                <div className="hidden md:grid grid-cols-4 gap-4 bg-white shadow px-5 p-4 rounded-md">
+                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-5 p-4 rounded-md">
                     <div className="md:pr-6 md:border-r border-gray-100">
 
                         <MultiDropdown options={[
@@ -135,15 +137,13 @@ export default function SearchForm({
 
                         <MultiDropdown options={[
                             { name: 'Any' },
-                            { name: 'Nano (1000 - 10,000)', value: 'Nano' },
-                            { name: 'Micro (10,000 - 50,000)', value: 'Micro' },
-                            { name: 'Mid Tier (50,000 - 500k)', value: 'Mid-Tier' },
-                            { name: 'Macro (500k - 1m)', value: 'Macro' },
+                            { name: 'Verified', },
+                            { name: 'Not Verified', },
                         ]}
-                            onChange={(e) => handleChange(e, 'Influencer Reach', 'influencer_reach')}
-                            label="Influencer Reach"
-                            defaultOptionText={influencer_reach?.split(',')[0]}
-                            useSelectedOptions={influencer_reach?.split(',')}
+                            onChange={(e) => handleChange(e, 'Verification status', 'verification_status')}
+                            label="Verification Status" y
+                            defaultOptionText={verification_status?.split(',')[0]}
+                            useSelectedOptions={verification_status?.split(',')}
                         />
 
                         {/* <MultiDropdown options={[
@@ -161,7 +161,20 @@ export default function SearchForm({
                         /> */}
                     </div>
 
+                    <div className="md:pr-6 md:border-r border-gray-100">
 
+
+                        <MultiDropdown options={[
+                            { name: 'Any' },
+                            { name: 'Male', },
+                            { name: 'Female', },
+                        ]}
+                            onChange={(e) => handleChange(e, 'Influencer Gender', 'gender')}
+                            label="Influencer Gender"
+                            defaultOptionText={gender?.split(',')[0]}
+                            useSelectedOptions={gender?.split(',')}
+                        />
+                    </div>
                     <div className="flex items-center sm:mt-0 sm:ml-3">
                         <button
                             onClick={handleSubmit}
@@ -173,8 +186,8 @@ export default function SearchForm({
                     </div>
                 </div>
 
-                <div className="sm:flex items-center align-middle my-3 space-x-2">
-                    <div className="flex-initial w-64 bg-white shadow rounded-md py-1 px-3 ">
+                <div className=" align-middle my-3 space-x-2 grid grid-cols-3 gap-3">
+                    <div className=" bg-white shadow rounded-md py-1 px-3 ">
                         <MultiDropdown options={categories}
                             name="category"
                             onChange={(e) => handleChange(e, 'Category', 'category')}
@@ -183,8 +196,28 @@ export default function SearchForm({
 
                         />
                     </div>
+                    <input
+                        id="likes"
+                        name="average_likes"
+                        type="text"
+                        defaultValue={average_likes ?? ''}
+                        onChange={(e) => handleChange(e, 'Average Likes', 'average_likes')}
+                        placeholder={"Average likes"}
+                        className="block w-full px-3  shadow rounded-md  flex-grow  text-sm  border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                    />
+                    <input
+                        id="likes"
+                        name="engagement_rate"
+                        type="text"
+                        defaultValue={average_likes ?? ''}
+                        onChange={(e) => handleChange(e, 'Engagement rate', 'engagement_rate')}
+                        placeholder={"Engagement rate"}
+                        className="block w-full px-3  shadow rounded-md  flex-grow  text-sm  border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                    />
+                    {/* </div> */}
 
-                    <div className=" flex flex-1 rounded-md shadow bg-white p-1 px-3">
+
+                    {/* <div className=" flex flex-1 rounded-md shadow bg-white p-1 px-3">
                         <div className="w-64 border-r border-gray-100 pr-3">
                             <MultiDropdown options={[
                                 { name: 'Anywhere', },
@@ -200,7 +233,6 @@ export default function SearchForm({
 
                             />
                         </div>
-
                         <input
                             id="keywords"
                             name="keywords"
@@ -210,7 +242,7 @@ export default function SearchForm({
                             placeholder={"Find influencers by keywords or hashtag"}
                             className="block w-full px-3  flex-grow  text-sm rounded-none rounded-r-md border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
                         />
-                    </div>
+                    </div> */}
 
                 </div>
 

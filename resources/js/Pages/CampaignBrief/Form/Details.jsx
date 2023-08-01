@@ -1,6 +1,7 @@
 import Input from "@/Components/Input"
 import Label from "@/Components/Label"
 import MultiSelect from "@/Components/MultiSelect"
+import Select from "@/Components/Select"
 import TextArea from "@/Components/TextArea"
 
 export default ({ data, onHandleChange, setData }) => {
@@ -153,6 +154,10 @@ export default ({ data, onHandleChange, setData }) => {
                                     <input id="female" name="gender" onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                 </div>
+                                <div class="flex items-center">
+                                    <input id="female" name="gender" onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Both</label>
+                                </div>
                             </div>
                         </div>
 
@@ -185,7 +190,7 @@ export default ({ data, onHandleChange, setData }) => {
 
                 <div className="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
                     <div>
-                        <h2 className="text-base font-semibold leading-7 text-gray-900">Campaign Goals</h2>
+                        <h2 className="text-base font-semibold leading-7 text-gray-900">Campaign Goal</h2>
                         <p className="mt-1 text-sm leading-6 text-gray-600">
                             Define whay your brand hopes to achieve with this campaign.
                         </p>
@@ -193,55 +198,20 @@ export default ({ data, onHandleChange, setData }) => {
 
                     <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                         <div className="sm:col-span-full">
-                            <Input
-                                type="text"
+                            <Select
                                 name="reach"
-                                label="Expected reach"
+                                label="Campaign Goal"
                                 required
-                                placeholder="Enter expected reach"
-                                defaultValue={data.reach}
-
-                                onChange={onHandleChange}
+                                placeholder="Select campaign goal"
+                                options={[
+                                    { name: 'Reach' },
+                                    { name: 'Impressions/Views' },
+                                    { name: 'Engagement' },
+                                    { name: 'Conversion' }
+                                ]}
                             />
                         </div>
 
-                        <div className="sm:col-span-full">
-                            <Input
-                                type="text"
-                                name="impression"
-                                label="Expected impressions/views"
-                                required
-                                placeholder="Enter expected impression"
-                                defaultValue={data.impression}
-
-                                onChange={onHandleChange}
-                            />
-                        </div>
-
-                        <div className="sm:col-span-full">
-                            <Input
-                                type="text"
-                                name="engagement"
-                                label="Expected engagement rate"
-                                required
-                                placeholder="Enter expected engagement rate"
-                                defaultValue={data.engagement}
-
-                                onChange={onHandleChange}
-                            />
-                        </div>
-
-                        <div className="sm:col-span-full">
-                            <Input
-                                type="text"
-                                name="conversion"
-                                label="Expected conversion rate"
-                                required
-                                placeholder="Enter expected conversion"
-                                defaultValue={data.conversion}
-                                onChange={onHandleChange}
-                            />
-                        </div>
                     </div>
                 </div>
             </div >
