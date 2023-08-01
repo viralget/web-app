@@ -59,7 +59,7 @@ export default function List({ campaigns }) {
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.campaign_name}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{numberWithCommas(item.budget)}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                   <span className={classNames(' p-2 rounded-md text-white capitalize', item.status === 'pending' || item.status === 'in-progress' ? 'bg-yellow-400' : item.status === 'approved'? 'bg-green-400' : item.status === 'completed' ? 'bg-blue-400' : 'bg-gray-400 text-black' )}>
+                                                   <span className={classNames(' p-2 rounded-md text-white capitalize', item.status === 'pending' || item.status === 'in-progress' ? 'bg-yellow-400' : item.status === 'approved'? 'bg-green-400' : item.status === 'completed' ? 'bg-blue-400' : item.status === 'rejected' ? 'bg-red-400': 'bg-gray-400 text-black' )}>
                                                 {
                                                 item.status
                                                 

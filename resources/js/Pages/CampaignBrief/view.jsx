@@ -2,12 +2,25 @@ import AuthenticatedLayout from '@/components/AuthenticatedLayout'
 import ButtonBack from '@/components/ButtonBack';
 import { classNames } from '@/Utils/helpers';
 import { numberWithCommas } from '@/Utils/helpers';
+import ReportList from './Report/list';
+import { useState } from 'react';
+import CreateReport from './Report/create';
+import Modal from '@/components/Modal';
 
 const View = ({ campaign }) => {
+   const [open,  setOpen] = useState(false)
 
-    console.log("campaign:", campaign);
+   function handleModal(){
+       setOpen(!open);
+   }
+
     return (
         <AuthenticatedLayout  title="My Campaigns"  smallHeader={true}>
+
+
+         <Modal  iDisplay={open}>
+                 <CreateReport   handleModalClose={handleModal} campaign_briefs_id={campaign.id}/>
+            </Modal>
         <div className='bg-white h-screen  mt-3 px-5 mb-10'>
           <ButtonBack />
 
@@ -18,7 +31,7 @@ const View = ({ campaign }) => {
                            <img src={campaign.logo_url}  className='w-full h-full object-fit rounded-full' />
                         </div>
                          <div className='mt-3'>
-                            <span className={classNames(' p-2 rounded-md text-white capitalize', campaign.status === 'pending' || campaign.status === 'in-progress' ? 'bg-yellow-400' : campaign.status === 'approved'? 'bg-green-400' : campaign.status === 'completed' ? 'bg-blue-400' : 'bg-gray-400 text-black' )}>
+                            <span className={classNames(' p-2 rounded-md text-white capitalize', campaign.status === 'pending' || campaign.status === 'in-progress' ? 'bg-yellow-400' : campaign.status === 'approved'? 'bg-green-400' : campaign.status === 'completed' ? 'bg-blue-400' :  campaign.status === 'rejected' ? 'bg-red-400' : 'bg-gray-400 text-black' )}>
                              {campaign.status}
                             </span>
                          </div>
@@ -225,9 +238,13 @@ const View = ({ campaign }) => {
                             <h3 className='font-bold text-3xl capitalize'>Report From Influencers</h3>
                         </div>
 
-                     <div className='flex space-x-10 mt-2'>
-                          <span className='capitalize font-bold'>report from influencers will appears ehere..</span>
+                     <div className='flex space-x-10 my-3'>
+                          <span className='capitalize font-bold'>see all the reports from influencers and your exchange replies</span>
+                       
                        </div>
+
+                       <ReportList  handleModalClose={handleModal}  reports={campaign.reports} />
+            
 
                    
                    

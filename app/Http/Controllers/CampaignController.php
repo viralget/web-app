@@ -17,6 +17,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
 use App\Models\CampaignBrief;
 use App\Helpers\LoggerHelper;
+use App\Models\CampaignReport;
 
 
 class CampaignController extends Controller
@@ -329,7 +330,7 @@ class CampaignController extends Controller
   
 
     public function viewBrief($id) {
-        $data['campaign'] = CampaignBrief::where('id', $id)->first();
+        $data['campaign'] = CampaignBrief::with('reports.user')->where('id', $id)->first();
         return Inertia::render('CampaignBrief/view', $data);
     }
 
@@ -412,7 +413,30 @@ class CampaignController extends Controller
         return response(['status' => 'error', 'message' => $e, 'data' =>[] ]);
         // return redirect()->back()->withError('An error occured. Please try again');
     }
-    }
+}
  
- 
+   public function createReport(Request $request){
+            $user_id =  $request->user()->id;
+
+            try{
+
+            $campaign = CampaignBrief::where('id',  $request->campaign_briefs_id)->first();
+            $campaign->status = $request->status;
+            $campaign->update();
+
+            $brief = new CampaignReport;
+            $brief->user_id =  $user_id ;
+            $brief->report_note = $request->report_note;
+            $brief->status = $request->status;
+            $brief->campaign_briefs_id = $request->campaign_briefs_id;
+            $brief->save();
+
+            // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
+        } catch (\Exception $e) {
+            dd($e);
+            // $this->log($e);
+            return response(['status' => 'error', 'message' => $e, 'data' =>[] ]);
+            // return redirect()->back()->withError('An error occured. Please try again');
+        }
+   } 
 }

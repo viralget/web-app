@@ -11,7 +11,6 @@ export default  function  createReport({ handleModalClose, campaign_briefs_id })
     const { data, setData, post, processing, errors, reset } = useForm({
        status: '',
        report_note: '',
-       report_file: '',
        campaign_briefs_id
     });
 
@@ -24,10 +23,10 @@ export default  function  createReport({ handleModalClose, campaign_briefs_id })
 
     function submit(e) {
         e.preventDefault();
-        post(route('admin.create.report'));
+        post(route('create.report'));
         reset();
         handleModalClose();
-        toast.success("Report created successfully")
+        toast.success("Report reply created successfully")
         setTimeout(function() {
             window.location.reload();
           }, 1000)
@@ -37,7 +36,7 @@ export default  function  createReport({ handleModalClose, campaign_briefs_id })
     return(
         <div className='bg-white md:w-[30rem] mx-auto'>
              <div className="flex justify-between p-5">
-                              <h2 className="font-bold text-t-lg  capitalize">Add report</h2>
+                              <h2 className="font-bold text-t-lg  capitalize">Reply a report</h2>
                               <button  onClick={handleModalClose}>x</button>
                           </div>
                       <form onSubmit={submit} className=' bg-white shadow-sm md:p-5 p-3 w-full'>
@@ -45,10 +44,8 @@ export default  function  createReport({ handleModalClose, campaign_briefs_id })
                             <div>
                                 <div className="mt-2">
                                     <Select options={[
-                                        { name: 'In Progress', value: 'in-progress' },
                                         { name: 'Approved', value: 'approved' },
-                                        { name: 'Rejected', value: 'rejected' },
-                                        { name: 'Completed', value: 'completed' }
+                                        { name: 'Rejected', value: 'rejected' }
                                     ]}
                                         name="status"
                                         label="Status"
@@ -71,7 +68,7 @@ export default  function  createReport({ handleModalClose, campaign_briefs_id })
                                         
                                     />
                                 </div>
-
+{/* 
                                 <div className="sm:col-span-3 mt-2">
                                     <Input
 
@@ -83,7 +80,7 @@ export default  function  createReport({ handleModalClose, campaign_briefs_id })
                                         
                                     
                                     />
-                                </div>
+                                </div> */}
 
                                 <Button
                                         type="submit"
@@ -91,7 +88,7 @@ export default  function  createReport({ handleModalClose, campaign_briefs_id })
                                         className="w-full mt-3"
                                         processing={processing}
                                         >
-                                            Create report
+                                           Reply
                                     </Button>
                             </div>
                     </form>

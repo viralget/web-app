@@ -34,7 +34,7 @@ export default function view({ campaign }) {
                            <img src={campaign.logo_url}  className='w-full h-full object-fit rounded-full' />
                         </div>
                          <div className='mt-3'>
-                            <span className={classNames(' p-2 rounded-md text-white capitalize', campaign.status === 'pending' || campaign.status === 'in-progress' ? 'bg-yellow-400' : campaign.status === 'approved'? 'bg-green-400' : campaign.status === 'completed' ? 'bg-blue-400' : 'bg-gray-400 text-black' )}>
+                            <span className={classNames(' p-2 rounded-md text-white capitalize', campaign.status === 'pending' || campaign.status === 'in-progress' ? 'bg-yellow-400' : campaign.status === 'approved'? 'bg-green-400' : campaign.status === 'completed' ? 'bg-blue-400' : campaign.status === 'rejected' ? 'bg-red-400' : 'bg-gray-400 text-black' )}>
                              {campaign.status}
                             </span>
                          </div>
