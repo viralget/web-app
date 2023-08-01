@@ -23,7 +23,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('/brief', [DashboardController::class, 'index'])->name('brief');
+        Route::get('/brief', [DashboardController::class, 'indexBrief'])->name('brief');
         Route::get('/brief/view/{id}', [DashboardController::class, 'index'])->name('view.brief');
 
         Route::name('influencers.')->prefix('influencers')->group(function () {

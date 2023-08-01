@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use App\Models\CampaignBrief;
 
 
 class DashboardController extends Controller
@@ -30,4 +31,16 @@ class DashboardController extends Controller
     {
         return Inertia::render('Admin/Dashboard/index');
     }
+
+
+
+
+
+    // admin campaign
+
+
+    public   function  indexBrief(){
+        $data['campaigns'] = CampaignBrief::with('user')->orderBy('id', "Desc")->get();
+        return Inertia::render('Admin/CampaignBrief/index', $data);
+      } 
 }

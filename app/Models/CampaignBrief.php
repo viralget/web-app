@@ -31,5 +31,10 @@ class CampaignBrief extends Model
         return url('storage/campaign_brief_moodBoards/' . $this->mood_board);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 }
