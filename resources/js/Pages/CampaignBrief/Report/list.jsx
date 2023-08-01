@@ -40,7 +40,7 @@ export default  function ReportList({ handleModalClose, reports }){
                                             <tr key={index} >
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{index + 1}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.admin_id == null ? '@me' : 'influencer'}</td>
-                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.report_note}</td>
+                                             <td className="max-w-[8rem] px-3 py-4 text-sm text-gray-500">{item.report_note}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                              <a href={item?.report_file_url}  target='_blank' className='text-blue-400'>
                             {item.report_file}
