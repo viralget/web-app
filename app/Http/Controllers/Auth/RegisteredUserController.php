@@ -154,7 +154,7 @@ class RegisteredUserController extends Controller
 
 
         if ($userdetail) {
-            return redirect(route('pricing'));
+            return redirect(route('explore'));
         }
     }
 

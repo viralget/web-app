@@ -38,10 +38,10 @@ export default ({ data, onHandleChange, setData, handleBudget }) => {
 
 
                         {data.influencer_size && (
-                            <div className='sm:col-span-full border'>
-                                <span className='font-bold text-sm'>Minimum cost per influencers</span>
-                                <div className='flex justify-between  w-full border-b  p-3'>
-                                    <span>Platforms</span>
+                            <div className='sm:col-span-full border p-3 text-sm'>
+                                <p className='font-bold pb-3'>Minimum cost per influencer</p>
+                                <div className='flex justify-between  w-full border-b '>
+                                    <span>Platform</span>
                                     <span>Followers</span>
                                     <span>Cost</span>
                                 </div>
@@ -143,6 +143,10 @@ export default ({ data, onHandleChange, setData, handleBudget }) => {
                                 <div class="flex items-center">
                                     <input id="female" name="influencer_gender" onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input id="female" name="gender" onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Both</label>
                                 </div>
                             </div>
                         </div>

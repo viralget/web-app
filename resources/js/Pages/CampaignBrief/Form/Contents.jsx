@@ -42,8 +42,8 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
                             <TextArea
                                 type="text"
                                 name="campaign_goal"
-                                label="Campaign goal"
-                                placeholder="1-2 sentences  describing the campaign and what you hope to accomplish."
+                                label="Taskl"
+                                placeholder="1-2 sentenses on what you expect from the influencer"
                                 className="mt-1 block w-full h-32"
                                 defaultValue={data.campaign_goal}
                                 onChange={onHandleChange}
@@ -55,8 +55,8 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
                             <TextArea
                                 type="text"
                                 name="campaign_message"
-                                label="Campaign message"
-                                placeholder="Specific information that the influencer should include in post captions"
+                                label="Dos"
+                                placeholder="Instructions on what the influencer can/must do"
                                 className="mt-1 block w-full h-32"
                                 defaultValue={data.campaign_message}
                                 onChange={onHandleChange}
@@ -68,8 +68,8 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
                             <TextArea
                                 type="text"
                                 name="key_objectives"
-                                label="Key objectives"
-                                placeholder="What are you hoping to accomplish (brand awareness, engagement, etc.)"
+                                label="Don'ts"
+                                placeholder="Instructions on what the influencer can't/mustn't do"
                                 className="mt-1 block w-full h-32"
                                 defaultValue={data.key_objectives}
                                 onChange={onHandleChange}
@@ -77,7 +77,7 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
                             />
                         </div>
 
-                        <div className="sm:col-span-3">
+                        {/* <div className="sm:col-span-3">
                             <Input
 
                                 type="text"
@@ -89,7 +89,7 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
 
                                 onChange={onHandleChange}
                             />
-                        </div>
+                        </div> */}
                         <div className="sm:col-span-3">
                             <Input
                                 type="text"
@@ -117,13 +117,13 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
                             />
                         </div>
 
-                        <div className="sm:col-span-3">
-                            <Input
+                        <div className="sm:col-span-full">
+                            <TextArea
                                 type="text"
                                 name="target_audience"
-                                label="Target audience"
+                                label="Audience Insights"
                                 required
-                                placeholder="Enter target audience"
+                                placeholder="Brief Insight about the target audience"
                                 defaultValue={data.target_audience}
 
                                 onChange={onHandleChange}
