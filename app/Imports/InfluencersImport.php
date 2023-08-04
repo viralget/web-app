@@ -14,8 +14,8 @@ class InfluencersImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new TwitterInfluencer([
-            'username' => $row['screen_name'],
-            'full_name' => $row['name'],
+            'username' => $row['handle'],
+            'full_name' => $row['first_name'] . ' ' . $row['last_name'],
             'profile_photo_url' => $row['profile_image_url'],
             'profile_banner_url' => $row['profile_banner_url'],
             'is_verified' => $row['verified'],

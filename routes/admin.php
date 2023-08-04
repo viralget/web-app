@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminInfluencerController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WhatsAppInfluencersController;
@@ -33,8 +34,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
                 Route::get('/{influencer}/approval', [WhatsAppInfluencersController::class, 'approval'])->name('approval');
             });
 
-            // Route::get('/', [AdminInfluencerController::class, 'upload'])->name('upload');
-            // Route::post('upload', [AdminInfluencerController::class, 'handleUpload'])->name('upload.store');
+            Route::get('/', [AdminInfluencerController::class, 'upload'])->name('upload');
+            Route::post('upload', [AdminInfluencerController::class, 'handleUpload'])->name('upload.store');
         });
     });
     Route::get('/', [AuthController::class, 'logout'])->name('logout');

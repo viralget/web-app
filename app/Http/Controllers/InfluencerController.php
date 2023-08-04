@@ -10,6 +10,7 @@ use App\Models\Search;
 use App\Models\TwitterInfluencer;
 use App\Models\ProfiledInfluencer;
 use App\Models\InfluencerList;
+use App\Services\TwitterService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -29,6 +30,11 @@ class InfluencerController extends Controller
      */
     public function index()
     {
+
+        $twitterService = new TwitterService();
+
+        // dd($twitterService->getUserProfileById());
+
 
         $user = request()->user();
 

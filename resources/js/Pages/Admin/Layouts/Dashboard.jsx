@@ -5,6 +5,7 @@ import {
   BellIcon,
   CalendarIcon,
   ChartBarIcon,
+  CloudArrowDownIcon,
   FolderIcon,
   HomeIcon,
   InboxIcon,
@@ -17,6 +18,7 @@ import Avatar from '@/components/Skeleton/Avatar'
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   { name: 'WhatsApp Inluencers', href: route('admin.influencers.whatsapp.index'), icon: ChatBubbleLeftIcon, current: false },
+  { name: 'Import Inluencers', href: route('admin.influencers.upload'), icon: CloudArrowDownIcon, current: false },
   // { name: 'Projects', href: '#', icon: FolderIcon, current: false },
   // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   // { name: 'Documents', href: '#', icon: InboxIcon, current: false },

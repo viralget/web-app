@@ -11,4 +11,9 @@ class Admin extends Authenticatable
     use HasFactory;
 
     protected $guarded = [];
+
+    public function userProfilingCountLeft()
+    {
+        return 0;
+    }
 }
