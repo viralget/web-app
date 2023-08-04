@@ -13,7 +13,7 @@ const GetStarted = () => {
         <span className="font-bold font-lexend  text-t-large">Get started with ViralGet</span>
         <span className="mt-space-24 font-lexend  text-h1-n  text-viralget-gray-light ">Grow your business through data-driven influencer marketing</span>
         <a href="/register" className="mt-space-40  px-space-30 py-space-15 bg-white text-viralget-red rounded-md  text-t-xsx font-lexend font-medium " >
-          Early Bird Signup
+          Create an account
         </a>
       </div>
 
