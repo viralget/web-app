@@ -125,9 +125,10 @@ Route::middleware('auth')->group(
         Route::get('/campaign/brief/view/{id}', [CampaignController::class, 'viewBrief'])->name('brief.view');
         Route::get('/campaign/brief/edit/{id}', [CampaignController::class, 'editBrief'])->name('brief.edit');
         Route::post('/campaign/brief/update/{id}', [CampaignController::class, 'updateBrief'])->name('brief.update');
-       
+        Route::patch('/campaign/brief/update-reference/{brief}', [CampaignController::class, 'updateReference'])->name('brief.reference.update');
+
         Route::post('/report/create', [CampaignController::class, 'createReport'])->name('create.report');
-       
+
 
 
         Route::prefix('billings')->name('billings.')->group(function () {
