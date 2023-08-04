@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminInfluencerController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WhatsAppInfluencersController;
@@ -23,6 +24,10 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        Route::get('/brief', [DashboardController::class, 'indexBrief'])->name('brief');
+        Route::get('/brief/view/{id}', [DashboardController::class, 'viewBrief'])->name('view.brief');
+        Route::post('/report/create', [DashboardController::class, 'createReport'])->name('create.report');
+
         Route::name('influencers.')->prefix('influencers')->group(function () {
 
             Route::name('whatsapp.')->prefix('whatsapp')->group(function () {
@@ -33,8 +38,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
                 Route::get('/{influencer}/approval', [WhatsAppInfluencersController::class, 'approval'])->name('approval');
             });
 
-            // Route::get('/', [AdminInfluencerController::class, 'upload'])->name('upload');
-            // Route::post('upload', [AdminInfluencerController::class, 'handleUpload'])->name('upload.store');
+            Route::get('/', [AdminInfluencerController::class, 'upload'])->name('upload');
+            Route::post('upload', [AdminInfluencerController::class, 'handleUpload'])->name('upload.store');
         });
     });
     Route::get('/', [AuthController::class, 'logout'])->name('logout');
