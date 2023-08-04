@@ -1,1 +1,0 @@
-import{R as e,L as o}from"./app.e7e969cb.js";const s="https://viralget.test/build/assets/logo.e04314b9.svg";function a(t){return e.createElement(o,{href:route("home")},e.createElement("img",{src:s,...t}))}export{a as L,s as l};
