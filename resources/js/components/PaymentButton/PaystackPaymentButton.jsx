@@ -1,5 +1,5 @@
 import { post } from '@/Utils/api';
-import { usePaystackPayment } from 'react-paystack';
+import PaystackPop from '@paystack/inline-js';
 import Button from '../Button';
 import toast from '../Toast';
 
@@ -7,18 +7,34 @@ export const generatePaymentReference = () => {
     return (new Date()).getTime().toString()
 }
 
-
-const PaystackPaymentButton = ({ className, isLink, plan, successRedirectsTo, type, amount = 0, email, metadata, paymentVerificationRoute, paymentDataExtras = {}, children, disabled = false }) => {
+const PaystackPaymentButton = ({ className, isLink, plan, successRedirectsTo, type, amount = 0, email, metadata, paymentVerificationRoute, paymentDataExtras = {}, children, disabled = false, postPaymentAction }) => {
 
     const config = {
-        publicKey: import.meta.env.MIX_PAYSTACK_PUBLIC_KEY,
+        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
         email,
         metadata,
         amount: amount * 100,
-        plan
+        reference: generatePaymentReference(),
     };
 
-    // console.log({ config })
+
+    function payWithPaystack() {
+
+        const paystack = new PaystackPop();
+
+        paystack.newTransaction({
+            ...config,
+            onSuccess: (transaction) => {
+                onSuccess({ reference: transaction.reference })
+            },
+            onCancel: () => {
+                onClose();
+            }
+        });
+
+
+    }
+
 
     // you can call this function anything
     const onSuccess = async ({ reference }) => {
@@ -35,15 +51,20 @@ const PaystackPaymentButton = ({ className, isLink, plan, successRedirectsTo, ty
 
         const response = await post(paymentVerificationRoute, data, true);
 
-        // console.log({ response });
         if (response.data.status) {
-            // setIsSuccessful(true);
             toast(response.data.message ?? 'Payment successful!')
-            // redirect to success page
 
-            setInterval(() => {
-                window.location.href = successRedirectsTo;
-            }, 300);
+
+            if (postPaymentAction) {
+                postPaymentAction(reference)
+            }
+
+            if (successRedirectsTo) {
+                // redirect to success page
+                setInterval(() => {
+                    window.location.href = successRedirectsTo;
+                }, 300);
+            }
         } else {
             toast.error('An error occurred. Please contact admin')
 
@@ -56,12 +77,11 @@ const PaystackPaymentButton = ({ className, isLink, plan, successRedirectsTo, ty
         // console.log('closed')
     }
 
-    const initializePayment = usePaystackPayment(config);
-
     return (
-        <Button usePrimary disabled={disabled} className={className} onClick={() => {
-            initializePayment(onSuccess, onClose)
+        <Button block usePrimary disabled={disabled} className={className} onClick={() => {
+            payWithPaystack()
         }}>{children ?? 'Make Payment'}</Button>
+
     );
 };
 

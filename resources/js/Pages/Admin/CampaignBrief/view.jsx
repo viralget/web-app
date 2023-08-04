@@ -1,14 +1,30 @@
-import AuthenticatedLayout from '@/components/AuthenticatedLayout'
-import ButtonBack from '@/components/ButtonBack';
-import { classNames } from '@/Utils/helpers';
-import { numberWithCommas } from '@/Utils/helpers';
+import Dashboard from '../Layouts/Dashboard';
+import ButtonBack from '@/components/ButtonBack';;
+import { classNames, numberWithCommas } from '@/Utils/helpers';
+import Card from '@/components/Card';
+import Button from '@/components/Button';
+import Modal from '@/components/Modal';
+import CreateReport from './Report/create';
+import { useState } from 'react';
+import ReportList from './Report/list';
 
-const View = ({ campaign }) => {
+export default function view({ campaign }) {
 
-    console.log("campaign:", campaign);
+    const [open,  setOpen] = useState(false)
+
+    function handleModal(){
+        setOpen(!open);
+    }
+
     return (
-        <AuthenticatedLayout  title="My Campaigns"  smallHeader={true}>
-        <div className='bg-white h-screen  mt-3 px-5 mb-10'>
+        <Dashboard
+            title="Campaign Brief"
+        >
+
+            <Modal  iDisplay={open}>
+                 <CreateReport   handleModalClose={handleModal} campaign_briefs_id={campaign.id}/>
+            </Modal>
+          <div className='bg-white h-screen  mt-3 px-5 mb-10'>
           <ButtonBack />
 
         <section className="py-12 bg-white sm:py-16 lg:py-20 shadow-md border mt-5">
@@ -18,7 +34,7 @@ const View = ({ campaign }) => {
                            <img src={campaign.logo_url}  className='w-full h-full object-fit rounded-full' />
                         </div>
                          <div className='mt-3'>
-                            <span className={classNames(' p-2 rounded-md text-white capitalize', campaign.status === 'pending' || campaign.status === 'in-progress' ? 'bg-yellow-400' : campaign.status === 'approved'? 'bg-green-400' : campaign.status === 'completed' ? 'bg-blue-400' : 'bg-gray-400 text-black' )}>
+                            <span className={classNames(' p-2 rounded-md text-white capitalize', campaign.status === 'pending' || campaign.status === 'in-progress' ? 'bg-yellow-400' : campaign.status === 'approved'? 'bg-green-400' : campaign.status === 'completed' ? 'bg-blue-400' : campaign.status === 'rejected' ? 'bg-red-400' : 'bg-gray-400 text-black' )}>
                              {campaign.status}
                             </span>
                          </div>
@@ -221,24 +237,16 @@ const View = ({ campaign }) => {
 
 
 
-                       <div className='mt-10'  id="reports">
-                            <h3 className='font-bold text-3xl capitalize'>Report From Influencers</h3>
+                       <div className='my-10'  id="reports">
+                            <h3 className='font-bold text-3xl capitalize'>Campaign Reports</h3>
                         </div>
 
-                     <div className='flex space-x-10 mt-2'>
-                          <span className='capitalize font-bold'>report from influencers will appears ehere..</span>
-                       </div>
-
-                   
-                   
-                   
-                   </div>
+                        <ReportList  handleModalClose={handleModal}  reports={campaign.reports} />
+            
+                </div>
             </div>
         </section>
         </div>
-        </AuthenticatedLayout>
-
+     </Dashboard>
     );
 }
-
-export default View;

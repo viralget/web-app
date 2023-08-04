@@ -19,19 +19,11 @@ const StripePaymentButton = (props) => {
     );
 };
 
-
 export default StripePaymentButton;
 
-
-
-const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amount = 0, email, metadata, paymentVerificationRoute, paymentDataExtras = {}, children, disabled = false }) => {
+const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amount = 0, email, metadata, paymentVerificationRoute, paymentDataExtras = {}, children, disabled = false, postPaymentAction }) => {
     const stripe = useStripe();
     const [paymentRequest, setPaymentRequest] = useState(null);
-
-    // console.log({ metadata })
-    // amount = 
-
-    console.log("stripe::,", stripe)
 
     useEffect(() => {
         if (stripe) {
@@ -71,18 +63,22 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
 
         const response = await post(paymentVerificationRoute, data, true);
 
-        // console.log({ response });
         if (response.data.status) {
-            // setIsSuccessful(true);
-            toast(response.data.message ?? 'Payment successful!')
-            // redirect to success page
 
-            setInterval(() => {
-                // window.location.href = successRedirectsTo;
-            }, 300);
+            toast(response.data.message ?? 'Payment successful!')
+
+            if (postPaymentAction) {
+                postPaymentAction(reference)
+            }
+
+            if (successRedirectsTo) {
+                // redirect to success page
+                setInterval(() => {
+                    window.location.href = successRedirectsTo;
+                }, 300);
+            }
         } else {
             toast.error('An error occurred. Please contact admin')
-
         }
     };
 

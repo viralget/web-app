@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react'
+import Dashboard from '../Layouts/Dashboard';
 import EmptyState from '@/Components/EmptyState';
-import { Link, useForm } from '@inertiajs/inertia-react';
-import AuthenticatedLayout from '@/Components/AuthenticatedLayout';
+import { Link } from '@inertiajs/inertia-react';
 import Card from '@/components/Card';
-import { classNames } from '@/Utils/helpers';
-import { numberWithCommas } from '@/Utils/helpers';
+import { classNames, numberWithCommas } from '@/Utils/helpers';
 
-export default function List({ campaigns }) {
+export default function index({ campaigns }) {
 
-    // console.log("campaigns::", campaigns)
-  
+    console.log("campaigns:",campaigns)
+
     return (
-        <AuthenticatedLayout title="My Campaigns" subtitle="some notes goes here">
-            
-        <div className="flex flex-col md:p-5">
+        <Dashboard
+            title="Campaign Brief"
+        >
+
+<div className="flex flex-col mt-2 ">
             <div className="inline-block min-w-full align-middle">
                 <Card usePadding={false} useBorder>
                     <div className="relative overflow-hidden ring-1 ring-black border-0 ring-opacity-5">
                             <div className='flex justify-between p-4 items-center'>     
                                 <h3 className="font-bold text-gray-600">{campaigns?.length} Campaigns</h3>
-                                <Link className='bg-viralget-red  text-white capitalize rounded-md p-3' href={route('brief.create')}>{campaigns?.length > 0 ? 'Create a new campaign' : 'Create your first campaign'}</Link>
+                                {/* <Link className='bg-viralget-red  text-white capitalize rounded-md p-3' href={route('brief.create')}>{campaigns?.length > 0 ? 'Create a new campaign' : 'Create your first campaign'}</Link> */}
                             </div>
                         {
                             campaigns?.length > 0 ?
@@ -28,6 +28,9 @@ export default function List({ campaigns }) {
                                         <tr>
                                           <th scope="col" className=" p-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                                #
+                                            </th>
+                                            <th scope="col" className=" p-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                               User
                                             </th>
                                             <th scope="col" className=" p-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                                 Campaign name
@@ -56,10 +59,11 @@ export default function List({ campaigns }) {
                                     {campaigns.map((item, index) => (
                                             <tr key={index} >
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{index + 1}</td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.user.full_name}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.campaign_name}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{numberWithCommas(item.budget)}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                   <span className={classNames(' p-2 rounded-md text-white capitalize', item.status === 'pending' || item.status === 'in-progress' ? 'bg-yellow-400' : item.status === 'approved'? 'bg-green-400' : item.status === 'completed' ? 'bg-blue-400' : item.status === 'rejected' ? 'bg-red-400': 'bg-gray-400 text-black' )}>
+                                                   <span className={classNames(' p-2 rounded-md text-white capitalize', item.status === 'pending' || item.status === 'in-progress' ? 'bg-yellow-400' : item.status === 'approved'? 'bg-green-400' : item.status === 'completed' ? 'bg-blue-400' : 'bg-gray-400 text-black' )}>
                                                 {
                                                 item.status
                                                 
@@ -70,8 +74,7 @@ export default function List({ campaigns }) {
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.campaign_end_date}</td>
                                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <div className='flex flex-col space-y-3'>
-                                                 <a href={route('brief.view', {id: item.id})}  className='text-blue-400'> View brief</a>
-                                                 <a href={route('brief.edit', {id: item.id})}  className='text-blue-400'> Edit brief</a>
+                                                 <a href={route('admin.view.brief', {id: item.id})}  className='text-blue-400'> View brief</a>
                                                 </div>
                                              </td>
                                             
@@ -89,7 +92,6 @@ export default function List({ campaigns }) {
                 </Card>
             </div >
         </div >
-        </AuthenticatedLayout>
-
-    )
+     </Dashboard>
+    );
 }

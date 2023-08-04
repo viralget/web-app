@@ -31,5 +31,15 @@ class CampaignBrief extends Model
         return url('storage/campaign_brief_moodBoards/' . $this->mood_board);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(CampaignReport::class, 'campaign_briefs_id');
+    }
+
 
 }

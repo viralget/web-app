@@ -17,6 +17,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
 use App\Models\CampaignBrief;
 use App\Helpers\LoggerHelper;
+use App\Models\CampaignReport;
 
 
 class CampaignController extends Controller
@@ -234,185 +235,232 @@ class CampaignController extends Controller
 
 
 
-  public   function  indexBrief(){
-    $data['campaigns'] = CampaignBrief::where('user_id', request()->user()->id)->orderBy('id', "Desc")->get();
-    return Inertia::render('CampaignBrief/index', $data);
-  } 
+    public   function  indexBrief()
+    {
+        $data['campaigns'] = CampaignBrief::where('user_id', request()->user()->id)->orderBy('id', "Desc")->get();
+        return Inertia::render('CampaignBrief/index', $data);
+    }
 
-    public function  createBrief(){
-         
+    public function  createBrief()
+    {
+
         $data['user'] = Auth::user();
         return Inertia::render('CampaignBrief/create', $data);
     }
 
 
 
-    public function  storeBrief(Request $request){
+    public function  storeBrief(Request $request)
+    {
         $user_id =  $request->user()->id;
 
-        try{
-          
+        try {
+
 
             $logoName = null;
             $moodBoardName = null;
 
-        if($request->hasFile('logo')){
-            $logoName = time().$user_id.'.'.$request->logo->extension();
-            $request->logo->storeAs('public/campaign_brief_logos', $logoName);    
+            if ($request->hasFile('logo')) {
+                $logoName = time() . $user_id . '.' . $request->logo->extension();
+                $request->logo->storeAs('public/campaign_brief_logos', $logoName);
+            }
+
+            if ($request->hasFile('mood_board')) {
+                $moodBoardName = time() . $user_id . '.' . $request->mood_board->extension();
+                $request->mood_board->storeAs('public/campaign_brief_moodBoards', $moodBoardName);
+            }
+
+            // dd($request);
+
+            $brief = new CampaignBrief;
+            $brief->user_id = $user_id;
+            $brief->campaign_name = $request->title;
+            $brief->social_network = $request->social_network;
+            $brief->campaign_type = $request->campaign_type;
+            $brief->budget = $request->budget;
+            $brief->campaign_budget = $request->budget;
+            $brief->tracked_keywords = $request->keywords;
+            $brief->campaign_state_date = $request->start_date;
+            $brief->campaign_end_date = $request->end_date;
+            $brief->campaign_description = $request->description;
+            $brief->brand_name = $request->brand_name;
+            $brief->target_location = $request->location;
+            $brief->target_gender = $request->gender;
+            $brief->target_age = $request->age;
+            $brief->target_interest = $request->interest;
+
+            $brief->reach_goal = $request->reach;
+            $brief->impressions_goal = $request->impression;
+            $brief->engagement_goal = $request->engagement;
+            $brief->conversion_goal = $request->conversion;
+
+            $brief->about_us = $request->about_us;
+            $brief->campaign_goal = $request->campaign_goal;
+            $brief->campaign_message = $request->campaign_message;
+            $brief->campaign_key_objectives = $request->key_objectives;
+            $brief->channels = $request->social_network;
+            $brief->timeline = $request->timeline;
+            $brief->target_audience = $request->target_audience;
+            $brief->logo = $logoName;
+            $brief->status = "pending";
+            $brief->mood_board = $moodBoardName;
+
+            $brief->currency = $request->currency;
+            $brief->influencer_niche = $request->influencer_niche;
+            $brief->influencer_location = $request->influencer_location;
+            $brief->influencer_gender = $request->influencer_gender;
+            $brief->influencer_number = $request->influencer_number;
+            $brief->influencer_size = $request->influencer_size;
+            $brief->influencer_category = $request->influencer_category;
+
+            $brief->save();
+
+            // return redirect(route('brief.success'));
+            return Redirect::route('brief.success');
+
+            // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
+        } catch (\Exception $e) {
+            dd($e);
+            // $this->log($e);
+            return response(['status' => 'error', 'message' => $e, 'data' => []]);
+            // return redirect()->back()->withError('An error occured. Please try again');
         }
-       
-        if($request->hasFile('mood_board')){
-            $moodBoardName = time().$user_id.'.'.$request->mood_board->extension();
-            $request->mood_board->storeAs('public/campaign_brief_moodBoards', $moodBoardName);    
-        }
-
-        // dd($request);
-
-        $brief = new CampaignBrief;
-        $brief->user_id = $user_id;
-        $brief->campaign_name = $request->title;
-        $brief->social_network = $request->social_network;
-        $brief->campaign_type = $request->campaign_type;
-        $brief->budget = $request->budget;
-        $brief->campaign_budget = $request->budget;
-        $brief->tracked_keywords = $request->keywords;
-        $brief->campaign_state_date = $request->start_date;
-        $brief->campaign_end_date = $request->end_date;
-        $brief->campaign_description= $request->description;
-        $brief->brand_name= $request->brand_name;
-        $brief->target_location= $request->location;
-        $brief->target_gender= $request->gender;
-        $brief->target_age= $request->age;
-        $brief->target_interest= $request->interest;
-
-        $brief->reach_goal= $request->reach;
-        $brief->impressions_goal= $request->impression;
-        $brief->engagement_goal= $request->engagement;
-        $brief->conversion_goal= $request->conversion;
-      
-        $brief->about_us= $request->about_us;
-        $brief->campaign_goal= $request->campaign_goal;
-        $brief->campaign_message= $request->campaign_message;
-        $brief->campaign_key_objectives= $request->key_objectives;
-        $brief->channels= $request->social_network;
-        $brief->timeline= $request->timeline;
-        $brief->target_audience= $request->target_audience; 
-        $brief->logo = $logoName;
-        $brief->status= "pending";
-        $brief->mood_board= $moodBoardName;
-
-        $brief->currency = $request->currency;
-        $brief->influencer_niche = $request->influencer_niche;
-        $brief->influencer_location = $request->influencer_location;
-        $brief->influencer_gender = $request->influencer_gender;
-        $brief->influencer_number = $request->influencer_number;
-        $brief->influencer_size = $request->influencer_size;
-        $brief->influencer_category = $request->influencer_category;
-
-        $brief->save();
-
-        // return redirect(route('brief.success'));
-        return Redirect::route('brief.success');
-
-        // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
-    } catch (\Exception $e) {
-        dd($e);
-        // $this->log($e);
-        return response(['status' => 'error', 'message' => $e, 'data' =>[] ]);
-        // return redirect()->back()->withError('An error occured. Please try again');
     }
- }
 
-   public function successBrief(){
-    return Inertia::render('CampaignBrief/success');
-   }
-  
-
-    public function viewBrief($id) {
-        $data['campaign'] = CampaignBrief::where('id', $id)->first();
-        return Inertia::render('CampaignBrief/view', $data);
+    public function successBrief()
+    {
+        return Inertia::render('CampaignBrief/success');
     }
 
 
-    public function editBrief($id){
+    public function viewBrief($id)
+    {
+        $data['campaign'] = CampaignBrief::with('reports.user')->where('id', $id)->first();
+        return Inertia::render('CampaignBrief/View/index', $data);
+    }
+
+
+    public function editBrief($id)
+    {
         $data['user'] = Auth::user();
         $data['campaign'] = CampaignBrief::where('id', $id)->first();
         return Inertia::render('CampaignBrief/edit', $data);
     }
 
-    public function updateBrief(Request $request, $id){
-      
+    public function updateBrief(Request $request, $id)
+    {
+
         $user_id =  $request->user()->id;
 
-        try{
-          
+        try {
+
             $logoName = null;
             $moodBoardName = null;
 
-        if($request->hasFile('logo')){
-            $logoName = time().$user_id.'.'.$request->logo->extension();
-            $request->logo->storeAs('public/campaign_brief_logos', $logoName);    
+            if ($request->hasFile('logo')) {
+                $logoName = time() . $user_id . '.' . $request->logo->extension();
+                $request->logo->storeAs('public/campaign_brief_logos', $logoName);
+            }
+
+            if ($request->hasFile('mood_board')) {
+                $moodBoardName = time() . $user_id . '.' . $request->mood_board->extension();
+                $request->mood_board->storeAs('public/campaign_brief_moodBoards', $moodBoardName);
+            }
+
+            $brief = CampaignBrief::where('id', $id)->first();
+            $brief->user_id = $user_id;
+            $brief->campaign_name = $request->title;
+            $brief->social_network = $request->social_network;
+            $brief->campaign_type = $request->campaign_type;
+            $brief->budget = $request->budget;
+            $brief->campaign_budget = $request->budget;
+            $brief->tracked_keywords = $request->keywords;
+            $brief->campaign_state_date = $request->start_date;
+            $brief->campaign_end_date = $request->end_date;
+            $brief->campaign_description = $request->description;
+            $brief->brand_name = $request->brand_name;
+            $brief->target_location = $request->location;
+            $brief->target_gender = $request->gender;
+            $brief->target_age = $request->age;
+            $brief->target_interest = $request->interest;
+
+            $brief->reach_goal = $request->reach;
+            $brief->impressions_goal = $request->impression;
+            $brief->engagement_goal = $request->engagement;
+            $brief->conversion_goal = $request->conversion;
+
+            $brief->about_us = $request->about_us;
+            $brief->campaign_goal = $request->campaign_goal;
+            $brief->campaign_message = $request->campaign_message;
+            $brief->campaign_key_objectives = $request->key_objectives;
+            $brief->channels = $request->social_network;
+            $brief->timeline = $request->timeline;
+            $brief->target_audience = $request->target_audience;
+            $brief->logo = $request->hasFile('logo') ? $logoName : $brief->logo;
+            $brief->status = "pending";
+            $brief->mood_board =  $request->hasFile('mood_board') ? $moodBoardName : $brief->mood_board;
+
+            $brief->currency = $request->currency;
+            $brief->influencer_niche = $request->influencer_niche;
+            $brief->influencer_location = $request->influencer_location;
+            $brief->influencer_gender = $request->influencer_gender;
+            $brief->influencer_number = $request->influencer_number;
+            $brief->influencer_size = $request->influencer_size;
+            $brief->influencer_category = $request->influencer_category;
+            $brief->reference_number = $request->reference_number;
+
+            $brief->update();
+
+            // return redirect(route('brief.success'));
+            return Redirect::route('brief.success');
+
+            // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
+        } catch (\Exception $e) {
+            // dd($e);
+            // $this->log($e);
+            return response(['status' => 'error', 'message' => $e->getMessage(), 'data' => []]);
+            // return redirect()->back()->withError('An error occured. Please try again');
         }
-       
-        if($request->hasFile('mood_board')){
-            $moodBoardName = time().$user_id.'.'.$request->mood_board->extension();
-            $request->mood_board->storeAs('public/campaign_brief_moodBoards', $moodBoardName);    
+    }
+
+    public function updateReference(Request $request, CampaignBrief $brief)
+    {
+        $request->validate([
+            'reference_number' => 'required'
+        ]);
+
+        try {
+            $brief->update($request->only('reference_number'));
+
+            return response(['status' => true, 'message' => 'Updated successfully',]);
+        } catch (\Exception $e) {
+            return response(['status' => false, 'message' => $e->getMessage()]);
         }
-
-        $brief = CampaignBrief::where('id', $id)->first();
-        $brief->user_id = $user_id;
-        $brief->campaign_name = $request->title;
-        $brief->social_network = $request->social_network;
-        $brief->campaign_type = $request->campaign_type;
-        $brief->budget = $request->budget;
-        $brief->campaign_budget = $request->budget;
-        $brief->tracked_keywords = $request->keywords;
-        $brief->campaign_state_date = $request->start_date;
-        $brief->campaign_end_date = $request->end_date;
-        $brief->campaign_description= $request->description;
-        $brief->brand_name= $request->brand_name;
-        $brief->target_location= $request->location;
-        $brief->target_gender= $request->gender;
-        $brief->target_age= $request->age;
-        $brief->target_interest= $request->interest;
-
-        $brief->reach_goal= $request->reach;
-        $brief->impressions_goal= $request->impression;
-        $brief->engagement_goal= $request->engagement;
-        $brief->conversion_goal= $request->conversion;
-      
-        $brief->about_us= $request->about_us;
-        $brief->campaign_goal= $request->campaign_goal;
-        $brief->campaign_message= $request->campaign_message;
-        $brief->campaign_key_objectives= $request->key_objectives;
-        $brief->channels= $request->social_network;
-        $brief->timeline= $request->timeline;
-        $brief->target_audience= $request->target_audience; 
-        $brief->logo = $request->hasFile('logo') ? $logoName : $brief->logo;
-        $brief->status= "pending";
-        $brief->mood_board=  $request->hasFile('mood_board') ? $moodBoardName : $brief->mood_board;
-
-        $brief->currency = $request->currency;
-        $brief->influencer_niche = $request->influencer_niche;
-        $brief->influencer_location = $request->influencer_location;
-        $brief->influencer_gender = $request->influencer_gender;
-        $brief->influencer_number = $request->influencer_number;
-        $brief->influencer_size = $request->influencer_size;
-        $brief->influencer_category = $request->influencer_category;
-
-        $brief->update();
-
-        // return redirect(route('brief.success'));
-        return Redirect::route('brief.success');
-
-        // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
-    } catch (\Exception $e) {
-        dd($e);
-        // $this->log($e);
-        return response(['status' => 'error', 'message' => $e, 'data' =>[] ]);
-        // return redirect()->back()->withError('An error occured. Please try again');
     }
+
+    public function createReport(Request $request)
+    {
+        $user_id =  $request->user()->id;
+
+        try {
+
+            $campaign = CampaignBrief::where('id',  $request->campaign_briefs_id)->first();
+            $campaign->status = $request->status;
+            $campaign->update();
+
+            $brief = new CampaignReport;
+            $brief->user_id =  $user_id;
+            $brief->report_note = $request->report_note;
+            $brief->status = $request->status;
+            $brief->campaign_briefs_id = $request->campaign_briefs_id;
+            $brief->save();
+
+            // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
+        } catch (\Exception $e) {
+            // dd($e);
+            // $this->log($e);
+            return response(['status' => 'error', 'message' => $e, 'data' => []]);
+            // return redirect()->back()->withError('An error occured. Please try again');
+        }
     }
- 
- 
 }

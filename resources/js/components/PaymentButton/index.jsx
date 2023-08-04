@@ -1,22 +1,21 @@
 import { usePage } from "@inertiajs/inertia-react";
 import PaystackPaymentButton from "./PaystackPaymentButton";
+import StripePaymentButton from "./StripePaymentButton";
 // import StripePaymentButton from "./StripePaymentButton";
 
 export default function (props) {
-    const { amount, amount_usd } = props;
-    const { app } = usePage().props;
-    const { currency } = app;
+    const { amount, amount_usd, currency } = props;
 
     return (
         <div className="block">
-            <PaystackPaymentButton {...props} amount={amount} />
+            {/* <PaystackPaymentButton {...props} amount={amount} /> */}
 
-            {/* {
-                currency == 'NGN' ?
-                    <PaystackPaymentButton {...props} amount={amount} />
-                    :
+            {
+                currency == 'USD' ?
                     <StripePaymentButton {...props} amount={amount_usd ?? amount} />
-            } */}
+                    :
+                    <PaystackPaymentButton {...props} amount={amount} />
+            }
         </div>
     )
 

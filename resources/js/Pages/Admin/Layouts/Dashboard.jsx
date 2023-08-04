@@ -14,9 +14,12 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChatBubbleLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Avatar from '@/components/Skeleton/Avatar'
+// import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns } from '@/Utils/icons';
+
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
+  { name: 'Campaign Brief', href: route('admin.brief'), icon: FolderIcon, current: false },
   { name: 'WhatsApp Inluencers', href: route('admin.influencers.whatsapp.index'), icon: ChatBubbleLeftIcon, current: false },
   { name: 'Import Inluencers', href: route('admin.influencers.upload'), icon: CloudArrowDownIcon, current: false },
   // { name: 'Projects', href: '#', icon: FolderIcon, current: false },

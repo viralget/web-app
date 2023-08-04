@@ -29,7 +29,9 @@ export default function Create({ user }) {
     const [total, setTotal] = useState(0);
     const [stripeProps, setStripeProps] = useState({});
     const [isLoading, setIsLoading] = useState(false);
-    const [btnMessage, setBtnMessage] = useState("Pay & Create Campaign");
+    const [btnMessage, setBtnMessage] = useState("Create Campaign");
+
+
     const { data, setData, post, processing, errors, reset } = useForm({
         title: '',
         social_network: '',
@@ -68,21 +70,6 @@ export default function Create({ user }) {
 
 
 
-    useEffect(() => {
-
-        setStripeProps({
-            email: user.email,
-            amount_usd: total,
-            metadata: { ...data, email: user.email },
-            paymentDataExtras: {
-                // job_listing_id: job.id,
-            },
-            type: 'paid-listing',
-            paymentVerificationRoute: route("general.payments.verify"),
-            successRedirectsTo: route('preorder.success'),
-        })
-
-    }, [data])
     const onHandleChange = (event) => {
         setData(event.target.name, getEventValue(event));
     };
@@ -112,74 +99,15 @@ export default function Create({ user }) {
             return;
         }
 
-        if (data.currency === 'NGN') {
-            payWithPaystack()
-        }
+        createBrief();
     }
 
-    function payWithPaystack() {
-
-        setBtnMessage("initiating payment...");
-        const paystack = new PaystackPop();
-        paystack.newTransaction({
-            key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
-            email: user.email,
-            amount: total * 100, //plan.amount * 100,
-            reference: (new Date()).getTime().toString(),
-            metadata: {
-                ...data,
-                platform: data.social_network,
-                email: user.email,
-            },
-
-            onSuccess: (transaction) => {
-
-                const payment_data = {
-                    reference: transaction.reference,
-                    payment_gateway: 'paystack',
-                    // metadata: data
-                }
-                verifyPayment(payment_data);
-            },
-            onCancel: () => {
-                // user closed popup
-                console.log("You need this, stay back!")
-                // setErrors({})
-            }
-        });
-
-
-    }
-
-    async function verifyPayment(payment_data) {
-        setBtnMessage("Verifying payment..");
-        const response = await axios.post(route("general.payments.verify"), payment_data);
-        if (response?.data.status) {
-            createBrief();
-        } else {
-            toast.error('Something went wrong');
-        }
-
-    }
 
     const createBrief = async () => {
         setBtnMessage("Creating campaign..")
         post(route('brief.store'));
         reset();
         window.location.href = route('brief.success');
-
-
-        // , {
-        //     onSuccess: () => {
-        //         reset();
-        //         window.location.href = route('brief.success');       
-        //    },
-        //     onError: (error) => {
-        //         console.log(error)
-        //         toast.error('An error occured');
-        //     }
-        // });
-
     };
 
     function handleBudget(event) {
@@ -239,22 +167,15 @@ export default function Create({ user }) {
                                 </Button>
                             )}
                         {
-                            data.currency == 'NGN' ?
-                                (
-                                    <Button
-                                        type="submit"
-                                        usePrimary
-                                        block
-                                        processing={processing}>
-                                        {tab == 'details' || tab == 'contents' ? 'Next' : btnMessage}
-                                    </Button>
-                                )
-                                :
-                                (
-                                    <StripePaymentButton
-                                        {...stripeProps}
-                                        amount={total} >Pay & Create Campaign</StripePaymentButton>
-                                )
+                            (
+                                <Button
+                                    type="submit"
+                                    usePrimary
+                                    block
+                                    processing={processing}>
+                                    {tab == 'details' || tab == 'contents' ? 'Next' : btnMessage}
+                                </Button>
+                            )
                         }
 
 
