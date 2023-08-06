@@ -289,10 +289,10 @@ class CampaignController extends Controller
             $brief->target_age = $request->age;
             $brief->target_interest = $request->interest;
 
-            $brief->reach_goal = $request->reach;
-            $brief->impressions_goal = $request->impression;
-            $brief->engagement_goal = $request->engagement;
-            $brief->conversion_goal = $request->conversion;
+            $brief->reach_goal = $request->reach ?? 'none';
+            $brief->impressions_goal = $request->impression ?? 0;
+            $brief->engagement_goal = $request->engagement ?? 0;
+            $brief->conversion_goal = $request->conversion ?? 0;
 
             $brief->about_us = $request->about_us;
             $brief->campaign_goal = $request->campaign_goal;
@@ -316,14 +316,14 @@ class CampaignController extends Controller
             $brief->save();
 
             // return redirect(route('brief.success'));
-            return Redirect::route('brief.success');
+            return Redirect::route('brief.view', ['id' => $brief->id])->withMessage('Campaign created successfully. Influencers will start participating once payment is made.');
 
             // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
         } catch (\Exception $e) {
-            dd($e);
+            // dd($e);
             // $this->log($e);
-            return response(['status' => 'error', 'message' => $e, 'data' => []]);
-            // return redirect()->back()->withError('An error occured. Please try again');
+            // return response(['status' => 'error', 'message' => $e, 'data' => []]);
+            return redirect()->back()->withErrors('An error occured. Please try again');
         }
     }
 
@@ -384,10 +384,10 @@ class CampaignController extends Controller
             $brief->target_age = $request->age;
             $brief->target_interest = $request->interest;
 
-            $brief->reach_goal = $request->reach;
-            $brief->impressions_goal = $request->impression;
-            $brief->engagement_goal = $request->engagement;
-            $brief->conversion_goal = $request->conversion;
+            $brief->reach_goal = $request->reach ?? 'none';
+            $brief->impressions_goal = $request->impression ?? 0;
+            $brief->engagement_goal = $request->engagement ?? 0;
+            $brief->conversion_goal = $request->conversion ?? 0;
 
             $brief->about_us = $request->about_us;
             $brief->campaign_goal = $request->campaign_goal;
