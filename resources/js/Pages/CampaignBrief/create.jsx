@@ -106,8 +106,16 @@ export default function Create({ user }) {
     const createBrief = async () => {
         setBtnMessage("Creating campaign..")
         post(route('brief.store'));
-        reset();
-        window.location.href = route('brief.success');
+
+        // , {
+        //     onSuccess: () => {
+        //         window.location.href = route('brief.success');
+        //     },
+        //     onError: () => {
+        //         toast.error('An error occurred')
+        //     }
+        // });
+        // reset();
     };
 
     function handleBudget(event) {
