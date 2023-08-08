@@ -125,6 +125,7 @@ function getStatusColor(status) {
 
 export default function Details({ campaign }) {
 
+    // console.log({ campaign })
     const [selected, setSelected] = useState(moods[5])
 
     const { auth } = usePage().props;
@@ -262,7 +263,7 @@ export default function Details({ campaign }) {
                                         {campaign.campaign_name}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Social networks</dt><br />
                                     <dd className="inline text-gray-700">
                                         {campaign.social_network}
@@ -274,7 +275,7 @@ export default function Details({ campaign }) {
                                         {campaign.campaign_type}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Brand Name</dt><br />
                                     <dd className="inline text-gray-700">
                                         {campaign.brand_name}
@@ -303,22 +304,22 @@ export default function Details({ campaign }) {
                                         {campaign.reach_goal}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Target Location</dt><br />
                                     <dd className="inline text-gray-700">
-                                        {campaign.impressions_goal}
+                                        {campaign.target_location}
                                     </dd>
                                 </div>
                                 <div className="sm:pr-4 block">
                                     <dt className="inline text-gray-500">Age</dt><br />
                                     <dd className="inline text-gray-700">
-                                        {campaign.conversion_goal}
+                                        {campaign.target_age}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Gender</dt><br />
                                     <dd className="inline text-gray-700">
-                                        {campaign.engagement_goal}
+                                        {campaign.target_gender}
                                     </dd>
                                 </div>
                                 <div className="sm:pr-4 block">
@@ -338,7 +339,7 @@ export default function Details({ campaign }) {
                                         {campaign.about_us}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Campaign Message</dt><br />
                                     <dd className="inline text-gray-700">
                                         {campaign.campaign_message}
@@ -350,7 +351,7 @@ export default function Details({ campaign }) {
                                         {campaign.conversion_goal}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Gender</dt><br />
                                     <dd className="inline text-gray-700">
                                         {campaign.campaign_key_objectives}
@@ -362,10 +363,10 @@ export default function Details({ campaign }) {
                                         {campaign.campaign_goal}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Timeline</dt><br />
                                     <dd className="inline text-gray-700">
-                                        {campaign.campaign_key_objectives}
+                                        {campaign.timeline}
                                     </dd>
                                 </div>
                                 <div className="sm:pr-4 block">
@@ -384,7 +385,7 @@ export default function Details({ campaign }) {
                                         {campaign.influencer_size}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Category</dt><br />
                                     <dd className="inline text-gray-700">
                                         {campaign.influencer_category}
@@ -396,7 +397,7 @@ export default function Details({ campaign }) {
                                         {campaign.influencer_niche}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Influencer Gender</dt><br />
                                     <dd className="inline text-gray-700">
                                         {campaign.influencer_gender}
@@ -408,7 +409,7 @@ export default function Details({ campaign }) {
                                         {campaign.influencer_number}
                                     </dd>
                                 </div>
-                                <div className="mt-2 sm:mt-0 sm:pl-4">
+                                <div className="mt-2 sm:mt-0 ">
                                     <dt className="inline text-gray-500">Location</dt><br />
                                     <dd className="inline text-gray-700">
                                         {campaign.influencer_location}

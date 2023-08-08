@@ -6,7 +6,8 @@ import TextArea from "@/Components/TextArea"
 import UploadImage from "@/Components/UploadImage"
 import { numberWithCommas } from "@/Utils/helpers"
 
-export default ({ data, onHandleChange, setData, handleBudget, displayFile, image }) => {
+export default ({ data, onHandleChange, setData, handleBudget, displayFile, image, }) => {
+
     return (
         <>
             <div className="space-y-12">
@@ -21,7 +22,7 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
                     <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                         <div className="col-span-full">
                             <div className="mt-2">
-                                <UploadImage displayFile={displayFile} image={image} name="logo" isRequired />
+                                <UploadImage displayFile={displayFile} image={image} name="logo" isRequired={!image} />
                             </div>
                         </div>
                         <div className="col-span-full">
@@ -131,32 +132,6 @@ export default ({ data, onHandleChange, setData, handleBudget, displayFile, imag
                         </div>
 
 
-                        <div className="col-span-full">
-
-                            {
-                                data.budget && data.influencer_number && (
-                                    <div className='bg-white shadow-md  md:max-w-md p-5 w-full mt-3 flex flex-col space-y-3'>
-
-                                        <div className='flex justify-between'>
-                                            <span className='w-full'>Budget:</span>
-                                            <span className='text-left w-full'>{data.currency} {numberWithCommas(data.budget)}</span>
-                                        </div>
-                                        <div className='flex justify-between'>
-                                            <span className='w-full'>Budget Per Influencer :</span>
-                                            <span className='text-left w-full'>{data.currency} {numberWithCommas(Number(data.budget) / Number(data.influencer_number))}</span>
-                                        </div>
-                                        <div className='flex justify-between'>
-                                            <span className='w-full'>Service fee(15%):</span>
-                                            <span className='text-left w-full'>{data.currency} {numberWithCommas(serviceFee)}</span>
-                                        </div>
-                                        <div className='flex justify-between'>
-                                            <span className='w-full'>Total:</span>
-                                            <span className='text-left w-[10rem] '>{data.currency} {numberWithCommas(total)}</span>
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        </div>
                     </div>
                 </div>
             </div >

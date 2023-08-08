@@ -19,56 +19,55 @@ import Steps from './steps';
 import Details from './Form/Details';
 import Influencers from './Form/Influencers';
 import Contents from './Form/Contents';
+import { Inertia } from '@inertiajs/inertia';
 
-export default function Create({ user }) {
+export default function Create({ user, isEdit = false, campaign }) {
 
+    let urlParams = new URLSearchParams(window.location.search);
+    const current_tab = urlParams.get('tab');
 
-    const [tab, setTab] = useState('details')
+    const [tab, setTab] = useState(current_tab ?? 'details')
     const [image, setImageUrl] = useState(null);
     const [serviceFee, setServiceFee] = useState(0);
     const [total, setTotal] = useState(0);
-    const [stripeProps, setStripeProps] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
-    const [btnMessage, setBtnMessage] = useState("Create Campaign");
+    const [btnMessage, setBtnMessage] = useState(isEdit ? "Update Campaign" : "Create Campaign");
 
-
-    const { data, setData, post, processing, errors, reset } = useForm({
-        title: '',
-        social_network: '',
-        campaign_type: '',
-        budget: '',
-        keywords: '',
-        start_date: '',
-        end_date: '',
-        description: '',
-        brand_name: '',
-        location: '',
-        gender: '',
-        age: '',
-        interest: '',
-        reach: '',
-        impression: '',
-        engagement: '',
-        conversion: '',
-        logo: '',
-        about_us: '',
-        campaign_goal: '',
-        campaign_message: '',
-        key_objectives: '',
-        channels: '',
-        timeline: '',
-        mood_board: '',
-        target_audience: '',
-        currency: 'NGN',
-        influencer_niche: '',
-        influencer_size: '',
-        influencer_number: '',
-        influencer_gender: '',
-        influencer_location: '',
-        influencer_category: '',
-    });
-
-
+    const { data, setData, post, processing, errors, reset } = useForm(
+        {
+            title: campaign?.campaign_name,
+            social_network: campaign?.social_network,
+            campaign_type: campaign?.campaign_type,
+            budget: campaign?.budget,
+            keywords: campaign?.tracked_keywords,
+            start_date: campaign?.campaign_start_date,
+            end_date: campaign?.campaign_end_date,
+            description: campaign?.campaign_description,
+            brand_name: campaign?.brand_name,
+            location: campaign?.target_location,
+            gender: campaign?.target_gender,
+            age: campaign?.target_age,
+            interest: campaign?.target_interest,
+            reach: campaign?.reach_goal,
+            impression: campaign?.impressions_goal,
+            engagement: campaign?.engagement_goal,
+            conversion: campaign?.conversion_goal,
+            logo: '',
+            about_us: campaign?.about_us,
+            campaign_goal: campaign?.campaign_goal,
+            campaign_message: campaign?.campaign_message,
+            key_objectives: campaign?.campaign_key_objectives,
+            channels: campaign?.channels,
+            timeline: campaign?.timeline,
+            mood_board: '',
+            target_audience: campaign?.target_audience,
+            currency: campaign?.currency,
+            influencer_niche: campaign?.influencer_niche,
+            influencer_size: campaign?.influencer_size,
+            influencer_number: campaign?.influencer_number,
+            influencer_gender: campaign?.influencer_gender,
+            influencer_location: campaign?.influencer_location,
+            influencer_category: campaign?.influencer_category,
+        });
 
     const onHandleChange = (event) => {
         setData(event.target.name, getEventValue(event));
@@ -85,48 +84,80 @@ export default function Create({ user }) {
         }
     }
 
+    useEffect(() => {
+        if (isEdit) {
+            calculateFees(campaign.budget);
+        }
+    }, [])
 
-
-    function submit(e) {
-        e.preventDefault();
+    const handleGoToNext = () => {
         if (tab === 'details') {
-            setTab('contents');
+            window.location.href = '?tab=contents'
+            // setTab('contents');
             return;
         }
 
         if (tab === 'contents') {
-            setTab('influencer');
+            window.location.href = '?tab=influencer'
+
+            // setTab('influencer');
             return;
         }
 
-        createBrief();
+        if (tab === 'influencer') {
+            Inertia.get(route('brief.view', { id: campaign?.id }))
+        }
+
+    }
+
+    function submit(e) {
+        e.preventDefault();
+
+        isEdit ? updateBrief() : createBrief();
     }
 
 
     const createBrief = async () => {
-        setBtnMessage("Creating campaign..")
-        post(route('brief.store'));
+        // setBtnMessage("Creating campaign?..")
+        post(route('brief.store')
+            , {
+                onSuccess: () => {
+                    // window.location.href = route('brief.success');
+                },
+                onError: () => {
+                    toast.error('An error occurred')
+                }
+            });
+        // reset();
+    };
 
-        // , {
-        //     onSuccess: () => {
-        //         window.location.href = route('brief.success');
-        //     },
-        //     onError: () => {
-        //         toast.error('An error occurred')
-        //     }
-        // });
+    const updateBrief = async () => {
+        // setBtnMessage("Creating campaign?..")
+        post(route('brief.update', { id: campaign?.id })
+            , {
+                onSuccess: () => {
+                    // window.location.href = route('brief.success');
+                    handleGoToNext();
+                },
+                onError: () => {
+                    toast.error('An error occurred')
+                }
+            });
         // reset();
     };
 
     function handleBudget(event) {
         setData(event.target.name, getEventValue(event));
         const budget = event.target.value;
+        calculateFees(budget);
+    }
+
+    const calculateFees = (budget) => {
         const serviceFee = 0.15 * Number(budget);
         const total = Number(budget) + serviceFee;
         setTotal(total);
         setServiceFee(serviceFee);
     }
-
     return (
         <AuthenticatedLayout title="My Campaigns" smallHeader={true}>
             <div className='bg-white h-screen  mt-3 px-5 mb-10'>
@@ -136,12 +167,11 @@ export default function Create({ user }) {
 
                 <div className='flex  justify-center mx-auto p-5 text-sm bg-gray-50 my-5'>
                     <div className='flex space-x-5'>
-                        <span className='font-bold  text-viralget-red  capitalize'>campaign  details</span>
+                        <a href="?tab=details" className='font-bold  text-black  capitalize'>campaign  details</a>
                         <span className='text-gray-300'>|</span>
-                        <span className={classNames('font-bold  capitalize', tab == 'contents' || tab == 'influencer' ? 'text-viralget-red' : 'text-gray-300')}>content</span>
+                        <a href="?tab=contents" className={classNames('font-bold  capitalize', tab == 'contents' || tab == 'influencer' ? ' text-black' : 'text-gray-300')}>content</a>
                         <span className='text-gray-300'>|</span>
-                        <span className={classNames('font-bold  capitalize', tab == 'influencer' ? 'text-viralget-red' : 'text-gray-300')}>influencers  detail</span>
-
+                        <a href="?tab=influencer" className={classNames('font-bold  capitalize', tab == 'influencer' ? ' text-black' : 'text-gray-300')}>influencers  detail</a>
                     </div>
                 </div>
 
@@ -150,16 +180,16 @@ export default function Create({ user }) {
                     {tab == 'details' ? (
                         // <Details />
                         <>
-                            <Details data={data} onHandleChange={onHandleChange} setData={setData} />
+                            <Details data={data} campaign={campaign} onHandleChange={onHandleChange} setData={setData} />
                         </>
 
 
                     ) : tab == 'influencer' ? (
-                        <Influencers data={data} onHandleChange={onHandleChange} setData={setData} handleBudget={handleBudget} />
+                        <Influencers data={data} campaign={campaign} onHandleChange={onHandleChange} setData={setData} handleBudget={handleBudget} serviceFee={serviceFee} total={total} />
                     )
                         : (
                             <>
-                                <Contents data={data} onHandleChange={onHandleChange} setData={setData} handleBudget={handleBudget} displayFile={displayFile} image={image} />
+                                <Contents data={data} campaign={campaign} onHandleChange={onHandleChange} setData={setData} handleBudget={handleBudget} displayFile={displayFile} image={image} />
                             </>)}
 
 

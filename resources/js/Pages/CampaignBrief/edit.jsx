@@ -1,3 +1,5 @@
+
+
 import AuthenticatedLayout from '@/components/AuthenticatedLayout'
 import ButtonBack from '@/components/ButtonBack';
 import { useEffect, useState } from 'react'
@@ -15,106 +17,149 @@ import PaystackPop from '@paystack/inline-js';
 import StripePaymentButton from '@/Components/PaymentButton/StripePaymentButton';
 import axios from "axios";
 import toast from '@/Components/Toast'
+import Create from './create';
+
+
+const tabs = [
+    {
+        name: 'Campaign Details',
+        href: '?tab=campaign-details',
+        completed: false
+    },
+    {
+        name: 'Content',
+        href: '?tab=content',
+        completed: false
+    },
+    {
+        name: 'Influencer',
+        href: '?tab=influencer',
+        completed: false
+    },
+
+]
 
 export default function Edit({ user, campaign }) {
 
-
-    const [tab, setTab] = useState('details')
-    const [image, setImageUrl] = useState(campaign.logo_url);
-    const [serviceFee, setServiceFee] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [stripeProps, setStripeProps] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
-    const [btnMessage, setBtnMessage] = useState("Pay & Create Campaign");
-    const { data, setData, post, processing, errors, reset } = useForm({
-        title: campaign.campaign_name,
-        social_network: campaign.social_network,
-        campaign_type: campaign.campaign_type,
-        budget: campaign.budget,
-        keywords: campaign.tracked_keywords,
-        start_date: campaign.state_date,
-        end_date: campaign.end_date,
-        description: campaign.campaign_description,
-        brand_name: campaign.brand_name,
-        location: campaign.target_location,
-        gender: campaign.target_gender,
-        age: campaign.target_age,
-        interest: campaign.target_interest,
-        reach: campaign.reach_goal,
-        impression: campaign.impressions_goal,
-        engagement: campaign.engagement_goal,
-        conversion: campaign.conversion_goal,
-        logo: '',
-        about_us: campaign.about_us,
-        campaign_goal: campaign.campaign_goal,
-        campaign_message: campaign.campaign_message,
-        key_objectives: campaign.campaign_key_objectives,
-        channels: campaign.channels,
-        timeline: campaign.timeline,
-        mood_board: '',
-        target_audience: campaign.target_audience,
-        currency: campaign.currency,
-        influencer_niche: campaign.influencer_niche,
-        influencer_size: campaign.influencer_size,
-        influencer_number: campaign.influencer_number,
-        influencer_gender: campaign.influencer_gender,
-        influencer_location: campaign.influencer_location,
-        influencer_category: campaign.influencer_category,
-    });
-
+    // const [tab, setTab] = useState('details')
+    // const [image, setImageUrl] = useState(campaign.logo_url);
+    // const [serviceFee, setServiceFee] = useState(0);
+    // const [total, setTotal] = useState(0);
+    // const [stripeProps, setStripeProps] = useState({});
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [btnMessage, setBtnMessage] = useState("Pay & Create Campaign");
+    // const { data, setData, post, processing, errors, reset } = useForm({
+    //     title: campaign.campaign_name,
+    //     social_network: campaign.social_network,
+    //     campaign_type: campaign.campaign_type,
+    //     budget: campaign.budget,
+    //     keywords: campaign.tracked_keywords,
+    //     start_date: campaign.state_date,
+    //     end_date: campaign.end_date,
+    //     description: campaign.campaign_description,
+    //     brand_name: campaign.brand_name,
+    //     location: campaign.target_location,
+    //     gender: campaign.target_gender,
+    //     age: campaign.target_age,
+    //     interest: campaign.target_interest,
+    //     reach: campaign.reach_goal,
+    //     impression: campaign.impressions_goal,
+    //     engagement: campaign.engagement_goal,
+    //     conversion: campaign.conversion_goal,
+    //     logo: '',
+    //     about_us: campaign.about_us,
+    //     campaign_goal: campaign.campaign_goal,
+    //     campaign_message: campaign.campaign_message,
+    //     key_objectives: campaign.campaign_key_objectives,
+    //     channels: campaign.channels,
+    //     timeline: campaign.timeline,
+    //     mood_board: '',
+    //     target_audience: campaign.target_audience,
+    //     currency: campaign.currency,
+    //     influencer_niche: campaign.influencer_niche,
+    //     influencer_size: campaign.influencer_size,
+    //     influencer_number: campaign.influencer_number,
+    //     influencer_gender: campaign.influencer_gender,
+    //     influencer_location: campaign.influencer_location,
+    //     influencer_category: campaign.influencer_category,
+    // });
 
 
-    useEffect(() => {
-        handleBudget();
-        setStripeProps({
-            email: user.email,
-            amount_usd: total,
-            metadata: { ...data, email: user.email },
-            paymentDataExtras: {
-                // job_listing_id: job.id,
-            },
-            type: 'paid-listing',
-            paymentVerificationRoute: route("general.payments.verify"),
-            successRedirectsTo: route('preorder.success'),
-        })
+    // useEffect(() => {
+    //     let urlParams = new URLSearchParams(window.location.search);
+    //     const tab = urlParams.get('tab');
 
-    }, [data])
+    //     // console.log({ tab });
+    //     if (tab) {
+    //         navigateToTab(tab);
+    //     } else {
+    //         setCurrentStep(0);
+    //     }
 
-    const onHandleChange = (event) => {
-        setData(event.target.name, getEventValue(event));
-    };
-
-    const displayFile = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            setData('logo', event.target.files[0]);
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                setImageUrl(e.target.result);
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    }
+    // }, []);
 
 
+    // const navigateToTab = (tab) => {
+    //     let index = tabs.findIndex((item) => item.href == "?tab=" + tab);
 
-    function submit(e) {
-        e.preventDefault();
-        if (tab === 'details') {
-            setTab('contents');
-            return;
-        }
+    //     if (index > -1) {
+    //         setTab(index);
+    //     } else {
+    //         setTab(0);
+    //     }
+    // }
 
-        if (tab === 'contents') {
-            setTab('influencer');
-            return;
-        }
+    // useEffect(() => {
+    //     handleBudget();
+    //     setStripeProps({
+    //         email: user.email,
+    //         amount_usd: total,
+    //         metadata: { ...data, email: user.email },
+    //         paymentDataExtras: {
+    //             // job_listing_id: job.id,
+    //         },
+    //         type: 'paid-listing',
+    //         paymentVerificationRoute: route("general.payments.verify"),
+    //         successRedirectsTo: route('preorder.success'),
+    //     })
 
-        createBrief();
+    // }, [data])
 
-        //  if(data.currency === 'NGN'){
-        //     payWithPaystack()
-        //  }
-    }
+    // const onHandleChange = (event) => {
+    //     setData(event.target.name, getEventValue(event));
+    // };
+
+    // const displayFile = (event) => {
+    //     if (event.target.files && event.target.files[0]) {
+    //         setData('logo', event.target.files[0]);
+    //         let reader = new FileReader();
+    //         reader.onload = (e) => {
+    //             setImageUrl(e.target.result);
+    //         };
+    //         reader.readAsDataURL(event.target.files[0]);
+    //     }
+    // }
+
+
+
+    // function submit(e) {
+    //     e.preventDefault();
+    //     if (tab === 'details') {
+    //         setTab('contents');
+    //         return;
+    //     }
+
+    //     if (tab === 'contents') {
+    //         setTab('influencer');
+    //         return;
+    //     }
+
+    //     createBrief();
+
+    //     //  if(data.currency === 'NGN'){
+    //     //     payWithPaystack()
+    //     //  }
+    // }
 
     // function payWithPaystack() {
 
@@ -161,34 +206,38 @@ export default function Edit({ user, campaign }) {
 
     // }
 
-    const createBrief = async () => {
-        setBtnMessage("Updating campaign..")
-        post(route('brief.update', { id: campaign.id }));
-        reset();
-        window.location.href = route('brief');
+    // const createBrief = async () => {
+    //     setBtnMessage("Updating campaign..")
+    //     post(route('brief.update', { id: campaign.id }));
+    //     reset();
+    //     window.location.href = route('brief');
 
 
-        // , {
-        //     onSuccess: () => {
-        //         reset();
-        //         window.location.href = route('brief.success');       
-        //    },
-        //     onError: (error) => {
-        //         console.log(error)
-        //         toast.error('An error occured');
-        //     }
-        // });
+    //     // , {
+    //     //     onSuccess: () => {
+    //     //         reset();
+    //     //         window.location.href = route('brief.success');       
+    //     //    },
+    //     //     onError: (error) => {
+    //     //         console.log(error)
+    //     //         toast.error('An error occured');
+    //     //     }
+    //     // });
 
-    };
+    // };
 
-    function handleBudget() {
-        const budget = campaign.budget;
-        const serviceFee = 0.15 * Number(budget);
-        const total = Number(budget) + serviceFee;
-        setTotal(total);
-        setServiceFee(serviceFee);
-    }
+    // function handleBudget() {
+    //     const budget = campaign.budget;
+    //     const serviceFee = 0.15 * Number(budget);
+    //     const total = Number(budget) + serviceFee;
+    //     setTotal(total);
+    //     setServiceFee(serviceFee);
+    // }
 
+
+    return (
+        <Create isEdit={true} campaign={campaign} />
+    )
     return (
         <AuthenticatedLayout title="My Campaigns" smallHeader={true}>
             <div className='bg-white h-screen  mt-3 px-5 mb-10'>
@@ -196,6 +245,7 @@ export default function Edit({ user, campaign }) {
 
                 <div className='flex  justify-center mx-auto'>
                     <div className='flex space-x-5'>
+
                         <span className='font-bold  text-viralget-red  capitalize'>campaign  details</span>
                         <span className='text-gray-300'>|</span>
                         <span className={classNames('font-bold  capitalize', tab == 'contents' || tab == 'influencer' ? 'text-viralget-red' : 'text-gray-200')}>content</span>

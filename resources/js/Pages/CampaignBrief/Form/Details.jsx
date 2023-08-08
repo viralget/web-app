@@ -4,7 +4,7 @@ import MultiSelect from "@/Components/MultiSelect"
 import Select from "@/Components/Select"
 import TextArea from "@/Components/TextArea"
 
-export default ({ data, onHandleChange, setData }) => {
+export default ({ data, onHandleChange, setData, campaign }) => {
     return (
         <>
             <div className="space-y-12">
@@ -51,7 +51,6 @@ export default ({ data, onHandleChange, setData }) => {
                                 required
                                 placeholder="Start date"
                                 defaultValue={data.start_date}
-
                                 onChange={onHandleChange}
                             />
                         </div>
@@ -73,11 +72,11 @@ export default ({ data, onHandleChange, setData }) => {
                             <Label>Select Campaign Type</Label>
                             <div class="mt-4 flex space-x-3">
                                 <div class="flex items-center">
-                                    <input id="public" onChange={onHandleChange} name="campaign_type" value="public" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="public" onChange={onHandleChange} name="campaign_type" checked={campaign.campaign_type == 'public'} value="public" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="public" class="ml-3 block text-sm font-medium text-gray-700">Public</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="private" onChange={onHandleChange} name="campaign_type" value="private" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="private" onChange={onHandleChange} name="campaign_type" checked={campaign.campaign_type == 'private'} value="private" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="private" class="ml-3 block text-sm font-medium text-gray-700">Private</label>
                                 </div>
                             </div>
@@ -92,6 +91,7 @@ export default ({ data, onHandleChange, setData }) => {
                                 label='Social Platform'
                                 name="social_network"
                                 required
+                                defaultValue={campaign?.social_network?.split(',')}
                                 onChange={(values) => setData('social_network', [...values].join(','))}
                             />
                         </div>
@@ -147,15 +147,15 @@ export default ({ data, onHandleChange, setData }) => {
 
                             <div class="mt-4 flex space-x-3">
                                 <div class="flex items-center">
-                                    <input id="male" onChange={onHandleChange} name="gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="male" onChange={onHandleChange} checked={campaign?.target_gender == 'male'} name="gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="female" name="gender" onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="female" name="gender" checked={campaign?.target_gender == 'female'} onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="female" name="gender" onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="female" name="gender" checked={campaign?.target_gender == 'both'} onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Both</label>
                                 </div>
                             </div>
@@ -192,17 +192,18 @@ export default ({ data, onHandleChange, setData }) => {
                     <div>
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Campaign Goal</h2>
                         <p className="mt-1 text-sm leading-6 text-gray-600">
-                            Define whay your brand hopes to achieve with this campaign.
+                            Define what your brand hopes to achieve with this campaign.
                         </p>
                     </div>
 
                     <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                         <div className="sm:col-span-full">
                             <Select
-                                name="reach"
+                                name="reach_goal"
                                 label="Campaign Goal"
                                 required
                                 placeholder="Select campaign goal"
+                                defaultValue={data.reach_goal}
                                 options={[
                                     { name: 'Reach' },
                                     { name: 'Impressions/Views' },

@@ -3,8 +3,9 @@ import Label from "@/Components/Label"
 import MultiSelect from "@/Components/MultiSelect"
 import Select from "@/Components/Select"
 import TextArea from "@/Components/TextArea"
+import { numberWithCommas } from "@/Utils/helpers"
 
-export default ({ data, onHandleChange, setData, handleBudget }) => {
+export default ({ data, onHandleChange, setData, campaign, handleBudget, serviceFee, total }) => {
     return (
         <>
             <div className="space-y-12">
@@ -30,6 +31,7 @@ export default ({ data, onHandleChange, setData, handleBudget }) => {
                                     value={data.influencer_size}
                                     onChange={onHandleChange}
                                     label="Size"
+                                    defaultValue={campaign?.influencer_size?.split(',')}
                                     defaultOptionText="Select preferred influencer size"
                                     required
                                 />
@@ -67,7 +69,6 @@ export default ({ data, onHandleChange, setData, handleBudget }) => {
                                 required
                                 placeholder="Enter a value"
                                 defaultValue={data.influencer_number}
-
                                 onChange={handleBudget}
                             />
                         </div>
@@ -82,6 +83,8 @@ export default ({ data, onHandleChange, setData, handleBudget }) => {
                                 label="Currency"
                                 defaultOptionText="Select Currency"
                                 required
+                                defaultValue={campaign?.currency?.split(',')}
+
                             />
                         </div>
 
@@ -137,21 +140,49 @@ export default ({ data, onHandleChange, setData, handleBudget }) => {
                             <Label>Influencer Gender</Label>
                             <div class="mt-4 flex space-x-3">
                                 <div class="flex items-center">
-                                    <input id="male" onChange={onHandleChange} name="influencer_gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="male" onChange={onHandleChange} checked={campaign.influencer_gender == 'male'} name="influencer_gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="female" name="influencer_gender" onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="female" name="influencer_gender" checked={campaign.influencer_gender == 'female'} onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="female" name="gender" onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="female" name="gender" checked={campaign.influencer_gender == 'both'} onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Both</label>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+                </div>
+
+
+                <div className="col-span-full bg-gray-50 mb-10">
+
+                    {
+                        data.budget && data.influencer_number && (
+                            <div className=' text-sm md:max-w-md p-5 w-full flex flex-col space-y-3'>
+
+                                <div className='flex justify-between'>
+                                    <span className='w-full'>Budget:</span>
+                                    <span className='text-left w-full'>{data.currency} {numberWithCommas(data.budget)}</span>
+                                </div>
+                                <div className='flex justify-between'>
+                                    <span className='w-full'>Budget Per Influencer :</span>
+                                    <span className='text-left w-full'>{data.currency} {(Number(data.budget) / Number(data.influencer_number)).toFixed(4)}</span>
+                                </div>
+                                <div className='flex justify-between'>
+                                    <span className='w-full'>Service fee(15%):</span>
+                                    <span className='text-left w-full'>{data.currency} {numberWithCommas(serviceFee)}</span>
+                                </div>
+                                <div className='flex justify-between'>
+                                    <span className='w-full'>Total:</span>
+                                    <span className='text-left w-full '>{data.currency} {numberWithCommas(total)}</span>
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div >
 
