@@ -316,14 +316,17 @@ class CampaignController extends Controller
             $brief->save();
 
             // return redirect(route('brief.success'));
-            return Redirect::route('brief.view', ['id' => $brief->id])->withMessage('Campaign created successfully. Influencers will start participating once payment is made.');
+            $route = route('brief.edit', ['id' => $brief->id]);
+            return redirect("$route?tab=contents");
+
+            //->withMessage('Campaign created successfully. Influencers will start participating once payment is made.');
 
             // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
         } catch (\Exception $e) {
             // dd($e);
             // $this->log($e);
             // return response(['status' => 'error', 'message' => $e, 'data' => []]);
-            return redirect()->back()->withErrors('An error occured. Please try again');
+            return redirect()->back()->withErrors('An error occured. Please try again - ' . $e->getMessage());
         }
     }
 
@@ -411,15 +414,18 @@ class CampaignController extends Controller
 
             $brief->update();
 
+            $route = route('brief.edit', ['id' => $brief->id]);
+
+            return redirect()->back();
             // return redirect(route('brief.success'));
-            return Redirect::route('brief.success');
+            // return Redirect::route('brief.success');
 
             // return response(['status' => 'success', 'message' => 'brief created.', 'data' => $brief  ]);
         } catch (\Exception $e) {
             // dd($e);
             // $this->log($e);
-            return response(['status' => 'error', 'message' => $e->getMessage(), 'data' => []]);
-            // return redirect()->back()->withError('An error occured. Please try again');
+            // return response(['status' => 'error', 'message' => $e->getMessage(), 'data' => []]);
+            return redirect()->back()->withError('An error occured. Please try again');
         }
     }
 
