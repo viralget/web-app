@@ -72,11 +72,11 @@ export default ({ data, onHandleChange, setData, campaign }) => {
                             <Label>Select Campaign Type</Label>
                             <div class="mt-4 flex space-x-3">
                                 <div class="flex items-center">
-                                    <input id="public" onChange={onHandleChange} name="campaign_type" checked={campaign.campaign_type == 'public'} value="public" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="public" onChange={onHandleChange} name="campaign_type" checked={campaign?.campaign_type == 'public'} value="public" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="public" class="ml-3 block text-sm font-medium text-gray-700">Public</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="private" onChange={onHandleChange} name="campaign_type" checked={campaign.campaign_type == 'private'} value="private" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="private" onChange={onHandleChange} name="campaign_type" checked={campaign?.campaign_type == 'private'} value="private" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="private" class="ml-3 block text-sm font-medium text-gray-700">Private</label>
                                 </div>
                             </div>
