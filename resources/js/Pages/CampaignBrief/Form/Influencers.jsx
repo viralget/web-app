@@ -140,15 +140,15 @@ export default ({ data, onHandleChange, setData, campaign, handleBudget, service
                             <Label>Influencer Gender</Label>
                             <div class="mt-4 flex space-x-3">
                                 <div class="flex items-center">
-                                    <input id="male" onChange={onHandleChange} checked={campaign.influencer_gender == 'male'} name="influencer_gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="male" onChange={onHandleChange} checked={campaign?.influencer_gender == 'male'} name="influencer_gender" value="male" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="female" name="influencer_gender" checked={campaign.influencer_gender == 'female'} onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="female" name="influencer_gender" checked={campaign?.influencer_gender == 'female'} onChange={onHandleChange} value="female" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input id="female" name="gender" checked={campaign.influencer_gender == 'both'} onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
+                                    <input id="female" name="gender" checked={campaign?.influencer_gender == 'both'} onChange={onHandleChange} value="both" type="radio" class="h-4 w-4 accent-viralget-red border-gray-300 text-viralget-red focus:ring-viralget-red" />
                                     <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Both</label>
                                 </div>
                             </div>

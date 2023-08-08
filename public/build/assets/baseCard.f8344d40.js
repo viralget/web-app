@@ -1,1 +1,0 @@
-import{R as e}from"./app.fb877f69.js";const r=({Icon:t,label:a,value:s})=>e.createElement("div",{className:"bg-white border rounded-md p-2  "},e.createElement("div",{className:"flex space-x-2 items-center"},t,e.createElement("span",{className:"text-xs"},a)),e.createElement("div",{className:"mt-2"},e.createElement("span",{className:"font-bold text-lg"},s)));export{r as default};
