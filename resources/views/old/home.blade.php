@@ -33,7 +33,7 @@
               Find Influencers > Reach out > Sit back and watch us manage them while you campaign goes viral.</p> -->
         {{-- profiles --}}
         <a class="btn btn-xl btn-round btn-warning w-350 mr-3 px-6 d-md-inline-block home-btn"
-          href="{{ route('search') }}">Get started <span class="ti-arrow-right"></span></a>
+          href="{{ route('explore') }}">Get started <span class="ti-arrow-right"></span></a>
       </div>
 
       <div class="col-lg-5 d-none d-lg-block">

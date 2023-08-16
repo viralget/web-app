@@ -43,7 +43,7 @@
                   <div class="media-body">
                     <h5>Reporting Usage</h5>
                     <h3 class="mb-4">{{$subscription->plan->reporting_limit - $subscription->reporting_balance}}/{{$subscription->plan->reporting_limit}}</h3>
-                    <a class="btn btn-danger btn-sm" href="{{ route('search') }}">Search Hashtags</a>
+                    <a class="btn btn-danger btn-sm" href="{{ route('explore') }}">Search Hashtags</a>
                   </div>
                 </div>
               </div>

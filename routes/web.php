@@ -81,10 +81,10 @@ Route::middleware('auth')->group(
         Route::get('/dashboard', [InfluencerController::class, 'index'])->name('dashboard');
         //    Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
-        Route::get('/search', [InfluencerController::class, 'index'])->name('explore.search');
+        Route::get('/search', [InfluencerController::class, 'search'])->name('explore.search');
+        // Route::get('/search', [InfluencerController::class, 'index'])->name('explore.search');
         Route::get('/messages', [MessagesController::class, 'index'])->name('get.messages');
 
-        Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
         Route::post('/search/delete', [InfluencerController::class, 'deleteUserSearch'])->name('influencers.search.delete');
 

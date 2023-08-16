@@ -28,7 +28,7 @@ export default function FeatureSelections({ data }) {
             <div className="mt-space-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
                 <FeatureCard
                     TopologySvg={<TopologySvg />}
-                    href={`${route('influencers.search')}/?influencer_qas=good&page=1`}
+                    href={`${route('explore.search')}/?influencer_qas=good&page=1`}
                     images={
                         [
                             Most_Image_1,
@@ -44,7 +44,7 @@ export default function FeatureSelections({ data }) {
                 />
                 <FeatureCard
                     TopologySvg={<TopologySvg />}
-                    href={`${route('influencers.search')}?influencer_qas=very+good`}
+                    href={`${route('explore.search')}?influencer_qas=very+good`}
                     images={
                         [
                             Top_Image_1,
@@ -60,7 +60,7 @@ export default function FeatureSelections({ data }) {
 
                 <FeatureCard
                     TopologySvg={<StarTopologySvg />}
-                    href={`${route('influencers.search')}/?size=100000&page=1`}
+                    href={`${route('explore.search')}/?size=100000&page=1`}
                     images={
                         [
                             Fastest_Image_1,

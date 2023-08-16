@@ -17,7 +17,7 @@ export default function Welcome() {
                     <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                         You've successfully created an account!
                     </h2>
-                    <Button href={route('influencers.search')}>Start Searching</Button>
+                    <Button href={route('explore.search')}>Start Searching</Button>
                 </div>
             </div>
 

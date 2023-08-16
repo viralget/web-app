@@ -97,8 +97,7 @@ export default function SearchForm({
 
     }
 
-
-
+    const searchItems = getSearch?.filter((item) => item.name != 'Platform');
 
     return (
         <div className={className}>
@@ -297,39 +296,44 @@ export default function SearchForm({
                         Search
                     </button>
                 </div>
-                {getSearch?.length > 0 && (
+                {searchItems.length > 0 && (
                     <div class="flex  -mt-3 mb-3 flex-wrap p-3 text-sm">
-                        {getSearch.map((item, index) => (
-                            <div
-                                className=" p-2 mr-3 mt-2  flex "
-                                key={index}
-                            >
-                                <span className="font-normal">{item.name}: </span>
-                                {
-                                    Array.isArray(item?.value) ? item.value.map((val, ind) => (
-                                        <span className="ml-2 text-viralget-grey">{val} {(ind + 1) === item.value.length ? '' : ','} </span>
-                                    ))
-                                        :
-                                        <span className="ml-2 text-viralget-grey">{item.value}</span>
-                                }
+                        {searchItems.map((item, index) => {
+                            return (
+                                <div
+                                    className=" p-2 mr-3 mt-2  flex "
+                                    key={index}
+                                >
+                                    <span className="font-normal">{item.name}: </span>
+                                    {
+                                        Array.isArray(item?.value) ? item.value.map((val, ind) => {
+                                            return (
+                                                <span className="ml-2 text-viralget-grey">{val} {(ind + 1) === item.value.length ? '' : ','} </span>
+                                            )
+                                        }
+                                        )
+                                            :
+                                            <span className="ml-2 text-viralget-grey">{item.value}</span>
+                                    }
 
-                                <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
+                                    <span className="ml-2 mt-1 cursor-pointer" onClick={() => handleFiltering(item)}  >
 
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clipPath="url(#clip0_958_74924)">
-                                            <path d="M10.1595 3.89062L3.88867 10.1615" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M10.1595 10.1615L3.88867 3.89062" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_958_74924">
-                                                <rect width="14" height="14" fill="white" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clipPath="url(#clip0_958_74924)">
+                                                <path d="M10.1595 3.89062L3.88867 10.1615" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M10.1595 10.1615L3.88867 3.89062" stroke="#748094" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_958_74924">
+                                                    <rect width="14" height="14" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
 
-                                </span>
-                            </div>
-                        ))}
+                                    </span>
+                                </div>
+                            )
+                        })}
                     </div>
                 )}
 

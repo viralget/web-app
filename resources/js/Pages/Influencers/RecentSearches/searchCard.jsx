@@ -73,7 +73,7 @@ const SearchCard = ({ card, isSaved }) => {
                 }
 
                 <div className="flex items-center">
-                    <Link href={route('influencers.search') + '?' + card.query} className="w-0 flex-1 pt-space-17">
+                    <Link href={route('explore.search') + '?' + card.query} className="w-0 flex-1 pt-space-17">
                         <span>
                             <span className=" text-sm font-medium text-gray-500 space-x-1 ">
                                 {Object.keys(keywords).length > 0 && Object.keys(keywords).splice(0, 2).map((item, index) => (

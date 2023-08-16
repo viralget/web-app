@@ -185,7 +185,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                 <div className="flex flex-1 justify-end md:justify-between mx-auto   sm:px-5 lg:px-5 relative">
                                     <div className="hidden md:flex flex-1">
                                         <div className="w-full max-w-sm  mt-3">
-                                            <form action={route('influencers.search')} method="get">
+                                            <form action={route('explore.search')} method="get">
 
                                                 <label htmlFor="search" className="sr-only">
                                                     Search
