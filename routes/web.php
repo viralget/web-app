@@ -81,10 +81,10 @@ Route::middleware('auth')->group(
         Route::get('/dashboard', [InfluencerController::class, 'index'])->name('dashboard');
         //    Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
-        Route::get('/search', [InfluencerController::class, 'index'])->name('search');
+        Route::get('/search', [InfluencerController::class, 'search'])->name('explore.search');
+        // Route::get('/search', [InfluencerController::class, 'index'])->name('explore.search');
         Route::get('/messages', [MessagesController::class, 'index'])->name('get.messages');
 
-        Route::get('/search', [InfluencerController::class, 'search'])->name('influencers.search');
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
         Route::post('/search/delete', [InfluencerController::class, 'deleteUserSearch'])->name('influencers.search.delete');
 
@@ -122,7 +122,7 @@ Route::middleware('auth')->group(
         Route::post('/campaign/brief/create', [CampaignController::class, 'storeBrief'])->name('brief.store');
         Route::post('general/payments/verify', [PurchasesController::class, 'generalVerifyPayment'])->name('general.payments.verify');
         Route::get('/campaign/brief/success', [CampaignController::class, 'successBrief'])->name('brief.success');
-        Route::get('/campaign/brief/view/{id}', [CampaignController::class, 'viewBrief'])->name('brief.view');
+        Route::get('/campaign/brief/view/{id}', [CampaignController::class, 'viewBrief'])->name('brief.show');
         Route::get('/campaign/brief/edit/{id}', [CampaignController::class, 'editBrief'])->name('brief.edit');
         Route::post('/campaign/brief/update/{id}', [CampaignController::class, 'updateBrief'])->name('brief.update');
         Route::patch('/campaign/brief/update-reference/{brief}', [CampaignController::class, 'updateReference'])->name('brief.reference.update');

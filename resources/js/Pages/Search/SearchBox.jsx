@@ -11,13 +11,13 @@ export default function SearchBox(props) {
     const [searchParams, setSearchParams] = useState('');
     const [getSearches, setSearches] = useState([]);
 
-    const handleChange = (e, name, query) => {
+    const handleChange = (e, name, query, value) => {
 
-        if (e?.target?.value.length === 0) return;
+        if (e?.target?.value.length === 0 || !value) return;
 
         const currentURL = window.location.search;
         const urlParams = new URLSearchParams(currentURL);
-        const value = e?.target?.value ? e.target.value : e.value;
+        value = e?.target?.value ? e.target.value : e?.value ?? value;
         const filterData = getSearches.filter((item) => item.name != name);
         const searchData = [...filterData, { name, query, value }];
         setSearches(searchData);
@@ -32,7 +32,7 @@ export default function SearchBox(props) {
     const handleSearch = async (e) => {
         e.preventDefault();
         props.onLoading && props.onLoading(true);
-        Inertia.get(route('influencers.search') + '?' + searchParams.toString());
+        Inertia.get(route('explore.search') + '?' + searchParams.toString());
     }
 
     const handleFiltering = (val) => {
@@ -42,15 +42,16 @@ export default function SearchBox(props) {
     }
 
     return (
-        <div className="mx-auto -mt-12 relative z-1 rounded-lg space-y-5">
-            <ButtonBack isWhite />
+        <div className="mx-auto -mt-24 relative z-1 rounded-lg space-y-5">
+            {/* <ButtonBack isWhite /> */}
             <SearchForm
                 getSearches={getSearches}
                 handleFiltering={handleFiltering}
                 categories={props?.categories ?? []}
                 countries={props?.countries ?? []}
                 handleChange={handleChange}
-                handleSubmit={handleSearch} {...props} />
+                handleSubmit={handleSearch}
+                {...props} />
         </div>
     )
 }

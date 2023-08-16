@@ -30,7 +30,7 @@ abstract class SitemapHelper
     {
         Sitemap::create()
             ->add(env('APP_URL'))
-            ->add(route('search'))
+            ->add(route('explore'))
             ->add(route('about'))
             ->add(route('contact'))
             ->add(route('login'))

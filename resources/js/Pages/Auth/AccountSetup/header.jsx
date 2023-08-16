@@ -6,11 +6,6 @@ import DropdownMenu from "@/Components/Layouts/Navigation/DropdownMenu";
 
 const Header = ({ user, image_url, levels }) => {
 
-
-
-
-
-
     const Steps = ({ item, index }) => {
         return (
             <div className="flex space-x-2">

@@ -1,5 +1,5 @@
 
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import AuthenticatedLayout from '@/Components/AuthenticatedLayout'
 import { Container } from '@/Components/Container'
 import SearchBox from '../Search/SearchBox'
@@ -12,15 +12,14 @@ import TableSkeleton from '@/Components/Skeleton/Table'
 import Pagination from '@/Components/Pagination'
 import EmptyState from '@/Components/EmptyState'
 import { nFormatter, numberFormat } from '@/Utils/helpers'
+import { PlatformContext } from '@/Contexts/PlatformContext'
 
 export default function Search({ list, categories, total_count, has_query }) {
     const [loading, setLoading] = useState(false);
+    const [platform] = useContext(PlatformContext);
 
-
-    console.log({ has_query })
     return (
-
-        <AuthenticatedLayout title={`Search through our database of influencers`}>
+        <AuthenticatedLayout smallHeader={false} title={`Search through our database of influencers`} bgColor={platform.bg_color}>
 
             <main className="flex-1 pb-8 px-10">
                 {/* <Container> */}

@@ -31,11 +31,6 @@ class InfluencerController extends Controller
     public function index()
     {
 
-        $twitterService = new TwitterService();
-
-        // dd($twitterService->getUserProfileById());
-
-
         $user = request()->user();
 
         $search_history = Search::where('user_id', $user->id)->limit(3)->orderBy('id', 'Desc')->get();
@@ -78,7 +73,6 @@ class InfluencerController extends Controller
      */
     public function search(Request $request)
     {
-
         $categories = Category::get();
 
         if (count($request->all()) > 0) {
@@ -96,6 +90,7 @@ class InfluencerController extends Controller
             $qas = $request->influencer_qas;
             $size = $request->size;
             $reach = $request->influencer_reach;
+            $platform = $request->platform;
 
             $verification_status = $request->verification_status;
             $gender = $request->gender;
@@ -106,6 +101,10 @@ class InfluencerController extends Controller
             $any = 'Any';
 
             // $countries = InfluencerCountry::get();
+
+            if ($platform) {
+                $result->where('platform', strtolower($platform));
+            }
 
             if ($size && $size != $any) {
 

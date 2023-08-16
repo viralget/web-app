@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Logo } from '@/components/Logo'
 import { classNames } from '@/Utils/helpers'
@@ -21,30 +21,35 @@ import { Link, usePage } from '@inertiajs/inertia-react'
 import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns } from '@/Utils/icons';
 
 
-
-
-// const navigation = [
-//     { name: 'Find Influencers', href: 'dashboard', icon: FindInfluencer, current: true },
-//     { name: 'Billings', href: 'billings.index', icon: CreditCardIcon, current: false },
-//     // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-//     { name: 'Settings', href: 'settings', icon: Cog6ToothIcon, current: false },
-//     { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
-// ]
-
-
 const navigation = [
-    { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
+    { name: 'Find Influencers', href: 'explore', alt_route: 'explore', icon: FindInfluencer, current: true },
     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
     { name: 'My Campaigns', href: 'brief', icon: MyCampaign, current: false },
     { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
-    { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
+    { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
 ]
 
 
-export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = false }) {
+export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = true, bgColor }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
+
+    useEffect(() => {
+        console.log({ is_current: checkIsCurrentRoute(navigation[0]) })
+    }, [])
+
+    const checkIsCurrentRoute = (item) => {
+        if (item.href) {
+            if (item.alt_route) {
+                return route().current(`${item.alt_route}.*`);
+            } else {
+                return route().current(`${item.href}`);
+            }
+        }
+
+        return false;
+    }
 
     return (
 
@@ -109,12 +114,12 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                 key={item.name}
                                                 href={route(item.href)}
                                                 className={classNames(
-                                                    item.href == route().current()
+                                                    checkIsCurrentRoute(item)
                                                         ? 'bg-orange-100 text-[#580877]'
                                                         : 'text-gray-400 hover:text-white hover:bg-gray-600',
                                                     'group flex items-center px-2 py-2 text-base  rounded-md'
                                                 )}
-                                                aria-current={item.href == route().current() ? 'page' : undefined}
+                                                aria-current={checkIsCurrentRoute(item) ? 'page' : undefined}
                                             >
                                                 <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-900" aria-hidden="true" />
                                                 {item.name}
@@ -146,14 +151,14 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                     key={item.name}
                                     href={route(item.href)}
                                     className={classNames(
-                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' :
+                                        checkIsCurrentRoute(item) ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' :
                                             'text-[#748094]  hover:text-[#A5ABB5]',
                                         'group flex  space-x-3 items-center font-satoshi  px-2 py-2 text-sm leading-6 rounded-lg'
                                     )}
-                                    aria-current={item.href == route().current() ? 'page' : undefined}
+                                    aria-current={checkIsCurrentRoute(item) ? 'page' : undefined}
                                 >
                                     <item.icon className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
-                                    <span className={item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>
+                                    <span className={checkIsCurrentRoute(item) ? 'text-[#580877]' : ''}>{item.name}</span>
                                 </a>
                             ))}
                         </div>
@@ -165,7 +170,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
             <div className="flex flex-1 flex-col lg:pl-64">
                 {showHeader && (
-                    < div className={smallHeader ? "  text-black" : "bg-[#01C5FF] bg-gradient-to-r from-[#01C5FF]  via-[#00AEFF] to-[#0094FE]    rounded-br-[5rem]"}>
+                    < div className={classNames(smallHeader ? "text-black" : "rounded-br-[5rem]", bgColor)}>
                         <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
                             <button
                                 type="button"
@@ -177,28 +182,28 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             </button>
                             {/* Search bar */}
                             {showSearchForm && (
-                                <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
+                                <div className="flex flex-1 justify-end md:justify-between mx-auto   sm:px-5 lg:px-5 relative">
                                     <div className="hidden md:flex flex-1">
-                                        {/* <div className="w-full max-w-sm  mt-3">
-                                            <form action={route('influencers.search')} method="get">
+                                        <div className="w-full max-w-sm  mt-3">
+                                            <form action={route('explore.search')} method="get">
 
                                                 <label htmlFor="search" className="sr-only">
                                                     Search
                                                 </label>
                                                 <div className="relative">
-                                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                        <MagnifyingGlassIcon className="h-5 w-5 text-gray-50" aria-hidden="true" />
+                                                    <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">
+                                                        <MagnifyingGlassIcon className="h-5 w-5 text-gray-300" aria-hidden="true" />
                                                     </div>
                                                     <input
                                                         id="keywords"
                                                         name="keywords"
                                                         className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
-                                                        placeholder="Enter keywords"
+                                                        placeholder="Search for influencer by name or @handle"
                                                         type="search"
                                                     />
                                                 </div>
                                             </form>
-                                        </div> */}
+                                        </div>
                                     </div>
                                     <div className="ml-4 flex items-center md:ml-6 space-x-3">
                                         <button
@@ -220,7 +225,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             // <Container className="relative">
                             <div className=" px-5 sm:px-6 lg:px-8  my-16 ">
                                 {/* <div className="w-[70%]  my-16 "> */}
-                                <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
+                                <h1 className="font-display pb-20 font-bold  font-lexend leading-[48px] text-white text-[44px]">
                                     {title}
                                 </h1>
                                 {subtitle && (
@@ -234,8 +239,10 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
                 )}
 
+                <div className='py-5'>
+                    {children}
+                </div>
 
-                {children}
             </div>
         </div >
     )

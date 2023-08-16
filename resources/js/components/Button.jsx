@@ -6,7 +6,7 @@ export default function Button({ type = 'submit', size = 'large', isDark = false
 
   const isBlock = block ? 'w-full' : '';
   // const buttonTextColor = transparent ? textColor ? textColor : 'text-white' : 'text-black';
-  const buttonBorderColor = borderColor ? borderColor : transparent ? `border-gray-900` : ' border';
+  const buttonBorderColor = borderColor ? borderColor : transparent ? `border-gray-900` : usePrimary ? 'border-transparent' : 'border-gray-200';
   const buttonBgColor = transparent ? ` bg-transparent hover:bg-gray-100` : isDark ? 'bg-gray-900 hover:bg-gray-600 ' : isLight ? 'bg-white' : usePrimary ? 'bg-primary' : bgColor;
   const buttonTextColor = transparent || isLight ? 'text-gray-900' : isDark ? `text-white` : usePrimary ? 'text-white' : textColor;
   const roundedStyle = rounded ? 'rounded-xl' : null;
