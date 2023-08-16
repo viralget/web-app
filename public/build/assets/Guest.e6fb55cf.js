@@ -1,1 +1,0 @@
-import{R as e}from"./app.4d8752af.js";import{H as a}from"./Header.51a2e8ef.js";function m({children:t}){return e.createElement(e.Fragment,null,e.createElement(a,null),e.createElement("div",{className:"mx-auto w-full"},t))}export{m as G};

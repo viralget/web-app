@@ -13,7 +13,7 @@ export default function SearchBox(props) {
 
     const handleChange = (e, name, query, value) => {
 
-        if (e?.target?.value.length === 0 || !value) return;
+        // if (e?.target?.value.length === 0) return;
 
         const currentURL = window.location.search;
         const urlParams = new URLSearchParams(currentURL);

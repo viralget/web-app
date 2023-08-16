@@ -30,8 +30,6 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useS
             _selectedOptions.push(value);
         }
 
-        console.log({ _selectedOptions })
-
         setSelectedOptions(_selectedOptions);
 
         e.target.value = _selectedOptions;

@@ -187,14 +187,14 @@ export default function header({ influencer, isMini, list }) {
                                                       <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.followers_count)} </span>
                                                       <span className="text-viralget-grey font-normal text-t-xsx  "> followers </span>
                                                 </div>
-                                                <div className="flex mr-3 md:flex-row flex-col">
+                                                {/* <div className="flex mr-3 md:flex-row flex-col">
                                                       <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.tweet_count)}</span>
                                                       <span className="text-viralget-grey font-normal text-t-xsx">  tweets </span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col">
                                                       <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.following_count)} </span>
                                                       <span className="text-viralget-grey font-normal text-t-xsx">  following</span>
-                                                </div>
+                                                </div> */}
                                           </div>
 
 
