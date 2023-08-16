@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::table('twitter_influencers', function (Blueprint $table) {
             $table->enum('platform', ['twitter', 'instagram', 'tiktok'])->default('twitter');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('average_likes_per_post')->nullable();
         });
     }
 
@@ -27,6 +31,10 @@ return new class extends Migration
     {
         Schema::table('twitter_influencers', function (Blueprint $table) {
             $table->dropColumn('platform');
+            $table->dropColumn('email');
+            $table->dropColumn('phone');
+            $table->dropColumn('gender');
+            $table->dropColumn('average_likes_per_post');
         });
     }
 };

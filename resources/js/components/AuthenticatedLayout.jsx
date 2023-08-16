@@ -42,7 +42,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
     const checkIsCurrentRoute = (item) => {
         if (item.href) {
             if (item.alt_route) {
-                return route().current(`${item.alt_route}.*`);
+                return route().current(`${item.href}`) || route().current(`${item.alt_route}.*`);
             } else {
                 return route().current(`${item.href}`);
             }

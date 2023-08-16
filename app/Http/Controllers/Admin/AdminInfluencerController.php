@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\InfluencersImport;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,9 @@ class AdminInfluencerController extends Controller
      */
     public function upload()
     {
-        return view('admin.influencers.upload');
+        $categories = Category::get();
+
+        return view('admin.influencers.upload', compact('categories'));
     }
 
     /**
@@ -60,24 +63,24 @@ class AdminInfluencerController extends Controller
      */
     public function handleUpload(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'file' => 'required|mimes:csv,xlsx,xls'
+        $request->validate([
+            'file' => 'required|mimes:csv,xlsx,xls',
+            'platform' => 'required',
+            'category' => 'required'
         ]);
-
-        if ($validation->fails()) {
-            return response(['status' => false, 'message' => 'File not imported', 'errors' => $validation->errors()]);
-        }
 
         try {
             $file = $request->file('file');
 
-            $this->importer->import(new InfluencersImport, $request->file('file'));
+            $this->importer->import(new InfluencersImport($request->platform, $request->category), $request->file('file'));
 
             // Storage::delete($path);
 
-            return response(['status' => true, 'message' => 'Influencers imported successfully']);
+            return redirect()->back()->withMessage('Influencers imported successfully');
+            // return response(['status' => true, 'message' => 'Influencers imported successfully']);
         } catch (\Exception $e) {
-            return response(['status' => false, 'message' => 'File not imported', 'error' => $e->getMessage()]);
+            return redirect()->back()->withErrors('Error uploading' . $e->getMessage());
+            // return response(['status' => false, 'message' => 'File not imported', 'error' => $e->getMessage()]);
         }
     }
 
