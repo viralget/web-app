@@ -1,5 +1,5 @@
 
-import { Fragment, useContext, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Logo } from '@/components/Logo'
 import { classNames } from '@/Utils/helpers'
@@ -19,23 +19,10 @@ import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, usePage } from '@inertiajs/inertia-react'
 import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns } from '@/Utils/icons';
-import { PlatformContext } from '@/Contexts/PlatformContext'
-import { platforms } from '@/Services/PlatformsService'
-
-
-
-
-// const navigation = [
-//     { name: 'Find Influencers', href: 'dashboard', icon: FindInfluencer, current: true },
-//     { name: 'Billings', href: 'billings.index', icon: CreditCardIcon, current: false },
-//     // { name: 'Campaigns', href: 'coming-soon', icon: MyCampaign, current: false },
-//     { name: 'Settings', href: 'settings', icon: Cog6ToothIcon, current: false },
-//     { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
-// ]
 
 
 const navigation = [
-    { name: 'Find Influencers', href: 'explore', icon: FindInfluencer, current: true },
+    { name: 'Find Influencers', href: 'explore', alt_route: 'explore', icon: FindInfluencer, current: true },
     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
     { name: 'My Campaigns', href: 'brief', icon: MyCampaign, current: false },
     { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
@@ -47,8 +34,21 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
-    const checkIsCurrentRoute = (routeName) => {
-        return route().current(routeName + '.*');
+
+    useEffect(() => {
+        console.log({ is_current: checkIsCurrentRoute(navigation[0]) })
+    }, [])
+
+    const checkIsCurrentRoute = (item) => {
+        if (item.href) {
+            if (item.alt_route) {
+                return route().current(`${item.alt_route}.*`);
+            } else {
+                return route().current(`${item.href}`);
+            }
+        }
+
+        return false;
     }
 
     return (
@@ -114,12 +114,12 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                 key={item.name}
                                                 href={route(item.href)}
                                                 className={classNames(
-                                                    checkIsCurrentRoute
+                                                    checkIsCurrentRoute(item)
                                                         ? 'bg-orange-100 text-[#580877]'
                                                         : 'text-gray-400 hover:text-white hover:bg-gray-600',
                                                     'group flex items-center px-2 py-2 text-base  rounded-md'
                                                 )}
-                                                aria-current={checkIsCurrentRoute ? 'page' : undefined}
+                                                aria-current={checkIsCurrentRoute(item) ? 'page' : undefined}
                                             >
                                                 <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-900" aria-hidden="true" />
                                                 {item.name}
@@ -151,14 +151,14 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                     key={item.name}
                                     href={route(item.href)}
                                     className={classNames(
-                                        item.href == route().current() ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' :
+                                        checkIsCurrentRoute(item) ? 'bg-fuchsia-50 rounded-md group-text-fuchsia-900' :
                                             'text-[#748094]  hover:text-[#A5ABB5]',
                                         'group flex  space-x-3 items-center font-satoshi  px-2 py-2 text-sm leading-6 rounded-lg'
                                     )}
-                                    aria-current={item.href == route().current() ? 'page' : undefined}
+                                    aria-current={checkIsCurrentRoute(item) ? 'page' : undefined}
                                 >
                                     <item.icon className={classNames("h-6 w-6 flex-shrink-0")} aria-hidden="true" stroke={item.href == route().current() ? '#580877' : '#A5ABB5'} />
-                                    <span className={item.href == route().current() ? 'text-[#580877]' : ''}>{item.name}</span>
+                                    <span className={checkIsCurrentRoute(item) ? 'text-[#580877]' : ''}>{item.name}</span>
                                 </a>
                             ))}
                         </div>
