@@ -17,7 +17,7 @@ export default function Search({ categories }) {
 
   return (
     <>
-  
+
       <Header />
       <main>
         <SectionHeader />

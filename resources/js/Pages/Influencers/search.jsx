@@ -16,8 +16,6 @@ import { nFormatter, numberFormat } from '@/Utils/helpers'
 export default function Search({ list, categories, total_count, has_query }) {
     const [loading, setLoading] = useState(false);
 
-
-    console.log({ has_query })
     return (
 
         <AuthenticatedLayout title={`Search through our database of influencers`}>

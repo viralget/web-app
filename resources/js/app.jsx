@@ -8,6 +8,7 @@ import { LightTheme, BaseProvider, styled } from 'baseui';
 import { Client as Styletron } from 'styletron-engine-atomic';
 import { Provider as StyletronProvider } from 'styletron-react';
 import { ToasterContainer } from 'baseui/toast';
+import { PlatformProvider } from './Contexts/PlatformContext';
 
 const engine = new Styletron();
 
@@ -23,7 +24,9 @@ createInertiaApp({
             <StyletronProvider value={engine}>
                 <BaseProvider theme={LightTheme}>
                     <ToasterContainer autoHideDuration={3000}>
-                        <App {...props} />
+                        <PlatformProvider>
+                            <App {...props} />
+                        </PlatformProvider>
                     </ToasterContainer>
                 </BaseProvider>
             </StyletronProvider>)

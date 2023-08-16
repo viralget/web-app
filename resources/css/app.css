@@ -43,6 +43,36 @@
   transform: rotate(-45deg);
 }
 
+
+.platform_header {
+  position: relative;
+  -webkit-filter: grayscale(0);
+  filter: none;
+  color: #6d6d6d;
+}
+
+.platform_header::after {
+  content: ' ';
+  position: absolute;
+  bottom: 0;
+  right: -23px;
+  width: 0;
+  height: 0%;
+  border-left: 0px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 40px solid #F5F5F5;
+}
+
+.platform_header.is_active {
+  color: #000;
+}
+
+.platform_header.is_active::after {
+  z-index: 1;
+  border-bottom-color: #fff;
+}
+
+
 body,
 html {
   height: 100%;

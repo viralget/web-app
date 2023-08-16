@@ -1,5 +1,5 @@
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useContext } from 'react'
 import MenuDropDown from "@/components/MenuDropDown";
 import ExportIcon from "../../../assets/images/ExportIcon.svg";
 import { PlusIcon } from "@/Utils/icons";
@@ -7,6 +7,8 @@ import { post, get } from "@/Utils/api";
 import toast from '@/Components/Toast';
 import { nFormatter } from '@/Utils/helpers';
 import { Link } from '@inertiajs/inertia-react';
+import { PlatformContext } from '@/Contexts/PlatformContext';
+import { getPlatform, platforms } from '@/Services/PlatformsService';
 
 function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
@@ -19,10 +21,12 @@ export default function header({ influencer, isMini, list }) {
       const [listName, setListName] = useState('');
       const [isProfiled, setIsProfiled] = useState(false);
 
+      const platform = getPlatform('name', influencer.platform);
 
       useEffect(() => {
             checkIfProfiled()
       }, [])
+
       async function checkIfProfiled() {
             const response = await get(route('influencer.findprofiled', { id: influencer.id }), true);
             const { data } = response.data;
@@ -69,7 +73,7 @@ export default function header({ influencer, isMini, list }) {
 
       return (
             <Link href={route('influencer.show', { influencer: influencer.username })}>
-                  <div className={classNames(isMini && 'bg-[#0077F2]', " w-full rounded-br-3xl mb-[5rem] h-40")}>
+                  <div className={classNames(isMini && (platform.bg_color ?? platforms[0].bg_color), " w-full rounded-br-3xl mb-[5rem] h-40")}>
                         <div className="p-5 absolute top-[3rem] w-full">
                               <div className="bg-white shadow-header-card flex  items-center  rounded-md p-3  w-full space-x-3 ">
 

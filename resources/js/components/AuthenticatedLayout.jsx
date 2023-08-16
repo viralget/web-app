@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Logo } from '@/components/Logo'
 import { classNames } from '@/Utils/helpers'
@@ -19,6 +19,8 @@ import DropdownMenu from './Layouts/Navigation/DropdownMenu'
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, usePage } from '@inertiajs/inertia-react'
 import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaigns } from '@/Utils/icons';
+import { PlatformContext } from '@/Contexts/PlatformContext'
+import { platforms } from '@/Services/PlatformsService'
 
 
 
@@ -37,14 +39,17 @@ const navigation = [
     { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
     { name: 'My Campaigns', href: 'brief', icon: MyCampaign, current: false },
     { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
-    { name: 'Help center', href: 'coming-soon', icon: HelpIcon, current: false },
+    { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
 ]
 
 
-export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = false }) {
+export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = true, bgColor }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
+    const checkIsCurrentRoute = (routeName) => {
+        return route().current(routeName + '.*');
+    }
 
     return (
 
@@ -109,12 +114,12 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                 key={item.name}
                                                 href={route(item.href)}
                                                 className={classNames(
-                                                    item.href == route().current()
+                                                    checkIsCurrentRoute
                                                         ? 'bg-orange-100 text-[#580877]'
                                                         : 'text-gray-400 hover:text-white hover:bg-gray-600',
                                                     'group flex items-center px-2 py-2 text-base  rounded-md'
                                                 )}
-                                                aria-current={item.href == route().current() ? 'page' : undefined}
+                                                aria-current={checkIsCurrentRoute ? 'page' : undefined}
                                             >
                                                 <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-900" aria-hidden="true" />
                                                 {item.name}
@@ -165,7 +170,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
             <div className="flex flex-1 flex-col lg:pl-64">
                 {showHeader && (
-                    < div className={smallHeader ? "  text-black" : "bg-[#01C5FF] bg-gradient-to-r from-[#01C5FF]  via-[#00AEFF] to-[#0094FE]    rounded-br-[5rem]"}>
+                    < div className={classNames(smallHeader ? "text-black" : "rounded-br-[5rem]", bgColor)}>
                         <div className="flex mt-4 h-16 flex-shrink-0 border-b border-gray-200 bg-transparent lg:border-none">
                             <button
                                 type="button"
@@ -177,28 +182,28 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             </button>
                             {/* Search bar */}
                             {showSearchForm && (
-                                <div className="flex flex-1 justify-end md:justify-between mx-auto  px-5 sm:px-6 lg:px-8 relative">
+                                <div className="flex flex-1 justify-end md:justify-between mx-auto   sm:px-5 lg:px-5 relative">
                                     <div className="hidden md:flex flex-1">
-                                        {/* <div className="w-full max-w-sm  mt-3">
+                                        <div className="w-full max-w-sm  mt-3">
                                             <form action={route('influencers.search')} method="get">
 
                                                 <label htmlFor="search" className="sr-only">
                                                     Search
                                                 </label>
                                                 <div className="relative">
-                                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                        <MagnifyingGlassIcon className="h-5 w-5 text-gray-50" aria-hidden="true" />
+                                                    <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">
+                                                        <MagnifyingGlassIcon className="h-5 w-5 text-gray-300" aria-hidden="true" />
                                                     </div>
                                                     <input
                                                         id="keywords"
                                                         name="keywords"
                                                         className={smallHeader ? "block w-full rounded-lg border border-black-50/40 bg-black-50/30 py-3 pl-10 pr-3 leading-5 placeholder-black-50 focus:border-fushia-500 focus:placeholder-black-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : "block w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-3 pl-10 pr-3 leading-5 placeholder-gray-50 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}
-                                                        placeholder="Enter keywords"
+                                                        placeholder="Search for influencer by name or @handle"
                                                         type="search"
                                                     />
                                                 </div>
                                             </form>
-                                        </div> */}
+                                        </div>
                                     </div>
                                     <div className="ml-4 flex items-center md:ml-6 space-x-3">
                                         <button
@@ -220,7 +225,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                             // <Container className="relative">
                             <div className=" px-5 sm:px-6 lg:px-8  my-16 ">
                                 {/* <div className="w-[70%]  my-16 "> */}
-                                <h1 className="font-display pb-5 font-bold  font-lexend leading-[48px] text-white text-[44px]">
+                                <h1 className="font-display pb-20 font-bold  font-lexend leading-[48px] text-white text-[44px]">
                                     {title}
                                 </h1>
                                 {subtitle && (
@@ -234,8 +239,10 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
 
                 )}
 
+                <div className='py-5'>
+                    {children}
+                </div>
 
-                {children}
             </div>
         </div >
     )

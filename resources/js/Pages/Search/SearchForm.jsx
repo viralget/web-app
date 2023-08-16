@@ -1,5 +1,10 @@
 import MultiDropdown from "@/Components/MultiDropdown";
-import { useState, useEffect } from "react";
+import Select from "@/Components/Select";
+import { PlatformContext } from "@/Contexts/PlatformContext";
+import { getPlatform, platforms } from "@/Services/PlatformsService";
+import { classNames } from "@/Utils/helpers";
+import { useState, useEffect, useContext } from "react";
+
 
 export default function SearchForm({
     keywords,
@@ -15,21 +20,9 @@ export default function SearchForm({
     className,
     categories,
     getSearches,
-    handleFiltering
+    handleFiltering,
+    handleChangePlatform
 }) {
-
-
-    useEffect(() => {
-        setSearches(getSearches);
-    }, [getSearches]);
-
-    useEffect(() => {
-        searchQuery();
-    }, []);
-
-    const [getSearch, setSearches] = useState(getSearches ?? []);
-
-
     const influencer_location = new URLSearchParams(window.location.search).get('influencer_location');
     const size = new URLSearchParams(window.location.search).get('size');
     const audience_location = new URLSearchParams(window.location.search).get('audience_location');
@@ -40,6 +33,31 @@ export default function SearchForm({
     const gender = new URLSearchParams(window.location.search).get('gender');
     const average_likes = new URLSearchParams(window.location.search).get('average_likes');
     const Selectedkeywords = new URLSearchParams(window.location.search).get('keywords');
+    const _platform = new URLSearchParams(window.location.search).get('platform');
+
+    const defaultPlatform = getPlatform('name', _platform);
+
+    const [getSearch, setSearches] = useState(getSearches ?? []);
+    const [platform, setPlatform] = useContext(PlatformContext);
+
+    useEffect(() => {
+        setPlatform(platform ?? defaultPlatform ?? platforms[0]);
+    }, [])
+
+    useEffect(() => {
+        handleChangePlatform && handleChangePlatform(platform.name ?? platforms[0].name);
+        handleChange(null, 'Platform', 'platform', platform?.name ?? platforms[0].name)
+    }, [platform]);
+
+
+    useEffect(() => {
+        setSearches(getSearches);
+    }, [getSearches]);
+
+    useEffect(() => {
+        searchQuery();
+    }, []);
+
 
     const searchQuery = () => {
 
@@ -84,8 +102,32 @@ export default function SearchForm({
 
     return (
         <div className={className}>
+            <div className="hidden md:grid grid-cols-2 w-80 gap-x-1">
+                {platforms.map((_platform, index) => {
+                    const platform_name = platform?.name ?? platforms[0].name;
+                    const isActiveTab = _platform.name == platform_name;
+
+                    return (
+                        <div key={index} onClick={() => setPlatform(_platform)} className={classNames(" py-2.5 p-3 rounded-t-xl platform_header cursor-pointer", isActiveTab ? 'bg-white is_active' : 'bg-[#F5F5F5]')}>
+                            <div className="flex justify-center items-center capitalize ">
+                                {isActiveTab ? _platform.icon : <span className="filter grayscale opacity-75">{_platform.icon}</span>}  <span className="ml-2 text-sm font-lexend">{_platform.name}</span>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+            <div className="mb-2 md:hidden">
+                <Select
+                    // label="Select Platform"
+                    defaultValue={platform?.name}
+                    defaultOptionText="Select Platform"
+                    onChange={(e) => setPlatform(getPlatform('name', e.target.value))}
+                    options={platforms.map((_platform) => (
+                        { name: _platform.name, value: _platform.name }
+                    ))} />
+            </div>
             <form action="#" onSubmit={handleSubmit} className="sm:mx-auto lg:mx-0">
-                <div className="hidden md:grid grid-cols-5 gap-4 bg-white shadow px-5 p-4 rounded-md">
+                <div className=" grid grid-cols-1 smgrid-cols-2 md:grid-cols-5 gap-4 bg-white  px-5 p-4 rounded-b-md rounded-r-md border-b ">
                     <div className="md:pr-6 md:border-r border-gray-100">
 
                         <MultiDropdown options={[
@@ -175,7 +217,7 @@ export default function SearchForm({
                             useSelectedOptions={gender?.split(',')}
                         />
                     </div>
-                    <div className="flex items-center sm:mt-0 sm:ml-3">
+                    <div className="hidden md:flex items-center sm:mt-0 sm:ml-3">
                         <button
                             onClick={handleSubmit}
                             // type="submit"
@@ -186,7 +228,7 @@ export default function SearchForm({
                     </div>
                 </div>
 
-                <div className=" align-middle my-3 space-x-2 grid grid-cols-3 gap-3">
+                <div className=" align-middle my-3 space-x-2 grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div className=" bg-white shadow rounded-md py-1 px-3 ">
                         <MultiDropdown options={categories}
                             name="category"
@@ -203,7 +245,7 @@ export default function SearchForm({
                         defaultValue={average_likes ?? ''}
                         onChange={(e) => handleChange(e, 'Average Likes', 'average_likes')}
                         placeholder={"Average likes"}
-                        className="block w-full px-3  shadow rounded-md  flex-grow  text-sm  border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                        className="block w-full py-3 px-3  shadow rounded-md  flex-grow  text-sm  border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
                     />
                     <input
                         id="likes"
@@ -212,7 +254,7 @@ export default function SearchForm({
                         defaultValue={average_likes ?? ''}
                         onChange={(e) => handleChange(e, 'Engagement rate', 'engagement_rate')}
                         placeholder={"Engagement rate"}
-                        className="block w-full px-3  shadow rounded-md  flex-grow  text-sm  border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
+                        className="block w-full py-3 px-3  shadow rounded-md  flex-grow  text-sm  border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"
                     />
                     {/* </div> */}
 
@@ -246,7 +288,15 @@ export default function SearchForm({
 
                 </div>
 
-
+                <div className="block md:hidden items-center sm:mt-0 sm:ml-3">
+                    <button
+                        onClick={handleSubmit}
+                        // type="submit"
+                        className=" w-full py-2  rounded-md shadow bg-orange-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 "
+                    >
+                        Search
+                    </button>
+                </div>
                 {getSearch?.length > 0 && (
                     <div class="flex  -mt-3 mb-3 flex-wrap p-3 text-sm">
                         {getSearch.map((item, index) => (

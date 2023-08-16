@@ -18,6 +18,8 @@ import { CheckBadgeIcon, CheckIcon } from '@heroicons/react/20/solid';
 import Avatar from '@/components/Skeleton/Avatar';
 import Pagination from '@/Components/Pagination';
 import SimplePagination from '@/Components/SimplePagination';
+import { TwitterSvg } from '@/Utils/icons';
+import { getPlatform } from '@/Services/PlatformsService';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -362,71 +364,72 @@ export default function List(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100 bg-white">
-                                        {data.map((item, index) => (
-                                            <tr key={index} className={selected.includes(item) ? 'bg-gray-50' : undefined}>
-                                                <td className="relative w-12 px-6 sm:w-16 sm:px-8">
-                                                    {selected.includes(item) && (
-                                                        <div className="absolute inset-y-0 left-0 w-0.5 bg-gray-900" />
-                                                    )}
-                                                    <input
-                                                        type="checkbox"
-                                                        className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded  accent-gray-700 sm:left-6"
-                                                        value={item.email}
-                                                        checked={selected.includes(item)}
-                                                        onChange={(e) => handleSelectProfile(e, item)}
-                                                    />
-                                                </td>
-                                                <td
-                                                    className={classNames(
-                                                        'whitespace-nowrap py-4 pr-3 text-sm cursor-pointer',
-                                                        selected.includes(item) ? 'text-gray-900' : 'text-gray-900'
-                                                    )}
-                                                >
-                                                    <a onClick={() => handleProfilePreview(item)} className="text-left">
-                                                        <div className="flex items-center">
-                                                            <Avatar url={item.profile_photo_url} />
-                                                            <div className="ml-3">
-                                                                <span className="font-medium flex items-center ">{item.username} {item.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
-                                                                <span className="block text-gray-400 text-md">{item.full_name}</span>
+                                        {data.map((item, index) => {
+                                            const platform = getPlatform('name', item.platform);
+                                            return (
+                                                <tr key={index} className={selected.includes(item) ? 'bg-gray-50' : undefined}>
+                                                    <td className="relative w-12 px-6 sm:w-16 sm:px-8">
+                                                        {selected.includes(item) && (
+                                                            <div className="absolute inset-y-0 left-0 w-0.5 bg-gray-900" />
+                                                        )}
+                                                        <input
+                                                            type="checkbox"
+                                                            className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded  accent-gray-700 sm:left-6"
+                                                            value={item.email}
+                                                            checked={selected.includes(item)}
+                                                            onChange={(e) => handleSelectProfile(e, item)}
+                                                        />
+                                                    </td>
+                                                    <td
+                                                        className={classNames(
+                                                            'whitespace-nowrap py-4 pr-3 text-sm cursor-pointer',
+                                                            selected.includes(item) ? 'text-gray-900' : 'text-gray-900'
+                                                        )}
+                                                    >
+                                                        <a onClick={() => handleProfilePreview(item)} className="text-left">
+                                                            <div className="flex items-center">
+                                                                <Avatar url={item.profile_photo_url} />
+                                                                <div className="ml-3">
+                                                                    <span className="font-medium flex items-center ">{item.username} {item.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
+                                                                    <span className="block text-gray-400 text-md">{item.full_name}</span>
+                                                                </div>
                                                             </div>
+                                                        </a>
+
+                                                    </td>
+                                                    {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.reach)}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">
+                                                        <a href={platform?.url + item.username} target="_blank">
+                                                            {platform?.icon}
+                                                        </a>
+
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4  w-60 text-sm text-gray-500">
+                                                        <div className='flex flex-wrap space-x-3'>
+                                                            {
+                                                                item?.categories?.length > 2 ?
+                                                                    <>
+                                                                        {item.categories.splice(0, 2).map((category) => (
+                                                                            <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category.name}</span>
+                                                                        ))}
+                                                                        <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{item.categories.length - 2} +</span>
+                                                                    </>
+                                                                    :
+                                                                    item?.categories?.map((category) => (
+                                                                        <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category.name} </span>
+                                                                    ))
+
+                                                            }
                                                         </div>
-                                                    </a>
-
-                                                </td>
-                                                {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.reach)}</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">
-                                                    <a href={'https://twitter.com/' + item.username} target="_blank">
-                                                        <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-                                                        </svg>
-                                                    </a>
-
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4  w-60 text-sm text-gray-500">
-                                                    <div className='flex flex-wrap space-x-3'>
-                                                        {
-                                                            item?.categories?.length > 2 ?
-                                                                <>
-                                                                    {item.categories.splice(0, 2).map((category) => (
-                                                                        <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category.name}</span>
-                                                                    ))}
-                                                                    <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{item.categories.length - 2} +</span>
-                                                                </>
-                                                                :
-                                                                item?.categories?.map((category) => (
-                                                                    <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category.name} </span>
-                                                                ))
-
-                                                        }
-                                                    </div>
-                                                </td>
-                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.location}</td>
-                                            </tr>
-                                        ))}
+                                                    </td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.location}</td>
+                                                </tr>
+                                            )
+                                        })}
                                     </tbody>
                                 </table>
                                 :

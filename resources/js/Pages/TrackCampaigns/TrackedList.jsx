@@ -1,26 +1,8 @@
 import Card from '@/Components/Card';
 export default function TrackedList({ searches }) {
 
-
-    // const searches = [
-    //     {
-    //         id: 1,
-    //         keywords:'myMtn, #mymtnGlobal',
-    //         date: new Date().toDateString()
-    //     },
-    //     {
-    //         id: 2,
-    //         keywords:'myAirtel, #myairtelGlobal',
-    //         date: new Date().toDateString()
-    //     },
-    //     {
-    //         id: 3,
-    //         keywords:'gloNG, #glo',
-    //         date: new Date().toDateString()
-    //     }
-    // ]
     return (
-        <div className="flex flex-col  px-10  mt-space-60">
+        <div className="flex flex-col ">
             <div className="inline-block min-w-full align-middle">
                 <Card usePadding={false} useBorder>
                     <div className="relative overflow-hidden ring-1 ring-black border-0 ring-opacity-5">
@@ -49,9 +31,9 @@ export default function TrackedList({ searches }) {
                                 {
                                     searches?.map((item, index) => (
                                         <tr key={index}>
-                                            <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{item.keyword}</td>
+                                            <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500"><a href={route('metrics.campaign.page', { query: item?.keyword ?? '#' })}>{item.keyword}</a></td>
                                             <td className="whitespace-nowrap py-4 text-sm text-gray-500">{new Date(item.updated_at).toDateString()}</td>
-                                            <td className="whitespace-nowrap py-4 text-sm text-blue-500"><a href={route('metrics.campaign.page', { query: item?.keyword ?? '#' })}>View Metrics</a></td>
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-500"><a href={route('metrics.campaign.page', { query: item?.keyword ?? '#' })}>View</a></td>
                                         </tr>
                                     ))
                                 }

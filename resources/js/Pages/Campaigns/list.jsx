@@ -39,8 +39,10 @@ export default function NewCampaign({ campaigns }) {
     };
 
     return (
-        <AuthenticatedLayout title="My Campaigns" subtitle={<Link href={route('campaigns.create')}>{campaigns.length > 0 ? 'Create a new campaign' : 'Create your first campaign'}</Link>}>
-
+        <AuthenticatedLayout>
+            <div className="flex mb-4 justify-between  w-full">
+                <Typography variant={'h2'} content="My Campaigns" />
+            </div>
             {campaigns.length > 0 ?
                 <div className='mx-10'>
                     <CampaignCards campaigns={campaigns} />

@@ -1,3 +1,5 @@
+import { InstagramSvg, TwitterSvg } from "./icons"
+
 export const countries = [
     { name: 'Afghanistan', code: 'AF' },
     { name: 'Åland Islands', code: 'AX' },
@@ -243,3 +245,4 @@ export const countries = [
     { name: 'Zambia', code: 'ZM' },
     { name: 'Zimbabwe', code: 'ZW' }
 ]
+

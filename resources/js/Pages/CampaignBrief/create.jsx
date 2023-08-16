@@ -105,7 +105,7 @@ export default function Create({ user, isEdit = false, campaign }) {
         }
 
         if (tab === 'influencer') {
-            Inertia.get(route('brief.view', { id: campaign?.id }))
+            Inertia.get(route('brief.show', { id: campaign?.id }))
         }
 
     }

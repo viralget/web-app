@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import AuthenticatedLayout from '@/components/AuthenticatedLayout'
 import { Container } from '@/Components/Container'
 import SearchBox from '../Search/SearchBox'
@@ -11,15 +11,17 @@ import List from './list'
 import TableSkeleton from '@/Components/Skeleton/Table';
 import Feature from './Feature';
 import { nFormatter } from '@/Utils/helpers'
+import { PlatformContext } from '@/Contexts/PlatformContext'
 
 export default function index({ saved_search, search_history, top_categories, top_influencers, categories, total_count }) {
     const [list, setList] = useState(false)
     const [searchActive, setSearchActive] = useState(false)
     const [loading, setLoading] = useState(false);
+    const [platform] = useContext(PlatformContext);
 
     return (
 
-        <AuthenticatedLayout title={`Search through our database of influencers`}>
+        <AuthenticatedLayout smallHeader={false} title={`Search through our database of influencers`} bgColor={platform.bg_color}>
             {/* </div> */}
 
             <main className="flex-1 pb-8 px-10">
