@@ -71,13 +71,13 @@
         }, function(start, end, label) {
             $('#fromDate').val(`${start.format('YYYYMMDDHHMM')}`);
             $('#toDate').val(`${end.format('YYYYMMDD')}0000`);
-            // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            // // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
     })
 
 
     $('#toggleAdvancedSearch').click(function() {
-        console.log('hhch')
+        // console.log('hhch')
         $('.advancedSearch').toggle();
     })
 
@@ -94,7 +94,7 @@
       } else {
         $('#trendsList').html(`<p class="text-white"><small><em>${data.message}</em></small></p>`);
       }
-      console.log(data)
+      // console.log(data)
     })
   })
 </script>

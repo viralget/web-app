@@ -29,7 +29,7 @@ export default function List(props) {
 
     const { count, data, paginationData } = props;
 
-    // console.log({ paginationData })
+    // // console.log({ paginationData })
     const checkbox = useRef()
     const [checked, setChecked] = useState(false)
     const [indeterminate, setIndeterminate] = useState(false)
@@ -147,7 +147,7 @@ export default function List(props) {
 
     }
 
-    console.log({ data })
+    // console.log({ data })
 
     return (
         <div className="flex flex-col">

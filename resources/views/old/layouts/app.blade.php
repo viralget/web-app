@@ -203,7 +203,7 @@ drift.load('peppmpypneiu');
   <script src="{{ asset('static/assets/js/traffic_data.js') }}"></script>
   <script>    
     if (checkCookie() && getCookie("ip_address") !== "") {
-      console.log(getCookie('ip_address'))
+      // console.log(getCookie('ip_address'))
     }else{
       getUserData();
       function getUserData() {
@@ -228,7 +228,7 @@ drift.load('peppmpypneiu');
           saveUserData(data);
         })
         .catch((err)=>{
-          console.log(err)
+          // console.log(err)
         })
       }
   
@@ -236,9 +236,9 @@ drift.load('peppmpypneiu');
         const URL = `/api/trafficdata`;
   
         $.post( URL, data).done(()=>{
-          console.log('traffic data saved')
+          // console.log('traffic data saved')
         }).fail(()=>{
-          console.log('An error occured while saving traffic data')
+          // console.log('An error occured while saving traffic data')
         });
       }
       

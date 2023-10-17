@@ -1,5 +1,5 @@
-import { useEffect  } from "react";
-const PieChart  = ({ chartData }) => {
+import { useEffect } from "react";
+const PieChart = ({ chartData }) => {
 
 
 
@@ -21,22 +21,22 @@ const PieChart  = ({ chartData }) => {
     options: {},
   };
 
-  
+
   useEffect(() => {
     new Chart(document.getElementById("chartPie"), configPie);
 
   }, [])
-  console.log("chartData:",chartData)
+  // console.log("chartData:",chartData)
 
 
-    
-  
 
-    return(
-            <div className="overflow-hidden">
-                <canvas className="p-1  border rounded-md " id="chartPie"></canvas>
-            </div>
-    )
+
+
+  return (
+    <div className="overflow-hidden">
+      <canvas className="p-1  border rounded-md " id="chartPie"></canvas>
+    </div>
+  )
 }
 
 

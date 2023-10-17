@@ -5,7 +5,7 @@ import Typography from "@/Components/Typography";
 
 const TrackCampaigns = ({ searches }) => {
 
-    // console.log("searches:", searches)
+    // // console.log("searches:", searches)
 
     return (
         <AuthenticatedLayout smallHeader={true}>

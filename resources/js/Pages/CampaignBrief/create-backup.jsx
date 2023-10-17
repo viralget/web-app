@@ -141,7 +141,7 @@ export default function Create({ user }) {
             },
             onCancel: () => {
                 // user closed popup
-                console.log("You need this, stay back!")
+                // console.log("You need this, stay back!")
                 // setErrors({})
             }
         });
@@ -173,7 +173,7 @@ export default function Create({ user }) {
         //         window.location.href = route('brief.success');       
         //    },
         //     onError: (error) => {
-        //         console.log(error)
+        //         // console.log(error)
         //         toast.error('An error occured');
         //     }
         // });

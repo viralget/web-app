@@ -35,7 +35,7 @@ export default function ContactForm() {
 
             },
             onError: (errors) => {
-                console.log("error:", errors)
+                // console.log("error:", errors)
             }
         })
 

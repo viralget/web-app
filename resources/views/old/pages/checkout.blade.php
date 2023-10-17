@@ -114,13 +114,13 @@
 
     function payWithPaystack(){
         if(formatPaystack === true){
-            console.log('we are true')
+            // console.log('we are true')
             amount = {{ $plan->amount * 100 }}
             currency = 'NGN'; //Remove after domicilliary is setup
         }
 
-        console.log(formatPaystack)
-        console.log(amount)
+        // console.log(formatPaystack)
+        // console.log(amount)
         var handler = PaystackPop.setup({
             key: '{{ env("PAYSTACK_PK") }}',
             email: '{{ Auth()->user()->email }}',
@@ -174,7 +174,7 @@
     function isNigeria(){
         $.get("https://ipinfo.io?token={{ env('IP_TOKEN') }}", function (response) {
             setCookie('location', response.country, 1);
-            console.log(response.country);
+            // console.log(response.country);
             if(response.country === 'NG'){
                 return true
             }

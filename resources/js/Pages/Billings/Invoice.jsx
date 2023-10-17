@@ -25,7 +25,7 @@ export default function Invoice(props) {
 
 const Receipt = ({ invoice, showLogo }) => {
 
-    // console.log({ invoice })
+    // // console.log({ invoice })
     return (
         <div>
             <section className="py-10 ">

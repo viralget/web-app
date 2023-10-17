@@ -70,7 +70,7 @@ export const nairaSymbol = "₦";
 export function getQASValue(score) {
     let value;
 
-    console.log({ score })
+    // console.log({ score })
 
     switch (true) {
         case (score < 25):
@@ -124,7 +124,7 @@ export function getQASColor(score) {
             value = 'bg-gray-100 text-gray-900'
             break;
     }
-    // console.log({ value, score })
+    // // console.log({ value, score })
     return value
 }
 
@@ -155,7 +155,7 @@ export function safetyLevelColor(score) {
             value = 'bg-gray-100 text-gray-900'
             break;
     }
-    // console.log({ value, score })
+    // // console.log({ value, score })
     return value
 }
 
@@ -192,11 +192,11 @@ export function onlyUnique(value, index, array) {
     return array.indexOf(value) === index;
 }
 
- export function numberWithCommas(x) {
+export function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
- export function Formatter(n) {
+export function Formatter(n) {
     // if (n < 1e3) return this.numberWithCommas(n);
     if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
     if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";

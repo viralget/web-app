@@ -125,7 +125,7 @@ function getStatusColor(status) {
 
 export default function Details({ campaign }) {
 
-    // console.log({ campaign })
+    // // console.log({ campaign })
     const [selected, setSelected] = useState(moods[5])
 
     const { auth } = usePage().props;

@@ -23,7 +23,7 @@ export default function Select({
     const select = useRef();
 
     useEffect(() => {
-        // console.log({defaultValue})
+        // // console.log({defaultValue})
         if (isFocused) {
             select.current.focus();
         }

@@ -7,7 +7,7 @@ import toast from '../Toast';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-console.log("stripePromise:", stripePromise)
+// console.log("stripePromise:", stripePromise)
 
 const StripePaymentButton = (props) => {
 
@@ -111,7 +111,7 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
                 return;
             }
 
-            console.log({ ev, customer })
+            // console.log({ ev, customer })
             const data = { amount, type, payment_method_id: ev.paymentMethod.id, customer_id: customer?.data?.id, email: customer?.data?.email, metadata };
 
             if (type == 'subscription') {
@@ -136,9 +136,9 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
 
             const { paymentIntent, error: confirmError } = confirmation;
 
-            // console.log({ confirmation })
+            // // console.log({ confirmation })
 
-            // console.log({ clientSecret, response })
+            // // console.log({ clientSecret, response })
 
             if (confirmError) {
                 // Report to the browser that the payment failed, prompting it to
@@ -159,7 +159,7 @@ const CheckoutForm = ({ className, isLink, plan, successRedirectsTo, type, amoun
                     if (error) {
                         // The payment failed -- ask your customer for a new payment method.
                     } else {
-                        console.log('success', paymentIntent)
+                        // console.log('success', paymentIntent)
                         // The payment has succeeded.
                         onSuccess({ reference: paymentIntent.id })
 
