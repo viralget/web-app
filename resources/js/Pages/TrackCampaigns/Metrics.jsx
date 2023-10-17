@@ -18,7 +18,7 @@ const Metrics = ({ search, result, keyword, updated_at }) => {
     const [metrics, setMetrics] = useState(result ?? null);
 
     useEffect(() => {
-        console.log({ metrics })
+        // console.log({ metrics })
         if (!metrics) {
             getMetrics();
         } else {
@@ -52,7 +52,7 @@ const Metrics = ({ search, result, keyword, updated_at }) => {
 
         const response = await post(route('metrics.campaign.store'), data, true);
 
-        console.log({ response, data })
+        // console.log({ response, data })
 
     }
 

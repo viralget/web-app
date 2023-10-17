@@ -74,7 +74,7 @@ const PaystackPaymentButton = ({ className, isLink, plan, successRedirectsTo, ty
     // you can call this function anything
     const onClose = () => {
         // implementation for  whatever you want to do when the Paystack dialog closed.
-        // console.log('closed')
+        // // console.log('closed')
     }
 
     return (

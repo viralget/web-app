@@ -184,7 +184,7 @@
     function isNigeria(){
         $.get("https://ipinfo.io?token={{ env('IP_TOKEN') }}", function (response) {
             setCookie('location', response.country, 1);
-            console.log(response.country);
+            // console.log(response.country);
             if(response.country === 'NG'){
                 return true
             }

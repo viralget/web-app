@@ -84,6 +84,7 @@ Route::middleware('auth')->group(
         Route::get('/search', [InfluencerController::class, 'search'])->name('explore.search');
         // Route::get('/search', [InfluencerController::class, 'index'])->name('explore.search');
         Route::get('/messages', [MessagesController::class, 'index'])->name('get.messages');
+        Route::post('/messages', [MessagesController::class, 'send'])->name('message.post');
 
         Route::post('/search/store', [InfluencerController::class, 'storeUserSearch'])->name('influencers.search.store');
         Route::post('/search/delete', [InfluencerController::class, 'deleteUserSearch'])->name('influencers.search.delete');

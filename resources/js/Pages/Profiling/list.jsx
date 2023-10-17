@@ -37,7 +37,7 @@ export default function List({ influencerList, profiles }) {
         return influencer;
     });
 
-    console.log({ profiles, influencers })
+    // console.log({ profiles, influencers })
 
     function toggleAll() {
         setSelected(checked || indeterminate ? [] : influencers)

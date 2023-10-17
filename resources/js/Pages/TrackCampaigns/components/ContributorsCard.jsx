@@ -4,7 +4,7 @@ const ContributorsCard = ({ title, subTitle, contributors, total_contributors })
 
 
         const Row = ({ item }) => {
-                console.log({ item })
+                // console.log({ item })
                 const { username, name, profile_image_url } = item.user;
                 const value = item?.tweets_count;
                 const percentage = (item?.tweets_count / total_contributors) * 100;

@@ -13,7 +13,7 @@ export default function SearchBox(props) {
         if (!searchVal) return false;
 
         // const replaceVal  = searchVal.toLowerCase().replaceAll(" ", "_");
-        // console.log("replaceVal:", replaceVal);
+        // // console.log("replaceVal:", replaceVal);
         location.href = route('metrics.campaign.page', { query: searchVal });
     }
 

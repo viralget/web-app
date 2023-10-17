@@ -55,7 +55,7 @@ export default function PAYG({ plan }) {
 
         setIsLoading(true);
         setPaymentText("Initiating payment...");
-        // console.log({ d: import.meta.env })
+        // // console.log({ d: import.meta.env })
 
         const paystack = new PaystackPop();
         paystack.newTransaction({
@@ -67,12 +67,12 @@ export default function PAYG({ plan }) {
 
             onSuccess: (transaction) => {
                 // Payment complete! Reference: transaction.reference 
-                console.log({ transaction })
+                // console.log({ transaction })
                 verifyPayment(transaction.reference);
             },
             onCancel: () => {
                 // user closed popup
-                console.log("You need this, stay back!")
+                // console.log("You need this, stay back!")
             }
         });
 
@@ -96,7 +96,7 @@ export default function PAYG({ plan }) {
         setIsLoading(false);
         // })
         // .catch((error) => {
-        //     console.log("error:", error);
+        //     // console.log("error:", error);
         //     toast.error('Something went wrong');
         // }).finally(() => setIsLoading(false));
 

@@ -13,12 +13,12 @@ const instance = axios.create({
 // request interceptor
 instance.interceptors.request.use(
   (config, reqAuth) => {
-    // console.log({config})
+    // // console.log({config})
     return config;
   },
   (error) => {
     //check 401 unauthorized error and redirect to login if such occurs
-    // console.log({error})
+    // // console.log({error})
   }
 );
 
@@ -97,7 +97,7 @@ const del = async (url, payload = {}, requireAuth = true) => {
 
 const handleError = (error) => {
 
-  console.log({ error })
+  // console.log({ error })
   // return error
   return {
     error: error.response?.data ?? 'An error occurred',

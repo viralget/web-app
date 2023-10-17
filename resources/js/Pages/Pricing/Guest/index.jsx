@@ -4,7 +4,7 @@ import PricingPage from '../PricingPage';
 
 
 export default function GuestPricing(props) {
-    console.log({ props })
+    // console.log({ props })
     return (
         <Guest>
             <PricingPage {...props} />

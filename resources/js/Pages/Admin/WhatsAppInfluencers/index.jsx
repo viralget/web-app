@@ -3,7 +3,7 @@ import Dashboard from '../Layouts/Dashboard';
 
 export default function index(props) {
 
-    console.log({ props })
+    // console.log({ props })
     return (
         <Dashboard
             title="WhatApp Influencers"

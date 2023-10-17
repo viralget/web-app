@@ -89,7 +89,7 @@ export default function Edit({ user, campaign }) {
     //     let urlParams = new URLSearchParams(window.location.search);
     //     const tab = urlParams.get('tab');
 
-    //     // console.log({ tab });
+    //     // // console.log({ tab });
     //     if (tab) {
     //         navigateToTab(tab);
     //     } else {
@@ -187,7 +187,7 @@ export default function Edit({ user, campaign }) {
     //         },
     //         onCancel: () => {
     //             // user closed popup
-    //             console.log("You need this, stay back!")
+    //             // console.log("You need this, stay back!")
     //             // setErrors({})
     //         }
     //     });
@@ -219,7 +219,7 @@ export default function Edit({ user, campaign }) {
     //     //         window.location.href = route('brief.success');       
     //     //    },
     //     //     onError: (error) => {
-    //     //         console.log(error)
+    //     //         // console.log(error)
     //     //         toast.error('An error occured');
     //     //     }
     //     // });

@@ -10,7 +10,7 @@ import Typography from '@/Components/Typography';
 
 export default function List({ campaigns }) {
 
-    // console.log("campaigns::", campaigns)
+    // // console.log("campaigns::", campaigns)
 
     return (
         <AuthenticatedLayout smallHeader={true}>

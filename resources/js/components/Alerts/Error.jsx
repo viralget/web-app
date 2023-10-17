@@ -13,7 +13,7 @@ export default function Error(props) {
     //Display first error message as the actual error message instead
     message = Object.values(errors)[0];
 
-    // console.log({ message })
+    // // console.log({ message })
     errors = [];
   }
 

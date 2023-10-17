@@ -13,7 +13,7 @@ export const getKeywordData = async (keyword) => {
         return response.data.data;
     }
 
-    // console.log({ response });
+    // // console.log({ response });
     return false;
 }
 

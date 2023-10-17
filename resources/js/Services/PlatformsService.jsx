@@ -21,6 +21,6 @@ export const getPlatforms = () => {
 }
 
 export const getPlatform = (field, value) => {
-    console.log({ field, value })
+    // console.log({ field, value })
     return platforms.filter((platform) => platform[field] == value)[0];
 }

@@ -23,9 +23,9 @@ import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaign
 
 const navigation = [
     { name: 'Find Influencers', href: 'explore', alt_route: 'explore', icon: FindInfluencer, current: true },
-    { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
-    { name: 'My Campaigns', href: 'brief', icon: MyCampaign, current: false },
-    { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
+    // { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+    // { name: 'My Campaigns', href: 'brief', icon: MyCampaign, current: false },
+    // { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
     { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },
 ]
 
@@ -34,10 +34,6 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
-
-    useEffect(() => {
-        console.log({ is_current: checkIsCurrentRoute(navigation[0]) })
-    }, [])
 
     const checkIsCurrentRoute = (item) => {
         if (item.href) {

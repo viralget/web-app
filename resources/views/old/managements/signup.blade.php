@@ -154,7 +154,7 @@
       "separator": " - ",
       }
     }, function(start, end, label) {
-      console.log('start', start.format('YYYY-MM-DD'))
+      // console.log('start', start.format('YYYY-MM-DD'))
     });
   });
     
@@ -171,7 +171,7 @@
       "separator": " - ",
       }
     }, function(start, end, label) {
-      console.log('start', start.format('YYYY-MM-DD'))
+      // console.log('start', start.format('YYYY-MM-DD'))
     });
   });
 

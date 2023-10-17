@@ -34,6 +34,8 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useS
 
         e.target.value = _selectedOptions;
         onChange(e);
+        setShowDropdown(false);
+
     }
 
     function useOutsideAlerter(ref) {

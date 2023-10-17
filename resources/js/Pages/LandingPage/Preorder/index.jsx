@@ -21,7 +21,7 @@ const influencer_types = ['nano', 'micro', 'macro', 'mega', 'mid-tier'];
 
 const influencer_type_options = new Array(20).fill(0).map((value, index) => ({ value: index + 1 }));
 
-// console.log({ influencer_type_options })
+// // console.log({ influencer_type_options })
 export default function Preorder() {
 
     const amount = 19999;
@@ -39,7 +39,7 @@ export default function Preorder() {
 
     useEffect(() => {
         checkIsValidFields();
-        // console.log({ data })
+        // // console.log({ data })
     }, [email, data])
 
     useEffect(() => {
@@ -103,12 +103,12 @@ export default function Preorder() {
             _errors.push('Industry field is required')
         }
 
-        // console.log({ p: data })
+        // // console.log({ p: data })
         if (!data.platform) {
             _errors.push('Platform field is required')
         }
 
-        console.log({ x: _errors.length, data })
+        // console.log({ x: _errors.length, data })
         if (_errors.length) {
             setCanMakePayment(false);
         } else {
@@ -154,7 +154,7 @@ export default function Preorder() {
 
         setIsLoading(true);
         // setPaymentText("Initiating payment...");
-        // console.log({ d: import.meta.env })
+        // // console.log({ d: import.meta.env })
 
         const paystack = new PaystackPop();
         paystack.newTransaction({
@@ -171,7 +171,7 @@ export default function Preorder() {
 
             onSuccess: (transaction) => {
                 // Payment complete! Reference: transaction.reference 
-                // console.log({ transaction })
+                // // console.log({ transaction })
 
                 const payment_data = {
                     reference: transaction.reference,
@@ -184,7 +184,7 @@ export default function Preorder() {
             },
             onCancel: () => {
                 // user closed popup
-                console.log("You need this, stay back!")
+                // console.log("You need this, stay back!")
                 setErrors({})
             }
         });

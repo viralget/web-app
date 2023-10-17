@@ -9,7 +9,7 @@ const MetricsHeader = ({ metrics, onRefetch, updated_at }) => {
 
     const data = metrics;
 
-    // console.log("data:", data)
+    // // console.log("data:", data)
     const metricsData = [
         {
             title: 'Impressions',

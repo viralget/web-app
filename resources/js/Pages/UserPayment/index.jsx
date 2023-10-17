@@ -57,7 +57,7 @@ export const PaymentProccess = (props) => {
             },
             onCancel: () => {
                 // user closed popup
-                console.log("You need this, stay back!")
+                // console.log("You need this, stay back!")
             }
         });
 
@@ -78,7 +78,7 @@ export const PaymentProccess = (props) => {
                 }
             })
             .catch((error) => {
-                console.log("error:", error);
+                // console.log("error:", error);
                 toast.error('Something went wrong');
             }).finally(() => setIsLoading(false));
 

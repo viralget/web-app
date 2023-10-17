@@ -543,7 +543,7 @@
       } else {
         $('#trendsList').html(`<p class="text-white"><small><em>${data.message}</em></small></p>`);
       }
-      console.log(data)
+      // console.log(data)
     })
   });
   
@@ -551,11 +551,11 @@
   .getCurrentPosition(success, canceled);
 
   function success(data){
-    console.log('success', data);
+    // console.log('success', data);
   }
   
   function canceled(){
-    console.log('location disallowed');
+    // console.log('location disallowed');
   }
 </script>
 @endsection

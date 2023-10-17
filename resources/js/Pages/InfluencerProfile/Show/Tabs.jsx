@@ -61,7 +61,7 @@ const Tabs = ({ influencer }) => {
 
   useEffect(() => {
 
-    console.log({ activeTab })
+    // console.log({ activeTab })
   }, [activeTab])
 
 
