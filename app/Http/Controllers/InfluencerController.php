@@ -94,7 +94,7 @@ class InfluencerController extends Controller
 
             $verification_status = $request->verification_status;
             $gender = $request->gender;
-            $avg_likes = $request->likes;
+            $avg_likes = $request->average_likes;
             $er = $request->engagement_rate;
 
 
@@ -131,6 +131,7 @@ class InfluencerController extends Controller
                         $query->orWhereHas('geo_location', function ($q) use ($location) {
                             $q->where('name', $location);
                         });
+                        $query->orWhere('location',  $location);
                     }
                 });
             }
@@ -190,6 +191,23 @@ class InfluencerController extends Controller
             }
 
 
+            if ($er) {
+                $result->where('engagement_rate', $er);
+            }
+
+
+            if ($avg_likes) {
+                $result->where('average_likes_per_post', $avg_likes);
+            }
+
+            if ($gender) {
+                $result->where('gender', $gender);
+            }
+
+
+            if ($verification_status) {
+                $result->where('is_verified', $verification_status == 'Verified' ? true : false);
+            }
 
 
 

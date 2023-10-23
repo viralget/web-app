@@ -36,6 +36,7 @@ class InfluencerResource extends JsonResource
             'location' => $this->geo_location?->name,
             'is_verified' => $this->is_verified,
             'platform' => $this->platform,
+            'average_likes' => $this->average_likes_per_post,
             'bio' => $this->bio,
             // 'gender' => 'Male',
             // 'age' => 29,
