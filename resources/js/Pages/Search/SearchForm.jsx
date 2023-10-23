@@ -32,7 +32,8 @@ export default function SearchForm({
     const position = new URLSearchParams(window.location.search).get('position');
     const gender = new URLSearchParams(window.location.search).get('gender');
     const average_likes = new URLSearchParams(window.location.search).get('average_likes');
-    const Selectedkeywords = new URLSearchParams(window.location.search).get('keywords');
+    const engagement_rate = new URLSearchParams(window.location.search).get('engagement_rate');
+    const selectedkeywords = new URLSearchParams(window.location.search).get('keywords');
     const _platform = new URLSearchParams(window.location.search).get('platform');
 
     const defaultPlatform = getPlatform('name', _platform);
@@ -89,8 +90,12 @@ export default function SearchForm({
             searchData.push({ query: 'position', name: 'Position', value: position?.split(',') });
         }
 
-        if (Selectedkeywords) {
-            searchData.push({ query: 'keywords', name: 'Keywords', value: Selectedkeywords });
+        if (selectedkeywords) {
+            searchData.push({ query: 'keywords', name: 'Keywords', value: selectedkeywords });
+        }
+
+        if (engagement_rate) {
+            searchData.push({ query: 'engagement_rate', name: 'Engagement Rate', value: engagement_rate });
         }
 
         setSearches(searchData);
@@ -250,7 +255,7 @@ export default function SearchForm({
                         id="likes"
                         name="engagement_rate"
                         type="text"
-                        defaultValue={average_likes ?? ''}
+                        defaultValue={engagement_rate ?? ''}
                         onChange={(e) => handleChange(e, 'Engagement rate', 'engagement_rate')}
                         placeholder={"Engagement rate"}
                         className="block w-full py-3 px-3  shadow rounded-md  flex-grow  text-sm  border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-none"

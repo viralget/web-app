@@ -60,6 +60,15 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useS
     const handleClearSelection = () => {
         setSelectedOptions([]);
         setCurrentSelectedItem(defaultText)
+        let e = {
+            value: '',
+            target: {
+                name,
+                value: ''
+            }
+        }
+        onChange(e)
+        setShowDropdown(false);
     }
 
     return (
@@ -67,21 +76,25 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useS
             {label &&
                 <Label for={name} value={label} />
             }
-            <div onClick={() => setShowDropdown(!showDropdown)} className="w-full py-3 px-0 rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer">
-                {/* <div onClick={() => setShowDropdown(!showDropdown)} className={classNames(inputStyle, "border px-3 flex items-center justify-between cursor-pointer")}> */}
-                <div className="flex justify-between w-full">
-                    <span>{currentSelectedItem}</span>
-                    <span>{selectedOptions.length > 1 && <span className="text-xs bg-gray-100 text-gray-500 rounded p-1 mr-1">+{selectedOptions.length - 1}</span>}</span>
+            <div className="w-full rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer">
+                <div className=" py-3 px-0 w-full" onClick={() => setShowDropdown(!showDropdown)}>
+                    {/* <div onClick={() => setShowDropdown(!showDropdown)} className={classNames(inputStyle, "border px-3 flex items-center justify-between cursor-pointer")}> */}
+                    <div className="flex justify-between w-full">
+                        <span>{currentSelectedItem}</span>
+                        <span>{selectedOptions.length > 1 && <span className="text-xs bg-gray-100 text-gray-500 rounded p-1 mr-1">+{selectedOptions.length - 1}</span>}</span>
+                    </div>
                 </div>
-                <div>
+                <div className="p-3">
                     {selectedOptions.length > 0 ? (
                         <XMarkIcon className="w-3 h-3 z-1" onClick={handleClearSelection} />
                     ) : (
-                        showDropdown ? (
-                            <ChevronUpIcon className="w-3 h-3" />
-                        ) : (
-                            <ChevronDownIcon className="w-3 h-3" />
-                        )
+                        <div onClick={() => setShowDropdown(!showDropdown)}>
+                            {showDropdown ? (
+                                <ChevronUpIcon className="w-3 h-3" />
+                            ) : (
+                                <ChevronDownIcon className="w-3 h-3" />
+                            )}
+                        </div>
                     )}
                 </div>
             </div>

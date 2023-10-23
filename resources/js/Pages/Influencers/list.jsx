@@ -343,14 +343,14 @@ export default function List(props) {
                                                 Followers
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                Reach
+                                                Average Likes
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 ER (%)
                                             </th>
-                                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                            {/* <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 QAS
-                                            </th>
+                                            </th> */}
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 Social links
                                             </th>
@@ -388,7 +388,9 @@ export default function List(props) {
                                                     >
                                                         <a onClick={() => handleProfilePreview(item)} className="text-left">
                                                             <div className="flex items-center">
-                                                                <Avatar url={item.profile_photo_url} />
+                                                                {item.profile_photo_url && (
+                                                                    <Avatar url={item.profile_photo_url} />
+                                                                )}
                                                                 <div className="ml-3">
                                                                     <span className="font-medium flex items-center ">{item.username} {item.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
                                                                     <span className="block text-gray-400 text-md">{item.full_name}</span>
@@ -399,9 +401,9 @@ export default function List(props) {
                                                     </td>
                                                     {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.username}</td> */}
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
-                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.reach)}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.average_likes)}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
-                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td>
+                                                    {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td> */}
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">
                                                         <a href={platform?.url + item.username} target="_blank">
                                                             {platform?.icon}
