@@ -7,12 +7,12 @@ export const platforms = [
         icon: <InstagramSvg />,
         bg_color: "bg-fuchsia-600 bg-gradient-to-r from-yellow-600   to-fuchsia-600 ",
     },
-    {
-        name: 'twitter',
-        icon: <TwitterSvg />,
-        url: "https://twitter.com/",
-        bg_color: "bg-[#01C5FF] bg-gradient-to-r from-[#01C5FF]  via-[#00AEFF] to-[#0094FE] ",
-    },
+    // {
+    //     name: 'twitter',
+    //     icon: <TwitterSvg />,
+    //     url: "https://twitter.com/",
+    //     bg_color: "bg-[#01C5FF] bg-gradient-to-r from-[#01C5FF]  via-[#00AEFF] to-[#0094FE] ",
+    // },
 
 ]
 

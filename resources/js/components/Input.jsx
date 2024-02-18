@@ -63,7 +63,7 @@ export default function Input(props) {
                     required={required}
                     onChange={(e) => onChange(e)}
                     {...props}
-                    className={classNames(inputStyle, className)}
+                    className={classNames(inputStyle, className, icon && 'pl-10')}
                 />
             </div>
         </div>

@@ -19,27 +19,27 @@ const PlanDetails = () => {
                                           <td className="border text-t-xsx w-space-200 font-bold px-4">Social media platform</td>
                                           <td className="border p-3  w-space-200">
                                                 <div className="flex justify-center space-x-1">
-                                                      {/* <InstagramSvg  className="w-10 h-10 " /> */}
+                                                      <InstagramSvg className="w-10 h-10 " />
                                                       {/* <span>Or</span> */}
-                                                      <TwitterSvg />
+                                                      {/* <TwitterSvg /> */}
                                                 </div>
                                           </td>
                                           <td className="border p-3 w-space-200 ">
                                                 <div className="flex justify-center space-x-1">
-                                                      {/* <InstagramSvg  className="w-10 h-10 " /> */}
-                                                      <TwitterSvg />
+                                                      <InstagramSvg className="w-10 h-10 " />
+                                                      {/* <TwitterSvg /> */}
                                                 </div>
                                           </td>
                                           <td className="border p-3 w-space-200 ">
                                                 <div className="flex justify-center space-x-1">
-                                                      {/* <InstagramSvg  className="w-10 h-10 " /> */}
-                                                      <TwitterSvg />
+                                                      <InstagramSvg className="w-10 h-10 " />
+                                                      {/* <TwitterSvg /> */}
                                                 </div>
                                           </td>
                                           <td className="border p-3 w-space-200 ">
                                                 <div className="flex justify-center space-x-1">
-                                                      {/* <InstagramSvg  className="w-10 h-10 " /> */}
-                                                      <TwitterSvg />
+                                                      <InstagramSvg className="w-10 h-10 " />
+                                                      {/* <TwitterSvg /> */}
                                                 </div>
                                           </td>
                                     </tr>

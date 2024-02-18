@@ -15,6 +15,38 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class InfluencersImport implements ToModel, WithHeadingRow
 {
 
+    protected $extraFields = [
+                'niche',
+                'age',
+                'posting_frequency',
+                'total_image_post',
+                'total_video_post',
+                'total_video_views',
+                'total_comments',
+                'total_shares',
+                'average_comments_per_post',
+                'average_views_per_post',
+                'average_shares_per_post',
+                'likes_comments_ratio',
+                'likes_shares_ratio',
+                'total_engagement',
+                'average_engagement',
+                'video_view_rate',
+                'comment_rate',
+                'potential_reach',
+                'potential_total_impact',
+                'average_impact_per_post',
+                'growth_rate',
+                'qas',
+                'media_value_per_post',
+                'average_cpv',
+                'parental_status',
+                'marital_status',
+                'education',
+                'brands_worked_with',
+                'ethnicity',
+                'previous_30_days_followers_count'
+            ];
     protected $platform;
     protected $category;
 
@@ -27,14 +59,14 @@ class InfluencersImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         $data = [
-            'username' => str_replace('@',  '', $row['handle']),
+            'username' => str_replace('@',  '', $row['username']),
             'full_name' => $row['first_name'] . ' ' . $row['last_name'],
-            'followers_count' => $row['followers_count'] ? (float)(str_replace("K", '', $row['followers_count']) * 1000) : 0,
+            'followers_count' => $row['followers_count'],
             'location' => $row['location'],
             'engagement_rate' => $row['engagement_rate'] ? (float)$row['engagement_rate'] * 100 : 0,
-            'average_likes_per_post' => $row['average_likes_per_post'],
+            // 'average_likes_per_post' => $row['average_likes_per_post'],
             'email' => $row['email'],
-            'phone' => $row['phone'],
+            'phone' => $row['phone_number'],
             'gender' => $row['gender'],
             'platform' => $this->platform,
             // 'bio' => $row['description'],
@@ -47,7 +79,11 @@ class InfluencersImport implements ToModel, WithHeadingRow
             // 'following_count' => $row['friends_count'],
         ];
 
-        if ($row['handle']) {
+        foreach($this->extraFields as $field) {
+            $data[$field] = $row[$field];
+        };
+
+        if ($row['username']) {
             $influencer = TwitterInfluencer::firstOrCreate($data);
 
             if ($row['location'] && $influencer) {

@@ -144,7 +144,7 @@ class InfluencerResource extends JsonResource
             'quality_audience_score' => 0, //(float)(($this->engagement_rate * $quality_audience) / ($this->interactions ?? 1)) * 100,
             'quality_audience' => $this->quality_audience, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
             'reach' => $this->reach, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
-            'engagement_rate' => $this->engagement_rate,
+            'engagement_rate' => number_format((float)$this->engagement_rate, 2, '.', ''),
             'quality_audience' =>  (int)$quality_audience, // $this->quality_audience,
             'total_comments' => $this->total_replies,
             'total_likes' => $this->total_likes,
