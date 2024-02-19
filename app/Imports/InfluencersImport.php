@@ -90,6 +90,19 @@ class InfluencersImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
+
+        
+
+        $category = $this->category;
+
+        if($row['category']) {
+            $newCat = Category::firstOrCreate([
+                'name' => ucwords($row['category'])
+            ]);
+
+            $category = $newCat->id;
+        }
+
         $data = [
             'username' => str_replace('@',  '', $row['username']),
             'full_name' => $row['first_name'] . ' ' . $row['last_name'],
@@ -147,7 +160,7 @@ class InfluencersImport implements ToModel, WithHeadingRow
             InfluencerCategory::firstOrCreate([
                 'influencer_id' => $influencer->id,
                 'platform_id' => $platform_id,
-                'category_id' => $this->category,
+                'category_id' => $category,
             ]);
 
             $metricsData = [];
