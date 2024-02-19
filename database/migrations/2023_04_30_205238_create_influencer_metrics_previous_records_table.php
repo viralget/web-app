@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('total_tweets');
             $table->integer('total_likes');
             $table->integer('total_replies');
-            $table->integer('total_retweets');
+            $table->integer('total_replies');
             $table->integer('media_value');
             $table->integer('average_cpe');
             $table->integer('average_cpm');

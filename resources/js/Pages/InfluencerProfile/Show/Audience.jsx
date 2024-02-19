@@ -25,7 +25,7 @@ export default function ({ influencer }) {
     const {
         engagement_rate, global_rank, country_rank, category_rank,
         avg_cpe, avg_cpm, reachability, avg_impressions, reach, impressions,
-        average_tweet_per_contributor, average_follower_per_contributor, engagements, total_retweets
+        average_views_per_post, average_comments_per_post, engagements, total_replies
 
     } = influencer?.metrics;
 
@@ -66,14 +66,14 @@ export default function ({ influencer }) {
 
     const influencerInformation = [
         {
-            title: 'Average Tweet Per Contributor',
+            title: 'Average Views Per Post',
             icon: <Gender />,
-            label: nFormatter(average_tweet_per_contributor?.score) ?? 'no data'
+            label: nFormatter(average_views_per_post?.score) ?? 'no data'
         },
         {
-            title: 'Average Follower Per Contributor',
+            title: 'Average Comments Per Post',
             icon: <Ethnicity />,
-            label: nFormatter(average_follower_per_contributor?.score) ?? 'no data'
+            label: nFormatter(average_comments_per_post?.score) ?? 'no data'
         },
         {
             title: 'Engagements',
@@ -81,9 +81,9 @@ export default function ({ influencer }) {
             label: nFormatter(engagements?.score) ?? 'no data'
         },
         {
-            title: 'Total Retweets',
+            title: 'Total Replies',
             icon: <Parental />,
-            label: total_retweets?.score ?? 'no data'
+            label: total_replies?.score ?? 'no data'
         },
 
         {

@@ -29,30 +29,30 @@ const Tabs = ({ influencer }) => {
       component: <Audience influencer={influencer} />
 
     },
-    {
-      name: 'Content',
-      value: 'content',
-      component: <Content influencer={influencer} />
+    // {
+    //   name: 'Content',
+    //   value: 'content',
+    //   component: <Content influencer={influencer} />
 
-    },
-    {
-      name: 'Value',
-      value: 'value',
-      component: <Value title="Feature coming soon" influencer={influencer} />
+    // },
+    // {
+    //   name: 'Value',
+    //   value: 'value',
+    //   component: <Value title="Feature coming soon" influencer={influencer} />
 
-    },
-    {
-      name: 'Brand',
-      value: 'brand',
-      component: <EmptyState title="Feature coming soon" />
+    // },
+    // {
+    //   name: 'Brand',
+    //   value: 'brand',
+    //   component: <EmptyState title="Feature coming soon" />
 
-    },
-    {
-      name: 'Lookalike influencer',
-      value: 'lookalike_influencer',
-      component: <EmptyState title="Feature coming soon" />
+    // },
+    // {
+    //   name: 'Lookalike influencer',
+    //   value: 'lookalike_influencer',
+    //   component: <EmptyState title="Feature coming soon" />
 
-    },
+    // },
 
   ];
 

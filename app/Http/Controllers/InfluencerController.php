@@ -73,6 +73,7 @@ class InfluencerController extends Controller
      */
     public function search(Request $request)
     {
+
         $categories = Category::get();
 
         if (count($request->all()) > 0) {
@@ -95,7 +96,7 @@ class InfluencerController extends Controller
             $verification_status = $request->verification_status;
             $gender = $request->gender;
             $avg_likes = $request->average_likes;
-            $er = (float)$request->engagement_rate;
+            $er = (float) $request->engagement_rate;
 
 
             $any = 'Any';
@@ -113,7 +114,8 @@ class InfluencerController extends Controller
 
                 $result = $result->where(function ($query) use ($size) {
                     foreach ($size as $_size) {
-                        if ($_size == 'any') continue;
+                        if ($_size == 'any')
+                            continue;
                         $_size = $this->getsizeRange($_size);
                         $query->orWhereBetween('followers_count', $_size);
                     }
@@ -127,11 +129,12 @@ class InfluencerController extends Controller
 
                 $result = $result->where(function ($query) use ($influencer_location) {
                     foreach ($influencer_location as $location) {
-                        if ($location == 'any') continue;
+                        if ($location == 'any')
+                            continue;
                         $query->orWhereHas('geo_location', function ($q) use ($location) {
                             $q->where('name', $location);
                         });
-                        $query->orWhere('location',  $location);
+                        $query->orWhere('location', $location);
                     }
                 });
             }
@@ -141,7 +144,8 @@ class InfluencerController extends Controller
 
                 $result = $result->where(function ($query) use ($audience_size) {
                     foreach ($audience_size as $size) {
-                        if ($size == 'any') continue;
+                        if ($size == 'any')
+                            continue;
                         $query->orWhere('followers', '>=', "%$size%");
                     }
                 });
@@ -182,7 +186,8 @@ class InfluencerController extends Controller
                 $result = $result->where(function ($query) use ($qas) {
                     foreach ($qas as $score) {
                         $score = $this->getQASValue($score);
-                        if (!$score) continue;
+                        if (!$score)
+                            continue;
                         $query->orWhereHas('metrics', function ($q) use ($score) {
                             $q->where('quality_audience', '>=', $score);
                         });
@@ -192,32 +197,50 @@ class InfluencerController extends Controller
 
 
             if ($er) {
-                $result->orWhereHas('metrics', function ($query) use ($er) {
+                $result->whereHas('metrics', function ($query) use ($er) {
                     $query->where('engagement_rate', "$er");
                 });
             }
 
 
             if ($avg_likes) {
-                $result->where('average_likes_per_post', $avg_likes);
+                $result->whereHas('metrics', function ($query) use ($avg_likes) {
+
+                    $range = [(int) $avg_likes - 500, (int) $avg_likes + 500];
+
+                    $query->whereBetween('average_likes_per_post', $range);
+                });
+
+
+                // dd($request->all());
+                // $result->where('average_likes_per_post', $avg_likes);
             }
 
             if ($gender) {
-                $result->where('gender', $gender);
+                $values = $this->getSearchValues($gender);
+
+                if ($values) {
+                    $result->whereHas('metrics', function ($query) use ($values) {
+                        $query->whereIn('gender', $values);
+                    });
+                }
             }
 
 
             if ($verification_status) {
                 $verification_status = explode(',', $verification_status);
 
+                $vs_types = [];
 
-                $result = $result->where(function ($query) use ($verification_status) {
-                    foreach ($verification_status as $value) {
+                foreach($verification_status as $vs) {
+                    array_push($vs_types, $vs == 'Verified' ? 'yes' : 'no');
+                }
 
+
+                $result->whereHas('metrics', function ($query) use ($vs_types) {
                         // $query->orWhere(function ($q) use ($value) {
-                            $query->orWhere('is_verified',  $value == 'Verified' ? true : false)->orWhere('is_verified', $value == 'Verified' ? 1 : null);
+                        $query->whereIn('is_verified', $vs_types);
                         // });
-                    }
                 });
             }
 
@@ -383,7 +406,7 @@ class InfluencerController extends Controller
                 'name' => $request->name,
                 'is_saved' => true,
                 'user_id' => $user->id,
-                'keyword' => $request->queryData ??  'null',
+                'keyword' => $request->queryData ?? 'null',
                 'session_id' => $request->session()->getId(),
                 'user_id' => $request->user()->id ?? null,
                 'query' => json_encode($request->query),
@@ -410,7 +433,7 @@ class InfluencerController extends Controller
     }
 
 
-    public   function  getAllCategoriesPage()
+    public function getAllCategoriesPage()
     {
 
         $categories = Category::get();
@@ -495,4 +518,10 @@ class InfluencerController extends Controller
                 break;
         }
     }
+
+    private function getSearchValues($values)
+    {
+        return explode(',', str_replace('any', '', $values));
+    }
 }
+       

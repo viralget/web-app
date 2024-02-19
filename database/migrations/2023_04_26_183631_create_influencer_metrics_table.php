@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('total_tweets')->nullable();
             $table->string('total_likes')->nullable();
             $table->string('total_replies')->nullable();
-            $table->string('total_retweets')->nullable();
+            $table->string('total_replies')->nullable();
             $table->string('media_value')->nullable();
             $table->string('average_cpe')->nullable();
             $table->string('average_cpm')->nullable();

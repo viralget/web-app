@@ -135,22 +135,22 @@ class InfluencerResource extends JsonResource
                     'label' => $this->country?->name
                 ],
                 'average_views_per_post' => [
-                    'score' => $metrics?->average_views_per_post ?? 0,
+                    'score' => $additional_data->average_views_per_post ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
                 'average_comments_per_post' => [
-                    'score' => $metrics?->average_comments_per_post ?? 0,
+                    'score' => $additional_data->average_comments_per_post ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
                 'engagements' => [
-                    'score' => $metrics?->total_engagements ?? 0,
+                    'score' => $additional_data->engagements ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
                 'total_replies' => [
-                    'score' => $$metrics?->total_replies ?? 0,
+                    'score' => $additional_data->total_replies ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],

@@ -30,7 +30,7 @@ export default function ({ influencer }) {
         {
             title: 'Engagement rate',
             icon: (<EngagementRateWithBSvg />),
-            score: engagement_rate?.score + '%',
+            score: engagement_rate?.score + '',
             increase: engagement_rate?.increase,
             label: engagement_rate?.label
         },
