@@ -95,7 +95,7 @@ class InfluencerController extends Controller
             $verification_status = $request->verification_status;
             $gender = $request->gender;
             $avg_likes = $request->average_likes;
-            $er = $request->engagement_rate;
+            $er = (float)$request->engagement_rate;
 
 
             $any = 'Any';
@@ -192,7 +192,9 @@ class InfluencerController extends Controller
 
 
             if ($er) {
-                $result->where('engagement_rate', $er);
+                $result->orWhereHas('metrics', function ($query) use ($er) {
+                    $query->where('engagement_rate', "$er");
+                });
             }
 
 
@@ -206,7 +208,17 @@ class InfluencerController extends Controller
 
 
             if ($verification_status) {
-                $result->where('is_verified', $verification_status == 'Verified' ? true : false);
+                $verification_status = explode(',', $verification_status);
+
+
+                $result = $result->where(function ($query) use ($verification_status) {
+                    foreach ($verification_status as $value) {
+
+                        // $query->orWhere(function ($q) use ($value) {
+                            $query->orWhere('is_verified',  $value == 'Verified' ? true : false)->orWhere('is_verified', $value == 'Verified' ? 1 : null);
+                        // });
+                    }
+                });
             }
 
 

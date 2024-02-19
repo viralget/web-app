@@ -31,7 +31,7 @@
     </select>
     <hr/>
 
-    <input type="file" name="file" accept="csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+    <input type="file" name="file" accept="csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, .csv" />
     <hr/>
     <button>Upload and import</button>
 </form>
