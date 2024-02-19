@@ -388,9 +388,9 @@ export default function List(props) {
                                                     >
                                                         <a onClick={() => handleProfilePreview(item)} className="text-left">
                                                             <div className="flex items-center">
-                                                                {item.profile_photo_url && (
+                                                                {/* {item.profile_photo_url && (
                                                                     <Avatar url={item.profile_photo_url} />
-                                                                )}
+                                                                )} */}
                                                                 <div className="ml-3">
                                                                     <span className="font-medium flex items-center ">{item.username} {item.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
                                                                     <span className="block text-gray-400 text-md">{item.full_name}</span>
