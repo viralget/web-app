@@ -198,7 +198,7 @@ class InfluencerController extends Controller
 
             if ($er) {
                 $result->whereHas('metrics', function ($query) use ($er) {
-                    $query->where('engagement_rate', "$er");
+                    $query->where('engagement_rate','>=', $er);
                 });
             }
 
@@ -206,9 +206,8 @@ class InfluencerController extends Controller
             if ($avg_likes) {
                 $result->whereHas('metrics', function ($query) use ($avg_likes) {
 
-                    $range = [(int) $avg_likes - 500, (int) $avg_likes + 500];
 
-                    $query->whereBetween('average_likes_per_post', $range);
+                    $query->where('average_likes_per_post', '>=',  $avg_likes);
                 });
 
 
