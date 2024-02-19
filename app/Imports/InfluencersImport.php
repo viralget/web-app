@@ -95,9 +95,9 @@ class InfluencersImport implements ToModel, WithHeadingRow
 
         $category = $this->category;
 
-        if($row['category']) {
+        if($row['niche']) {
             $newCat = Category::firstOrCreate([
-                'name' => ucwords($row['category'])
+                'name' => ucwords($row['niche'])
             ]);
 
             $category = $newCat->id;
