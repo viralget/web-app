@@ -205,8 +205,6 @@ class InfluencerController extends Controller
 
             if ($avg_likes) {
                 $result->whereHas('metrics', function ($query) use ($avg_likes) {
-
-
                     $query->where('average_likes_per_post', '>=',  $avg_likes);
                 });
 
