@@ -31224,10 +31224,10 @@
             <div class="card">
               <div class="card-body">
                 <div class="float-left">
-                  Total Retweets
+                  Total Replies
                 </div>
                 <h4 class="lead-7 pl-2 text-right counted float-right">
-                  {{ number_format($data->total_retweets) }}
+                  {{ number_format($data->total_replies) }}
                 </h4>
               </div>
             </div>

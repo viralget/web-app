@@ -37,7 +37,7 @@ class InfluencerResource extends JsonResource
             'profile_url' => $this->profile_url,
             'categories' => $this->categories,
             'location' => ucwords($this->location), // $this->geo_location?->name,
-            'is_verified' => $this->is_verified,
+            'is_verified' => ($metrics?->is_verified == "yes")  ? true : false,
             'platform' => $this->platform,
             'average_likes' => $metrics?->average_likes_per_post,
             'bio' => $this->bio,
@@ -54,7 +54,7 @@ class InfluencerResource extends JsonResource
             'best_performing_tweets'  => json_decode($this->best_performing_tweets),
             'quality_audience_score' => $metrics?->qas, //(float)(($this->engagement_rate * $quality_audience) / ($this->interactions ?? 1)) * 100,
             'quality_audience' => $this->quality_audience, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
-            'reach' => $this->reach, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
+            'reach' => $metrics?->reach, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
             'engagement_rate' => $metrics?->engagement_rate,
             'quality_audience' =>  (int)$quality_audience, // $this->quality_audience,
             'total_comments' => $metrics?->total_comments,
@@ -69,7 +69,7 @@ class InfluencerResource extends JsonResource
             'email' => $this->email,
             'metrics' => [
                 'reach' => [
-                    'score' => $metrics?->reach,
+                    'score' => $metrics?->potential_reach,
                     'increase' => 3.3,
                     'label' => 'last 30 days'
                 ],
@@ -114,7 +114,7 @@ class InfluencerResource extends JsonResource
                     'label' => 'last 30 days'
                 ],
                 'avg_retweet' => [
-                    'score' => $metrics?->total_retweets,
+                    'score' => $metrics?->total_replies,
                     'increase' => 0.24,
                     'label' => 'last 30 days'
                 ],
@@ -134,23 +134,23 @@ class InfluencerResource extends JsonResource
                     'increase' => null,
                     'label' => $this->country?->name
                 ],
-                'average_tweet_per_contributor' => [
-                    'score' => $additional_data->average_tweet_per_contributor ?? 0,
+                'average_views_per_post' => [
+                    'score' => $metrics?->average_views_per_post ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
-                'average_follower_per_contributor' => [
-                    'score' => $additional_data->average_follower_per_contributor ?? 0,
+                'average_comments_per_post' => [
+                    'score' => $metrics?->average_comments_per_post ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
                 'engagements' => [
-                    'score' => $additional_data->engagements ?? 0,
+                    'score' => $metrics?->total_engagements ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
-                'total_retweets' => [
-                    'score' => $additional_data->total_retweets ?? 0,
+                'total_replies' => [
+                    'score' => $$metrics?->total_replies ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],

@@ -18,7 +18,7 @@ const Overview = ({ metrics }) => {
 
     const chartData = {
         dataLabels: ['Tweets', 'Retweets', 'Replies'],
-        data: [tweetsCount, metrics?.total_retweets?.value, metrics.total_replies?.value],
+        data: [tweetsCount, metrics?.total_replies?.value, metrics.total_replies?.value],
         chartName: 'metrics',
         colors: ['#eb4034', '#18a81c', '#aa1cc9']
 
@@ -44,8 +44,8 @@ const Overview = ({ metrics }) => {
         {
             title: 'Retweet',
             icon: (<SvgRetweet />),
-            score: metrics?.total_retweets?.value,
-            increase: metrics?.total_retweets?.growth,
+            score: metrics?.total_replies?.value,
+            increase: metrics?.total_replies?.growth,
             label: 'retweet'
         },
         {
@@ -100,12 +100,12 @@ const Overview = ({ metrics }) => {
                     <span className="font-semibold text-h1  font-lexend ">{metrics.original_contributors}</span>
                 </div>
                 <div className="flex flex-col border p-3 rounded-md">
-                    <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> Avg. tweet per contributors </span>
-                    <span className="font-semibold text-h1  font-lexend ">{metrics.average_tweet_per_contributor}</span>
+                    <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> Avg. Views per post </span>
+                    <span className="font-semibold text-h1  font-lexend ">{metrics.average_views_per_post}</span>
                 </div>
                 <div className="flex flex-col border p-3 rounded-md">
-                    <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> Avg. follower per contributors</span>
-                    <span className="font-semibold text-h1  font-lexend ">{metrics.average_follower_per_contributor}</span>
+                    <span className="text-t-normal  font-medium font-satoshi  text-viralget-gray-400"> Avg. Comments per post</span>
+                    <span className="font-semibold text-h1  font-lexend ">{metrics.average_comments_per_post}</span>
                 </div>
             </div>
 

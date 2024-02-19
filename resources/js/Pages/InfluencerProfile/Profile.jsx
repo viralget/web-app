@@ -31,7 +31,7 @@ export default function Profile({ influencer }) {
         {
             title: 'Engagement rate',
             icon: (<EngagementRateWithBSvg />),
-            score: engagement_rate?.score ? engagement_rate?.score + '%' : defaultValue,
+            score: engagement_rate?.score ? engagement_rate?.score + '' : defaultValue,
             increase: engagement_rate?.increase,
             label: engagement_rate?.label
         },
