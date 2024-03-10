@@ -17,6 +17,7 @@ export default function QAS({ influencer }) {
                 percent={influencer.quality_audience_score / 100}
                 arcPadding={0.02}
                 textColor={'#3E4555'}
+                formatTextValue={(value) => value}
                 needleColor={'#748094'}
             // arcWidth={[4, 2, 2, 2, 2]}
             // arcHeight={[2, 2, 2, 2, 2]}

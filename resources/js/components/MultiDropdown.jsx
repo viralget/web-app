@@ -99,7 +99,7 @@ const MultiDropdown = ({ label, name, options, onChange, defaultOptionText, useS
                 </div>
             </div>
             {showDropdown && (
-                <div ref={wrapperRef} className="absolute z-10 -left-2 w-full">
+                <div ref={wrapperRef} className="absolute max-h-64	 overflow-y-scroll  z-10 -left-2 ">
                     <div className="mt-2 w-64 p-2 h-auto bg-white shadow rounded">
                         {label &&
                             <h4 className="h4 px-2 font-bold">{label}</h4>

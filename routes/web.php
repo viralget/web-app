@@ -65,6 +65,7 @@ Route::get('/coming-soon', function () {
     return Inertia::render('ComingSoon/index');
 })->name('coming-soon');
 
+Route::post('/payments/start-trial', [PurchasesController::class, 'startTrial'])->name('payments.traial');
 Route::post('/payments/verify', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
 Route::prefix('transactions')->name('payments.')->group(
     function () {

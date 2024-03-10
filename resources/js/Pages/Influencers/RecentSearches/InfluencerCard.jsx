@@ -8,6 +8,7 @@ import toast from '@/Components/Toast';
 import TextArea from '@/Components/TextArea';
 import { post } from '@/Utils/api';
 import Modal from "@/Components/VModal";
+import Avatar from "@/Components/Skeleton/Avatar";
 
 export default function InfluencerCard({ influencer, showBanner, handleProfile, useShadow, useLink }) {
 
@@ -35,7 +36,8 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
                 </div>
             )}
             <div className={`flex flex-1 flex-col p-8 pb-4 ${showBanner && '-mt-16'}`}>
-                <img className="mx-auto h-space-60 w-space-60  border-2 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" />
+                <Avatar user={influencer} size={"large"} useIcon />
+                {/* <img className="mx-auto h-space-60 w-space-60  border-2 flex-shrink-0 rounded-full" src={influencer.profile_photo_url} alt="" /> */}
 
                 <div onClick={() => handleProfileClick()} className="mt-2 cursor-pointer flex flex-col">
                     <span className="text-t-xs font-bold " >{'@' + influencer.username} </span>

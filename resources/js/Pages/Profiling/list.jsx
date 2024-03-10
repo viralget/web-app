@@ -7,6 +7,7 @@ import toast from '@/Components/Toast';
 import ListBox from './listBox';
 import Modal from '@/components/Modal';
 import Button from '@/Components/Button';
+import Avatar from '@/Components/Skeleton/Avatar';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -233,7 +234,9 @@ export default function List({ influencerList, profiles }) {
                                                     selected.includes(item) ? 'text-gray-900' : 'text-gray-900'
                                                 )}
                                             >
-                                                <img className="h-10 w-10 rounded-full" src={item.profile_photo_url} alt="" />
+                                                <Avatar user={item} />
+
+                                                {/* <img className="h-10 w-10 rounded-full" src={item.profile_photo_url} alt="" /> */}
 
                                                 <div className='flex flex-col' >
                                                     <span className='font-bold  text-xs'>@{item.username}</span>

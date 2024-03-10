@@ -9,6 +9,7 @@ import { nFormatter } from '@/Utils/helpers';
 import { Link } from '@inertiajs/inertia-react';
 import { PlatformContext } from '@/Contexts/PlatformContext';
 import { getPlatform, platforms } from '@/Services/PlatformsService';
+import Avatar from '@/Components/Skeleton/Avatar';
 
 function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
@@ -78,8 +79,9 @@ export default function header({ influencer, isMini, list }) {
                               <div className="bg-white shadow-header-card flex  items-center  rounded-md p-3  w-full space-x-3 ">
 
                                     <div className=" mb-14 ">
-                                          <div className={classNames(isMini ? "h-[5rem] w-[5rem]" : "h-[5rem] w-[5rem]", "bg-gray-500 rounded-full overflow-hidden ")}>
-                                                <img className="mx-auto flex-shrink-0 object-cover w-full h-full" src={influencer.profile_photo_url} alt="" />
+                                          <div className={classNames(isMini ? "h-[5rem] w-[5rem]" : "h-[5rem] w-[5rem]", "bg-gray-500 rounded-full flex items-center justify-center overflow-hidden ")}>
+                                                <Avatar size={'xlarge'} user={influencer} useIcon />
+                                                {/* <img className="mx-auto flex-shrink-0 object-cover w-full h-full" src={influencer.profile_photo_url} alt="" /> */}
                                           </div>
                                     </div>
 
@@ -184,17 +186,17 @@ export default function header({ influencer, isMini, list }) {
 
                                           <div className="flex mt-space-16  w-full">
                                                 <div className="flex md:flex-row flex-col mr-3">
-                                                      <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.followers_count)} </span>
+                                                      <span className="font-bold mr-1">{nFormatter(influencer?.followers_count)} </span>
                                                       <span className="text-viralget-grey font-normal text-t-xsx  "> followers </span>
                                                 </div>
-                                                {/* <div className="flex mr-3 md:flex-row flex-col">
-                                                      <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.tweet_count)}</span>
+                                                <div className="flex mr-3 md:flex-row flex-col">
+                                                      <span className="font-bold  mr-1">{nFormatter(influencer?.tweet_count)}</span>
                                                       <span className="text-viralget-grey font-normal text-t-xsx">  tweets </span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col">
-                                                      <span className="font-bold text-t-normal mr-1">{nFormatter(influencer?.following_count)} </span>
+                                                      <span className="font-bold mr-1">{nFormatter(influencer?.following_count)} </span>
                                                       <span className="text-viralget-grey font-normal text-t-xsx">  following</span>
-                                                </div> */}
+                                                </div>
                                           </div>
 
 
@@ -210,7 +212,22 @@ export default function header({ influencer, isMini, list }) {
                                                                   {item}
                                                             </span>
                                                       ))} */}
+                                                      <div className='flex justify-center flex-wrap space-x-3'>
+                                                            {
+                                                                  influencer?.categories?.length > 2 ?
+                                                                        <>
+                                                                              {influencer.categories.splice(0, 2).map((category) => (
+                                                                                    <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category.name}</span>
+                                                                              ))}
+                                                                              <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{item.categories.length - 2} +</span>
+                                                                        </>
+                                                                        :
+                                                                        influencer?.categories?.map((category) => (
+                                                                              <span className='bg-[#F5F5F5] p-2  text-xs rounded-md'>{category.name} </span>
+                                                                        ))
 
+                                                            }
+                                                      </div>
                                                 </div>
 
                                                 {

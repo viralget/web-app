@@ -1,7 +1,9 @@
 import { classNames } from "@/Utils/helpers";
+import maleImg from '../../../assets/images/avatars/male.jpeg';
+import femaleImg from '../../../assets/images/avatars/female.jpeg';
 
 
-export default function Avatar({ user, userName, url, size, className, isEditable, isDark }) {
+export default function Avatar({ user, userName, url, size, useIcon, className, isEditable, isDark }) {
     let sizeClass;
 
     switch (size) {
@@ -20,6 +22,14 @@ export default function Avatar({ user, userName, url, size, className, isEditabl
     const username = userName ?? user?.name ?? user?.email;
     const avatarUrl = url ?? user?.image_url ?? user?.logo_url;
 
+    const getIcon = (gender) => {
+        return <img
+            className={`inline-block rounded-md ${sizeClass} ${className}`}
+            // src={avatarUrl}
+            src={gender == 'male' ? maleImg : femaleImg}
+            alt=""
+        />
+    }
 
     return (
         <>
@@ -31,9 +41,10 @@ export default function Avatar({ user, userName, url, size, className, isEditabl
                         alt=""
                     />
                     :
-                    <span className={classNames(`inline-flex items-center justify-center rounded-md`, isDark ? 'bg-secondary' : 'bg-gray-800', className, sizeClass)} >
-                        <span className="text-sm font-medium leading-none text-white">{username?.toUpperCase()?.charAt(0)}</span>
-                    </span >
+                    useIcon ? getIcon(user?.gender) :
+                        <span className={classNames(`inline-flex items-center justify-center rounded-md`, isDark ? 'bg-secondary' : 'bg-gray-800', className, sizeClass)} >
+                            <span className="text-sm font-medium leading-none text-white">{username?.toUpperCase()?.charAt(0)}</span>
+                        </span >
                 }
 
             </div>

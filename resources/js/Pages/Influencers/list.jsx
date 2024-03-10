@@ -351,10 +351,10 @@ export default function List(props) {
                                             {/* <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                 QAS
                                             </th> */}
-                                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">
                                                 Social links
                                             </th>
-                                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                            <th scope="col" className="px-3 py-3.5 text-left text-sm text-center font-semibold text-gray-900">
                                                 Category
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -388,9 +388,10 @@ export default function List(props) {
                                                     >
                                                         <a onClick={() => handleProfilePreview(item)} className="text-left">
                                                             <div className="flex items-center">
-                                                                {/* {item.profile_photo_url && (
-                                                                    <Avatar url={item.profile_photo_url} />
-                                                                )} */}
+                                                                {item.profile_photo_url && (
+                                                                    <Avatar user={item} useIcon />
+                                                                    // <Avatar url={item.profile_photo_url} useIcon />
+                                                                )}
                                                                 <div className="ml-3">
                                                                     <span className="font-medium flex items-center ">{item.username} {item.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
                                                                     <span className="block text-gray-400 text-md">{item.full_name}</span>
@@ -404,14 +405,14 @@ export default function List(props) {
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.average_likes)}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
                                                     {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><Badge text={getQASValue(item.quality_audience_score)} color={getQASColor(item.quality_audience_score)} /></td> */}
-                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-blue-400">
+                                                    <td className="whitespace-nowrap px-3 py-4 flex justify-center text-sm text-blue-400">
                                                         <a href={platform?.url + item.username} target="_blank">
                                                             {platform?.icon}
                                                         </a>
 
                                                     </td>
-                                                    <td className="whitespace-nowrap px-3 py-4  w-60 text-sm text-gray-500">
-                                                        <div className='flex flex-wrap space-x-3'>
+                                                    <td className="whitespace-nowrap px-3 py-4  text-center w-60 text-sm text-gray-500">
+                                                        <div className='flex justify-center flex-wrap space-x-3'>
                                                             {
                                                                 item?.categories?.length > 2 ?
                                                                     <>

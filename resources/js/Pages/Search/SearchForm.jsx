@@ -2,6 +2,7 @@ import MultiDropdown from "@/Components/MultiDropdown";
 import Select from "@/Components/Select";
 import { PlatformContext } from "@/Contexts/PlatformContext";
 import { getPlatform, platforms } from "@/Services/PlatformsService";
+import { locations } from "@/Utils/defaults";
 import { classNames } from "@/Utils/helpers";
 import { useState, useEffect, useContext } from "react";
 
@@ -134,11 +135,16 @@ export default function SearchForm({
                 <div className=" grid grid-cols-1 smgrid-cols-2 md:grid-cols-5 gap-4 bg-white  px-5 p-4 rounded-b-md rounded-r-md border-b ">
                     <div className="md:pr-6 md:border-r border-gray-100">
 
-                        <MultiDropdown options={[
-                            { name: 'Any' },
-                            { name: 'Nigeria', },
-                            { name: 'Ghana', },
-                        ]}
+                        <MultiDropdown options={
+                            [{ name: 'Any' }, ...locations.map((location) => (
+                                { name: location }
+                            ))]
+                            // [
+                            // { name: 'Any' },
+                            // { name: 'Nigeria', },
+                            // { name: 'Ghana', },
+                            // ]
+                        }
                             onChange={(e) => handleChange(e, 'Influencer Location', 'influencer_location')}
                             label="Influencer Location"
                             defaultOptionText={influencer_location?.split(',')[0]}

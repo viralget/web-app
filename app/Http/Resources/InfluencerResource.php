@@ -50,13 +50,13 @@ class InfluencerResource extends JsonResource
             // 'education' => 'bachelor',
   
             'brand_safety_level'  => $this->brand_safety_level  ?? 0,
-            'most_used_hashtags'  => json_decode($this->most_used_hashatags),
-            'best_performing_tweets'  => json_decode($this->best_performing_tweets),
+            // 'most_used_hashtags'  => json_decode($this->most_used_hashatags),
+            // 'best_performing_tweets'  => json_decode($this->best_performing_tweets),
             'quality_audience_score' => $metrics?->qas, //(float)(($this->engagement_rate * $quality_audience) / ($this->interactions ?? 1)) * 100,
             'quality_audience' => $this->quality_audience, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
             'reach' => $metrics?->reach, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
             'engagement_rate' => $metrics?->engagement_rate,
-            'quality_audience' =>  (int)$quality_audience, // $this->quality_audience,
+            // 'quality_audience' =>  (int)$quality_audience, // $this->quality_audience,
             'total_comments' => $metrics?->total_comments,
             'total_likes' => $metrics?->total_likes,
             'most_used_hashtags' => explode(',', $metrics?->most_used_hashtags),
@@ -68,6 +68,7 @@ class InfluencerResource extends JsonResource
             'phone_number' => $this->phone,
             'email' => $this->email,
             'metrics' => [
+                ...$metrics?->toArray(),
                 'reach' => [
                     'score' => $metrics?->potential_reach,
                     'increase' => 3.3,
@@ -108,6 +109,12 @@ class InfluencerResource extends JsonResource
                     'increase' => 0.24,
                     'label' => 'last 7 days'
                 ],
+                'average_likes_per_post' => [
+                     'score' => $metrics?->average_likes_per_post,
+                    'increase' => 0.24,
+                    'label' => 'last 7 days'
+                ],
+                'media_value_per_post' => $this->metricsValue($metrics?->media_value_per_post),
                 'interactions' => [
                     'score' => $metrics?->interactions,
                     'increase' => 0.24,
@@ -155,6 +162,14 @@ class InfluencerResource extends JsonResource
                     'label' => $default_metrics_label
                 ],
             ],
+        ];
+    }
+
+    private function metricsValue($value) {
+        return [
+            'score' => $value,
+            'increase' => 0.24,
+            'label' => 'last 7 days'
         ];
     }
 }

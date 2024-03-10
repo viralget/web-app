@@ -23,7 +23,7 @@ import { FindInfluencer, ProfiledInfluencer, MyCampaign, HelpIcon, TrackCampaign
 
 const navigation = [
     { name: 'Find Influencers', href: 'explore', alt_route: 'explore', icon: FindInfluencer, current: true },
-    // { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
+    { name: 'Profile Influencers', href: 'profiling', icon: ProfiledInfluencer, current: false },
     // { name: 'My Campaigns', href: 'brief', icon: MyCampaign, current: false },
     // { name: 'Track Campaigns', href: 'track.campaign.page', icon: TrackCampaigns, current: false },
     { name: 'Help center', href: 'contact', icon: HelpIcon, current: false },

@@ -16,7 +16,8 @@ export const PaymentProccess = (props) => {
     const { plan_id, plan, public_key } = props;
 
     const [getPaymentMethod, setPaymentMethod] = useState("");
-    const [buttText, setPaymentText] = useState("Continue");
+    const [buttText, setPaymentText] = useState("Start Free trial");
+    // const [buttText, setPaymentText] = useState("Continue");
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -38,6 +39,10 @@ export const PaymentProccess = (props) => {
 
 
     function payWithPaystack() {
+
+        window.location.href = route('payments.trial');
+
+        return;
         setIsLoading(true);
         setPaymentText("Initiating payment...")
 
@@ -149,8 +154,8 @@ export const PaymentProccess = (props) => {
                         <Button
                             className='block w-auto bg-viralget-red rounded-[8px]  px-space-40'
                             processing={isLoading}
-                            href={route('explore')}
-                        // onClick={handleStart}
+                            // href={route('explore')}
+                            onClick={handleStart}
                         >
                             {buttText}
 

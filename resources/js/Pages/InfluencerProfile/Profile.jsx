@@ -12,20 +12,37 @@ import {
     SvgCountry,
     SvgCategory,
     SvgRank,
+    LikeSvg,
+    ReachabilityWithBSvg,
 } from '@/Utils/icons';
+import { nFormatter, numberFormat } from '@/Utils/helpers';
 
 
 export default function Profile({ influencer }) {
 
+    const { media_value_per_post } = influencer?.metrics;
+
+    console.log({ media_value_per_post })
     const defaultValue = 'no data';
     const engagement_rate = influencer?.metrics?.engagement_rate;
-    const avg_comments = influencer?.metrics?.avg_comments;
+    const avg_comments = influencer?.metrics?.average_comments_per_post;
     const avg_retweet = influencer?.metrics?.avg_retweet;
     const interactions = influencer?.metrics?.interactions;
+    const average_likes = influencer?.metrics.average_likes_per_post;
     const global_rank = influencer?.metrics?.global_rank;
     const country_rank = influencer?.metrics?.country_rank;
     const category_rank = influencer?.metrics?.category_rank;
     const average_impressions = influencer?.metrics?.avg_impressions;
+
+    const formatData = (field, title, icon) => {
+        return {
+            title: title,
+            icon: icon,
+            score: field?.score ? nFormatter(field?.score) : defaultValue,
+            increase: field?.increase,
+            label: field?.label
+        }
+    }
 
     const cardsList = [
         {
@@ -43,9 +60,16 @@ export default function Profile({ influencer }) {
             label: average_impressions?.label
         },
         {
+            title: 'Avg. likes',
+            icon: (<LikeSvg />),
+            score: average_likes?.score ?? defaultValue,
+            increase: average_likes?.increase,
+            label: average_likes?.label
+        },
+        {
             title: 'Avg. retweet',
             icon: (<SvgRetweet />),
-            score: avg_retweet?.score,
+            score: avg_retweet?.score ?? defaultValue,
             increase: avg_retweet?.increase,
             label: avg_retweet?.label
         },
@@ -70,6 +94,7 @@ export default function Profile({ influencer }) {
             increase: avg_retweet?.increase,
             label: avg_retweet?.label
         },
+        formatData(media_value_per_post, 'Average Media Value', <ReachabilityWithBSvg />)
 
         // {
         //     title: 'Global rank',
@@ -112,7 +137,7 @@ export default function Profile({ influencer }) {
             <div className='p-5'>
                 <div className="grid grid-cols-2 md:mt-0 mt-4  px-4   gap-3 md:pr-5 md:pl-0  md:gap-3">
                     {
-                        cardsList.map((item) => (
+                        cardsList.filter((item) => item.score != defaultValue).map((item) => (
                             <Card item={item} />
                         ))
                     }

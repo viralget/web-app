@@ -22,10 +22,12 @@ export default function CampaignCards({ campaigns }) {
                                 {card.influencers?.length > 0 && card.influencers?.map((influencer) => (
                                     <div class="flex flex-wrap w-1/2">
                                         <div class="w-full p-1 md:p-2">
-                                            <img alt="gallery" class="block object-cover object-center w-full h-100 rounded-lg"
-                                                src={influencer.profile_banner_url} />
-                                            {/* <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" /> */}
+                                            <Avatar user={item} />
+
+                                            {/* <img alt="gallery" class="block object-cover object-center w-full h-100 rounded-lg"
+                                                src={influencer.profile_banner_url} /> */}
+                                            <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                                                src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" />
                                         </div>
                                     </div>
                                 ))}

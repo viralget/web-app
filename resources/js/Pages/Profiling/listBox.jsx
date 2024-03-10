@@ -1,7 +1,6 @@
 import Typography from "@/components/Typography";
 export default function ListBox({ item, handleAddInfluencer }) {
 
-
     const getImages = () => {
         if (item.influencers.length < 1) return false;
 
@@ -14,7 +13,7 @@ export default function ListBox({ item, handleAddInfluencer }) {
         return images;
 
     }
-    
+
     const images = getImages();
 
     const EmptyBox = () => (
