@@ -26,7 +26,7 @@ export default function show({ list, influencer }) {
                         </div>
                     </>
 
-                    <div className="w-full p-4  md:mt-5  mt-10 ">
+                    <div className="w-full p-4 my-12 py-10 ">
                         <Tabs influencer={influencer} />
                     </div>
 

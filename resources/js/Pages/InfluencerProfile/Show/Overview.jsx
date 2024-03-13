@@ -21,7 +21,8 @@ export default function ({ influencer }) {
 
     const {
         engagement_rate, global_rank, country_rank, category_rank,
-        avg_cpe, avg_cpm, reachability, avg_impressions, reach, impressions
+        avg_cpe, avg_cpm, reachability, avg_impressions, reach, impressions, gender, marital_status,
+        parental_status, ethnicity, estimated_income, education,
 
     } = influencer?.metrics;
 
@@ -62,35 +63,31 @@ export default function ({ influencer }) {
 
     const influencerInformation = [
         {
-            title: 'Reach',
+            title: 'Gender',
             icon: <Gender />,
-            label: nFormatter(reach?.score) ?? 'no data'
-        },
-        {
-            title: 'Reachability',
+            label: gender ?? 'no data'
+        }, {
+            title: 'Ethnicity',
             icon: <Ethnicity />,
-            label: nFormatter(reachability?.score) ?? 'no data'
-        },
-        {
-            title: 'Impressions',
+            label: ethnicity ?? 'no data'
+        }, {
+            title: 'Marital Status',
             icon: <Marital />,
-            label: nFormatter(impressions?.score) ?? 'no data'
-        },
-        {
-            title: 'Average Impressions',
+            label: marital_status ?? 'no data'
+        }, {
+            title: 'Parental Status',
             icon: <Parental />,
-            label: avg_impressions?.score ?? 'no data'
+            label: parental_status ?? 'no data'
         },
-
-        {
-            title: 'Average CPE',
-            icon: <Income />,
-            label: avg_cpe?.score ?? 'no data'
+        , {
+            title: 'Estimated Income',
+            icon: <Gender />,
+            label: estimated_income ?? 'no data'
         },
         {
-            title: 'Average CPM',
-            icon: <Education />,
-            label: avg_cpm?.score ?? 'no data'
+            title: 'Education',
+            icon: <Gender />,
+            label: education ?? 'no data'
         }
     ]
 

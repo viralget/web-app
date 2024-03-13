@@ -22,7 +22,8 @@ class InfluencerResource extends JsonResource
         $metrics = $this->metrics;
         
 
-                $quality_audience =$metrics?->quality_audience;
+        $quality_audience =$metrics?->quality_audience;
+
 
         return [
             'id' => $this->id,
@@ -48,12 +49,13 @@ class InfluencerResource extends JsonResource
             // 'ethinic' => 'Hausa-Fulani',
             // 'income' => '$10-25k',
             // 'education' => 'bachelor',
-  
+              'brands_worked_with'  => $metrics?->brands_worked_with,
+
             'brand_safety_level'  => $this->brand_safety_level  ?? 0,
             // 'most_used_hashtags'  => json_decode($this->most_used_hashatags),
             // 'best_performing_tweets'  => json_decode($this->best_performing_tweets),
             'quality_audience_score' => $metrics?->qas, //(float)(($this->engagement_rate * $quality_audience) / ($this->interactions ?? 1)) * 100,
-            'quality_audience' => $this->quality_audience, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
+            'quality_audience' => $quality_audience, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
             'reach' => $metrics?->reach, // (float)(($this->engagement_rate * $quality_audience) / $this->interactions),
             'engagement_rate' => $metrics?->engagement_rate,
             // 'quality_audience' =>  (int)$quality_audience, // $this->quality_audience,

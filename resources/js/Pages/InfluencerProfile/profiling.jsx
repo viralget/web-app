@@ -1,4 +1,5 @@
 
+import fullReportLockedImg from '../../../assets/images/full-report-locked.png'
 
 export default function profiling() {
 
@@ -32,7 +33,7 @@ export default function profiling() {
 
 
             <div className="">
-                <div className="flex space-x-2">
+                {/* <div className="flex space-x-2">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="10" cy="10" r="10" fill="#FEF2EB" />
                         <g clip-path="url(#clip0_958_43030)">
@@ -46,20 +47,21 @@ export default function profiling() {
                         </defs>
                     </svg>
                     <span className="text-viralget-grey font-medium">Influencer profiling</span>
+                </div> */}
+
+
+                <div className="hidden md:flex flex-wrap justify-between mb-10 mt-3">
+                    <img src={fullReportLockedImg} />
+                    {/* <ProfileData />
+                    <ProfileData />
+                    <ProfileData />
+                    <ProfileData />
+                    <ProfileData />
+                    <ProfileData />
+                    <ProfileData />
+                    <ProfileData />
+                    <ProfileData /> */}
                 </div>
-
-
-                {/* <div className="flex flex-wrap justify-between mb-10 mt-3">
-                       <ProfileData />
-                       <ProfileData />
-                       <ProfileData />
-                       <ProfileData />
-                       <ProfileData />
-                       <ProfileData />
-                       <ProfileData />
-                       <ProfileData />
-                       <ProfileData />
-                  </div> */}
 
 
             </div>

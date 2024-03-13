@@ -201,7 +201,7 @@ export default function header({ influencer, isMini, list }) {
 
 
                                           <div className={classNames("flex flex-wrap mt-2  ", isMini ? 'w-full' : 'md:w-space-500')}>
-                                                <span className="text-xsx-header text-viralget-gray-400  mr-2">{influencer.bio}</span>
+                                                <span className="text-xsx-header text-viralget-gray-400  mr-2">{influencer.bio} {influencer.email && <>&bull;</>} {influencer.email} {influencer.phone && <>&bull;</>} {influencer.phone}</span>
                                           </div>
 
 

@@ -35,29 +35,54 @@ export default function ({ influencer }) {
             increase: engagement_rate?.increase,
             label: engagement_rate?.label
         },
+        {
+            title: 'Reachability',
+            icon: <EngagementRateWithBSvg />,
+            score: nFormatter(reachability?.score) ?? 'no data'
+        },
+        {
+            title: 'Impressions',
+            icon: <EngagementRateWithBSvg />,
+            score: nFormatter(impressions?.score) ?? 'no data'
+        },
+        {
+            title: 'Average Impressions',
+            icon: <EngagementRateWithBSvg />,
+            score: avg_impressions?.score ?? 'no data'
+        },
 
+        {
+            title: 'Average CPE',
+            icon: <EngagementRateWithBSvg />,
+            label: avg_cpe?.score ?? 'no data'
+        },
+        {
+            title: 'Average CPM',
+            icon: <EngagementRateWithBSvg />,
+            label: avg_cpm?.score ?? 'no data'
+        },
 
-        {
-            title: 'Global rank',
-            icon: (<SvgRank />),
-            score: global_rank?.score ?? '-',
-            increase: null,
-            label: global_rank?.label
-        },
-        {
-            title: 'Country rank',
-            icon: (<SvgCountry />),
-            score: country_rank?.score ?? '-',
-            increase: null,
-            label: country_rank?.label
-        },
-        {
-            title: 'Category rank',
-            icon: (<SvgCategory />),
-            score: category_rank?.score ?? '-',
-            increase: null,
-            label: category_rank?.label
-        },
+        // {
+        //     title: 'Global rank',
+        //     icon: (<SvgRank />),
+        //     score: global_rank?.score ?? '-',
+        //     increase: null,
+        //     label: global_rank?.label
+        // },
+        // {
+        //     title: 'Country rank',
+        //     icon: (<SvgCountry />),
+        //     score: country_rank?.score ?? '-',
+        //     increase: null,
+        //     label: country_rank?.label
+        // },
+        // {
+        //     title: 'Category rank',
+        //     icon: (<SvgCategory />),
+        //     score: category_rank?.score ?? '-',
+        //     increase: null,
+        //     label: category_rank?.label
+        // },
 
     ]
 
@@ -85,7 +110,7 @@ export default function ({ influencer }) {
 
         {
             title: 'Average CPE',
-            icon: <Income />,
+            icon: <EngagementRateWithBSvg />,
             label: avg_cpe?.score ?? 'no data'
         },
         {
@@ -119,7 +144,7 @@ export default function ({ influencer }) {
     //     },
     //     {
     //         title: 'Media Value',
-    //         icon: <Income />,
+    //         icon: <EngagementRateWithBSvg />,
     //         label: influencer.income
     //     },
     //     {
@@ -169,7 +194,7 @@ export default function ({ influencer }) {
                 </div>
             </Card>
 
-            <Card useBorder={true} useShadow={false}>
+            {/* <Card useBorder={true} useShadow={false}>
 
                 <span className="font-bold text-t-xs font-lexend">Most Used Hashtags</span>
 
@@ -178,7 +203,7 @@ export default function ({ influencer }) {
                         <span className="p-2 bg-gray-50 rounded-md" key={index}>#{item}</span>
                     ))}
                 </div>
-            </Card>
+            </Card> */}
 
         </div>
     )

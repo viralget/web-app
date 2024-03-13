@@ -7,6 +7,7 @@ import Content from "./Content";
 import Influencer from "./Influencer";
 import Overview from "./Overview";
 import Value from "./Value";
+import Brand from "./Brand";
 
 
 const Tabs = ({ influencer }) => {
@@ -35,18 +36,18 @@ const Tabs = ({ influencer }) => {
     //   component: <Content influencer={influencer} />
 
     // },
-    // {
-    //   name: 'Value',
-    //   value: 'value',
-    //   component: <Value title="Feature coming soon" influencer={influencer} />
+    {
+      name: 'Value',
+      value: 'value',
+      component: <Value title="Feature coming soon" influencer={influencer} />
 
-    // },
-    // {
-    //   name: 'Brand',
-    //   value: 'brand',
-    //   component: <EmptyState title="Feature coming soon" />
+    },
+    {
+      name: 'Brand',
+      value: 'brand',
+      component: <Brand title="Feature coming soon" influencer={influencer} />
 
-    // },
+    },
     // {
     //   name: 'Lookalike influencer',
     //   value: 'lookalike_influencer',
