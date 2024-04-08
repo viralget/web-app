@@ -65,7 +65,7 @@ class Paystack
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.paystack.co/plan",
+            CURLOPT_URL => "https://api.paystack.co/plan?status=active",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
