@@ -12,6 +12,7 @@ import Avatar from "@/Components/Skeleton/Avatar";
 
 export default function InfluencerCard({ influencer, showBanner, handleProfile, useShadow, useLink }) {
 
+    console.log({ influencer })
     const [showMessage, setShowMessage] = useState(false);
 
     const handleProfileClick = () => {
@@ -54,23 +55,23 @@ export default function InfluencerCard({ influencer, showBanner, handleProfile, 
                         </span>
                     </div>
                     <div className="text-center items-center flex-col">
-                        <span className="text-t-xs font-bold block p-0">{nFormatter(influencer.interactions)}</span>
-                        <span className="text-t-normal  text-viralget-gray-400  font-normal">Interactions</span>
+                        <span className="text-t-xs font-bold block p-0">{nFormatter(influencer.following_count)}</span>
+                        <span className="text-t-normal  text-viralget-gray-400  font-normal">Following</span>
                     </div>
                     <div className="text-center items-center flex flex-col">
-                        <span className="text-t-xs font-bold block p-0">{influencer.engagement_rate ?? 0}</span>
-                        <span className="text-t-normal text-viralget-gray-400   font-normal">Engagement</span>
+                        <span className="text-t-xs font-bold block p-0">{influencer.tweets_count ?? 0}</span>
+                        <span className="text-t-normal text-viralget-gray-400   font-normal">Posts</span>
                     </div>
 
                 </div>
 
 
                 <div className="p-5">
-                    <Button block onClick={() => setShowMessage(true)} usePrimary>Send Message</Button>
+                    <Button block onClick={() => setShowMessage(true)} usePrimary>Send Mail</Button>
                 </div>
             </div>
 
-            <Modal isOpen={showMessage} setisOpen={setShowMessage}>
+            <Modal isOpen={showMessage} setIsOpen={setShowMessage}>
                 <Form influencer={influencer.id} showModal={setShowMessage} />
             </Modal>
         </div>

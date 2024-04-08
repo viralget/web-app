@@ -29,7 +29,7 @@ class InfluencerResource extends JsonResource
             'id' => $this->id,
             'username' => $this->username,
             'full_name' => $this->full_name,
-            'engagement_rate' => $this->engagement_rate, //$this->engagementRate(), // TODO: engagement_rate and interactions should be db fields, updated daily as CRON jobs to boost performance
+            // 'engagement_rate' => $this->engagement_rate, //$this->engagementRate(), // TODO: engagement_rate and interactions should be db fields, updated daily as CRON jobs to boost performance
             'followers_count' => $this->followers_count,
             'tweet_count' => $this->tweets_count,
             'following_count' => $this->following_count,
@@ -109,12 +109,12 @@ class InfluencerResource extends JsonResource
                 'engagement_rate' => [
                     'score' => $metrics?->engagement_rate,
                     'increase' => 0.24,
-                    'label' => 'last 7 days'
+                    'label' => 'last 30 days'
                 ],
                 'average_likes_per_post' => [
                      'score' => $metrics?->average_likes_per_post,
                     'increase' => 0.24,
-                    'label' => 'last 7 days'
+                    'label' => 'last 30 days'
                 ],
                 'media_value_per_post' => $this->metricsValue($metrics?->media_value_per_post),
                 'interactions' => [
@@ -171,7 +171,7 @@ class InfluencerResource extends JsonResource
         return [
             'score' => $value,
             'increase' => 0.24,
-            'label' => 'last 7 days'
+            'label' => 'last 30 days'
         ];
     }
 }

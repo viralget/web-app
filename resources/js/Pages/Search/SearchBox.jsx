@@ -23,7 +23,7 @@ export default function SearchBox(props) {
         setSearches(searchData);
 
         searchData.forEach(q => {
-            urlParams.set(q.query, q.value);
+            urlParams.set(q.query, q?.value ?? '');
         });
         urlParams.set('page', 1); //force start from page 1
         setSearchParams(urlParams);

@@ -45,12 +45,16 @@ class ProfilingController extends Controller
         $user_id = $request->user()->id;
         $profiles = ProfiledInfluencer::with(['user', 'influencer'])->where('user_id', $user_id)->latest()->take(3)->get();
         $profiles_count = ProfiledInfluencer::where('user_id', $user_id)->count();
-        $influencerList = InfluencerList::with('influencers')->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+        $influencerList = InfluencerList::with('influencers', 'influencers.metrics')->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+
 
         return Inertia::render('Profiling/index', [
             'profiles' => $profiles,
+            'list_count' => $influencerList->count(),
             'influencerList' => $influencerList,
-            'profiles_count' => $profiles_count
+            'profiles_count' => $profiles_count,
+            'twitter_accounts' => 0,
+            'instagram_accounts' => $profiles_count,
         ]);
     }
 

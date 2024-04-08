@@ -95,12 +95,13 @@ class InfluencerController extends Controller
 
             $verification_status = $request->verification_status;
             $gender = $request->gender;
-            $avg_likes = $request->average_likes;
+            $avg_likes = (int)$request->average_likes;
             $er = (float) $request->engagement_rate;
 
 
             $any = 'Any';
 
+            
             // $countries = InfluencerCountry::get();
 
             if ($platform) {
@@ -261,6 +262,9 @@ class InfluencerController extends Controller
             }
 
             $result = $result->latest()->paginate(10)->appends($_GET);
+
+
+
         } else {
             $result = null;
             $has_query = false;

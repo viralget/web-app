@@ -83,7 +83,7 @@
 
             <div id="collapse-1-4" class="collapse" data-parent="#accordion-1">
               <div class="card-body">
-              Viral Get Twitter analytics reports can be easily created. You just need to go to the home page and type the term, hashtag or keyword you need to track. We have a wide range of Twitter impact reports: free report (it gives up to 100 tweets from the last 7 days), 14-days report (it gives up to 250 tweets from the last 14 days), 30-days reports (it gives up to 500 tweets from the last 30 days).
+              Viral Get Twitter analytics reports can be easily created. You just need to go to the home page and type the term, hashtag or keyword you need to track. We have a wide range of Twitter impact reports: free report (it gives up to 100 tweets from the last 30 days), 14-days report (it gives up to 250 tweets from the last 14 days), 30-days reports (it gives up to 500 tweets from the last 30 days).
               </div>
             </div>
           </div>

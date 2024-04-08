@@ -106,7 +106,7 @@ class InfluencerResource extends JsonResource
                 'engagement_rate' => [
                     'score' => $metrics?->engagement_rate,
                     'increase' => 0.24,
-                    'label' => 'last 7 days'
+                    'label' => 'last 30 days'
                 ],
                 'interactions' => [
                     'score' => $metrics?->interactions,

@@ -33,6 +33,7 @@ export default function SearchForm({
     const position = new URLSearchParams(window.location.search).get('position');
     const gender = new URLSearchParams(window.location.search).get('gender');
     const average_likes = new URLSearchParams(window.location.search).get('average_likes');
+
     const engagement_rate = new URLSearchParams(window.location.search).get('engagement_rate');
     const selectedkeywords = new URLSearchParams(window.location.search).get('keywords');
     const _platform = new URLSearchParams(window.location.search).get('platform');
