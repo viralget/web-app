@@ -38,7 +38,7 @@ export default function PlanCard({ item, isEmpty }) {
               </span>
 
               <span className="text-t-xlg font-lexend  font-bold mt-3">
-                ${nFormatter(plan?.amount)}<span className="font-normal text-t-xs  text-viralget-gray-400">/{plan?.interval == 'monthly' ? 'mo' : 'yr'}</span>
+                NGN{plan?.amount / 1000}<span className="font-normal text-t-xs  text-viralget-gray-400">/{plan?.interval == 'monthly' ? 'mo' : 'yr'}</span>
               </span>
 
               <a href={route('user.payment.page', { plan_id: plan?.plan_code })} className="text-viralget-red border mt-3  p-1 hover:bg-viralget-red px-space-20 py-space-10  text-center  flex items-center hover:text-white rounded-md border-viralget-red ">
