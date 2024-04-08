@@ -49,7 +49,7 @@ export default function ({ influencer }) {
         {
             title: 'Average CPV',
             icon: <EngagementRateWithBSvg />,
-            score: avg_cpv?.score ?? '-'
+            score: avg_cpv?.score ?? <span className="text-gray-300 font-normal">coming soon</span>
         },
     ]
 

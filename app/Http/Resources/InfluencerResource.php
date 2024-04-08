@@ -61,6 +61,7 @@ class InfluencerResource extends JsonResource
             // 'quality_audience' =>  (int)$quality_audience, // $this->quality_audience,
             'total_comments' => $metrics?->total_comments,
             'total_likes' => $metrics?->total_likes,
+            'total_video_views' => $metrics?->total_video_views,
             'most_used_hashtags' => explode(',', $metrics?->most_used_hashtags),
             'recent_tweets' => $additional_data->recent_tweets ?? [],
             'best_performing_videos' => $additional_data->best_performing_videos ?? [],
@@ -97,7 +98,7 @@ class InfluencerResource extends JsonResource
                     'label' => 'last 30 days'
                 ],
                 'avg_cpe' => [
-                    'score' => $metrics?->average_cpe,
+                    'score' => round($metrics?->average_cpe, 2),
                     'increase' => 3.3,
                     'label' => 'last 30 days'
                 ],

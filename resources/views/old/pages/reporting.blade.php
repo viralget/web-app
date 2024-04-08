@@ -48,7 +48,7 @@
                   <tr>
                     <th scope="row">{{$count}}</th>
                     <td><a target="_blank" href="{{ route('reporting.hashtag', ['id' => $report->id])}}">{{ $report->query }}</a> </td>
-                    <td><strong>{{ $report->plan->name ?? '-' }}</strong></td>
+                    <td><strong>{{ $report->plan->name ?? <span className="text-gray-300 font-normal">coming soon</span> }}</strong></td>
                     <td>{{ $report->created_at->diffInHours() > 24 ? $report->created_at->toDayDateTimeString() : $report->created_at->diffForHumans() }}</td>
                     <td><a target="_blank" href="{{ route('reporting.hashtag', ['id' => $report->id]) }}" class="btn btn-sm btn-warning">View Report</td>
                   </tr>

@@ -28,8 +28,8 @@ export default function AudienceCard({ influencer }) {
                 </svg>)
         },
         {
-            name: 'Total likes',
-            value: nFormatter(influencer.total_likes ?? 0),
+            name: 'Video views',
+            value: nFormatter(influencer.total_video_views ?? 0),
             icon: (
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_958_43737)">
@@ -45,7 +45,7 @@ export default function AudienceCard({ influencer }) {
             )
         },
         {
-            name: 'Total comments',
+            name: 'Comments',
             value: nFormatter(influencer.total_comments ?? 0),
             icon: (
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

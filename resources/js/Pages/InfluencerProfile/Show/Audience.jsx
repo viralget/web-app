@@ -36,49 +36,49 @@ export default function ({ influencer }) {
         {
             title: 'Quality Audience ',
             icon: <EngagementRateWithBSvg />,
-            score: quality_audience ?? '-'
+            score: quality_audience ?? <span className="text-gray-300 font-normal">coming soon</span>
         },
 
         {
             title: 'Audience Reachability',
             icon: <EngagementRateWithBSvg />,
-            score: reachability?.score ?? '-'
+            score: reachability?.score ?? <span className="text-gray-300 font-normal">coming soon</span>
         },
         {
             title: 'Audience Authenticity',
             icon: <EngagementRateWithBSvg />,
-            score: audience_authenticity?.score ?? '-'
+            score: audience_authenticity?.score ?? <span className="text-gray-300 font-normal">coming soon</span>
         }
         // {
         //     title: 'Average Views Per Post',
         //     icon: <Gender />,
-        //     score: nFormatter(average_views_per_post?.score) ?? '-'
+        //     score: nFormatter(average_views_per_post?.score) ?? <span className="text-gray-300 font-normal">coming soon</span>
         // },
         // {
         //     title: 'Average Comments Per Post',
         //     icon: <Ethnicity />,
-        //     score: nFormatter(average_comments_per_post?.score) ?? '-'
+        //     score: nFormatter(average_comments_per_post?.score) ?? <span className="text-gray-300 font-normal">coming soon</span>
         // },
         // {
         //     title: 'Engagements',
         //     icon: <EngagementRateWithBSvg />,
-        //     score: nFormatter(engagement_rate?.score) ?? '-'
+        //     score: nFormatter(engagement_rate?.score) ?? <span className="text-gray-300 font-normal">coming soon</span>
         // },
         // {
         //     title: 'Total Replies',
         //     icon: <EngagementRateWithBSvg />,
-        //     score: total_replies?.score ?? '-'
+        //     score: total_replies?.score ?? <span className="text-gray-300 font-normal">coming soon</span>
         // },
 
         // {
         //     title: 'Average CPE',
         //     icon: <EngagementRateWithBSvg />,
-        //     score: avg_cpe?.score ?? '-'
+        //     score: avg_cpe?.score ?? <span className="text-gray-300 font-normal">coming soon</span>
         // },
         // {
         //     title: 'Average CPM',
         //     icon: <EngagementRateWithBSvg />,
-        //     score: avg_cpm?.score ?? '-'
+        //     score: avg_cpm?.score ?? <span className="text-gray-300 font-normal">coming soon</span>
         // }
     ]
 

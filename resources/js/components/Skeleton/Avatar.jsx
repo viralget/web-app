@@ -1,6 +1,7 @@
 import { classNames } from "@/Utils/helpers";
 import maleImg from '../../../assets/images/avatars/male.jpeg';
 import femaleImg from '../../../assets/images/avatars/female.jpeg';
+import defaultAvatar from '../../../assets/images/avatars/default.png';
 
 
 export default function Avatar({ user, userName, url, size, useIcon, className, isEditable, isDark }) {
@@ -24,9 +25,10 @@ export default function Avatar({ user, userName, url, size, useIcon, className, 
 
     const getIcon = (gender) => {
         return <img
-            className={`inline-block rounded-md ${sizeClass} ${className}`}
+            className={`inline-block rounded-md object-cover ${sizeClass} ${className}`}
             // src={avatarUrl}
-            src={gender == 'male' ? maleImg : femaleImg}
+            src={defaultAvatar}
+            // src={gender == 'male' ? maleImg : femaleImg}
             alt=""
         />
     }
@@ -42,7 +44,7 @@ export default function Avatar({ user, userName, url, size, useIcon, className, 
                     />
                     :
                     useIcon ? getIcon(user?.gender) :
-                        <span className={classNames(`inline-flex items-center justify-center rounded-md`, isDark ? 'bg-secondary' : 'bg-gray-800', className, sizeClass)} >
+                        <span className={classNames(`inline-flex object-fit items-center justify-center rounded-md`, isDark ? 'bg-secondary' : 'bg-gray-800', className, sizeClass)} >
                             <span className="text-sm font-medium leading-none text-white">{username?.toUpperCase()?.charAt(0)}</span>
                         </span >
                 }

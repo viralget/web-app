@@ -65,21 +65,21 @@ export default function ({ influencer }) {
         // {
         //     title: 'Global rank',
         //     icon: (<SvgRank />),
-        //     score: global_rank?.score ?? '-',
+        //     score: global_rank?.score ?? <span className="text-gray-300 font-normal">coming soon</span>,
         //     increase: null,
         //     label: global_rank?.label
         // },
         // {
         //     title: 'Country rank',
         //     icon: (<SvgCountry />),
-        //     score: country_rank?.score ?? '-',
+        //     score: country_rank?.score ?? <span className="text-gray-300 font-normal">coming soon</span>,
         //     increase: null,
         //     label: country_rank?.label
         // },
         // {
         //     title: 'Category rank',
         //     icon: (<SvgCategory />),
-        //     score: category_rank?.score ?? '-',
+        //     score: category_rank?.score ?? <span className="text-gray-300 font-normal">coming soon</span>,
         //     increase: null,
         //     label: category_rank?.label
         // },
