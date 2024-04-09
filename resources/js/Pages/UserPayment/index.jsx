@@ -154,8 +154,8 @@ export const PaymentProccess = (props) => {
                         <Button
                             className='block w-auto bg-viralget-red rounded-[8px]  px-space-40'
                             processing={isLoading}
-                            // href={route('explore')}
-                            onClick={handleStart}
+                            href={route('explore')}
+                        // onClick={handleStart}
                         >
                             {buttText}
 
