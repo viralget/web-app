@@ -148,11 +148,11 @@ export default function Plans({ plans }) {
 
 
                {filteredPlans.length > 0 && (
-                  <div className={`grid grid-cols-${filteredPlans.length + 1}`}>
+                  <div className={`grid md:grid-cols-${filteredPlans.length + 1}`}>
                      <PlanCard isEmpty />
 
                      {
-                        filteredPlans?.map((item, index) => (
+                        filteredPlans?.reverse().map((item, index) => (
                            <PlanCard item={item} key={index} />
                         ))
                      }

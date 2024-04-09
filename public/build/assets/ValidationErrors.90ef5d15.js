@@ -1,1 +1,0 @@
-import{R as e}from"./app.4ba8698c.js";import{E as o}from"./Error.07cce8de.js";function n({errors:r}){return Object.keys(r).length>0&&e.createElement(o,{message:"Sorry, an error occured.",errors:r})}export{n as V};
