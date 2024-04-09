@@ -162,9 +162,11 @@ class RegisteredUserController extends Controller
     {
 
         $plans = Paystack::fetchPlans();
-        $data['plans']  = $plans?->data ? $plans?->data : [];
+        $data['plans']  = array_reverse($plans?->data ? $plans?->data : []);
 
         $user = request()->user();
+
+
         if (!$user) {
             return Inertia::render('Pricing/Guest/index', $data);
             // return redirect(route('login'));
