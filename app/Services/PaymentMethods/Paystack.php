@@ -91,7 +91,7 @@ class Paystack
             throw new Exception($response->message);
         }
 
-        return $response;
+        return array_reverse($response);
     }
 
 

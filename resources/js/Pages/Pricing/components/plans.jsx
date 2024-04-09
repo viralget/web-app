@@ -152,7 +152,7 @@ export default function Plans({ plans }) {
                      <PlanCard isEmpty />
 
                      {
-                        filteredPlans?.reverse().map((item, index) => (
+                        filteredPlans?.map((item, index) => (
                            <PlanCard item={item} key={index} />
                         ))
                      }
