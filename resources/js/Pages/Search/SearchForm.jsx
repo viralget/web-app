@@ -157,9 +157,10 @@ export default function SearchForm({
                         <MultiDropdown options={[
                             { name: 'Any' },
                             { name: 'Nano (1000 - 10,000)', value: 'Nano' },
-                            { name: 'Micro (10,000 - 50,000)', value: 'Micro' },
-                            { name: 'Mid Tier (50,000 - 500k)', value: 'Mid-Tier' },
-                            { name: 'Macro (500k - 1m)', value: 'Macro' },
+                            { name: 'Micro (10,001 - 100,000)', value: 'Micro' },
+                            { name: 'Mid Tier (100,001 - 500k)', value: 'Mid-Tier' },
+                            { name: 'Macro (501k - 1m)', value: 'Macro' },
+                            { name: 'Mega (1m - above)', value: 'Mega' },
                         ]}
                             onChange={(e) => handleChange(e, 'Influencer Size', 'size')}
                             label="Influencer Size"
