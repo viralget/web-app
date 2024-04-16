@@ -138,6 +138,7 @@ export default function List(props) {
 
         const response = await post(route('create.profiling'), data, true);
 
+        console.log({ response });
         if (response?.data?.status) {
             setShowModal(!showModal);
             toast.success('Profile saved successfully');

@@ -34,7 +34,7 @@ class ProfilingController extends Controller
             }
         }
 
-        return response(['status' => true, 'message' => 'Profile save successfully']);
+        return response(['status' => true, 'message' => 'Profile saved successfully']);
     }
 
 
