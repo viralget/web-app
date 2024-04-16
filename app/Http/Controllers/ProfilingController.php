@@ -23,7 +23,7 @@ class ProfilingController extends Controller
         $user_id = $request->user()->id;
 
         foreach ($data as $key => $val) {
-            $find = ProfiledInfluencer::where('influencer_id', $val['id'])->first();
+            $find = ProfiledInfluencer::where('influencer_id', $val['id'])->where('user_id', $user_id)->first();
 
             if (!$find) {
                 ProfiledInfluencer::create([
