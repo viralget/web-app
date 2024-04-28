@@ -154,13 +154,13 @@ const AddInfluencer = ({ profiled_influencers, list }) => {
                                         <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
                                             Follower
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
+                                        {/* <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
                                             Interaction
                                         </th>
+ */}
                                         <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
                                             ER
                                         </th>
-
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
@@ -197,8 +197,8 @@ const AddInfluencer = ({ profiled_influencers, list }) => {
 
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.followers_count}</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
+                                            {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>*/}
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
 
                                         </tr>
                                     ))}

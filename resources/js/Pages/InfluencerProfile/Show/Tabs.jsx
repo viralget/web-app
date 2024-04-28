@@ -24,12 +24,12 @@ const Tabs = ({ influencer }) => {
       component: <Influencer influencer={influencer} />
 
     },
-    {
-      name: 'Audience',
-      value: 'audience',
-      component: <Audience influencer={influencer} />
+    // {
+    //   name: 'Audience',
+    //   value: 'audience',
+    //   component: <Audience influencer={influencer} />
 
-    },
+    // },
     // {
     //   name: 'Content',
     //   value: 'content',

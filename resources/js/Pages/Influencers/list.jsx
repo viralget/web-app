@@ -172,10 +172,10 @@ export default function List(props) {
                                                     <span className='text-viralget-red text-xs font-bold'>20 influencers</span>
                                                 </div>
 
-                                                <div className='flex flex-col'>
+                                                {/* <div className='flex flex-col'>
                                                     <span className='text-xs font-bold'>Available to store </span>
                                                     <span className='text-viralget-red text-xs font-bold'> {selected.length} influencers</span>
-                                                </div>
+                                                </div> */}
 
                                                 <div className='flex items-center justify-end ml-5'>
                                                     <button onClick={() => handleModal()}>
