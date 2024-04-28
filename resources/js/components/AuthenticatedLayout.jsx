@@ -30,7 +30,7 @@ const navigation = [
 ]
 
 
-export default function AuthenticatedLayout({ children, title, subtitle, showHeader = true, showSearchForm = true, smallHeader = true, bgColor }) {
+export default function AuthenticatedLayout({ children, title, subtitle, showBackButton = false, backHref = false, showHeader = true, showSearchForm = true, smallHeader = true, bgColor }) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const { auth: { user } } = usePage().props;
 
@@ -181,7 +181,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                 <div className="flex flex-1 justify-end md:justify-between mx-auto   sm:px-5 lg:px-5 relative">
                                     <div className="hidden md:flex flex-1">
                                         <div className="w-full max-w-sm  mt-3">
-                                            <form action={route('explore.search')} method="get">
+                                            {/* <form action={route('explore.search')} method="get">
 
                                                 <label htmlFor="search" className="sr-only">
                                                     Search
@@ -198,7 +198,7 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                                         type="search"
                                                     />
                                                 </div>
-                                            </form>
+                                            </form> */}
                                         </div>
                                     </div>
                                     <div className="ml-4 flex items-center md:ml-6 space-x-3">
@@ -209,7 +209,6 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                                             <BellIcon className="h-6 w-6" aria-hidden="true" />
                                         </button>
 
-                                        {/* Profile dropdown */}
                                         <div className={smallHeader ? "w-full rounded-lg border border-black-50/40 bg-black-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm" : " w-full rounded-lg border border-stone-50/40 bg-stone-50/30 py-1 p-2 focus:border-fushia-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-fushia-500 sm:text-sm"}>
                                             <DropdownMenu user={user} light={!smallHeader} />
                                         </div>
@@ -220,6 +219,9 @@ export default function AuthenticatedLayout({ children, title, subtitle, showHea
                         {!smallHeader && (
                             // <Container className="relative">
                             <div className=" px-5 sm:px-6 lg:px-8  my-16 ">
+                                {showBackButton && (
+                                    <Link href={backHref ?? document.referrer} className='text-sm text-white pb-3'>&larr; Go back</Link>
+                                )}
                                 {/* <div className="w-[70%]  my-16 "> */}
                                 <h1 className="font-display pb-20 font-bold  font-lexend leading-[48px] text-white text-[44px]">
                                     {title}

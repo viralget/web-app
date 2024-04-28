@@ -10,6 +10,8 @@ import PAYG from './PAYG';
 
 export default function PricingPage({ plans }) {
 
+    console.log({ plans })
+
     const [getTab, setTab] = useState('plans'); //'paygo'
 
     const handleTabs = (tab) => {

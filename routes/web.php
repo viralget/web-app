@@ -55,7 +55,6 @@ Route::get('/contact', function () {
 
 Route::get('/pricing-page', function () {
     return redirect(route('pricing'));
-    // return Inertia::render('PricingPage/index');
 })->name('pricing.page');
 
 

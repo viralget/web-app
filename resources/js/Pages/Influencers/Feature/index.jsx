@@ -19,6 +19,8 @@ import Fastest_Image_4 from "../../../../assets/images/feature_images/funke.png"
 import Fastest_Image_5 from "../../../../assets/images/feature_images/peter.png"
 import Typography from '@/components/Typography';
 import { TopologySvg, StarTopologySvg } from '@/Utils/icons'
+import Badge from '@/Components/Badge'
+import ComingSoon from '@/Components/ComingSoon'
 
 export default function FeatureSelections({ data }) {
     return (
@@ -28,7 +30,8 @@ export default function FeatureSelections({ data }) {
             <div className="mt-space-20 grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
                 <FeatureCard
                     TopologySvg={<TopologySvg />}
-                    href={`${route('explore.search')}/?influencer_qas=good&page=1`}
+                    href="#"
+                    // href={`${route('explore.search')}/?influencer_qas=good&page=1`}
                     images={
                         [
                             Most_Image_1,
@@ -40,11 +43,11 @@ export default function FeatureSelections({ data }) {
                     }
                     className="from-[#37CFFF]  via-[#0D57C6] to-[#0F5ED6]"
                     colors={['#4568DC', '#B06AB3']}
-                    title="Most followed influencers with good quality of audience" reach='+1K'
+                    title={<><>Most followed influencers with good quality of audience</><br /><ComingSoon /></>} reach='+1K'
                 />
                 <FeatureCard
                     TopologySvg={<TopologySvg />}
-                    href={`${route('explore.search')}?influencer_qas=very+good`}
+                    // href={`${route('explore.search')}?influencer_qas=very+good`}
                     images={
                         [
                             Top_Image_1,
@@ -56,11 +59,13 @@ export default function FeatureSelections({ data }) {
                     }
                     className="from-[#FF7676]   to-[#9C1EBC]"
                     colors={['#43CEA2', '#185A9D']}
-                    title="Top-performing influencers this week" reach="+3K" />
+                    title={<><>Top-performing influencers this week</><br /><ComingSoon /></>} reach='+1K'
+                // title="Top-performing influencers this week" reach="+3K" 
+                />
 
                 <FeatureCard
                     TopologySvg={<StarTopologySvg />}
-                    href={`${route('explore.search')}/?size=100000&page=1`}
+                    // href={`${route('explore.search')}/?size=100000&page=1`}
                     images={
                         [
                             Fastest_Image_1,
@@ -72,7 +77,8 @@ export default function FeatureSelections({ data }) {
                     }
                     className="from-[#CB5DFF]   to-[#1D41BE]"
                     colors={['#D66768', '#EFC655']}
-                    title="Fastest growing influencers under 100k followers" reach="+1.5K"
+                    title={<><>Fastest growing influencers under 100k followers</><br /><ComingSoon /></>} reach='+1K'
+                // title="Fastest growing influencers under 100k followers" reach="+1.5K"
                 />
             </div>
 

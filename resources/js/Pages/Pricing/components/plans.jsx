@@ -57,8 +57,8 @@ import { Container } from "@/Components/Container";
 export default function Plans({ plans }) {
 
 
-   const [selectedDuration, setSelectedDuration] = useState("monthly");
-   const [filteredPlans, setFilteredPlans] = useState(plans?.filter((item) => item.interval == selectedDuration))
+   const [selectedDuration, setSelectedDuration] = useState("month");
+   const [filteredPlans, setFilteredPlans] = useState(plans?.filter((item) => item.invoice_interval == selectedDuration))
 
 
    const handleSwitch = (e) => {
@@ -160,7 +160,7 @@ export default function Plans({ plans }) {
                   </div>
                )}
 
-               <PlanDetails />
+               <PlanDetails plans={filteredPlans} />
 
             </div>
          </Container>

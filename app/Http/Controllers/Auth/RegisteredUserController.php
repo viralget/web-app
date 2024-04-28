@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Helpers\LoggerHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\UserVerifyEmail;
+use App\Models\PaymentServicePlans;
+use App\Models\Plan;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,17 +15,24 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
-use App\Services\PaymentMethods\Paystack;
 use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\UserPlan;
 use App\Models\Transaction;
+use App\Services\PaymentMethods\Paystack;
+use App\Services\PricingService;
 use Carbon\Carbon;
+
 
 class RegisteredUserController extends Controller
 {
     use LoggerHelper;
 
+    private $pricingService;
+
+    function __construct() {
+        $this->pricingService = new PricingService;
+    }
     /**
      * Display the registration view.
      *
@@ -161,11 +170,13 @@ class RegisteredUserController extends Controller
     public  function  selectPricing()
     {
 
-        $plans = Paystack::fetchPlans();
-        $data['plans']  = array_reverse($plans?->data ? $plans?->data : []);
+        $pricingService = new PricingService();
+
+        $data['plans'] = $pricingService->getPlans();
+
+        // $data['plans']  = array_reverse($plans?->data ? $plans?->data : []);
 
         $user = request()->user();
-
 
         if (!$user) {
             return Inertia::render('Pricing/Guest/index', $data);
@@ -201,12 +212,24 @@ class RegisteredUserController extends Controller
         }
     }
 
-    public function selectPayment($plan_id)
+    public function selectPayment($slug)
     {
+
+ 
+
         $user = request()->user();
-        if (!$user || !$plan_id) {
+        if (!$user || !$slug) {
             return redirect(route('register'));
         }
+
+        $plan = Plan::where('slug', $slug)->first();
+
+        $plan = PaymentServicePlans::where('plan_id', $plan->id)->first();
+
+                $plan_id = $plan->plan_code;
+
+
+
         if (config('services.paystack.mode') == 'live') {
             $public_key = config('services.paystack.live_pk');
         } else {
@@ -220,12 +243,17 @@ class RegisteredUserController extends Controller
         return Inertia::render('UserPayment/index', $data);
     }
 
-    public function verifyPayment($reference, $plan_id)
+    public function verifyPayment($reference, $slug)
     {
 
         $verify = Paystack::verify($reference);
         $data['verify'] = $verify;
-        $plan = Paystack::fetchPlan($plan_id);
+
+        $plan = Plan::where('slug', $slug);
+
+
+        $plan = PaymentServicePlans::where('plan_id', $plan->plan_id);
+
         $user = request()->user();
         $user_id =  $user->id;
         if ($verify->status) {

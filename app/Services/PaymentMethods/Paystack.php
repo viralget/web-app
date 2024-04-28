@@ -61,37 +61,44 @@ class Paystack
 
     public static function fetchPlans()
     {
+        try {
 
-        $curl = curl_init();
+            $curl = curl_init();
 
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.paystack.co/plan?status=active",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => [
-                "Authorization:Bearer " . self::$secret_key,
-                "Cache-Control: no-cache",
-            ],
-        ]);
+            curl_setopt_array($curl, [
+                CURLOPT_URL => "https://api.paystack.co/plan?status=active",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'GET',
+                CURLOPT_HTTPHEADER => [
+                    "Authorization:Bearer " . self::$secret_key,
+                    "Cache-Control: no-cache",
+                ],
+            ]);
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            curl_close($curl);
 
-        if ($err) {
-            throw new Exception($err);
+            if ($err) {
+                throw new Exception($err);
+            }
+
+            $response = json_decode($response);
+            if (!$response->status) {
+                throw new Exception($response->message);
+            }
+
+            return $response?->data;
+
+        } catch(Exception $e) {
+            return [];
         }
 
-        $response = json_decode($response);
-        if (!$response->status) {
-            throw new Exception($response->message);
-        }
 
-        return $response;
     }
 
 
