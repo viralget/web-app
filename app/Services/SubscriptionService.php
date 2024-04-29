@@ -63,8 +63,11 @@ class SubscriptionService {
 
         // dd($feature_record, $feature);
 
+            if (!$subscription)
+                return false;
+
         // return $feature_record->;
-        $usage = $subscription->usage()->firstOrNew([
+        $usage = $subscription?->usage()->firstOrNew([
             'subscription_id' => $subscription->id,
             'feature_id' => $feature_record->id,
         ]);
