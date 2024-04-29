@@ -20,6 +20,8 @@ import Pagination from '@/Components/Pagination';
 import SimplePagination from '@/Components/SimplePagination';
 import { TwitterSvg } from '@/Utils/icons';
 import { getPlatform } from '@/Services/PlatformsService';
+import { usePage } from '@inertiajs/inertia-react';
+import Button from '@/Components/Button';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -28,6 +30,10 @@ function classNames(...classes) {
 export default function List(props) {
 
     const { count, data, paginationData } = props;
+
+    const { auth } = usePage().props;
+    const available_profiling_count = auth.user.available_profiling_count ?? 0;
+
 
     // // console.log({ paginationData })
     const checkbox = useRef()
@@ -47,6 +53,8 @@ export default function List(props) {
     function handleModal() {
         setShowModal(!showModal);
     }
+
+
 
 
     useLayoutEffect(() => {
@@ -125,6 +133,12 @@ export default function List(props) {
 
     async function handleCreateProfiling() {
 
+        if (available_profiling_count < 1) {
+            toast.error('You have exhausted your profiling limits.');
+
+            return;
+        }
+
         const getIds = selected.map((item) => {
             return {
                 id: item.id
@@ -138,7 +152,7 @@ export default function List(props) {
 
         const response = await post(route('create.profiling'), data, true);
 
-        console.log({ response });
+        // console.log({ response });
         if (response?.data?.status) {
             setShowModal(!showModal);
             toast.success('Profile saved successfully');
@@ -169,7 +183,7 @@ export default function List(props) {
                                             <div className='flex space-x-4 px- py-2 justify-between border-b w-full '>
                                                 <div className='flex flex-col border-r pr-5 '>
                                                     <span className='text-xs font-bold'>Available to profile </span>
-                                                    <span className='text-viralget-red text-xs font-bold'>20 influencers</span>
+                                                    <span className='text-viralget-red text-xs font-bold'>{available_profiling_count} influencers</span>
                                                 </div>
 
                                                 {/* <div className='flex flex-col'>
@@ -231,9 +245,12 @@ export default function List(props) {
                                             </div>
 
                                             <div className='flex  justify-center items-center w-full mt-2 mb-4'>
-                                                <button onClick={handleCreateProfiling} className='bg-viralget-red py-3  font-bold rounded-md px-4 h-9 text-white  flex items-center text-center'>
+                                                <Button disabled={available_profiling_count < 1} onClick={handleCreateProfiling}
+                                                    usePrimary
+                                                // className='bg-viralget-red py-3  font-bold rounded-md px-4 h-9 text-white  flex items-center text-center'
+                                                >
                                                     Profile influencers
-                                                </button>
+                                                </Button>
                                             </div>
                                         </div>
                                     </Modal>

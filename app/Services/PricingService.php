@@ -52,6 +52,20 @@ class PricingService {
         return $this->plan->with('features')->get();
     }
 
+    public function getPlan($id) {
+        return $this->plan->with('features')->find($id);
+    }
+
+
+    public function getPlanFeatures(Plan $plan) {
+        return $plan->features()->get();
+    }
+
+    public function findPlanByName($pricingPlanName) {
+
+        return $this->plan->where('name', $pricingPlanName)->first();
+    }
+
     private function getPaymentServicePlans() {
 
        $payment_service_plans =  Paystack::fetchPlans();

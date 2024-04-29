@@ -14,6 +14,14 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+
+        $user = $request->user();
+        // dd($request->user());
+        $user_plan = $user->getActivePlan($user);
+
+        $subscription_features = $user->getUserPlanFeatures($user_plan);
+
+
         return [
             'id' => $this->id,
             'first_name' => $this->first_name,
@@ -26,9 +34,13 @@ class UserResource extends JsonResource
             'linkedin_url' => $this->details ? $this->details->linkedin_url : null,
             'bio' => $this->details ? $this->details->bio : null,
             // $this->userProfilingCountLeft(),
-            'available_profiling_count' => $this->userProfilingCountLeft(),
+            // 'available_profiling_count' => $this->userProfilingCountLeft(),
             //  $this?->userProfilingCountLeft(),
-            'image_url' => $this->info?->image_url
+            'image_url' => $this->info?->image_url,
+            'active_subscription' => $user_plan,
+            'subscription_features' => $subscription_features,
+            'available_profiling_count' => $user->getSubscriptionFeatureLimits($user, 'monthly-influencer-analysis')
+
         ];
     }
 }

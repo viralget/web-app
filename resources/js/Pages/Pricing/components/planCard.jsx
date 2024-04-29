@@ -41,7 +41,8 @@ export default function PlanCard({ item, isEmpty }) {
                 ₦{nFormatter(plan?.price)}<span className="font-normal text-t-xs  text-viralget-gray-400">/{plan?.interval == 'month' ? 'mo' : 'yr'}</span>
               </span>
 
-              <a href={route('user.payment.page', { slug: plan?.slug })} className="text-viralget-red border mt-3  p-1 hover:bg-viralget-red px-space-20 py-space-10  text-center  flex items-center hover:text-white rounded-md border-viralget-red ">
+              <a href={route('payments.trial') + '?plan=' + plan?.id} className="text-viralget-red border mt-3  p-1 hover:bg-viralget-red px-space-20 py-space-10  text-center  flex items-center hover:text-white rounded-md border-viralget-red ">
+                {/* <a href={route('user.payment.page') + '?plan=' + plan?.slug} className="text-viralget-red border mt-3  p-1 hover:bg-viralget-red px-space-20 py-space-10  text-center  flex items-center hover:text-white rounded-md border-viralget-red "> */}
                 {/* <span className="text-t-normal  font-bold">Get started</span> */}
                 <span className="text-t-normal  font-bold">Start free 7-day trial</span>
               </a>

@@ -20,7 +20,7 @@ Route::get('account-setup', [RegisteredUserController::class, 'accountSetup'])->
 Route::post('account-setup', [RegisteredUserController::class, 'storeDetail'])->name('account.setup');
 Route::get('/pricing', [RegisteredUserController::class, 'selectPricing'])->name('pricing');
 Route::get('verify-email/{id}/{hash}', [RegisteredUserController::class, 'verifyEmail'])->name('verification.verify');
-Route::get('/select-payment/{slug}', [RegisteredUserController::class, 'selectPayment'])->name('user.payment.page');
+Route::get('/select-payment', [RegisteredUserController::class, 'selectPayment'])->name('user.payment.page');
 Route::get('/verify-payment/{reference}/{plan_id}', [RegisteredUserController::class, 'verifyPayment'])->name('user.verify.payment');
 Route::get('/select-social', [RegisteredUserController::class, 'selectSocial'])->name('select.social');
 

@@ -212,17 +212,18 @@ class RegisteredUserController extends Controller
         }
     }
 
-    public function selectPayment($slug)
+    public function selectPayment(Request $request)
     {
 
+        $plan = $request->plan;
  
 
         $user = request()->user();
-        if (!$user || !$slug) {
+        if (!$user || !$plan) {
             return redirect(route('register'));
         }
 
-        $plan = Plan::where('slug', $slug)->first();
+        $plan = Plan::where('slug', $plan)->first();
 
         $plan = PaymentServicePlans::where('plan_id', $plan->id)->first();
 
@@ -237,6 +238,7 @@ class RegisteredUserController extends Controller
         }
         $data['public_key'] = $public_key;
         $data['plan_id'] = $plan_id;
+        $data['plan_name'] = $request->plan;
         $plan = Paystack::fetchPlan($plan_id);
         $data['plan'] = $plan?->data ?? null;
 

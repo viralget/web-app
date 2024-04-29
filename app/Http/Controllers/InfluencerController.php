@@ -10,6 +10,7 @@ use App\Models\Search;
 use App\Models\TwitterInfluencer;
 use App\Models\ProfiledInfluencer;
 use App\Models\InfluencerList;
+use App\Services\SubscriptionService;
 use App\Services\TwitterService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,10 +19,17 @@ class InfluencerController extends Controller
 {
 
     protected TwitterInfluencer $influencer;
+    protected $subscriptionService;
+
+    protected $user;
 
     function __construct(TwitterInfluencer $influencer)
     {
         $this->influencer = $influencer;
+
+        $this->subscriptionService = new SubscriptionService;
+
+ 
     }
     /**
      * Display a listing of the resource.
@@ -74,12 +82,16 @@ class InfluencerController extends Controller
     public function search(Request $request)
     {
 
+        // if(!$this->subscriptionService->checkUserCanUseFeature($request->user(), 'monthly-search-results')) {
+        //     return redirect(route('pricing'))->withError('You have exhausted your monthly search result limits');                        
+        // }
+
         $categories = Category::get();
 
         if (count($request->all()) > 0) {
 
             $has_query = true;
-            $result = TwitterInfluencer::query();
+            $result = TwitterInfluencer::query()->take(3);
 
             $request_categories = explode(',', $request->category);
 
@@ -261,8 +273,9 @@ class InfluencerController extends Controller
                 $this->storeSearch($request, $result->count());
             }
 
-            $result = $result->latest()->paginate(10)->appends($_GET);
+            $result = $result->latest()->paginate(15)->appends($_GET);
 
+            $this->subscriptionService->recordFeatureUsage($request->user(), 'monthly-search-results', $result->count());
 
 
         } else {

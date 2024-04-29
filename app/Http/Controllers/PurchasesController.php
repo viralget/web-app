@@ -12,6 +12,7 @@ use App\Models\RecruiterSubscriptionPlans;
 use App\Services\PaymentMethods\Paystack;
 use App\Services\PaymentMethods\StripeService;
 use App\Services\PaymentMethods\PaystackService;
+use App\Services\PricingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
@@ -26,12 +27,14 @@ class PurchasesController extends Controller
     protected $plans;
     protected $stripeService;
     protected $paystackService;
+    protected $pricingService;
 
     function __construct(Invoice $invoice)
     {
         $this->invoice = $invoice;
         $this->stripeService = new StripeService();
         $this->paystackService = new PaystackService();
+        $this->pricingService = new PricingService();
 
 
         $this->middleware(function ($request, $next) {
@@ -168,6 +171,40 @@ class PurchasesController extends Controller
 
             // dd($e);
             return response(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+
+
+    public function startTrial(Request $request)
+    {
+        $request->validate([
+            'plan' => 'required',
+        ]);
+
+        try {
+
+            $user = $request->user();
+
+            $plan = $this->pricingService->getPlan($request->plan);
+
+
+            if(!$plan)  {
+                throw new \Exception('Plan record not found');
+            }
+
+            $subscription = $user->newPlanSubscription($plan->name, $plan);
+
+            if(!$subscription)  {
+                throw new \Exception('Error creating new subscription');
+            }
+
+
+            return redirect(route('explore'))->withMessage('Subscription successful!');
+        } catch (\Exception $e) {
+            $this->log($e);
+            
+            return redirect()->back()->withError($e->getMessage());
         }
     }
 

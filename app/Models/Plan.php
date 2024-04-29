@@ -13,4 +13,6 @@ class Plan extends ModelsPlan
     function paymentService() {
         return $this->hasOne(PaymentServicePlans::class, 'plan_id');
     }
+
+   
 }

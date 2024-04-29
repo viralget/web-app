@@ -1,8 +1,8 @@
 import { classNames } from "@/Utils/helpers";
 
-export default function Button({ type = 'submit', size = 'large', isDark = false, isLight, icon, rounded = true, transparent, block = false, usePrimary, bgColor = "bg-white", textColor = 'text-gray-900', borderColor, className = '', processing, children, href, onClick, disabled, target }) {
+export default function Button({ type = 'submit', size = 'large', isDark = false, isLight, icon, rounded = true, transparent, block = false, usePrimary, bgColor = "bg-white", textColor = 'text-gray-900', borderColor, className = '', processing, children, href, onClick, disabled = false, target }) {
 
-
+  console.log({ disabled })
 
   const isBlock = block ? 'w-full' : '';
   // const buttonTextColor = transparent ? textColor ? textColor : 'text-white' : 'text-black';
@@ -12,7 +12,7 @@ export default function Button({ type = 'submit', size = 'large', isDark = false
   const roundedStyle = rounded ? 'rounded-xl' : null;
 
   const _className = `inline-flex items-center justify-center text-sm border shadow-sm font-semibold  leading-7 gap-x-1.5 ${isBlock} ${buttonTextColor} transition-all duration-200 ${buttonBgColor} border ${buttonBorderColor} rounded-md 
-                        ${processing && 'opacity-25'}
+                        ${processing || disabled && 'opacity-25'}
     ${size == 'small' ? 'px-4 py-2' : '  px-3 py-2 '}
                         ` + className;
 

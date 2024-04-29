@@ -10,6 +10,7 @@ import { Link } from '@inertiajs/inertia-react';
 import { PlatformContext } from '@/Contexts/PlatformContext';
 import { getPlatform, platforms } from '@/Services/PlatformsService';
 import Avatar from '@/Components/Skeleton/Avatar';
+import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 
 function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
@@ -90,7 +91,7 @@ export default function header({ influencer, isMini, list }) {
                                           <div className={classNames("flex md:flex-row  flex-col  justify-between", isMini ? 'flex-wrap space-y-2 md:w-[25rem]' : '')}>
                                                 <div className="flex flex-col">
                                                       <span className="text-h1 font-lexend  font-semibold">{influencer?.full_name}</span>
-                                                      <span className="text-t-xsx text-viralget-gray-400 font-lexend ">@{influencer?.username}</span>
+                                                      <span className="text-viralget-gray-400 font-lexend  flex items-center">@{influencer?.username}  {influencer.is_verified ? <CheckBadgeIcon className="text-blue-400  w-4 h-4 rounded-full ml-2" /> : ''}</span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col space-y-2  md:space-y-0 md:justify-between md:mt-0 mt-2 w-auto  md:space-x-2 ">
 
@@ -111,31 +112,34 @@ export default function header({ influencer, isMini, list }) {
                                                             </div>
                                                       )}
 
-                                                      {/* <div className={classNames("flex md:space-x-2  pr-2  h-space-16 ", isMini ? '' : 'border-r border-viralget-gray-300')}>
-                                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                  <g clip-path="url(#clip0_958_45465)">
-                                                                        <path d="M14.5 13.5L11 6.5L7.5 13.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                        <path d="M8.5 11.5H13.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                        <path d="M5.5 2V3.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                        <path d="M1.5 3.5H9.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                        <path d="M7.5 3.5C7.5 5.0913 6.86786 6.61742 5.74264 7.74264C4.61742 8.86786 3.0913 9.5 1.5 9.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                        <path d="M3.84375 5.5C4.2573 6.66971 5.02329 7.68246 6.03626 8.3988C7.04922 9.11515 8.25934 9.49988 9.5 9.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                                                                  </g>
-                                                                  <defs>
-                                                                        <clipPath id="clip0_958_45465">
-                                                                              <rect width="16" height="16" fill="white" />
-                                                                        </clipPath>
-                                                                  </defs>
-                                                            </svg>
+                                                      {influencer?.language && (
+                                                            <div className={classNames("flex md:space-x-2  pr-2  h-space-16 ", isMini ? '' : 'border-r border-viralget-gray-300')}>
+                                                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g clip-path="url(#clip0_958_45465)">
+                                                                              <path d="M14.5 13.5L11 6.5L7.5 13.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                              <path d="M8.5 11.5H13.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                              <path d="M5.5 2V3.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                              <path d="M1.5 3.5H9.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                              <path d="M7.5 3.5C7.5 5.0913 6.86786 6.61742 5.74264 7.74264C4.61742 8.86786 3.0913 9.5 1.5 9.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                              <path d="M3.84375 5.5C4.2573 6.66971 5.02329 7.68246 6.03626 8.3988C7.04922 9.11515 8.25934 9.49988 9.5 9.5" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                        </g>
+                                                                        <defs>
+                                                                              <clipPath id="clip0_958_45465">
+                                                                                    <rect width="16" height="16" fill="white" />
+                                                                              </clipPath>
+                                                                        </defs>
+                                                                  </svg>
 
 
-                                                            <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.language}</span>
+                                                                  <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.language}</span>
 
-                                                      </div> */}
+                                                            </div>
+                                                      )}
+
                                                       {
                                                             !isMini && (
                                                                   <>
-                                                                        {/* 
+
                                                                         <div className="flex md:space-x-2 border-r border-viralget-gray-300 pr-2  h-space-16 ">
                                                                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                     <g clip-path="url(#clip0_958_42571)">
@@ -152,9 +156,9 @@ export default function header({ influencer, isMini, list }) {
 
                                                                               <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.phone_number}</span>
 
-                                                                        </div> */}
+                                                                        </div>
 
-                                                                        {/* <div className="flex space-x-2">
+                                                                        <div className="flex space-x-2">
                                                                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                     <g clip-path="url(#clip0_958_42561)">
                                                                                           <path d="M15.75 3.9375L9 10.125L2.25 3.9375" stroke="#748094" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -173,7 +177,7 @@ export default function header({ influencer, isMini, list }) {
 
 
                                                                               <span className="text-t-normal font-satoshi font-medium text-viralget-grey">{influencer.email}</span>
-                                                                        </div> */}
+                                                                        </div>
                                                                   </>
 
                                                             )
@@ -187,21 +191,21 @@ export default function header({ influencer, isMini, list }) {
                                           <div className="flex mt-space-16  w-full">
                                                 <div className="flex md:flex-row flex-col mr-3">
                                                       <span className="font-bold mr-1">{nFormatter(influencer?.followers_count)} </span>
-                                                      <span className="text-viralget-grey font-normal text-t-xsx  "> followers </span>
+                                                      <span className="text-viralget-grey font-normal "> followers </span>
                                                 </div>
                                                 <div className="flex mr-3 md:flex-row flex-col">
                                                       <span className="font-bold  mr-1">{nFormatter(influencer?.tweet_count)}</span>
-                                                      <span className="text-viralget-grey font-normal text-t-xsx">  tweets </span>
+                                                      <span className="text-viralget-grey font-normal"> posts </span>
                                                 </div>
                                                 <div className="flex md:flex-row flex-col">
                                                       <span className="font-bold mr-1">{nFormatter(influencer?.following_count)} </span>
-                                                      <span className="text-viralget-grey font-normal text-t-xsx">  following</span>
+                                                      <span className="text-viralget-grey font-normal"> following</span>
                                                 </div>
                                           </div>
 
 
                                           <div className={classNames("flex flex-wrap mt-2  ", isMini ? 'w-full' : 'md:w-space-500')}>
-                                                <span className="text-xsx-header text-viralget-gray-400  mr-2">{influencer.bio} {influencer.email && <>&bull;</>} {influencer.email} {influencer.phone && <>&bull;</>} {influencer.phone}</span>
+                                                <span className="text-xsx-header text-viralget-gray-400  mr-2">{influencer.bio}</span>
                                           </div>
 
 

@@ -64,7 +64,7 @@ Route::get('/coming-soon', function () {
     return Inertia::render('ComingSoon/index');
 })->name('coming-soon');
 
-Route::post('/payments/start-trial', [PurchasesController::class, 'startTrial'])->name('payments.traial');
+
 Route::post('/payments/verify', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
 Route::prefix('transactions')->name('payments.')->group(
     function () {
@@ -81,7 +81,7 @@ Route::middleware('auth')->group(
         Route::get('/dashboard', [InfluencerController::class, 'index'])->name('dashboard');
         //    Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::get('/explore', [InfluencerController::class, 'index'])->name('explore');
-        Route::get('/search', [InfluencerController::class, 'search'])->name('explore.search');
+        Route::get('/search', [InfluencerController::class, 'search'])->name('explore.search')->middleware('has-subscription');
         // Route::get('/search', [InfluencerController::class, 'index'])->name('explore.search');
         Route::get('/messages', [MessagesController::class, 'index'])->name('get.messages');
         Route::post('/messages', [MessagesController::class, 'send'])->name('message.post');
@@ -145,6 +145,8 @@ Route::middleware('auth')->group(
             // Route::patch('/update-password', [SettingsController::class, 'updatePassword'])->name('password.update');
         });
         // Route::post('/payments/verify/{reference}', [PurchasesController::class, 'verifyPayment'])->name('payments.verify');
+
+        Route::get('/payments/start-trial', [PurchasesController::class, 'startTrial'])->name('payments.trial');
 
 
         Route::resource('influencers', InfluencerController::class)->except('show');

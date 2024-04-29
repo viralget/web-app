@@ -5,7 +5,7 @@ import { CardPaySvg } from "@/Utils/icons";
 import Button from "@/components/Button";
 import TextAlert from "@/components/TextAlert";
 import PaystackPop from '@paystack/inline-js';
-import { get } from "@/Utils/api";
+import { get, post } from "@/Utils/api";
 import toast from '@/Components/Toast';
 import { usePage } from "@inertiajs/inertia-react";
 
@@ -16,8 +16,8 @@ export const PaymentProccess = (props) => {
     const { plan_id, plan, public_key } = props;
 
     const [getPaymentMethod, setPaymentMethod] = useState("");
-    const [buttText, setPaymentText] = useState("Start Free trial");
-    // const [buttText, setPaymentText] = useState("Continue");
+    // const [buttText, setPaymentText] = useState("Start Free trial");
+    const [buttText, setPaymentText] = useState("Continue");
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -40,9 +40,7 @@ export const PaymentProccess = (props) => {
 
     function payWithPaystack() {
 
-        window.location.href = route('payments.trial');
 
-        return;
         setIsLoading(true);
         setPaymentText("Initiating payment...")
 
@@ -88,6 +86,7 @@ export const PaymentProccess = (props) => {
             }).finally(() => setIsLoading(false));
 
     }
+
 
     function onHandleChange(e) {
         const method = e.target.name;
@@ -140,11 +139,11 @@ export const PaymentProccess = (props) => {
 
             <div className="w-full flex items-center mt-space-80 px-space-10  justify-center">
                 <div className="flex flex-col ">
-                    <span className="font-bold font-lexend lg:text-t-xlg  text-t-lg text-center ">Payment method</span>
-
+                    <span className="font-bold font-lexend lg:text-t-xlg  text-t-lg text-center ">Select Payment method</span>
+                    {/* 
                     <div className="mt-space-20">
                         <TextAlert />
-                    </div>
+                    </div> */}
                     <div className="mt-space-20 flex flex-col space-y-4">
                         <PaymentCard value="paystack" />
                         {/* <PaymentCard  value="card" /> */}
@@ -154,8 +153,8 @@ export const PaymentProccess = (props) => {
                         <Button
                             className='block w-auto bg-viralget-red rounded-[8px]  px-space-40'
                             processing={isLoading}
-                            href={route('explore')}
-                        // onClick={handleStart}
+                            // href={route('explore')}
+                            onClick={handleStart}
                         >
                             {buttText}
 

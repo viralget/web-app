@@ -39,11 +39,10 @@ class HandleInertiaRequests extends Middleware
         $user = $request->user();
         $role = null;
 
-
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $user ? UserResource::make($user) : null,
-                'role' => $role && count($role) > 0 ? $role[0] : null
+                'role' => $role && count($role) > 0 ? $role[0] : null,
             ],
             'app' => [
                 'name' => config('app.name'),

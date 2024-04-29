@@ -3,14 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Services\SubscriptionService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravelcm\Subscriptions\Models\Plan;
+use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasPlanSubscriptions;
 
     /**
      * The attributes that are mass assignable.
@@ -84,5 +88,19 @@ class User extends Authenticatable
         $default = 50;
 
         return $default - $count;
+    }
+
+    public function getActivePlan($user) {
+        return $user->subscribedPlans()->first();
+    }
+
+     public function getUserPlanFeatures(Plan $plan) {
+        return $plan ? $plan->features()->get() : [];
+    }
+
+    public function getSubscriptionFeatureLimits(User $user, $feature) {
+        $subscriptionService = new SubscriptionService;
+
+        return $subscriptionService->checkUserFeatureLimits($user, $feature);
     }
 }
