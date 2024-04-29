@@ -37,7 +37,7 @@ export default function PlanCard({ item, isEmpty }) {
                 {plan?.name}
               </span>
 
-              <span className="text-t-xlg font-lexend  font-bold mt-3">
+              <span className="text-t-xlg font-lexend text-center font-bold mt-3">
                 ₦{nFormatter(plan?.price)}<span className="font-normal text-t-xs  text-viralget-gray-400">/{plan?.interval == 'month' ? 'mo' : 'yr'}</span>
               </span>
 

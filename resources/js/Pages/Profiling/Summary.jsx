@@ -1,6 +1,7 @@
 import Typography from '@/components/Typography';
 import { usePage } from '@inertiajs/inertia-react';
 import SummaryCard from './summaryCard';
+import ComingSoon from '@/Components/ComingSoon';
 
 export default function Summary({ list_count = 0, profiles_count = 0, instagram_count = 0, twitter_count = 0 }) {
 
@@ -77,7 +78,8 @@ export default function Summary({ list_count = 0, profiles_count = 0, instagram_
 
                         </div>
                         <div className='mt-5'>
-                            <Typography variant="h2" content={'Coming soon'} />
+                            <ComingSoon />
+                            {/* <Typography variant="h2" content={'Coming soon'} /> */}
                             {/* <Typography variant="h2" content={twitter_count + ' accounts'} /> */}
                         </div>
                     </div>

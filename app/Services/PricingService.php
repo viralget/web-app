@@ -163,9 +163,9 @@ class PricingService {
             [
                 'section' => 'Pricing',
                 'features' => [
-                    ['feature_name' => 'MONTHLY SEARCH RESULTS AND INFLUENCER ANALYSIS', 'feature_data_field' => 'monthly_search_results_and_influencer_analysis'],
-                    ['feature_name' => 'PLATFORM COST', 'feature_data_field' => 'platform_cost'],
-                    ['feature_name' => 'DISCOUNTED COST', 'feature_data_field' => 'discounted_cost']
+                    // ['feature_name' => 'MONTHLY SEARCH RESULTS AND INFLUENCER ANALYSIS', 'feature_data_field' => 'monthly_search_results_and_influencer_analysis'],
+                    ['feature_name' => 'price', 'feature_data_field' => 'platform_cost'],
+                    ['feature_name' => 'discounted_price', 'feature_data_field' => 'discounted_cost']
                 ]
             ]
         ];

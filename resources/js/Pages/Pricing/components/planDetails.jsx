@@ -138,9 +138,27 @@ const PlanDetails = ({ plans }) => {
 
 
       function getPlanData(plan, feature) {
-            const value = plan.features.filter((_feature) => _feature.name == feature);
+            let value = plan.features.filter((_feature) => _feature.name == feature);
 
-            return value[0]?.value;
+            value = value[0]?.value;
+
+
+            switch (value) {
+                  case '':
+                        value = <CancelFillRedSvg className="w-4 h-4" />
+                        break;
+                  case 'true':
+                        value = <DoneSvg className="w-4 h-4" />
+                        break;
+
+                  default:
+                        break;
+            }
+            // if (typevalue == '') {
+            //       return value ? <DoneSvg className="w-4 h-4" /> : <CancelFillRedSvg className="w-4 h-4" />;
+            // }
+
+            return value;
       };
 
       return (
@@ -163,7 +181,7 @@ const PlanDetails = ({ plans }) => {
                                                             <td className="border text-t-xsx w-space-200 font-bold px-4">{feature.feature_name}</td>
                                                             {plans.map(plan => (
                                                                   <td className="border p-3  w-space-200">
-                                                                        <div className="flex justify-center space-x-1">
+                                                                        <div className="flex justify-center space-x-1 p-3">
                                                                               {getPlanData(plan, feature.feature_data_field)}
                                                                               {/* <InstagramSvg className="w-10 h-10 " /> */}
                                                                               {/* <span>Or</span> */}
