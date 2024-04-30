@@ -49,7 +49,7 @@ class PricingService {
     }
 
     public function getPlans() {
-        return $this->plan->with('features')->orderBy('sort_order', 'desc')->get();
+        return $this->plan->with('features')->orderBy('sort_order', 'asc')->get();
     }
 
     public function getPlan($id) {
