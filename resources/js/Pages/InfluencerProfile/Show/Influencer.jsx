@@ -16,24 +16,36 @@ import {
 import AudienceCard from "../audienceCardRow";
 import DataCard from "../card";
 import BrandSafetyLevel from "../Components/BrandSafetyLevel";
+import ComingSoon from "@/Components/ComingSoon";
 
 
 export default function ({ influencer }) {
 
     const {
-        engagement_rate, global_rank, country_rank, category_rank,
-        avg_cpe, avg_cpm, reachability, avg_impressions, reach, impressions
+        engagement_rate, global_rank, country_rank, category_rank, total_replies, total_likes, growth_rate,
+        avg_cpe, avg_cpm, reachability, avg_impressions, reach, impressions, engagements, average_engagements
 
     } = influencer?.metrics;
 
 
     const cardsList = [
         {
+            title: 'Brand Safety Level',
+            icon: (<EngagementRateWithBSvg />),
+            score: <ComingSoon />,
+            // increase: engagement_rate?.increase,
+            // label: engagement_rate?.label
+        }, {
             title: 'Engagement rate',
             icon: (<EngagementRateWithBSvg />),
             score: engagement_rate?.score + '',
             increase: engagement_rate?.increase,
             label: engagement_rate?.label
+        },
+        {
+            title: 'Total Engagements',
+            icon: <EngagementRateWithBSvg />,
+            score: nFormatter(engagements?.score) ?? 'no data'
         },
         {
             title: 'Reachability',
@@ -46,20 +58,35 @@ export default function ({ influencer }) {
             score: nFormatter(impressions?.score) ?? 'no data'
         },
         {
+            title: 'Average Engagements',
+            icon: <EngagementRateWithBSvg />,
+            score: average_engagements?.score ?? 'no data'
+        },
+        {
             title: 'Average Impressions',
             icon: <EngagementRateWithBSvg />,
             score: avg_impressions?.score ?? 'no data'
         },
 
+        // {
+        //     title: 'Average CPE',
+        //     icon: <EngagementRateWithBSvg />,
+        //     score: avg_cpe?.score ?? 'no data'
+        // },
+        // {
+        //     title: 'Average CPM',
+        //     icon: <EngagementRateWithBSvg />,
+        //     score: avg_cpm?.score ?? 'no data'
+        // },
         {
-            title: 'Average CPE',
+            title: 'Total Likes ',
             icon: <EngagementRateWithBSvg />,
-            label: avg_cpe?.score ?? 'no data'
+            score: total_likes?.score ?? 'no data'
         },
         {
-            title: 'Average CPM',
+            title: 'Average Comments',
             icon: <EngagementRateWithBSvg />,
-            label: avg_cpm?.score ?? 'no data'
+            score: total_replies?.score ?? 'no data'
         },
 
         // {
@@ -157,18 +184,19 @@ export default function ({ influencer }) {
     return (
         <div className="space-y-5">
 
-            <div className="grid sm:grid-cols-2 p-4 md:space-x-3 ">
+            {/* <div className="grid sm:grid-cols-2 p-4 md:space-x-3 "> */}
 
-                <BrandSafetyLevel influencer={influencer} />
+            {/* <BrandSafetyLevel influencer={influencer} /> */}
 
-                <div className="grid grid-cols-2 md:mt-0 mt-4    gap-3  w-full  ">
-                    {
-                        cardsList.map((item) => (
-                            <DataCard item={item} />
-                        ))
-                    }
-                </div>
+            <div className="grid md:grid-cols-4 md:mt-0 mt-4    gap-3  w-full  ">
+                {/* <div className="grid grid-cols-2 md:mt-0 mt-4    gap-3  w-full  "> */}
+                {
+                    cardsList.map((item) => (
+                        <DataCard item={item} />
+                    ))
+                }
             </div>
+            {/* </div> */}
 
             <Card useBorder={true} useShadow={false}>
 
@@ -189,6 +217,14 @@ export default function ({ influencer }) {
                         score: nFormatter(reach?.score ?? 0),
                         increase: reach?.increase,
                         label: reach?.label
+                    }} />
+
+                    <DataCard item={{
+                        title: 'Growth Rate',
+                        icon: (<EngagementRateWithBSvg />),
+                        score: nFormatter(growth_rate?.score ?? 0),
+                        increase: growth_rate?.increase,
+                        label: growth_rate?.label
                     }} />
 
                 </div>

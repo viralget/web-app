@@ -21,7 +21,7 @@ class UserResource extends JsonResource
 
         $subscription_features = $user->getUserPlanFeatures($user_plan);
 
-
+        // dd($user_plan, $subscription_features, $user->getSubscriptionFeatureLimits($user, 'monthly-influencer-analysis'));
         return [
             'id' => $this->id,
             'first_name' => $this->first_name,
@@ -39,7 +39,7 @@ class UserResource extends JsonResource
             'image_url' => $this->info?->image_url,
             'active_subscription' => $user_plan,
             'subscription_features' => $subscription_features,
-            'available_profiling_count' => $user->getSubscriptionFeatureLimits($user, 'monthly-influencer-analysis')
+            'available_profiling_count' => $user->getSubscriptionFeatureUsage($user, 'monthly_influencer_analysis'),
 
         ];
     }

@@ -42,7 +42,7 @@ class InfluencerResource extends JsonResource
             'platform' => $this->platform,
             'average_likes' => $metrics?->average_likes_per_post,
             'bio' => $this->bio,
-            // 'gender' => 'Male',
+            'gender' =>$this->metrics?->gender,
             // 'age' => 29,
             // 'parental_status' => 'parent',
             // 'marital_status' => 'married',
@@ -94,6 +94,11 @@ class InfluencerResource extends JsonResource
                 ],
                 'media_value' => [
                     'score' => $metrics?->media_value,
+                    'increase' => 0.24,
+                    'label' => 'last 30 days'
+                ],
+                'media_value_per_post' => [
+                    'score' => $metrics?->media_value_per_post,
                     'increase' => 0.24,
                     'label' => 'last 30 days'
                 ],
@@ -154,18 +159,34 @@ class InfluencerResource extends JsonResource
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
+                'average_engagements' => [
+                    'score' => $metrics?->average_engagement ?? 0,
+                    'increase' => null,
+                    'label' => $default_metrics_label
+                ],
                 'engagements' => [
-                    'score' => $metrics?->total_engagements ?? 0,
+                    'score' => $metrics?->total_engagement ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
                 'total_replies' => [
-                    'score' => $$metrics?->total_replies ?? 0,
+                    'score' => $metrics?->total_replies ?? 0,
+                    'increase' => null,
+                    'label' => $default_metrics_label
+                ],
+                 'total_likes' => [
+                    'score' => $metrics?->total_likes ?? 0,
+                    'increase' => null,
+                    'label' => $default_metrics_label
+                ],
+                 'growth_rate' => [
+                    'score' => $metrics?->growth_rate ?? 0,
                     'increase' => null,
                     'label' => $default_metrics_label
                 ],
             ],
         ];
+        
     }
 
     private function metricsValue($value) {

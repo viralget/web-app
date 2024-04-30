@@ -8,6 +8,7 @@ import ListBox from './listBox';
 import Modal from '@/components/Modal';
 import Button from '@/Components/Button';
 import Avatar from '@/Components/Skeleton/Avatar';
+import { nFormatter } from '@/Utils/helpers';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -15,7 +16,6 @@ function classNames(...classes) {
 
 
 export default function List({ influencerList, profiles }) {
-
 
     const [getValue, setValue] = useState('')
     const [showModal, setShowModal] = useState(false);
@@ -202,9 +202,9 @@ export default function List({ influencerList, profiles }) {
                                         <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
                                             Follower
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
+                                        {/* <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
                                             Interaction
-                                        </th>
+                                        </th> */}
                                         <th scope="col" className="px-3 py-3.5 text-left  text-xs font-semibold text-gray-900">
                                             ER
                                         </th>
@@ -245,9 +245,9 @@ export default function List({ influencerList, profiles }) {
                                                 </div>
 
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.followers_count}</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
+                                            {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td> */}
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.metrics?.engagement_rate}</td>
 
                                         </tr>
                                     ))}

@@ -196,9 +196,9 @@ const AddInfluencer = ({ profiled_influencers, list }) => {
                                                 </div>
 
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.followers_count}</td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{nFormatter(item.followers_count)}</td>
                                             {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">10%</td>*/}
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate}</td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.engagement_rate?.score}</td>
 
                                         </tr>
                                     ))}

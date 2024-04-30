@@ -67,31 +67,40 @@ export const NewsList = [
 export const BoardcadsList = [
     {
         label: 'Quality Audience Total',
+        field: 'quality_audience',
         value: '2.43M',
         icon: (<QualityAudienceWithB />)
     },
     {
-        label: 'Authentic Engagement Total',
+        label: 'Total Engagements',
+        field: 'total_engagement',
         value: '1.12M',
         icon: (<EngagementWithBSvg />)
     },
     {
-        label: 'Impressions total',
+        label: 'Video Views ',
+        field: 'video_views',
         value: '932K',
         icon: (<ImpressionsWithB />)
     },
     {
         label: 'Engagement Rate',
+        field: 'engagement_rate',
+
         value: '2.34%',
         icon: (<EngagementRateWithBSvg />)
     },
     {
         label: 'Audience reachability',
+        field: 'reachability',
+
         value: '2.43M',
         icon: (<ReachabilityWithBSvg />)
     },
     {
-        label: 'Reach total',
+        label: 'Media Value',
+        field: 'media_value',
+
         value: '2.13M',
         icon: (<ReactTotalWithBSvg />)
     }

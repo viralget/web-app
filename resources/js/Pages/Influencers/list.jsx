@@ -22,6 +22,7 @@ import { TwitterSvg } from '@/Utils/icons';
 import { getPlatform } from '@/Services/PlatformsService';
 import { usePage } from '@inertiajs/inertia-react';
 import Button from '@/Components/Button';
+import ComingSoon from '@/Components/ComingSoon';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -292,7 +293,8 @@ export default function List(props) {
                                         // className="shadow-sm ring-1 ring-inset ring-gray-200"
                                         >
                                             <div className='p-3 flex  justify-center items-center'>
-                                                <span className='font-normal  text-sm'>Feature coming soon</span>
+                                                <ComingSoon />
+                                                {/* <span className='font-normal  text-sm'>Feature coming soon</span> */}
                                             </div>
                                         </MenuDropDown>
 
@@ -373,6 +375,9 @@ export default function List(props) {
                                                 Social links
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm text-center font-semibold text-gray-900">
+                                                Gender
+                                            </th>
+                                            <th scope="col" className="px-3 py-3.5 text-left text-sm text-center font-semibold text-gray-900">
                                                 Category
                                             </th>
                                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -429,6 +434,8 @@ export default function List(props) {
                                                         </a>
 
                                                     </td>
+                                                    <td className="whitespace-nowrap px-3 capitalize py-4 text-sm text-gray-500">{item.gender}</td>
+
                                                     <td className="whitespace-nowrap px-3 py-4  text-center w-60 text-sm text-gray-500">
                                                         <div className='flex justify-center flex-wrap space-x-3'>
                                                             {

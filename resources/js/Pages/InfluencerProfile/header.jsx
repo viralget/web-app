@@ -11,6 +11,7 @@ import { PlatformContext } from '@/Contexts/PlatformContext';
 import { getPlatform, platforms } from '@/Services/PlatformsService';
 import Avatar from '@/Components/Skeleton/Avatar';
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
+import ComingSoon from '@/Components/ComingSoon';
 
 function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
@@ -245,7 +246,7 @@ export default function header({ influencer, isMini, list }) {
                                                                                     buttonIcon={<PlusIcon className='w-5 h-5 ' />}
                                                                                     className="border-viralget-red border  text-viralget-red"
                                                                               >
-                                                                                    <div className='w-[20rem]'>
+                                                                                    {/* <div className='w-[20rem]'>
                                                                                           <form className="pt-2" onSubmit={handleCreateList}>
                                                                                                 {
                                                                                                       list?.map((item) => {
@@ -290,7 +291,7 @@ export default function header({ influencer, isMini, list }) {
                                                                                                       <button className='bg-[#ffff]  border text-xs font-bold  px-2 text-[#748094] rounded-md'>Create & Add</button>
                                                                                                 </div>
                                                                                           </form>
-                                                                                    </div>
+                                                                                    </div> */}
                                                                               </MenuDropDown>
                                                                         )
                                                                   }
@@ -302,7 +303,8 @@ export default function header({ influencer, isMini, list }) {
                                                                         className='border-viralget-gray-300 border   shadow-header-card '
                                                                   >
                                                                         <div className='p-3 flex  justify-center items-center'>
-                                                                              <span className='font-normal  text-sm'>Coming soon</span>
+                                                                              <ComingSoon />
+                                                                              {/* <span className='font-normal  text-sm'>Coming soon</span> */}
                                                                         </div>
                                                                   </MenuDropDown>
 

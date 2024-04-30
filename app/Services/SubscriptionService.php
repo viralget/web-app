@@ -8,6 +8,7 @@ use Laravelcm\Subscriptions\Models\Feature;
 use Laravelcm\Subscriptions\Interval;
 use App\Services\PaymentMethods\Paystack;
 use Laravelcm\Subscriptions\Models\Subscription;
+use Laravelcm\Subscriptions\Models\SubscriptionUsage;
 
 class SubscriptionService {
 
@@ -30,9 +31,23 @@ class SubscriptionService {
 
     public function checkUserFeatureLimits(User $user, $feature) {
 
-        $usage = $this->userSubscription($user)?->usage()->first();
+        $user_subscription = $user->getActiveSubscription($user);
 
-        $feature_record = Feature::where('slug', $feature)->first();
+        if (!$user_subscription)
+            return 0;
+
+        // dd($usage);
+        // $feature_record = $user_subscription->getFeatureValue($feature);
+        $feature_record = Feature::where('name','like', "%$feature%")->where('plan_id', $user_subscription->plan_id)->first();
+
+        // dd($feature_record, $feature);
+        if (!$feature_record)
+            return 0;
+
+        // dd($this->userSubscription($user)->first());
+        $usage = $this->userSubscription($user)?->usage()->where('feature_id', $feature_record->id)->first();
+
+        // $usage = SubscriptionUsage::where('user_id', $user->id)->where('feature_id')->first();
 
         // dd($feature_record);
         if($usage && $feature_record ) {
@@ -40,7 +55,30 @@ class SubscriptionService {
             return  $used > 0 ? $used : 0;
         }
 
-        return 0;
+        return $feature_record->value;
+    }
+
+    public function checkUserFeatureUsage(User $user, $feature) {
+
+
+        $user_subscription = $user->getActiveSubscription($user);
+
+        if (!$user_subscription)
+            return 0;
+
+        // dd($usage);
+        // $feature_record = $user_subscription->getFeatureValue($feature);
+        $feature_record = Feature::where('name','like', "%$feature%")->where('plan_id', $user_subscription->plan_id)->first();
+
+        // dd($feature_record, $feature);
+        if (!$feature_record)
+            return 0;
+
+        // dd($this->userSubscription($user)->first());
+        $usage = $this->userSubscription($user)?->usage()->where('feature_id', $feature_record->id)->first();
+
+
+        return $usage?->used ?? 0;
     }
 
     public function recordFeatureUsage(User $user, $feature, $value = 1) : bool

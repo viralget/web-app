@@ -92,14 +92,19 @@ class PageController extends Controller
     public function profilingPage(Request $request)
     {
 
-        $user_id = $request->user()->id;
+        $user = $request->user();
+        $user_id = $user->id;
         $profiles = ProfiledInfluencer::with(['user', 'influencer'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
         $influencerList = InfluencerList::with('influencers')->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+
+        $monthly_influencer_analysis_limit = $user->getSubscriptionFeatureLimits($user, 'monthly_influencer_analysis');
+
         return Inertia::render(
             'Profiling/index',
             [
                 'profiles' => $profiles,
-                'influencerList' => $influencerList
+                'influencerList' => $influencerList,
+                'total' => $monthly_influencer_analysis_limit,
             ]
         );
     }
@@ -188,7 +193,7 @@ class PageController extends Controller
         $id = $request->id;
         $user_id = $request->user()->id;
         $influencerList = InfluencerList::with('influencers')->where('id', $id)->first();
-        $profiles = ProfiledInfluencer::with(['user', 'influencer'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
+        $profiles = ProfiledInfluencer::with(['user', 'influencer', 'influencer.metrics'])->where('user_id', $user_id)->orderBy('id', 'Desc')->get();
 
         return Inertia::render(
             'Profiling/singleList/index',

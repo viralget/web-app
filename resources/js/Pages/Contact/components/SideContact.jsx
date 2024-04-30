@@ -34,7 +34,7 @@ export default function SideContact() {
                                                         </svg>
                                                 </div>
                                                 <span className='font-bold text-white'>Email address</span>
-                                                <span className='text-white '>info@viralget.com</span>
+                                                <span className='text-white '>info@viralget.io</span>
                                         </div>
 
                                         <div className='flex flex-col md:border-r border-r-[#FFFFFF38]  space-y-3 px-5'>

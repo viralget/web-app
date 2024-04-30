@@ -94,6 +94,10 @@ class User extends Authenticatable
         return $user->subscribedPlans()->first();
     }
 
+    public function getActiveSubscription($user) {
+        return $user->activePlanSubscriptions()->first();
+    }
+
      public function getUserPlanFeatures(Plan $plan) {
         return $plan ? $plan->features()->get() : [];
     }
@@ -103,4 +107,13 @@ class User extends Authenticatable
 
         return $subscriptionService->checkUserFeatureLimits($user, $feature);
     }
+
+
+    public function getSubscriptionFeatureUsage(User $user, $feature) {
+        $subscriptionService = new SubscriptionService;
+
+        return $subscriptionService->checkUserFeatureUsage($user, $feature);
+    }
+
+    
 }

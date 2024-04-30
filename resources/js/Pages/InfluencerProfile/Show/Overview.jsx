@@ -15,6 +15,7 @@ import {
 import AudienceCard from "../audienceCardRow";
 import Card from "../card";
 import InfluencerSize from "../influencerSize";
+import ComingSoon from "@/Components/ComingSoon";
 
 
 export default function ({ influencer }) {
@@ -40,21 +41,21 @@ export default function ({ influencer }) {
         {
             title: 'Global rank',
             icon: (<SvgRank />),
-            score: global_rank?.score ?? <span className="text-gray-300 font-normal">coming soon</span>,
+            score: global_rank?.score ?? <ComingSoon />,
             increase: null,
             label: global_rank?.label
         },
         {
             title: 'Country rank',
             icon: (<SvgCountry />),
-            score: country_rank?.score ?? <span className="text-gray-300 font-normal">coming soon</span>,
+            score: country_rank?.score ?? <ComingSoon />,
             increase: null,
             label: country_rank?.label
         },
         {
             title: 'Category rank',
             icon: (<SvgCategory />),
-            score: category_rank?.score ?? <span className="text-gray-300 font-normal">coming soon</span>,
+            score: category_rank?.score ?? <ComingSoon />,
             increase: null,
             label: category_rank?.label
         },
@@ -82,7 +83,7 @@ export default function ({ influencer }) {
         , {
             title: 'Estimated Income',
             icon: <Gender />,
-            label: estimated_income ?? 'no data'
+            label: estimated_income ?? <ComingSoon />
         },
         {
             title: 'Education',

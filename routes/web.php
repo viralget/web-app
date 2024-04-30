@@ -102,6 +102,7 @@ Route::middleware('auth')->group(
         Route::post('/influencer-list', [ProfilingController::class, 'AddInfluencerToList'])->name('influencers.list');
         Route::post('/delete-list', [ProfilingController::class, 'deleteList'])->name('delete.list');
 
+        Route::get('/campaigns', [ProfilingController::class, 'showList'])->name('list');
         Route::get('/list/{id}', [ProfilingController::class, 'getSingleList'])->name('single.list');
         Route::get('/findprofiled/{id}', [ProfilingController::class, 'findProfiledInfluencer'])->name('influencer.findprofiled');
         Route::post('/influencer-create-list', [ProfilingController::class, 'influencerCreateList'])->name('influencer.addtolist');

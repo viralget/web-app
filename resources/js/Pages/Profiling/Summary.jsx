@@ -3,29 +3,32 @@ import { usePage } from '@inertiajs/inertia-react';
 import SummaryCard from './summaryCard';
 import ComingSoon from '@/Components/ComingSoon';
 
-export default function Summary({ list_count = 0, profiles_count = 0, instagram_count = 0, twitter_count = 0 }) {
+export default function Summary({ list_count = 0, profiles_count = 0, instagram_count = 0, twitter_count = 0, total_profiling = 0, total_storage = 0 }) {
 
     const { auth } = usePage().props;
     const { user } = auth;
 
-    const total = 50;
+    // const total = 50;
+
+    const storage_left = total_storage - list_count;
+    const profiling_left = total_profiling - user.available_profiling_count;
 
     const list = [
         {
             title: 'Monthly profilings',
-            left: user.available_profiling_count, // total - profiles_count,
-            used: total - user.available_profiling_count, // total - profiles_count,
+            left: profiling_left < 1 ? 0 : profiling_left, // total - profiles_count,
+            used: user.available_profiling_count, // total - profiles_count,
             level: profiles_count,
-            total: total,
+            total: total_profiling,
             bottomLine: 'Profiled influencers'
         },
         {
             title: 'Influencer storage',
             used: list_count,
             // used: 0, // total - profiles_count,
-            left: total - list_count,
+            left: storage_left < 1 ? 0 : storage_left,
             level: list_count,
-            total: total,
+            total: total_storage,
             bottomLine: 'Added influencers'
         }
     ]
