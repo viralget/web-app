@@ -21,10 +21,6 @@ const features = [
                         "feature_data_field": "access_to_database"
                   },
                   {
-                        "feature_name": "Category accessible",
-                        "feature_data_field": "category_accessible"
-                  },
-                  {
                         "feature_name": "Numbers of search filters",
                         "feature_data_field": "numbers_of_search_filters"
                   },
@@ -36,22 +32,16 @@ const features = [
                         "feature_name": "Monthly search results",
                         "feature_data_field": "monthly_search_results"
                   },
-                  {
-                        "feature_name": "Save your searches",
-                        "feature_data_field": "save_your_searches"
-                  },
+
                   {
                         "feature_name": "Save search results",
                         "feature_data_field": "save_search_results"
                   },
-                  {
-                        "feature_name": "Profiling",
-                        "feature_data_field": "profiling"
-                  },
+
             ]
       },
       {
-            section: "Campaigns",
+            section: "Profiling",
             features: [
                   {
                         "feature_name": "Monthly influencer analysis",
@@ -114,23 +104,23 @@ const features = [
       },
 
 
-      {
-            section: "Pricing",
-            features: [
-                  {
-                        "feature_name": "MONTHLY SEARCH RESULTS AND INFLUENCER ANALYSIS",
-                        "feature_data_field": "monthly_search_results_and_influencer_analysis"
-                  },
-                  {
-                        "feature_name": "PLATFORM COST",
-                        "feature_data_field": "platform_cost"
-                  },
-                  {
-                        "feature_name": "DISCOUNTED COST",
-                        "feature_data_field": "discounted_cost"
-                  }
-            ],
-      },
+      // {
+      //       section: "Pricing",
+      //       features: [
+      //             {
+      //                   "feature_name": "MONTHLY SEARCH RESULTS AND INFLUENCER ANALYSIS",
+      //                   "feature_data_field": "monthly_search_results_and_influencer_analysis"
+      //             },
+      //             {
+      //                   "feature_name": "PLATFORM COST",
+      //                   "feature_data_field": "platform_cost"
+      //             },
+      //             {
+      //                   "feature_name": "DISCOUNTED COST",
+      //                   "feature_data_field": "discounted_cost"
+      //             }
+      //       ],
+      // },
 ]
 
 
