@@ -14,12 +14,7 @@ class UserHasSubscription
     {
         $user = $request->user();
 
-
-        if(!$user) {
-            return redirect('login');
-        }
-
-        if (!$user->getActivePlan($user)) {
+        if ($user && !$user->getActiveSubscription($user)) {
             return redirect('pricing');
         }
  

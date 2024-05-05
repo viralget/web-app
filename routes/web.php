@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InfluencerController;
@@ -56,6 +57,8 @@ Route::get('/contact', function () {
 Route::get('/pricing-page', function () {
     return redirect(route('pricing'));
 })->name('pricing.page');
+
+Route::get('/pricing', [RegisteredUserController::class, 'selectPricing'])->name('pricing');
 
 
 Route::post('/send-contact', [PageController::class, 'sendContact'])->name('send.contact');
